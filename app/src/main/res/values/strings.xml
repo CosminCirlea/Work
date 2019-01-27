@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WorldApp</string>
+    <string name="log_in_button">Log in</string>
+    <string name="register_label_text">No account? Register here!</string>
+</resources>

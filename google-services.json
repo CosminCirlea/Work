@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "902243900247",
+    "firebase_url": "https://license-74529.firebaseio.com",
+    "project_id": "license-74529",
+    "storage_bucket": "license-74529.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902243900247:android:c3632fc91135ea67",
+        "android_client_info": {
+          "package_name": "com.example.worldapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902243900247-jn8qsat9lf3347aj5fllt8fp6apjbu6m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsMOrSIFMfOckIpLkrGUzyNrMQlNHKm6Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
