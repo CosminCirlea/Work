@@ -2,4 +2,14 @@
     <string name="app_name">WorldApp</string>
     <string name="log_in_button">Log in</string>
     <string name="register_label_text">No account? Register here!</string>
+    <string name="title_activity_home">ActivityHome</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_trips">Trips</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_inbox">Inbox</string>
 </resources>

@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,7 +14,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends AppCompatActivity {
+public class ActivityLogin extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     public EditText UsernameET, PasswordET;
@@ -51,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                         UsernameText.getText().toString(),
                         PasswordText.getText().toString()
                 };
-        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        Intent intent = new Intent(ActivityLogin.this, ActivityRegister.class);
         if (UsernameText.getText()!=null &&  PasswordText.getText()!=null)
             intent.putExtra("extra_array", ToSendArray);
         else
@@ -67,16 +65,19 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            //Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            //updateUI(user);
+                            if (mAuth.getCurrentUser().isEmailVerified())
+                            {
+                                Intent myIntent = new Intent(ActivityLogin.this, ActivityHome.class);
+                                startActivity(myIntent);
+                            }
+                            else {
+                                Toast.makeText(ActivityLogin.this, "Please verify your email address!",
+                                        Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            // If sign in fails, display a message to the user.
-                            //Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                           // updateUI(null);
+                            Toast.makeText(ActivityLogin.this, task.getException().getMessage(),
+                                    Toast.LENGTH_LONG).show();
+
                         }
 
                     }
