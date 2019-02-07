@@ -21,7 +21,7 @@ public class ActivityRegister extends AppCompatActivity {
     FirebaseAuth mAuth;
     Button RegisterButton;
     ProgressBar progressBar;
-
+//TODO To be able to resend email verification for registration
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
