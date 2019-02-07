@@ -35,6 +35,7 @@
         android:layout_centerHorizontal="true"
         android:textSize="20sp"
         android:text="@string/log_in_button"
+        android:textAllCaps="false"
         android:onClick="LogInClick"
         />
     

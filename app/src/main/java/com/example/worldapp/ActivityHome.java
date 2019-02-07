@@ -1,13 +1,19 @@
 package com.example.worldapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuth.AuthStateListener;
 import com.google.firebase.auth.FirebaseUser;
 
 
@@ -15,6 +21,7 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
 
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,13 +33,13 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_home);
         BottomNavigationView navigation = findViewById(R.id.navigation);
 
+
         //fragment chooser
         navigation.setOnNavigationItemSelectedListener(this);
         LoadFragment(new FragmentHome());
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-
     }
 
     private boolean LoadFragment (Fragment fragment)
@@ -64,9 +71,39 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
                 break;
 
             case R.id.navigation_profile:
-                fragment = new FragmentProfile();
+                if (mUser != null) {
+                    fragment = new FragmentProfileLoggedIn();
+                } else {
+                    fragment = new FragmentProfile();
+                }
                 break;
         }
         return LoadFragment(fragment);
+    }
+
+    public void SendDataToHomeFragment()
+    {
+
+    }
+
+    public void LogInWithEmail(View view) {
+        Intent MyIntent = new Intent(this, ActivityLogin.class);
+        startActivity(MyIntent);
+    }
+
+    public void DeleteAccount(View view) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        user.delete()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                        }
+                    }
+                });
+    }
+
+    public void SignOut(View view) {
     }
 }

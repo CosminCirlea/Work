@@ -5,16 +5,23 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
-public class FragmentProfile  extends Fragment {
+public class FragmentProfile extends Fragment {
+    TextView YourProfileDisplayTv;
+    Button BtnLogInWithEmail, LogInWithFacebook;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-// Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        YourProfileDisplayTv = view.findViewById(R.id.tv_title);
+        BtnLogInWithEmail = view.findViewById(R.id.btn_login_with_email);
+        return view;
+
     }
 
-    public void SomeFunction(){
+
+    public void SomeFunction() {
 
         //TODO on profile registration
                                 /*String uid = user.getUid();

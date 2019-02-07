@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">WorldApp</string>
-    <string name="log_in_button">Log in</string>
+    <string name="log_in_button">Log In</string>
     <string name="register_label_text">No account? Register here!</string>
     <string name="title_activity_home">ActivityHome</string>
     <string name="title_home">Home</string>
@@ -12,4 +12,6 @@
     <string name="title_trips">Trips</string>
     <string name="title_profile">Profile</string>
     <string name="title_inbox">Inbox</string>
+    <string name="delete_account_string">Delete account</string>
+    <string name="sign_out_string">Sign Out</string>
 </resources>
