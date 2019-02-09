@@ -81,10 +81,8 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
         return LoadFragment(fragment);
     }
 
-    public void SendDataToHomeFragment()
-    {
 
-    }
+
 
     public void LogInWithEmail(View view) {
         Intent MyIntent = new Intent(this, ActivityLogin.class);
@@ -104,6 +102,4 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
                 });
     }
 
-    public void SignOut(View view) {
-    }
 }

@@ -12,20 +12,40 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.worldapp.Models.UserDetailsModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class FragmentProfileLoggedIn extends Fragment {
     private static final String TAG = "AccountFragment";
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-    public Button BtnSignOut;
+    public  Button BtnSignOut, BtnEditProfile, BtnDeleteAccount;
+    private FirebaseDatabase mFirebaseDatabase;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
+    private DatabaseReference myRef;
+    private String userID;
+    private TextView TvFirstName, TvName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile_logged_in, container, false);
+        TvFirstName = view.findViewById(R.id.tv_profile_first_name);
+        TvName = view.findViewById(R.id.tv_profile_family_name);
         BtnSignOut = view.findViewById(R.id.btn_sign_out);
-
+        BtnEditProfile = view.findViewById(R.id.btn_edit_profile);
+        mAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
+        mUser = mAuth.getCurrentUser();
+        userID = mUser.getUid();
         setupFirebaseListener();
+
         BtnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,8 +54,24 @@ public class FragmentProfileLoggedIn extends Fragment {
             }
 
         });
+        if (mUser!=null) {
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    showData(dataSnapshot);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
         return view;
     }
+
     private void setupFirebaseListener(){
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -51,6 +87,18 @@ public class FragmentProfileLoggedIn extends Fragment {
                 }
             }
         };
+    }
+
+    private void showData(DataSnapshot dataSnapshot) {
+        for(DataSnapshot ds : dataSnapshot.getChildren()) {
+            UserDetailsModel uInfo = new UserDetailsModel();
+            uInfo.setName(ds.child(userID).getValue(UserDetailsModel.class).getName());
+            uInfo.setEmail(ds.child(userID).getValue(UserDetailsModel.class).getEmail());
+            uInfo.setFirstname(ds.child(userID).getValue(UserDetailsModel.class).getFirstname());
+
+            TvName.setText(uInfo.getName());
+            TvFirstName.setText(uInfo.getFirstname());
+        }
     }
 
     @Override

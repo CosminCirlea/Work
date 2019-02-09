@@ -10,10 +10,14 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.worldapp.Models.UserDetailsModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ActivityRegister extends AppCompatActivity {
 
@@ -21,12 +25,15 @@ public class ActivityRegister extends AppCompatActivity {
     FirebaseAuth mAuth;
     Button RegisterButton;
     ProgressBar progressBar;
+    private FirebaseUser mUser;
+    private String mUserId;
+    private DatabaseReference mDatabaseReference;
 //TODO To be able to resend email verification for registration
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         RegisterButton = findViewById(R.id.register_button);
         UsernameET = findViewById(R.id.username_edit_text);
         PasswordET = findViewById(R.id.password_edit_text);
@@ -66,6 +73,9 @@ public class ActivityRegister extends AppCompatActivity {
                                         if (task.isSuccessful()) {
                                             Toast.makeText(ActivityRegister.this, "Registered succesfully!" +
                                                     "\nPlease confirm email!", Toast.LENGTH_LONG).show();
+                                            mUser = mAuth.getCurrentUser();
+                                            mUserId = mUser.getUid();
+                                            writeNewUser(mUserId, FirstnameET.getText().toString(),NameET.getText().toString(), UsernameET.getText().toString());
                                             Intent myIntent = new Intent(ActivityRegister.this, ActivityLogin.class);
                                             startActivity(myIntent);
                                         } else {
@@ -96,4 +106,11 @@ public class ActivityRegister extends AppCompatActivity {
             return false;
         }
     }
+
+    private void writeNewUser(String userId, String firstName, String name, String email) {
+        UserDetailsModel user = new UserDetailsModel(userId, firstName, name, email, Double.parseDouble("0"), "");
+
+        mDatabaseReference.child("users").child(userId).setValue(user);
+    }
+
 }

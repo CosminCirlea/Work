@@ -28,4 +28,12 @@
         android:textAllCaps="false"
         android:onClick="DeleteAccount"/>
 
+    <Button
+        android:id="@+id/btn_edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit profile"
+        android:textSize="16sp"
+        />
+
 </LinearLayout>
