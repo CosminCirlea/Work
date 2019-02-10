@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class FragmentProfileLoggedIn extends Fragment {
     private DatabaseReference myRef;
     private String userID;
     private TextView TvFirstName, TvName;
+    private ImageView ivProfilePicture;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,6 +41,8 @@ public class FragmentProfileLoggedIn extends Fragment {
         TvName = view.findViewById(R.id.tv_profile_family_name);
         BtnSignOut = view.findViewById(R.id.btn_sign_out);
         BtnEditProfile = view.findViewById(R.id.btn_edit_profile);
+        ivProfilePicture = view.findViewById(R.id.profile_picture);
+
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
@@ -52,8 +56,15 @@ public class FragmentProfileLoggedIn extends Fragment {
                // Log.d(TAG, "onClick: attempting to sign out the user.");
                 FirebaseAuth.getInstance().signOut();
             }
-
         });
+
+        ivProfilePicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
+
         if (mUser!=null) {
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -101,6 +112,7 @@ public class FragmentProfileLoggedIn extends Fragment {
         }
     }
 
+
     @Override
     public void onStart()
     {
@@ -115,25 +127,5 @@ public class FragmentProfileLoggedIn extends Fragment {
         if (mAuthStateListener != null)
             FirebaseAuth.getInstance().removeAuthStateListener(mAuthStateListener);
 
-    }
-
-    public void SomeFunction() {
-
-        //TODO on profile registration
-                                /*String uid = user.getUid();
-                                mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
-                                HashMap<String, String> UserMap = new HashMap<>();
-                                UserMap.put("Name", Name);
-                                UserMap.put("Firstname", Firstname);
-                                UserMap.put("Email", Email);
-                                UserMap.put("Id", "2");
-
-                                mDatabase.setValue(UserMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Intent myIntent = new Intent(ActivityRegister.this, ActivityLogin.class);
-                                        startActivity(myIntent);
-                                    }
-                                });*/
     }
 }
