@@ -25,7 +25,6 @@
 
     <ImageView
         android:id="@+id/profile_picture"
-        android:src="@drawable/images"
         android:scaleType="centerCrop"
         android:layout_gravity="center"
         android:layout_width="60dp"

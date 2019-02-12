@@ -18,7 +18,9 @@
         <activity android:name=".ActivityAux" />
         <activity android:name=".ActivityLogin" />
     <activity
-        android:name=".ActivityHome">
+        android:name=".ActivityHome"
+        android:screenOrientation="portrait"
+        >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
