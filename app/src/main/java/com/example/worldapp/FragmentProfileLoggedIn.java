@@ -18,6 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.worldapp.Activities.ActivityHome;
+import com.example.worldapp.Activities.ActivityLogin;
+import com.example.worldapp.Activities.ListingsActivity;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -44,7 +47,7 @@ public class FragmentProfileLoggedIn extends Fragment {
     public static final int IMAGE_REQUEST=1;
     private static final String TAG = "AccountFragment";
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-    public  Button BtnSignOut, BtnEditProfile, BtnDeleteAccount;
+    public  Button BtnSignOut, BtnEditProfile, BtnDeleteAccount, BtnMyListings;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -63,6 +66,7 @@ public class FragmentProfileLoggedIn extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profile_logged_in, container, false);
         BtnSignOut = view.findViewById(R.id.btn_sign_out);
+        BtnMyListings = view.findViewById(R.id.btn_my_listings);
         BtnEditProfile = view.findViewById(R.id.btn_edit_profile);
         ivProfilePicture = view.findViewById(R.id.profile_picture);
         TvFirstName = view.findViewById(R.id.tv_profile_first_name);
@@ -85,6 +89,13 @@ public class FragmentProfileLoggedIn extends Fragment {
             }
         });
 
+        BtnMyListings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ListingsActivity.class));
+            }
+        });
+
         ivProfilePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,8 +107,6 @@ public class FragmentProfileLoggedIn extends Fragment {
             mDatabaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
                     showProfileData(dataSnapshot);
                 }
 
@@ -234,6 +243,7 @@ public class FragmentProfileLoggedIn extends Fragment {
         }
     }
 
+    //user for image upload
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -251,8 +261,6 @@ public class FragmentProfileLoggedIn extends Fragment {
             }
         }
     }
-
-
 
     @Override
     public void onStart()

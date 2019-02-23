@@ -1,4 +1,4 @@
-package com.example.worldapp;
+package com.example.worldapp.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.worldapp.FragmentHome;
+import com.example.worldapp.FragmentInbox;
+import com.example.worldapp.FragmentProfile;
+import com.example.worldapp.FragmentProfileLoggedIn;
+import com.example.worldapp.FragmentTrips;
+import com.example.worldapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;

@@ -1,7 +1,9 @@
-package com.example.worldapp;
+package com.example.worldapp.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.worldapp.R;
 
 public class ActivityAux extends AppCompatActivity {
 
