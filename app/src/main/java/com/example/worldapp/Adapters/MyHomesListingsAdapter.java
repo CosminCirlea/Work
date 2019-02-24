@@ -55,7 +55,7 @@ public class MyHomesListingsAdapter extends
         tvAnnouncementTitle.setText(home.getAnnouncementTitle());
         tvLocation.setText(location);
         tvHouseType.setText(home.getListingType() + " - "+ home.getOwnerType());
-        tvBeds.setText(String.valueOf(home.getBedNumber())+" - " +home.getRoomNumber());
+        tvBeds.setText(String.valueOf(home.getBedsToUse())+" - " +home.getRoomsToUse());
         tvPricePerNight.setText(String.valueOf(home.getPricePerNight())+Currency.getInstance(Locale.GERMANY).getCurrencyCode()+" per night ");
     }
 

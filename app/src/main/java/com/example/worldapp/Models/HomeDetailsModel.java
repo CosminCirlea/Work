@@ -11,17 +11,20 @@ public class HomeDetailsModel {
     private String OwnerType;
     private double PricePerNight;
     private String AddressLine;
-    private int roomNumber;
-    private double bedNumber;
+    private String ZipCode;
+    private int RoomsToUse;
+    private double BedsToUse;
+    private int BathroomsToUse;
+    private String Amenities;
 
-    public HomeDetailsModel(String announcementTitle, String city, String region, String country, String listingType, String ownerType, double pricePerNight, int roomNumber, double bedNumber) {
+    public HomeDetailsModel(String announcementTitle, String city, String region, String country, String listingType, String ownerType, double pricePerNight, int RoomsToUse, double BedsToUse) {
         AnnouncementTitle = announcementTitle;
         City = city;
         Region = region;
         Country = country;
         PricePerNight = pricePerNight;
-        this.roomNumber = roomNumber;
-        this.bedNumber = bedNumber;
+        this.RoomsToUse = RoomsToUse;
+        this.BedsToUse = BedsToUse;
         ListingType = listingType;
         OwnerType = ownerType;
     }
@@ -103,20 +106,20 @@ public class HomeDetailsModel {
         AddressLine = addressLine;
     }
 
-    public int getRoomNumber() {
-        return roomNumber;
+    public int getRoomsToUse() {
+        return RoomsToUse;
     }
 
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
+    public void setRoomsToUse(int roomsToUse) {
+        this.RoomsToUse = roomsToUse;
     }
 
-    public double getBedNumber() {
-        return bedNumber;
+    public double getBedsToUse() {
+        return BedsToUse;
     }
 
-    public void setBedNumber(double bedNumber) {
-        this.bedNumber = bedNumber;
+    public void setBedsToUse(double bedsToUse) {
+        this.BedsToUse = bedsToUse;
     }
 
 
