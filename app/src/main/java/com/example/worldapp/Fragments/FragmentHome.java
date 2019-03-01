@@ -1,10 +1,12 @@
-package com.example.worldapp;
+package com.example.worldapp.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.worldapp.R;
 
 public class FragmentHome extends Fragment {
     @Override

@@ -7,17 +7,19 @@ public class UserDetailsModel {
     private String Email;
     private Double AccountBalance;
     private String ImageUri;
+    private String PhoneNumber;
 
     public UserDetailsModel() {
     }
 
-    public UserDetailsModel(String id, String firstname, String name, String email, Double moneyAmount, String imageUri) {
+    public UserDetailsModel(String id, String firstname, String name, String email, Double moneyAmount, String imageUri, String phoneNumber) {
         UserId = id;
         Firstname = firstname;
         Name = name;
         Email = email;
         AccountBalance = moneyAmount;
         ImageUri = imageUri;
+        PhoneNumber = phoneNumber;
     }
 
     public String getUserId() {
@@ -66,5 +68,13 @@ public class UserDetailsModel {
 
     public void setImageUri(String imageUri) {
         ImageUri = imageUri;
+    }
+
+    public String getPhoneNumber() {
+        return PhoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        PhoneNumber = phoneNumber;
     }
 }

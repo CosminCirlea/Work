@@ -29,12 +29,7 @@ public class MyHomesListingsAdapter extends
 
     public ViewHolder(View itemView) {
         super(itemView);
-        tvAnnouncementTitle = itemView.findViewById(R.id.tv_announcement_title);
-        tvLocation = itemView.findViewById(R.id.tv_location);
-        tvHouseType = itemView.findViewById(R.id.tv_venue_type);
-        tvMaxGuests = itemView.findViewById(R.id.tv_guest_capacity);
-        tvBeds = itemView.findViewById(R.id.tv_beds);
-        tvPricePerNight= itemView.findViewById(R.id.tv_price_per_night);
+        InitializeViews(itemView);
     }
 }
 
@@ -62,5 +57,15 @@ public class MyHomesListingsAdapter extends
     @Override
     public int getItemCount() {
         return mHomes.size();
+    }
+
+    private void InitializeViews(View itemView)
+    {
+        tvAnnouncementTitle = itemView.findViewById(R.id.tv_announcement_title);
+        tvLocation = itemView.findViewById(R.id.tv_location);
+        tvHouseType = itemView.findViewById(R.id.tv_venue_type);
+        tvMaxGuests = itemView.findViewById(R.id.tv_guest_capacity);
+        tvBeds = itemView.findViewById(R.id.tv_beds);
+        tvPricePerNight= itemView.findViewById(R.id.tv_price_per_night);
     }
 }

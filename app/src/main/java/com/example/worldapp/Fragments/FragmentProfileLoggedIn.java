@@ -1,4 +1,4 @@
-package com.example.worldapp;
+package com.example.worldapp.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -22,6 +22,7 @@ import com.example.worldapp.Activities.ActivityHome;
 import com.example.worldapp.Activities.ActivityLogin;
 import com.example.worldapp.Activities.ListingsActivity;
 import com.example.worldapp.Models.UserDetailsModel;
+import com.example.worldapp.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -65,13 +66,7 @@ public class FragmentProfileLoggedIn extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_profile_logged_in, container, false);
-        BtnSignOut = view.findViewById(R.id.btn_sign_out);
-        BtnMyListings = view.findViewById(R.id.btn_my_listings);
-        BtnEditProfile = view.findViewById(R.id.btn_edit_profile);
-        ivProfilePicture = view.findViewById(R.id.profile_picture);
-        TvFirstName = view.findViewById(R.id.tv_profile_first_name);
-        TvName = view.findViewById(R.id.tv_profile_family_name);
-
+        InitializeViews(view);
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mFirebaseDatabase.getReference();
@@ -117,7 +112,6 @@ public class FragmentProfileLoggedIn extends Fragment {
             });
         }
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(mUser.getUid());
-
         mStorageReference = FirebaseStorage.getInstance().getReference("ProfilePictures");
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -131,7 +125,6 @@ public class FragmentProfileLoggedIn extends Fragment {
                     {
                         Uri aux= mUser.getPhotoUrl();
                         Glide.with(getContext()).load(photoUri).into(ivProfilePicture);
-                        int a=0;
                     }
                 }
             }
@@ -220,7 +213,6 @@ public class FragmentProfileLoggedIn extends Fragment {
                         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(mUser.getUid());
                         HashMap<String, Object> map = new HashMap<>();
                         map.put("imageUri", mUri);
-
                         mDatabaseReference.updateChildren(map);
                         pd.dismiss();
                     }
@@ -276,5 +268,15 @@ public class FragmentProfileLoggedIn extends Fragment {
         if (mAuthStateListener != null)
             FirebaseAuth.getInstance().removeAuthStateListener(mAuthStateListener);
 
+    }
+
+    private void InitializeViews(View view)
+    {
+        BtnSignOut = view.findViewById(R.id.btn_sign_out);
+        BtnMyListings = view.findViewById(R.id.btn_my_listings);
+        BtnEditProfile = view.findViewById(R.id.btn_edit_profile);
+        ivProfilePicture = view.findViewById(R.id.profile_picture);
+        TvFirstName = view.findViewById(R.id.tv_profile_first_name);
+        TvName = view.findViewById(R.id.tv_profile_family_name);
     }
 }

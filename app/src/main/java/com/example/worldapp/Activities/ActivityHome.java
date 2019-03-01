@@ -9,11 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.worldapp.FragmentHome;
-import com.example.worldapp.FragmentInbox;
-import com.example.worldapp.FragmentProfile;
-import com.example.worldapp.FragmentProfileLoggedIn;
-import com.example.worldapp.FragmentTrips;
+import com.example.worldapp.Fragments.FragmentHome;
+import com.example.worldapp.Fragments.FragmentInbox;
+import com.example.worldapp.Fragments.FragmentProfile;
+import com.example.worldapp.Fragments.FragmentProfileLoggedIn;
+import com.example.worldapp.Fragments.FragmentTrips;
 import com.example.worldapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,11 +31,12 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
 
     private FirebaseDatabase mFirebaseDatabase;
     private String userID;
-    public FragmentProfileLoggedIn fragmentProfileLoggedIn;
-    public FragmentInbox fragmentInbox;
-    public FragmentTrips fragmentTrips;
-    public FragmentProfile fragmentProfile;
-    public FragmentHome fragmentHome;
+    private FragmentProfileLoggedIn fragmentProfileLoggedIn;
+    private FragmentInbox fragmentInbox;
+    private FragmentTrips fragmentTrips;
+    private FragmentProfile fragmentProfile;
+    private FragmentHome fragmentHome;
+    private BottomNavigationView navigation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,25 +45,19 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
         } catch (NullPointerException e) {
         }
         setContentView(R.layout.activity_home);
-        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation = findViewById(R.id.navigation);
         //fragment chooser
         navigation.setOnNavigationItemSelectedListener(this);
 
-        fragmentHome = new FragmentHome();
-        fragmentProfile = new FragmentProfile();
-        fragmentTrips = new FragmentTrips();
-        fragmentInbox = new FragmentInbox();
-        fragmentProfileLoggedIn = new FragmentProfileLoggedIn();
+        InitializeViews();
         LoadFragment(fragmentHome);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         if (mUser !=null)
             userID = mUser.getUid();
-
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mFirebaseDatabase.getReference();
-
     }
 
 
@@ -123,4 +118,12 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
                 });
     }
 
+    private void InitializeViews()
+    {
+        fragmentHome = new FragmentHome();
+        fragmentProfile = new FragmentProfile();
+        fragmentTrips = new FragmentTrips();
+        fragmentInbox = new FragmentInbox();
+        fragmentProfileLoggedIn = new FragmentProfileLoggedIn();
+    }
 }

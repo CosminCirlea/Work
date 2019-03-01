@@ -33,12 +33,10 @@ public class HomeDetailsModel {
 
     public static ArrayList<HomeDetailsModel> createHomeList(int numHomes) {
         ArrayList<HomeDetailsModel> homes = new ArrayList<HomeDetailsModel>();
-
         for (int i = 0; i <= numHomes; i++) {
             homes.add(new HomeDetailsModel("Very cool private room, vinteage, in the city center", "Venice", "Veneto","Italy",
                     "Private room", "Private house", 40, ++lastContactId, 2));
         }
-
         return homes;
     }
 

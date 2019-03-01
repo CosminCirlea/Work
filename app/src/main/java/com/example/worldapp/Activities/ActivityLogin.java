@@ -24,8 +24,7 @@ public class ActivityLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        UsernameET = findViewById(R.id.username_edit_text);
-        PasswordET = findViewById(R.id.password_edit_text);
+        InitializeViews();
         mAuth = FirebaseAuth.getInstance();
     }
 
@@ -83,5 +82,11 @@ public class ActivityLogin extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    private void InitializeViews()
+    {
+        UsernameET = findViewById(R.id.username_edit_text);
+        PasswordET = findViewById(R.id.password_edit_text);
     }
 }
