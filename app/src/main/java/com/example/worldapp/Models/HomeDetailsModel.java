@@ -16,6 +16,9 @@ public class HomeDetailsModel {
     private double BedsToUse;
     private int BathroomsToUse;
     private String Amenities;
+    private String HomeId;
+    private String UserId;
+
 
     public HomeDetailsModel(String announcementTitle, String city, String region, String country, String listingType, String ownerType, double pricePerNight, int RoomsToUse, double BedsToUse) {
         AnnouncementTitle = announcementTitle;
@@ -120,5 +123,44 @@ public class HomeDetailsModel {
         this.BedsToUse = bedsToUse;
     }
 
+    public String getZipCode() {
+        return ZipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        ZipCode = zipCode;
+    }
+
+    public int getBathroomsToUse() {
+        return BathroomsToUse;
+    }
+
+    public void setBathroomsToUse(int bathroomsToUse) {
+        BathroomsToUse = bathroomsToUse;
+    }
+
+    public String getAmenities() {
+        return Amenities;
+    }
+
+    public void setAmenities(String amenities) {
+        Amenities = amenities;
+    }
+
+    public String getHomeId() {
+        return HomeId;
+    }
+
+    public void setHomeId(String homeId) {
+        HomeId = homeId;
+    }
+
+    public String getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(String userId) {
+        UserId = userId;
+    }
 
 }

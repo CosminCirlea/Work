@@ -23,6 +23,10 @@ public class ActivityLogin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            this.getSupportActionBar().hide();
+        } catch (NullPointerException e) {
+        }
         setContentView(R.layout.activity_login);
         InitializeViews();
         mAuth = FirebaseAuth.getInstance();
@@ -40,10 +44,6 @@ public class ActivityLogin extends AppCompatActivity {
         EditText UsernameText, PasswordText;
         UsernameText = findViewById(R.id.username_edit_text);
         PasswordText = findViewById(R.id.password_edit_text);
-        String[] EmtpyArray =
-                {
-                        "",""
-                };
         String[] ToSendArray=
                 {
                         UsernameText.getText().toString(),
@@ -77,9 +77,7 @@ public class ActivityLogin extends AppCompatActivity {
                         } else {
                             Toast.makeText(ActivityLogin.this, task.getException().getMessage(),
                                     Toast.LENGTH_LONG).show();
-
                         }
-
                     }
                 });
     }

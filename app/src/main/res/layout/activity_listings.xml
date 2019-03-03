@@ -5,31 +5,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
+    android:background="@drawable/background_simple"
     tools:context=".Activities.ListingsActivity">
 
     <TextView
         android:id="@+id/tv_my_home_listings_text"
         android:text="My home listings"
+        android:layout_margin="10dp"
         android:textSize="24sp"
+        android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_listed_homes"
         android:layout_below="@id/tv_my_home_listings_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp" />
 
     <Button
         android:id="@+id/btn_add_new_home"
         android:text="Add new home"
         android:textAllCaps="false"
+        style="@style/BasicText"
+        android:background="@drawable/round_button"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

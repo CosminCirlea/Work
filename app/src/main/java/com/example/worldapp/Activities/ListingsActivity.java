@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -20,12 +21,16 @@ public class ListingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            this.getSupportActionBar().hide();
+        } catch (NullPointerException e) {
+        }
         setContentView(R.layout.activity_listings);
-        RecyclerView rvListedHomesAdaptor = (RecyclerView) findViewById(R.id.rv_listed_homes);
+        RecyclerView rvListedHomesAdaptor = findViewById(R.id.rv_listed_homes);
         homesHomeDetailsModelsList = HomeDetailsModel.createHomeList(7);
         MyHomesListingsAdapter adapter = new MyHomesListingsAdapter(homesHomeDetailsModelsList);
         rvListedHomesAdaptor.setAdapter(adapter);
-        rvListedHomesAdaptor.setLayoutManager(new GridLayoutManager(this, 2));
+        rvListedHomesAdaptor.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void AddNewHome(View view) {

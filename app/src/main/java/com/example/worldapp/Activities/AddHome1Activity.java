@@ -7,11 +7,13 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.worldapp.R;
 
@@ -21,6 +23,9 @@ import java.util.Locale;
 
 public class AddHome1Activity extends AppCompatActivity {
 
+    private Layout templateSpinner;
+    private TextView mSpinnerTv;
+    Spinner citizenshipSpinner;
     private TextInputEditText mAnnouncementTitleEt, mRegionEt, mCityEt, mAddressLineEt, mZipCodeEt;
     private Button mNextButton;
     private Toolbar toolbar;
@@ -43,6 +48,8 @@ public class AddHome1Activity extends AppCompatActivity {
         });
     }
 
+
+
     private void InitializeCountrySpinner()
     {
         Locale[] locale = Locale.getAvailableLocales();
@@ -55,9 +62,8 @@ public class AddHome1Activity extends AppCompatActivity {
             }
         }
         Collections.sort(countries, String.CASE_INSENSITIVE_ORDER);
-        Spinner citizenship = findViewById(R.id.spinner_select_country);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.template_spinner_layout, countries);
-        citizenship.setAdapter(adapter);
+        citizenshipSpinner.setAdapter(adapter);
     }
 
     private void InitializeViews() {
@@ -68,6 +74,8 @@ public class AddHome1Activity extends AppCompatActivity {
         mZipCodeEt =findViewById(R.id.et_zip_code);
         mNextButton = findViewById(R.id.btn_add_new_home);
         toolbar = findViewById(R.id.toolbar);
+        citizenshipSpinner = findViewById(R.id.spinner_select_country);
+        citizenshipSpinner.setBackgroundColor(Color.parseColor("#D7DE9B"));
     }
 
     private void SetWhitelabelColors()

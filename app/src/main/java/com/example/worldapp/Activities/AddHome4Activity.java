@@ -10,6 +10,10 @@ public class AddHome4Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            this.getSupportActionBar().hide();
+        } catch (NullPointerException e) {
+        }
         setContentView(R.layout.activity_add_home4);
     }
 }

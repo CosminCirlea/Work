@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:background="@drawable/background_simple"
     tools:context=".Activities.AddHome1Activity">
 
     <include layout="@layout/toolbar_with_back_button"/>
@@ -14,14 +14,15 @@
         android:id="@+id/til_announcement"
         android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
+        style="@style/BasicText"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_margin="10dp"
         android:textColorHint="#000"
         >
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/et_announcement_title"
-            android:textSize="20sp"
+            style="@style/BasicText"
             android:textColorHint="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,16 +36,14 @@
         android:layout_below="@+id/til_announcement"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginBottom="10dp"
-
+        android:layout_margin="10dp"
         android:layout_alignParentStart="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/tv_select_country"
             android:text="Country:"
-            android:textSize="18sp"
-            android:textColor="#000"
+            style="@style/BasicText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -60,15 +59,14 @@
         android:id="@+id/til_region"
         android:layout_below="@+id/ll_select_country"
         android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-
+        android:layout_margin="10dp"
         android:layout_height="wrap_content"
         android:textColorHint="#000"
         >
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/et_region"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_size_classic"
             android:textColorHint="#000"
             android:hint="Region"
             android:layout_width="match_parent"
@@ -80,15 +78,14 @@
         android:id="@+id/til_city"
         android:layout_below="@+id/til_region"
         android:textColorHint="#000"
-        android:layout_marginBottom="10dp"
-
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/et_city"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_size_classic"
             android:textColorHint="#000"
             android:hint="City/town"
             android:layout_width="match_parent"
@@ -102,13 +99,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColorHint="#000"
-        android:layout_marginBottom="10dp"
-
+        android:layout_margin="10dp"
         >
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/et_address_line"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_size_classic"
             android:textColorHint="#000"
             android:hint="Address line"
             android:layout_width="match_parent"
@@ -122,11 +118,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColorHint="#000"
+        android:layout_margin="10dp"
         >
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/et_zip_code"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_size_classic"
             android:textColorHint="#000"
             android:inputType="text"
             android:hint="Zip code"
@@ -138,9 +135,11 @@
     <Button
         android:id="@+id/btn_next_home_register_page"
         android:text="Next"
+        style="@style/BasicText"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:textAllCaps="false"
+        android:background="@drawable/round_button"
         android:layout_marginBottom="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

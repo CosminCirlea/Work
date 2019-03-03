@@ -129,7 +129,7 @@ public class ActivityRegister extends AppCompatActivity {
 
     private void SetWhitelabelColors()
     {
-        int hintColor = Color.parseColor("#D0D0D0");
+        int hintColor = Color.parseColor("#A0A0A0");
         UsernameET.setHintTextColor(hintColor);
         PasswordET.setHintTextColor(hintColor);
         PasswordRepeatET.setHintTextColor(hintColor);

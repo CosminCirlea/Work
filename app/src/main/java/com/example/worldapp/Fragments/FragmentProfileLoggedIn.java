@@ -79,7 +79,7 @@ public class FragmentProfileLoggedIn extends Fragment {
         BtnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Log.d(TAG, "onClick: attempting to sign out the user.");
+                // Log.d(TAG, "onClick: attempting to sign out the user.");
                 FirebaseAuth.getInstance().signOut();
             }
         });
@@ -120,10 +120,8 @@ public class FragmentProfileLoggedIn extends Fragment {
                 {
                     if (user.getImageUri().equals("")) {
                         ivProfilePicture.setImageResource(R.mipmap.ic_logo);
-                    }
-                    else
-                    {
-                        Uri aux= mUser.getPhotoUrl();
+                    } else {
+                        showProfileData(dataSnapshot);
                         Glide.with(getContext()).load(photoUri).into(ivProfilePicture);
                     }
                 }
@@ -157,12 +155,12 @@ public class FragmentProfileLoggedIn extends Fragment {
         for(DataSnapshot ds : dataSnapshot.getChildren()) {
             UserDetailsModel uInfo = new UserDetailsModel();
             try{
-            uInfo.setName(ds.child(userID).getValue(UserDetailsModel.class).getName());
-            uInfo.setImageUri(ds.child(userID).getValue(UserDetailsModel.class).getImageUri());
-            uInfo.setFirstname(ds.child(userID).getValue(UserDetailsModel.class).getFirstname());
-            TvName.setText(uInfo.getName());
-            TvFirstName.setText(uInfo.getFirstname());
-            photoUri = Uri.parse(uInfo.getImageUri());
+                uInfo.setName(ds.child(userID).getValue(UserDetailsModel.class).getName());
+                uInfo.setImageUri(ds.child(userID).getValue(UserDetailsModel.class).getImageUri());
+                uInfo.setFirstname(ds.child(userID).getValue(UserDetailsModel.class).getFirstname());
+                TvName.setText(uInfo.getName());
+                photoUri = Uri.parse(uInfo.getImageUri());
+                TvFirstName.setText(uInfo.getFirstname());
             } catch (Exception e)
             {
                 e.getMessage();
@@ -267,7 +265,6 @@ public class FragmentProfileLoggedIn extends Fragment {
         super.onStop();
         if (mAuthStateListener != null)
             FirebaseAuth.getInstance().removeAuthStateListener(mAuthStateListener);
-
     }
 
     private void InitializeViews(View view)
