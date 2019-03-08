@@ -98,33 +98,20 @@ public class FragmentProfileLoggedIn extends Fragment {
             }
         });
 
-        if (mUser!=null) {
-            mDatabaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    showProfileData(dataSnapshot);
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-        }
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(mUser.getUid());
         mStorageReference = FirebaseStorage.getInstance().getReference("ProfilePictures");
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(mUser.getUid());
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UserDetailsModel user = dataSnapshot.getValue(UserDetailsModel.class);
-                {
-                    if (user.getImageUri().equals("")) {
+                TvName.setText(user.getName());
+                TvFirstName.setText(user.getFirstname());
+                if (user.getImageUri().equals("")) {
                         ivProfilePicture.setImageResource(R.mipmap.ic_logo);
                     } else {
-                        showProfileData(dataSnapshot);
-                        Glide.with(getContext()).load(photoUri).into(ivProfilePicture);
+                        //showProfileData(dataSnapshot);
+                        Glide.with(ivProfilePicture.getContext()).load(user.getImageUri()).into(ivProfilePicture);
                     }
-                }
             }
 
             @Override
@@ -150,7 +137,7 @@ public class FragmentProfileLoggedIn extends Fragment {
             }
         };
     }
-
+    //could be deleted soon
     private void showProfileData(DataSnapshot dataSnapshot) {
         for(DataSnapshot ds : dataSnapshot.getChildren()) {
             UserDetailsModel uInfo = new UserDetailsModel();
@@ -159,7 +146,7 @@ public class FragmentProfileLoggedIn extends Fragment {
                 uInfo.setImageUri(ds.child(userID).getValue(UserDetailsModel.class).getImageUri());
                 uInfo.setFirstname(ds.child(userID).getValue(UserDetailsModel.class).getFirstname());
                 TvName.setText(uInfo.getName());
-                photoUri = Uri.parse(uInfo.getImageUri());
+                //photoUri = Uri.parse(uInfo.getImageUri());
                 TvFirstName.setText(uInfo.getFirstname());
             } catch (Exception e)
             {

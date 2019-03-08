@@ -53,16 +53,16 @@
     <session id="-1048653089">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="30" />
+          <entry key="project.closed" value="32" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="6" />
-          <entry key="project.open.time.7" value="10" />
+          <entry key="project.open.time.7" value="12" />
           <entry key="project.open.time.8" value="4" />
           <entry key="project.open.time.9" value="8" />
-          <entry key="project.opened" value="32" />
+          <entry key="project.opened" value="34" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -89,14 +89,14 @@
         <counts>
           <entry key="dummy" value="14" />
           <entry key="gradle" value="96" />
-          <entry key="java" value="11401" />
+          <entry key="java" value="11463" />
           <entry key="xml" value="4295" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="96" />
-          <entry key="JAVA" value="11401" />
+          <entry key="JAVA" value="11463" />
           <entry key="PLAIN_TEXT" value="14" />
           <entry key="XML" value="4295" />
         </counts>
@@ -143,11 +143,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Fragments/FragmentProfileLoggedIn.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="127" column="13" lean-forward="true" selection-start-line="127" selection-start-column="13" selection-end-line="127" selection-end-column="13" />
+            <state relative-caret-position="140">
+              <caret line="100" selection-start-line="100" selection-end-line="100" />
               <folding>
-                <element signature="e#3624#3769#0" expanded="true" />
-                <element signature="e#3768#3769#0" expanded="true" />
+                <element signature="e#5264#5977#0" expanded="true" />
+                <element signature="e#5976#5977#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2570,7 +2570,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4986577" weight="0.32907802" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49530202" weight="0.25957447" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49530202" weight="0.13900709" />
       <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.32907802" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5053691" side_tool="true" weight="0.3134752" />
       <window_info anchor="bottom" id="Logcat" order="10" sideWeight="0.49932885" weight="0.32907802" />
@@ -2994,11 +2994,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Fragments/FragmentProfileLoggedIn.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="127" column="13" lean-forward="true" selection-start-line="127" selection-start-column="13" selection-end-line="127" selection-end-column="13" />
+        <state relative-caret-position="140">
+          <caret line="100" selection-start-line="100" selection-end-line="100" />
           <folding>
-            <element signature="e#3624#3769#0" expanded="true" />
-            <element signature="e#3768#3769#0" expanded="true" />
+            <element signature="e#5264#5977#0" expanded="true" />
+            <element signature="e#5976#5977#0" expanded="true" />
           </folding>
         </state>
       </provider>
