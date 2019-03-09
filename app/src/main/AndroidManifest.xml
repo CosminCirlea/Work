@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.AddHome4Activity"/>
+        <activity android:name=".Activities.AddTour2Activity" />
+        <activity android:name=".Activities.ActivityHome" />
+        <activity android:name=".Activities.AddHome4Activity" />
         <activity android:name=".Activities.AddHome3Activity" />
         <activity android:name=".Activities.AddHome1Activity" />
         <activity android:name=".Activities.AddHome2Activity" />
@@ -22,7 +24,7 @@
         <activity android:name=".Activities.ActivityAux" />
         <activity android:name=".Activities.ActivityLogin" />
         <activity
-            android:name=".Activities.ActivityHome"
+            android:name=".Activities.AddTour1Activity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

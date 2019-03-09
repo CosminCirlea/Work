@@ -8,12 +8,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.worldapp.Common.Common;
 import com.example.worldapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ActivityLogin extends AppCompatActivity {
 
@@ -30,14 +33,13 @@ public class ActivityLogin extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         InitializeViews();
         mAuth = FirebaseAuth.getInstance();
+        final FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+        final DatabaseReference mDatabaseReference = mFirebaseDatabase.getReference("users");
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
     }
 
     public void RegisterUser(View view) {
@@ -69,6 +71,7 @@ public class ActivityLogin extends AppCompatActivity {
                             {
                                 Intent myIntent = new Intent(ActivityLogin.this, ActivityHome.class);
                                 startActivity(myIntent);
+                                finish();
                             }
                             else {
                                 Toast.makeText(ActivityLogin.this, "Please verify your email address!",
