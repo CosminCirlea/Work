@@ -5,23 +5,29 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.worldapp.Common.Common;
+import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ActivityLogin extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     public EditText UsernameET, PasswordET;
+    private Button mLogInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +39,32 @@ public class ActivityLogin extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         InitializeViews();
         mAuth = FirebaseAuth.getInstance();
+
+        /* TODO WHEN STORING USERS
         final FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference mDatabaseReference = mFirebaseDatabase.getReference("users");
+
+        mLogInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDatabaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String email = UsernameET.getText().toString();
+                        String password = PasswordET.getText().toString();
+                        UserDetailsModel user = dataSnapshot.child(email).getValue(UserDetailsModel.class);
+                        if (user.get)
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });*/
     }
+
 
     @Override
     public void onStart() {
@@ -61,7 +90,7 @@ public class ActivityLogin extends AppCompatActivity {
 
     public void LogInClick(View view) {
         String email = UsernameET.getText().toString();
-        String password=PasswordET.getText().toString();
+        String password = PasswordET.getText().toString();
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -89,5 +118,6 @@ public class ActivityLogin extends AppCompatActivity {
     {
         UsernameET = findViewById(R.id.username_edit_text);
         PasswordET = findViewById(R.id.password_edit_text);
+        mLogInButton = findViewById(R.id.login_button);
     }
 }
