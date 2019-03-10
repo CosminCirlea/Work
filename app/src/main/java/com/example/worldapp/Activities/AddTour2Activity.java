@@ -1,11 +1,49 @@
 package com.example.worldapp.Activities;
 
+import android.app.ProgressDialog;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.webkit.MimeTypeMap;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
+
+import java.util.HashMap;
 
 public class AddTour2Activity extends AppCompatActivity {
+
+    public static final int IMAGE_REQUEST=1;
+    private FirebaseDatabase mFirebaseDatabase;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
+    private DatabaseReference mDatabaseReference;
+    StorageReference mStorageReference;
+    private Uri uriProfilePicture;
+    private StorageTask uploadTask;
+    private ImageView mTourImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,6 +52,118 @@ public class AddTour2Activity extends AppCompatActivity {
             this.getSupportActionBar().hide();
         } catch (NullPointerException e) {
         }
-        setContentView(R.layout.activity_add_tour2);
+
+        InitializeViews();
+        mTourImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openImage();
+            }
+        });
+
+        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UserDetailsModel user = dataSnapshot.getValue(UserDetailsModel.class);
+                if (user.getImageUri().equals("")) {
+                    mTourImage.setImageResource(R.mipmap.ic_logo);
+                } else {
+                    //showProfileData(dataSnapshot);
+                    Glide.with(mTourImage.getContext()).load(user.getImageUri()).into(mTourImage);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    private void openImage() {
+        Intent myIntent = new Intent();
+        myIntent.setType("image/*");
+        myIntent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(myIntent, IMAGE_REQUEST);
+    }
+
+    private String getFileExtension(Uri uri)
+    {
+        ContentResolver mContentResolver = this.getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType(mContentResolver.getType(uri));
+    }
+
+    private void uploadImage()
+    {
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setMessage("Uploading");
+        pd.show();
+
+        if (uriProfilePicture != null)
+        {
+            final StorageReference fileReference = mStorageReference.child(System.currentTimeMillis()+"."+getFileExtension(uriProfilePicture));
+            uploadTask = fileReference.putFile(uriProfilePicture);
+            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful())
+                    {
+                        throw task.getException();
+                    }
+                    return fileReference.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful())
+                    {
+                        Uri downloadUri = task.getResult();
+                        String mUri = downloadUri.toString();
+                        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours").child(mUser.getUid());
+                        HashMap<String, Object> map = new HashMap<>();
+                        map.put("imageUri", mUri);
+                        mDatabaseReference.updateChildren(map);
+                        pd.dismiss();
+                    }
+                    else
+                    {
+                        Toast.makeText(AddTour2Activity.this, "Failed upload", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(AddTour2Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    pd.dismiss();
+                }
+            });
+        }
+        else
+        {
+            Toast.makeText(AddTour2Activity.this, "No image selected", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData()!=null)
+        {
+            uriProfilePicture = data.getData();
+            if (uploadTask != null && uploadTask.isInProgress())
+            {
+                Toast.makeText(AddTour2Activity.this,"Upload in progress",Toast.LENGTH_SHORT);
+            }
+            else
+            {
+                uploadImage();
+            }
+        }
+    }
+
+    public void InitializeViews()
+    {
+        mTourImage = findViewById(R.id.iv_add_tour_photo);
     }
 }

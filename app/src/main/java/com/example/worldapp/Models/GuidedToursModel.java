@@ -1,5 +1,7 @@
 package com.example.worldapp.Models;
 
+import java.util.UUID;
+
 public class GuidedToursModel {
     private String mTourTitle;
     private String mTourDescription;
@@ -8,8 +10,10 @@ public class GuidedToursModel {
     private double mTourPrice;
     private double mTourDuration;
     private int mTourMaxParticipants;
+    private UUID mTourId;
+    private String mUserId;
 
-    public GuidedToursModel(String mTourTitle, String mTourDescription, String mTourLandmarks, String mTourImage, double mTourPrice, double mTourDuration ,int mTourMaxParticipants) {
+    public GuidedToursModel(String mTourTitle, String mTourDescription, String mTourLandmarks, String mTourImage, double mTourPrice, double mTourDuration , int mTourMaxParticipants) {
         this.mTourTitle = mTourTitle;
         this.mTourDescription = mTourDescription;
         this.mTourLandmarks = mTourLandmarks;
@@ -65,5 +69,29 @@ public class GuidedToursModel {
 
     public void setmTourMaxParticipants(int mTourMaxParticipants) {
         this.mTourMaxParticipants = mTourMaxParticipants;
+    }
+
+    public double getmTourDuration() {
+        return mTourDuration;
+    }
+
+    public void setmTourDuration(double mTourDuration) {
+        this.mTourDuration = mTourDuration;
+    }
+
+    public UUID getmTourId() {
+        return mTourId;
+    }
+
+    public void setmTourId(UUID mTourId) {
+        this.mTourId = mTourId;
+    }
+
+    public String getmUserId() {
+        return mUserId;
+    }
+
+    public void setmUserId(String mUserId) {
+        this.mUserId = mUserId;
     }
 }

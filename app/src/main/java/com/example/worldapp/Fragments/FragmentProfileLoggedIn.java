@@ -48,7 +48,7 @@ public class FragmentProfileLoggedIn extends Fragment {
     public static final int IMAGE_REQUEST=1;
     private static final String TAG = "AccountFragment";
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-    public  Button BtnSignOut, BtnEditProfile, BtnDeleteAccount, BtnMyListings;
+    public  Button BtnSignOut, BtnEditProfile, BtnMyListings;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -56,11 +56,9 @@ public class FragmentProfileLoggedIn extends Fragment {
     private String userID;
     private TextView TvFirstName, TvName;
     public ImageView ivProfilePicture;
-    private String auxName, auxFirstname, auxImage;
     StorageReference mStorageReference;
     private Uri uriProfilePicture;
     private StorageTask uploadTask;
-    Uri photoUri;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
