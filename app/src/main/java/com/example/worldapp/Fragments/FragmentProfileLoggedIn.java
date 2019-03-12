@@ -56,7 +56,7 @@ public class FragmentProfileLoggedIn extends Fragment {
     private String userID;
     private TextView TvFirstName, TvName;
     public ImageView ivProfilePicture;
-    StorageReference mStorageReference;
+    private StorageReference mStorageReference;
     private Uri uriProfilePicture;
     private StorageTask uploadTask;
 

@@ -7,13 +7,21 @@ public class GuidedToursModel {
     private String mTourDescription;
     private String mTourLandmarks;
     private String mTourImageUrl;
+    private String mTourCountry;
+    private String mTourRegion;
+    private String mTourCity;
+    private String mTourType;
     private double mTourPrice;
-    private double mTourDuration;
+    private String mTourDuration;
     private int mTourMaxParticipants;
     private UUID mTourId;
     private String mUserId;
 
-    public GuidedToursModel(String mTourTitle, String mTourDescription, String mTourLandmarks, String mTourImage, double mTourPrice, double mTourDuration , int mTourMaxParticipants) {
+    public GuidedToursModel()
+    {
+    }
+
+    public GuidedToursModel(String mTourTitle, String mTourDescription, String mTourLandmarks, String mTourImage, double mTourPrice, String mTourDuration , int mTourMaxParticipants) {
         this.mTourTitle = mTourTitle;
         this.mTourDescription = mTourDescription;
         this.mTourLandmarks = mTourLandmarks;
@@ -71,11 +79,11 @@ public class GuidedToursModel {
         this.mTourMaxParticipants = mTourMaxParticipants;
     }
 
-    public double getmTourDuration() {
+    public String getmTourDuration() {
         return mTourDuration;
     }
 
-    public void setmTourDuration(double mTourDuration) {
+    public void setmTourDuration(String mTourDuration) {
         this.mTourDuration = mTourDuration;
     }
 
@@ -94,4 +102,37 @@ public class GuidedToursModel {
     public void setmUserId(String mUserId) {
         this.mUserId = mUserId;
     }
+
+    public String getmTourCountry() {
+        return mTourCountry;
+    }
+
+    public void setmTourCountry(String mTourCountry) {
+        this.mTourCountry = mTourCountry;
+    }
+
+    public String getmTourRegion() {
+        return mTourRegion;
+    }
+
+    public void setmTourRegion(String mTourRegion) {
+        this.mTourRegion = mTourRegion;
+    }
+
+    public String getmTourCity() {
+        return mTourCity;
+    }
+
+    public void setmTourCity(String mTourCity) {
+        this.mTourCity = mTourCity;
+    }
+
+    public String getmTourType() {
+        return mTourType;
+    }
+
+    public void setmTourType(String mTourType) {
+        this.mTourType = mTourType;
+    }
+
 }

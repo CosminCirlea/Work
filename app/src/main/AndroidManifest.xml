@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Activities.AddTour3Activity"></activity>
         <activity android:name=".Activities.AddTour2Activity" />
         <activity android:name=".Activities.ActivityHome" />
         <activity android:name=".Activities.AddHome4Activity" />

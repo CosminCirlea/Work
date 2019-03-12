@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
 import com.google.android.gms.tasks.Continuation;
@@ -27,6 +29,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.internal.InternalTokenResult;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
@@ -35,15 +39,17 @@ import java.util.HashMap;
 
 public class AddTour2Activity extends AppCompatActivity {
 
+    private TextInputEditText mDescription;
     public static final int IMAGE_REQUEST=1;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private DatabaseReference mDatabaseReference;
-    StorageReference mStorageReference;
+    private StorageReference mStorageReference;
     private Uri uriProfilePicture;
     private StorageTask uploadTask;
     private ImageView mTourImage;
+    private String mTourId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +58,15 @@ public class AddTour2Activity extends AppCompatActivity {
             this.getSupportActionBar().hide();
         } catch (NullPointerException e) {
         }
-
+        Intent myIntent = getIntent();
+        mTourId = myIntent.getStringExtra("tourId");
         InitializeViews();
+        setContentView(R.layout.activity_add_tour2);
+
+        mStorageReference = FirebaseStorage.getInstance().getReference("TourPictures");
+
+
+
         mTourImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,12 +77,12 @@ public class AddTour2Activity extends AppCompatActivity {
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                UserDetailsModel user = dataSnapshot.getValue(UserDetailsModel.class);
-                if (user.getImageUri().equals("")) {
+                GuidedToursModel tour = dataSnapshot.getValue(GuidedToursModel.class);
+                if (tour.getmTourImageUrl().equals("")) {
                     mTourImage.setImageResource(R.mipmap.ic_logo);
                 } else {
                     //showProfileData(dataSnapshot);
-                    Glide.with(mTourImage.getContext()).load(user.getImageUri()).into(mTourImage);
+                    Glide.with(mTourImage.getContext()).load(tour.getmTourImageUrl()).into(mTourImage);
                 }
             }
 
@@ -119,7 +132,7 @@ public class AddTour2Activity extends AppCompatActivity {
                     {
                         Uri downloadUri = task.getResult();
                         String mUri = downloadUri.toString();
-                        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours").child(mUser.getUid());
+                        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours").child(mTourId);
                         HashMap<String, Object> map = new HashMap<>();
                         map.put("imageUri", mUri);
                         mDatabaseReference.updateChildren(map);
@@ -164,6 +177,7 @@ public class AddTour2Activity extends AppCompatActivity {
 
     public void InitializeViews()
     {
+        mDescription = findViewById(R.id.et_tour_description);
         mTourImage = findViewById(R.id.iv_add_tour_photo);
     }
 }
