@@ -67,11 +67,10 @@ public class FragmentProfileLoggedIn extends Fragment {
         InitializeViews(view);
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mFirebaseDatabase.getReference();
+        //mDatabaseReference = mFirebaseDatabase.getReference();
         mUser = mAuth.getCurrentUser();
         userID = mUser.getUid();
 
-        //String profilePictureUri = getArguments().getString("profilePictureUri");
 
         setupFirebaseListener();
         BtnSignOut.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +106,6 @@ public class FragmentProfileLoggedIn extends Fragment {
                 if (user.getImageUri().equals("")) {
                         ivProfilePicture.setImageResource(R.mipmap.ic_logo);
                     } else {
-                        //showProfileData(dataSnapshot);
                         Glide.with(ivProfilePicture.getContext()).load(user.getImageUri()).into(ivProfilePicture);
                     }
             }

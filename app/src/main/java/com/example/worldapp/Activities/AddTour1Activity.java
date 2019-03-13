@@ -27,8 +27,7 @@ public class AddTour1Activity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private DatabaseReference mDatabaseReference;
-    private String userID;
-    private UUID tourId;
+    private String userID, tourId;
     private String mTitle, mLandmarks, mDuration;
     private int mParticipants;
     private double mPrice;
@@ -46,19 +45,20 @@ public class AddTour1Activity extends AppCompatActivity {
         mDatabaseReference = mFirebaseDatabase.getReference();
         mUser = mAuth.getCurrentUser();
         userID = mUser.getUid();
-        tourId = UUID.randomUUID();
+        tourId = UUID.randomUUID().toString();
     }
 
     public void AddNewTourPart1(String title, String landmarks, int participants, double price, String duration)
     {
         GuidedToursModel tour = new GuidedToursModel();
-        tour.setmTourTitle(title);
-        tour.setmTourLandmarks(landmarks);
-        tour.setmTourMaxParticipants(participants);
-        tour.setmTourPrice(price);
-        tour.setmTourDuration(duration);
+        tour.setmTourTitle(title+"ceva");
+        tour.setmTourLandmarks(landmarks+"altceva");
+        tour.setmTourMaxParticipants(2);
+        tour.setmTourPrice(234.2);
+        tour.setmTourDuration("3");
         tour.setmUserId(mUser.getUid());
         tour.setmTourId(tourId);
+        tour.setmTourImageUrl("");
 
         mDatabaseReference.child("Tours").child(userID).child(tourId.toString()).setValue(tour);
     }
@@ -66,7 +66,7 @@ public class AddTour1Activity extends AppCompatActivity {
     public void GoToAddTour2(View view) {
         Intent myIntent = new Intent(this, AddTour2Activity.class);
         myIntent.putExtra("tourId", tourId);
-        GetValues();
+        //GetValues();
         AddNewTourPart1(mTitle, mLandmarks, mParticipants, mPrice, mDuration);
         startActivity(myIntent);
     }

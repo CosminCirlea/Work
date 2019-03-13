@@ -4,11 +4,11 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.worldapp.Models.GuidedToursModel;
-import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,7 +28,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.internal.InternalTokenResult;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
@@ -37,19 +35,21 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 
+import javax.xml.datatype.Duration;
+
 public class AddTour2Activity extends AppCompatActivity {
 
-    private TextInputEditText mDescription;
     public static final int IMAGE_REQUEST=1;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
-    private DatabaseReference mDatabaseReference;
+    private DatabaseReference mDatabaseReference, mDatabaseRef;
     private StorageReference mStorageReference;
     private Uri uriProfilePicture;
     private StorageTask uploadTask;
     private ImageView mTourImage;
-    private String mTourId;
+    private String mTourId, mUserId;
+    private TextInputEditText mDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +60,15 @@ public class AddTour2Activity extends AppCompatActivity {
         }
         Intent myIntent = getIntent();
         mTourId = myIntent.getStringExtra("tourId");
-        InitializeViews();
         setContentView(R.layout.activity_add_tour2);
+        InitializeViews();
 
+        mAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mUser = mAuth.getCurrentUser();
+        mDatabaseReference = mFirebaseDatabase.getReference("Tours").child(mUser.getUid());
         mStorageReference = FirebaseStorage.getInstance().getReference("TourPictures");
-
-
+        mUserId = mUser.getUid();
 
         mTourImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,10 +81,9 @@ public class AddTour2Activity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 GuidedToursModel tour = dataSnapshot.getValue(GuidedToursModel.class);
-                if (tour.getmTourImageUrl().equals("")) {
+                if (dataSnapshot.child(mTourId).toString().equals("") || dataSnapshot.child(mTourId).toString().isEmpty()) {
                     mTourImage.setImageResource(R.mipmap.ic_logo);
                 } else {
-                    //showProfileData(dataSnapshot);
                     Glide.with(mTourImage.getContext()).load(tour.getmTourImageUrl()).into(mTourImage);
                 }
             }
@@ -132,9 +134,9 @@ public class AddTour2Activity extends AppCompatActivity {
                     {
                         Uri downloadUri = task.getResult();
                         String mUri = downloadUri.toString();
-                        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours").child(mTourId);
+                        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours").child(mUserId).child(mTourId);
                         HashMap<String, Object> map = new HashMap<>();
-                        map.put("imageUri", mUri);
+                        map.put("mTourImageUrl", mUri);
                         mDatabaseReference.updateChildren(map);
                         pd.dismiss();
                     }
@@ -166,7 +168,7 @@ public class AddTour2Activity extends AppCompatActivity {
             uriProfilePicture = data.getData();
             if (uploadTask != null && uploadTask.isInProgress())
             {
-                Toast.makeText(AddTour2Activity.this,"Upload in progress",Toast.LENGTH_SHORT);
+                Toast.makeText(AddTour2Activity.this,"Upload in progress",Toast.LENGTH_SHORT).show();
             }
             else
             {
@@ -175,9 +177,25 @@ public class AddTour2Activity extends AppCompatActivity {
         }
     }
 
+    public void AddNewTourPart2(String description)
+    {
+        GuidedToursModel tour = new GuidedToursModel();
+        tour.setmTourDescription(description);
+
+        mDatabaseReference.child("Tours").child(mUserId).child(mTourId).setValue(tour);
+    }
+
     public void InitializeViews()
     {
         mDescription = findViewById(R.id.et_tour_description);
         mTourImage = findViewById(R.id.iv_add_tour_photo);
+    }
+
+    public void GoToAddTour3(View view) {
+        Intent myIntent = new Intent(this, AddTour2Activity.class);
+        myIntent.putExtra("tourId", mTourId);
+        //GetValues();
+        AddNewTourPart2(mDescription.getText().toString());
+        startActivity(myIntent);
     }
 }

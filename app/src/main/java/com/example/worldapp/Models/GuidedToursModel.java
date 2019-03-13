@@ -14,8 +14,7 @@ public class GuidedToursModel {
     private double mTourPrice;
     private String mTourDuration;
     private int mTourMaxParticipants;
-    private UUID mTourId;
-    private String mUserId;
+    private String mUserId, mTourId;
 
     public GuidedToursModel()
     {
@@ -87,11 +86,11 @@ public class GuidedToursModel {
         this.mTourDuration = mTourDuration;
     }
 
-    public UUID getmTourId() {
+    public String getmTourId() {
         return mTourId;
     }
 
-    public void setmTourId(UUID mTourId) {
+    public void setmTourId(String mTourId) {
         this.mTourId = mTourId;
     }
 

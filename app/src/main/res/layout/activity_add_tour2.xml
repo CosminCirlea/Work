@@ -55,4 +55,14 @@
         android:layout_centerHorizontal="true"
         />
 
+    <Button
+        android:id="@+id/btn_add_tour_next_2"
+        android:layout_alignParentBottom="true"
+        android:text="Next"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="GoToAddTour3" />
 </RelativeLayout>
