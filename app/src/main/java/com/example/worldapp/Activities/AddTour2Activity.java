@@ -15,8 +15,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.load.engine.Resource;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.R;
@@ -37,10 +35,6 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
-
-import javax.xml.datatype.Duration;
-
-import static com.bumptech.glide.request.RequestOptions.centerCropTransform;
 
 public class AddTour2Activity extends AppCompatActivity {
 
