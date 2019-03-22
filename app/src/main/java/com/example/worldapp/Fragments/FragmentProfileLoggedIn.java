@@ -67,7 +67,6 @@ public class FragmentProfileLoggedIn extends Fragment {
         InitializeViews(view);
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        //mDatabaseReference = mFirebaseDatabase.getReference();
         mUser = mAuth.getCurrentUser();
         userID = mUser.getUid();
 
@@ -76,7 +75,6 @@ public class FragmentProfileLoggedIn extends Fragment {
         BtnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Log.d(TAG, "onClick: attempting to sign out the user.");
                 FirebaseAuth.getInstance().signOut();
             }
         });

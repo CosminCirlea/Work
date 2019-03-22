@@ -15,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.Resource;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.R;
 import com.google.android.gms.tasks.Continuation;
@@ -36,6 +39,8 @@ import com.google.firebase.storage.UploadTask;
 import java.util.HashMap;
 
 import javax.xml.datatype.Duration;
+
+import static com.bumptech.glide.request.RequestOptions.centerCropTransform;
 
 public class AddTour2Activity extends AppCompatActivity {
 
@@ -66,9 +71,9 @@ public class AddTour2Activity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mUser = mAuth.getCurrentUser();
+        mUserId = mUser.getUid();
         mDatabaseReference = mFirebaseDatabase.getReference("Tours").child(mUser.getUid());
         mStorageReference = FirebaseStorage.getInstance().getReference("TourPictures");
-        mUserId = mUser.getUid();
 
         mTourImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,15 +81,16 @@ public class AddTour2Activity extends AppCompatActivity {
                 openImage();
             }
         });
-
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+        mDatabaseRef = mDatabaseReference.child(mTourId);
+        mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 GuidedToursModel tour = dataSnapshot.getValue(GuidedToursModel.class);
-                if (dataSnapshot.child(mTourId).toString().equals("") || dataSnapshot.child(mTourId).toString().isEmpty()) {
-                    mTourImage.setImageResource(R.mipmap.ic_logo);
-                } else {
-                    Glide.with(mTourImage.getContext()).load(tour.getmTourImageUrl()).into(mTourImage);
+                String aux = tour.getmTourImageUrl();
+                try {
+                    Glide.with(mTourImage.getContext()).load(tour.getmTourImageUrl()).apply(new RequestOptions().placeholder(R.drawable.photo_placeholder).centerCrop()).into(mTourImage);
+                }
+                catch (Exception e){
                 }
             }
 
@@ -179,10 +185,9 @@ public class AddTour2Activity extends AppCompatActivity {
 
     public void AddNewTourPart2(String description)
     {
-        GuidedToursModel tour = new GuidedToursModel();
-        tour.setmTourDescription(description);
-
-        mDatabaseReference.child("Tours").child(mUserId).child(mTourId).setValue(tour);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("mTourDescription", description);
+        mDatabaseReference.updateChildren(map);
     }
 
     public void InitializeViews()
@@ -192,7 +197,7 @@ public class AddTour2Activity extends AppCompatActivity {
     }
 
     public void GoToAddTour3(View view) {
-        Intent myIntent = new Intent(this, AddTour2Activity.class);
+        Intent myIntent = new Intent(this, AddTour3Activity.class);
         myIntent.putExtra("tourId", mTourId);
         //GetValues();
         AddNewTourPart2(mDescription.getText().toString());

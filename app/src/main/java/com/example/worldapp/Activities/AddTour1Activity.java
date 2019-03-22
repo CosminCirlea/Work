@@ -60,7 +60,7 @@ public class AddTour1Activity extends AppCompatActivity {
         tour.setmTourId(tourId);
         tour.setmTourImageUrl("");
 
-        mDatabaseReference.child("Tours").child(userID).child(tourId.toString()).setValue(tour);
+        mDatabaseReference.child("Tours").child(userID).child(tourId).setValue(tour);
     }
 
     public void GoToAddTour2(View view) {

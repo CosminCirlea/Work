@@ -9,7 +9,6 @@
 
     <include layout="@layout/toolbar_with_back_button"/>
 
-
     <android.support.design.widget.TextInputLayout
         android:id="@+id/til_tour_description"
         style="@style/BasicText"
@@ -26,7 +25,7 @@
             android:id="@+id/et_tour_description"
             style="@style/BasicText"
             android:inputType="textMultiLine"
-            android:lines="6"
+            android:lines="3"
             android:maxLines="10"
             android:scrollbars="vertical"
             android:hint="Description"
@@ -49,6 +48,7 @@
         android:scaleType="centerCrop"
         android:layout_gravity="center"
         android:layout_margin="20dp"
+        android:adjustViewBounds="true"
         android:layout_below="@id/tv_add_tour_photo"
         android:layout_width="match_parent"
         android:layout_height="250dp"
