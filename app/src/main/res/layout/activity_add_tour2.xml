@@ -1,0 +1,81 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_simple"
+    tools:context=".Activities.AddTour2Activity">
+
+    <include layout="@layout/toolbar_with_back_button"/>
+    <ScrollView
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_tour_description"
+        style="@style/BasicText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        >
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/et_tour_description"
+            style="@style/BasicText"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            android:maxLines="10"
+            android:scrollbars="vertical"
+            android:hint="Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_add_tour_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BasicText"
+        android:layout_margin="10dp"
+        android:text="Add tour photo"
+        android:layout_below="@id/til_tour_description"/>
+
+    <ImageView
+        android:id="@+id/iv_add_tour_photo"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:adjustViewBounds="true"
+        android:layout_below="@id/tv_add_tour_photo"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
+    <Button
+        android:id="@+id/btn_add_tour_next_2"
+        android:text="Next"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="GoToAddTour3" />
+    </RelativeLayout>
+</RelativeLayout>

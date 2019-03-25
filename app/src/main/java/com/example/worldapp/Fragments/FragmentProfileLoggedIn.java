@@ -48,7 +48,7 @@ public class FragmentProfileLoggedIn extends Fragment {
     public static final int IMAGE_REQUEST=1;
     private static final String TAG = "AccountFragment";
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-    public  Button BtnSignOut, BtnEditProfile, BtnDeleteAccount, BtnMyListings;
+    public  Button BtnSignOut, BtnEditProfile, BtnMyListings;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -56,11 +56,9 @@ public class FragmentProfileLoggedIn extends Fragment {
     private String userID;
     private TextView TvFirstName, TvName;
     public ImageView ivProfilePicture;
-    private String auxName, auxFirstname, auxImage;
-    StorageReference mStorageReference;
+    private StorageReference mStorageReference;
     private Uri uriProfilePicture;
     private StorageTask uploadTask;
-    Uri photoUri;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -69,17 +67,14 @@ public class FragmentProfileLoggedIn extends Fragment {
         InitializeViews(view);
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mFirebaseDatabase.getReference();
         mUser = mAuth.getCurrentUser();
         userID = mUser.getUid();
 
-        //String profilePictureUri = getArguments().getString("profilePictureUri");
 
         setupFirebaseListener();
         BtnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Log.d(TAG, "onClick: attempting to sign out the user.");
                 FirebaseAuth.getInstance().signOut();
             }
         });
@@ -109,7 +104,6 @@ public class FragmentProfileLoggedIn extends Fragment {
                 if (user.getImageUri().equals("")) {
                         ivProfilePicture.setImageResource(R.mipmap.ic_logo);
                     } else {
-                        //showProfileData(dataSnapshot);
                         Glide.with(ivProfilePicture.getContext()).load(user.getImageUri()).into(ivProfilePicture);
                     }
             }

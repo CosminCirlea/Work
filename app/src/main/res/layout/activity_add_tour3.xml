@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_simple"
+    tools:context=".Activities.AddTour3Activity">
+
+    <include layout="@layout/toolbar_with_back_button"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_tour_country"
+        android:layout_width="match_parent"
+        style="@style/BasicText"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/et_tour_country"
+            style="@style/BasicText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Country "/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_tour_region"
+        style="@style/BasicText"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/til_tour_country"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/et_tour_region"
+            style="@style/BasicText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Region"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_tour_city"
+        style="@style/BasicText"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/til_tour_region"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/et_tour_city"
+            style="@style/BasicText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="City"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_tour_type"
+        style="@style/BasicText"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/til_tour_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/et_tour_type"
+            style="@style/BasicText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type (walking, bike, car)"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_add_tour_next_1"
+        android:layout_alignParentBottom="true"
+        android:text="Finish"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="RegisterTour" />
+</RelativeLayout>
