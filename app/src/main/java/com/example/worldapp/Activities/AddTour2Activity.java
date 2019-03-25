@@ -180,7 +180,7 @@ public class AddTour2Activity extends AppCompatActivity {
     public void AddNewTourPart2(String description)
     {
         HashMap<String, Object> map = new HashMap<>();
-        map.put("mTourDescription", description);
+        map.put("TourDescription", description);
         mDatabaseReference.updateChildren(map);
     }
 

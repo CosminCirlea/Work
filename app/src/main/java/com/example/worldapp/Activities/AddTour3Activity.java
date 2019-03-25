@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.worldapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -12,9 +13,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+
 public class AddTour3Activity extends AppCompatActivity {
 
-    private EditText mCountry, mRegion, mCity, mType;
+    private EditText mCountryEditText, mRegionEditText, mCityEditText, mTypeEditText;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -37,17 +40,32 @@ public class AddTour3Activity extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mUser = mAuth.getCurrentUser();
         mUserId = mUser.getUid();
-        mDatabaseReference = mFirebaseDatabase.getReference("Tours").child(mUser.getUid());
+        mDatabaseReference = mFirebaseDatabase.getReference("Tours").child(mUser.getUid()).child(mTourId);
+    }
+
+    public void AddNewTourPart3(String country, String region, String city, String type)
+    {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("TourCountry", country);
+        map.put("TourRegion", region);
+        map.put("TourCity", city);
+        map.put("TourType", type);
+        mDatabaseReference.updateChildren(map);
     }
 
     public void RegisterTour(View view) {
+        AddNewTourPart3(mCountryEditText.getText().toString(), mRegionEditText.getText().toString(),
+                mCityEditText.getText().toString(),mTypeEditText.getText().toString());
+        Intent mIntent = new Intent(this, ActivityHome.class);
+        startActivity(mIntent);
+        Toast.makeText(this, "Tour added succesfully!", Toast.LENGTH_SHORT).show();
     }
 
     public void InitializeViews()
     {
-        mCountry=findViewById(R.id.et_tour_country);
-        mRegion = findViewById(R.id.et_tour_region);
-        mCity =findViewById(R.id.et_tour_city);
-        mType=findViewById(R.id.et_tour_type);
+        mCountryEditText=findViewById(R.id.et_tour_country);
+        mRegionEditText = findViewById(R.id.et_tour_region);
+        mCityEditText =findViewById(R.id.et_tour_city);
+        mTypeEditText=findViewById(R.id.et_tour_type);
     }
 }
