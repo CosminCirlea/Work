@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.worldapp.Activities.ActivityHome;
 import com.example.worldapp.Activities.ActivityLogin;
+import com.example.worldapp.Activities.AddTour1Activity;
 import com.example.worldapp.Activities.ListingsActivity;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
@@ -112,8 +113,19 @@ public class FragmentProfileLoggedIn extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+
+        BtnEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AddTour1Activity.class));
+            }
+        });
+
         return view;
     }
+
+
+
 
     private void setupFirebaseListener(){
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
@@ -214,7 +226,7 @@ public class FragmentProfileLoggedIn extends Fragment {
         }
     }
 
-    //user for image upload
+    //used for image upload
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

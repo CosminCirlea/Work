@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.AddTour3Activity"></activity>
         <activity android:name=".Activities.AddTour2Activity" />
-        <activity android:name=".Activities.ActivityHome" />
+        <activity android:name=".Activities.AddTour1Activity" />
         <activity android:name=".Activities.AddHome4Activity" />
         <activity android:name=".Activities.AddHome3Activity" />
         <activity android:name=".Activities.AddHome1Activity" />
@@ -26,7 +26,7 @@
         <activity android:name=".Activities.ActivityAux" />
         <activity android:name=".Activities.ActivityLogin" />
         <activity
-            android:name=".Activities.AddTour1Activity"
+            android:name=".Activities.ActivityHome"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
