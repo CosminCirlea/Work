@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:cardElevation="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:src="@drawable/test_image"
+            android:id="@+id/iv_listed_home"
+            android:maxHeight="150dp"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_announcement_title"
+            android:layout_below="@+id/iv_listed_home"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="Amazing landmarks to be seen"
+            android:layout_alignParentStart="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_tour_location"
+            android:layout_below="@+id/tv_announcement_title"
+            android:textSize="16sp"
+            android:text="Milan, Region of Milan,Italy"
+            android:layout_alignParentStart="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_tour_landmarks"
+            android:layout_below="@+id/tv_tour_location"
+            android:textSize="16sp"
+            android:text="A lot of landmarks: Cathedral, this, that, a lot of writing, to make sure it works"
+            android:layout_alignParentStart="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_tour_capacity"
+            android:layout_below="@+id/tv_tour_landmarks"
+            android:textSize="16sp"
+            android:text="Up to 3 people - "
+            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/tv_tour_duration"
+            android:layout_below="@+id/tv_tour_landmarks"
+            android:layout_toRightOf="@+id/tv_tour_capacity"
+            android:textSize="16sp"
+            android:text=" 2:30 hours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/tv_price_per_tour"
+            android:layout_below="@+id/tv_tour_capacity"
+            android:textSize="16sp"
+            android:text="130$ per tour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

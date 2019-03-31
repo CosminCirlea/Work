@@ -27,7 +27,7 @@ public class MyToursListingsAdapter extends
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvAnnouncementTitle, tvLocation, tvHouseType, tvMaxGuests, tvBeds, tvPricePerNight;
+        private TextView tvAnnouncementTitle, tvLocation, tvHouseType, tvMaxGuests, tvBeds, tvPricePerTour;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -40,7 +40,7 @@ public class MyToursListingsAdapter extends
             tvHouseType = itemView.findViewById(R.id.tv_venue_type);
             tvMaxGuests = itemView.findViewById(R.id.tv_guest_capacity);
             tvBeds = itemView.findViewById(R.id.tv_beds);
-            tvPricePerNight = itemView.findViewById(R.id.tv_price_per_night);
+            tvPricePerTour = itemView.findViewById(R.id.tv_price_per_night);
         }
     }
 
