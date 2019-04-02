@@ -12,7 +12,7 @@
 
         <ImageView
             android:src="@drawable/test_image"
-            android:id="@+id/iv_listed_home"
+            android:id="@+id/iv_listed_tour"
             android:maxHeight="150dp"
             android:adjustViewBounds="true"
             android:layout_width="match_parent"
@@ -20,7 +20,7 @@
 
         <TextView
             android:id="@+id/tv_announcement_title"
-            android:layout_below="@+id/iv_listed_home"
+            android:layout_below="@+id/iv_listed_tour"
             android:textSize="16sp"
             android:textStyle="bold"
             android:text="Amazing landmarks to be seen"

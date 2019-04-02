@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.worldapp.Models.GuidedToursModel;
@@ -28,7 +29,7 @@ public class MyToursListingsAdapter extends
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvAnnouncementTitle, tvLocation, tvHouseType, tvMaxGuests, tvBeds, tvPricePerTour;
-
+        ImageView ivTourPicture;
         public ViewHolder(View itemView) {
             super(itemView);
             InitializeViews(itemView);
@@ -41,6 +42,7 @@ public class MyToursListingsAdapter extends
             tvMaxGuests = itemView.findViewById(R.id.tv_guest_capacity);
             tvBeds = itemView.findViewById(R.id.tv_beds);
             tvPricePerTour = itemView.findViewById(R.id.tv_price_per_night);
+            ivTourPicture = itemView.findViewById(R.id.iv_listed_tour);
         }
     }
 
@@ -66,7 +68,7 @@ public class MyToursListingsAdapter extends
         viewHolder.tvHouseType.setText(landmarks);
         viewHolder.tvBeds.setText(tourDuration+" hours");
         viewHolder.tvMaxGuests.setText(aux);
-        viewHolder.tvAnnouncementTitle.setText(price.toString());
+        viewHolder.tvPricePerTour.setText(price.toString());
     }
 
     @Override

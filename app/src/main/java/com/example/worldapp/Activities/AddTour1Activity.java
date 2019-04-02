@@ -51,11 +51,11 @@ public class AddTour1Activity extends AppCompatActivity {
     public void AddNewTourPart1(String title, String landmarks, int participants, double price, String duration)
     {
         GuidedToursModel tour = new GuidedToursModel();
-        tour.setmTourTitle(title+"ceva");
-        tour.setmTourLandmarks(landmarks+"altceva");
-        tour.setmTourMaxParticipants(2);
-        tour.setmTourPrice(234.2);
-        tour.setmTourDuration("3");
+        tour.setmTourTitle(title);
+        tour.setmTourLandmarks(landmarks);
+        tour.setmTourMaxParticipants(participants);
+        tour.setmTourPrice(price);
+        tour.setmTourDuration(duration);
         tour.setmUserId(mUser.getUid());
         tour.setmTourId(tourId);
         tour.setmTourImageUrl("");
@@ -66,7 +66,6 @@ public class AddTour1Activity extends AppCompatActivity {
     public void GoToAddTour2(View view) {
         Intent myIntent = new Intent(this, AddTour2Activity.class);
         myIntent.putExtra("tourId", tourId);
-        //GetValues();
         AddNewTourPart1(mTitle, mLandmarks, mParticipants, mPrice, mDuration);
         startActivity(myIntent);
     }
