@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
+import com.example.worldapp.TourCore;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -50,17 +51,14 @@ public class AddTour1Activity extends AppCompatActivity {
 
     public void AddNewTourPart1(String title, String landmarks, int participants, double price, String duration)
     {
-        GuidedToursModel tour = new GuidedToursModel();
-        tour.setmTourTitle(title);
-        tour.setmTourLandmarks(landmarks);
-        tour.setmTourMaxParticipants(participants);
-        tour.setmTourPrice(price);
-        tour.setmTourDuration(duration);
-        tour.setmUserId(mUser.getUid());
-        tour.setmTourId(tourId);
-        tour.setmTourImageUrl("");
-
-        mDatabaseReference.child("Tours").child(userID).child(tourId).setValue(tour);
+        TourCore.Instance().setTourTitle(title);
+        TourCore.Instance().setTourLandmarks(landmarks);
+        TourCore.Instance().setTourMaxParticipants(participants);
+        TourCore.Instance().setTourPrice(price);
+        TourCore.Instance().setTourDuration(duration);
+        TourCore.Instance().setUserId(mUser.getUid());
+        TourCore.Instance().setTourId(tourId);
+        TourCore.Instance().setTourImageUrl("");
     }
 
     public void GoToAddTour2(View view) {

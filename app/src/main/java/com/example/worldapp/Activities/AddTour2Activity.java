@@ -66,7 +66,7 @@ public class AddTour2Activity extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mUser = mAuth.getCurrentUser();
         mUserId = mUser.getUid();
-        mDatabaseReference = mFirebaseDatabase.getReference("Tours").child(mUser.getUid());
+        mDatabaseReference = mFirebaseDatabase.getReference("Tours");
         mStorageReference = FirebaseStorage.getInstance().getReference("TourPictures");
 
         mTourImage.setOnClickListener(new View.OnClickListener() {
