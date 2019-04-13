@@ -127,4 +127,9 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
         fragmentInbox = new FragmentInbox();
         fragmentProfileLoggedIn = new FragmentProfileLoggedIn();
     }
+
+    public void ShowTours(View view) {
+        Intent mIntent = new Intent(ActivityHome.this, ListAllToursActivity.class);
+        startActivity(mIntent);
+    }
 }

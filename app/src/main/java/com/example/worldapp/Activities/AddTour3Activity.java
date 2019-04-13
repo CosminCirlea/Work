@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.worldapp.R;
+import com.example.worldapp.TourCore;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -40,17 +41,24 @@ public class AddTour3Activity extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mUser = mAuth.getCurrentUser();
         mUserId = mUser.getUid();
-        mDatabaseReference = mFirebaseDatabase.getReference("Tours").child(mUser.getUid()).child(mTourId);
+        mDatabaseReference = mFirebaseDatabase.getReference("Tours");
     }
 
     public void AddNewTourPart3(String country, String region, String city, String type)
     {
         HashMap<String, Object> map = new HashMap<>();
-        map.put("TourCountry", country);
+        TourCore.Instance().setmTourCountry(country);
+        TourCore.Instance().setmTourRegion(region);
+        TourCore.Instance().setmTourCity(city);
+        TourCore.Instance().setmTourType(type);
+
+        /*map.put("TourCountry", country);
         map.put("TourRegion", region);
         map.put("TourCity", city);
         map.put("TourType", type);
-        mDatabaseReference.updateChildren(map);
+        mDatabaseReference.updateChildren(map);*/
+
+        mDatabaseReference.child(mTourId).setValue(TourCore.Instance());
     }
 
     public void RegisterTour(View view) {
