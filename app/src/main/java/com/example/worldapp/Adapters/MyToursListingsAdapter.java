@@ -63,17 +63,17 @@ public class MyToursListingsAdapter extends
         String location = mTours.get(position).getmTourCountry() +", "+mTours.get(position).getmTourRegion()+", "+mTours.get(position).getmTourCity();
         String landmarks = mTours.get(position).getmTourLandmarks();
         int maxParticipants = mTours.get(position).getmTourMaxParticipants();
-        String aux = String.valueOf(maxParticipants);
+        String aux = String.valueOf(maxParticipants) + " participants - ";
         String tourDuration = mTours.get(position).getmTourDuration();
         Double price = mTours.get(position).getmTourPrice();
-        Glide.with( viewHolder.ivTourPicture.getContext()).load(mTours.get(position).getmTourImageUrl()).into(viewHolder.ivTourPicture);
+        Glide.with(viewHolder.ivTourPicture.getContext()).load(mTours.get(position).getmTourImageUrl()).into(viewHolder.ivTourPicture);
 
         viewHolder.tvAnnouncementTitle.setText(tourTitle);
         viewHolder.tvLocation.setText(location);
         viewHolder.tvTourLandmarks.setText(landmarks);
         viewHolder.tvDuration.setText(tourDuration+" hours");
         viewHolder.tvMaxGuests.setText(aux);
-        viewHolder.tvPricePerTour.setText(price.toString());
+        viewHolder.tvPricePerTour.setText(price.toString()+"$");
     }
 
     @Override
