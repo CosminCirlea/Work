@@ -2,18 +2,18 @@ package com.example.worldapp;
 
 public class TourCore {
     private static TourCore mTourCore;
-    private String TourTitle;
-    private String TourDescription;
-    private String TourLandmarks;
-    private String TourImageUrl;
-    private String TourCountry;
-    private String TourRegion;
-    private String TourCity;
-    private String TourType;
-    private double TourPrice;
-    private String TourDuration;
-    private int TourMaxParticipants;
-    private String UserId, TourId;
+    private String mTourTitle;
+    private String mTourDescription;
+    private String mTourLandmarks;
+    private String mTourImageUrl;
+    private String mTourCountry;
+    private String mTourRegion;
+    private String mTourCity;
+    private String mTourType;
+    private double mTourPrice;
+    private String mTourDuration;
+    private int mTourMaxParticipants;
+    private String mUserId, mTourId;
 
 
     public static TourCore Instance()
@@ -25,108 +25,108 @@ public class TourCore {
         return mTourCore;
     }
 
-    public String getTourTitle() {
-        return TourTitle;
+    public String getmTourTitle() {
+        return mTourTitle;
     }
 
-    public void setTourTitle(String tourTitle) {
-        TourTitle = tourTitle;
+    public void setmTourTitle(String mTourTitle) {
+        this.mTourTitle = mTourTitle;
     }
 
-    public String getTourDescription() {
-        return TourDescription;
+    public String getmTourDescription() {
+        return mTourDescription;
     }
 
-    public void setTourDescription(String tourDescription) {
-        TourDescription = tourDescription;
+    public void setmTourDescription(String mTourDescription) {
+        this.mTourDescription = mTourDescription;
     }
 
-    public String getTourLandmarks() {
-        return TourLandmarks;
+    public String getmTourLandmarks() {
+        return mTourLandmarks;
     }
 
-    public void setTourLandmarks(String tourLandmarks) {
-        TourLandmarks = tourLandmarks;
+    public void setmTourLandmarks(String mTourLandmarks) {
+        this.mTourLandmarks = mTourLandmarks;
     }
 
-    public String getTourImageUrl() {
-        return TourImageUrl;
+    public String getmTourImageUrl() {
+        return mTourImageUrl;
     }
 
-    public void setTourImageUrl(String tourImageUrl) {
-        TourImageUrl = tourImageUrl;
+    public void setmTourImageUrl(String mTourImageUrl) {
+        this.mTourImageUrl = mTourImageUrl;
     }
 
-    public String getTourCountry() {
-        return TourCountry;
+    public String getmTourCountry() {
+        return mTourCountry;
     }
 
-    public void setTourCountry(String tourCountry) {
-        TourCountry = tourCountry;
+    public void setmTourCountry(String mTourCountry) {
+        this.mTourCountry = mTourCountry;
     }
 
-    public String getTourRegion() {
-        return TourRegion;
+    public String getmTourRegion() {
+        return mTourRegion;
     }
 
-    public void setTourRegion(String tourRegion) {
-        TourRegion = tourRegion;
+    public void setmTourRegion(String mTourRegion) {
+        this.mTourRegion = mTourRegion;
     }
 
-    public String getTourCity() {
-        return TourCity;
+    public String getmTourCity() {
+        return mTourCity;
     }
 
-    public void setTourCity(String tourCity) {
-        TourCity = tourCity;
+    public void setmTourCity(String mTourCity) {
+        this.mTourCity = mTourCity;
     }
 
-    public String getTourType() {
-        return TourType;
+    public String getmTourType() {
+        return mTourType;
     }
 
-    public void setTourType(String tourType) {
-        TourType = tourType;
+    public void setmTourType(String mTourType) {
+        this.mTourType = mTourType;
     }
 
-    public double getTourPrice() {
-        return TourPrice;
+    public double getmTourPrice() {
+        return mTourPrice;
     }
 
-    public void setTourPrice(double tourPrice) {
-        TourPrice = tourPrice;
+    public void setmTourPrice(double mTourPrice) {
+        this.mTourPrice = mTourPrice;
     }
 
-    public String getTourDuration() {
-        return TourDuration;
+    public String getmTourDuration() {
+        return mTourDuration;
     }
 
-    public void setTourDuration(String tourDuration) {
-        TourDuration = tourDuration;
+    public void setmTourDuration(String mTourDuration) {
+        this.mTourDuration = mTourDuration;
     }
 
-    public int getTourMaxParticipants() {
-        return TourMaxParticipants;
+    public int getmTourMaxParticipants() {
+        return mTourMaxParticipants;
     }
 
-    public void setTourMaxParticipants(int tourMaxParticipants) {
-        TourMaxParticipants = tourMaxParticipants;
+    public void setmTourMaxParticipants(int mTourMaxParticipants) {
+        this.mTourMaxParticipants = mTourMaxParticipants;
     }
 
-    public String getUserId() {
-        return UserId;
+    public String getmUserId() {
+        return mUserId;
     }
 
-    public void setUserId(String userId) {
-        UserId = userId;
+    public void setmUserId(String mUserId) {
+        this.mUserId = mUserId;
     }
 
-    public String getTourId() {
-        return TourId;
+    public String getmTourId() {
+        return mTourId;
     }
 
-    public void setTourId(String tourId) {
-        TourId = tourId;
+    public void setmTourId(String mTourId) {
+        this.mTourId = mTourId;
     }
 
 }

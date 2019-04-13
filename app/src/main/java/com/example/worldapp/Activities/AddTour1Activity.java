@@ -5,21 +5,15 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 
-import com.example.worldapp.Models.GuidedToursModel;
-import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
 import com.example.worldapp.TourCore;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.UUID;
-
-import static java.util.UUID.randomUUID;
 
 public class AddTour1Activity extends AppCompatActivity {
 
@@ -51,14 +45,14 @@ public class AddTour1Activity extends AppCompatActivity {
 
     public void AddNewTourPart1(String title, String landmarks, int participants, double price, String duration)
     {
-        TourCore.Instance().setTourTitle(title);
-        TourCore.Instance().setTourLandmarks(landmarks);
-        TourCore.Instance().setTourMaxParticipants(participants);
-        TourCore.Instance().setTourPrice(price);
-        TourCore.Instance().setTourDuration(duration);
-        TourCore.Instance().setUserId(mUser.getUid());
-        TourCore.Instance().setTourId(tourId);
-        TourCore.Instance().setTourImageUrl("");
+        TourCore.Instance().setmTourTitle(title);
+        TourCore.Instance().setmTourLandmarks(landmarks);
+        TourCore.Instance().setmTourMaxParticipants(participants);
+        TourCore.Instance().setmTourPrice(price);
+        TourCore.Instance().setmTourDuration(duration);
+        TourCore.Instance().setmUserId(mUser.getUid());
+        TourCore.Instance().setmTourId(tourId);
+        TourCore.Instance().setmTourImageUrl("");
     }
 
     public void GoToAddTour2(View view) {

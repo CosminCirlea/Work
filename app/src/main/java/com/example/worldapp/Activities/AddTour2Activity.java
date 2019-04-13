@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.R;
 import com.example.worldapp.TourCore;
 import com.google.android.gms.tasks.Continuation;
@@ -25,11 +24,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
@@ -135,7 +131,7 @@ public class AddTour2Activity extends AppCompatActivity {
                     {
                         Uri downloadUri = task.getResult();
                         String mUri = downloadUri.toString();
-                        TourCore.Instance().setTourImageUrl(mUri);
+                        TourCore.Instance().setmTourImageUrl(mUri);
                         //mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours").child(mUserId).child(mTourId);
                         //HashMap<String, Object> map = new HashMap<>();
                         //map.put("mTourImageUrl", mUri);
@@ -184,9 +180,7 @@ public class AddTour2Activity extends AppCompatActivity {
     {
         HashMap<String, Object> map = new HashMap<>();
         map.put("TourDescription", description);
-        //mDatabaseReference.updateChildren(map);
-        TourCore.Instance().setTourDescription(description);
-        TourCore.Instance().setTourImageUrl(uriProfilePicture.toString());
+        TourCore.Instance().setmTourDescription(description);
     }
 
     public void InitializeViews()

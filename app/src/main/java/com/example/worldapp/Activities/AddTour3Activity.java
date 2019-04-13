@@ -47,10 +47,10 @@ public class AddTour3Activity extends AppCompatActivity {
     public void AddNewTourPart3(String country, String region, String city, String type)
     {
         HashMap<String, Object> map = new HashMap<>();
-        TourCore.Instance().setTourCountry(country);
-        TourCore.Instance().setTourRegion(region);
-        TourCore.Instance().setTourCity(city);
-        TourCore.Instance().setTourType(type);
+        TourCore.Instance().setmTourCountry(country);
+        TourCore.Instance().setmTourRegion(region);
+        TourCore.Instance().setmTourCity(city);
+        TourCore.Instance().setmTourType(type);
 
         /*map.put("TourCountry", country);
         map.put("TourRegion", region);
