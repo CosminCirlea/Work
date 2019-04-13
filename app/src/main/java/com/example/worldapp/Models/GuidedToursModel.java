@@ -1,10 +1,8 @@
 package com.example.worldapp.Models;
 
-import java.util.UUID;
-
 public class GuidedToursModel {
-    private String TourTitle;
-    public String TourDescription;
+    private String mTourTitle;
+    private String TourDescription;
     private String TourLandmarks;
     private String TourImageUrl;
     private String TourCountry;
@@ -20,8 +18,25 @@ public class GuidedToursModel {
     {
     }
 
+    public GuidedToursModel(String mTourTitle, String tourDescription, String tourLandmarks, String tourImageUrl, String tourCountry,
+                            String tourRegion, String tourCity, String tourType, double tourPrice, String tourDuration, int tourMaxParticipants, String userId, String tourId) {
+        this.mTourTitle = mTourTitle;
+        TourDescription = tourDescription;
+        TourLandmarks = tourLandmarks;
+        TourImageUrl = tourImageUrl;
+        TourCountry = tourCountry;
+        TourRegion = tourRegion;
+        TourCity = tourCity;
+        TourType = tourType;
+        TourPrice = tourPrice;
+        TourDuration = tourDuration;
+        TourMaxParticipants = tourMaxParticipants;
+        UserId = userId;
+        TourId = tourId;
+    }
+
     public GuidedToursModel(String mTourTitle, String mTourDescription, String mTourLandmarks, String mTourImage, double mTourPrice, String mTourDuration , int mTourMaxParticipants) {
-        this.TourTitle = mTourTitle;
+        this.mTourTitle = mTourTitle;
         this.TourDescription = mTourDescription;
         this.TourLandmarks = mTourLandmarks;
         this.TourImageUrl = mTourImage;
@@ -31,11 +46,11 @@ public class GuidedToursModel {
     }
 
     public String getmTourTitle() {
-        return TourTitle;
+        return mTourTitle;
     }
 
     public void setmTourTitle(String mTourTitle) {
-        this.TourTitle = mTourTitle;
+        this.mTourTitle = mTourTitle;
     }
 
     public String getmTourDescription() {

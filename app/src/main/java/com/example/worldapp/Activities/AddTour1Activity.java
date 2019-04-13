@@ -64,6 +64,7 @@ public class AddTour1Activity extends AppCompatActivity {
     public void GoToAddTour2(View view) {
         Intent myIntent = new Intent(this, AddTour2Activity.class);
         myIntent.putExtra("tourId", tourId);
+        GetValues();
         AddNewTourPart1(mTitle, mLandmarks, mParticipants, mPrice, mDuration);
         startActivity(myIntent);
     }
