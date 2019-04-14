@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/toolbar_with_back_button"/>
+
+        <ImageView
+            android:id="@+id/iv_tour_photo"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@+id/toolbar"/>
+
+        <TextView
+            android:id="@+id/tv_tour_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_tour_photo"
+            style="@style/BasicText"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:text="Tour title"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_tour_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_tour_title"
+            style="@style/BasicText"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:text="Venice, Veneto, Italy"
+            android:inputType="textMultiLine"/>
+
+        <TextView
+            android:id="@+id/tv_tour_type_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            style="@style/BasicText"
+            android:text="Tour type - "
+            android:layout_below="@id/tv_tour_location"/>
+
+        <TextView
+            android:id="@+id/tv_tour_type_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            style="@style/BasicText"
+            android:textStyle="bold"
+            android:text="Walking"
+            android:layout_toEndOf="@id/tv_tour_type_text"
+            android:layout_below="@id/tv_tour_location"/>
+
+        <TextView
+            android:id="@+id/tv_tour_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:layout_margin="10dp"
+            android:text="A very very long description to see how this reacts when the text is extremely long"
+            style="@style/BasicText"
+            android:layout_below="@+id/tv_tour_type_text"/>
+
+        <LinearLayout
+            android:id="@+id/ll_tour_details_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            android:background="@color/containerColor"
+            android:layout_below="@+id/tv_tour_description">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/iv_tour_details_participants"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_profile_navigation_foreground"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/tv_tour_details_participants"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/BasicText"
+                    android:layout_margin="4dp"
+                    android:layout_below="@+id/iv_tour_details_participants"
+                    android:text="3 people"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/iv_tour_details_duration"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_clock"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/tv_tour_details_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/BasicText"
+                    android:layout_margin="4dp"
+                    android:layout_below="@+id/iv_tour_details_duration"
+                    android:text="2.5 hrs"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/iv_tour_details_price"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_money"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/tv_tour_details_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/BasicText"
+                    android:layout_margin="4dp"
+                    android:layout_below="@+id/iv_tour_details_price"
+                    android:text="37 $"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_tour_landmarks_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/BasicText"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Landmarks"
+            android:layout_below="@+id/ll_tour_details_container"/>
+
+        <TextView
+            android:id="@+id/tv_tour_landmarks_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/BasicText"
+            android:layout_margin="10dp"
+            android:text="Landmarks"
+            android:layout_below="@+id/tv_tour_landmarks_text"/>
+
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

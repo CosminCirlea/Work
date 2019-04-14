@@ -13,6 +13,16 @@ public class GuidedToursModel {
     private String mTourDuration;
     private int mTourMaxParticipants;
     private String mUserId, mTourId;
+    private double mRating;
+
+    public double getmRating() {
+        return mRating;
+    }
+
+    public void setmRating(double mRating) {
+        this.mRating = mRating;
+    }
+
 
     public GuidedToursModel()
     {

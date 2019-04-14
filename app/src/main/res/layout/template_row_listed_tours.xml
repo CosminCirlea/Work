@@ -82,11 +82,22 @@
             android:layout_height="wrap_content"
             />
 
+        <RatingBar
+            android:id="@+id/rb_tour_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:stepSize="1"
+            android:isIndicator="true"
+            android:layout_below="@id/tv_price_per_tour"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"/>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="4dp"
             android:layout_marginTop="4dp"
             android:background="@android:color/darker_gray"
-            android:layout_below="@id/tv_price_per_tour"/>
+            android:layout_below="@id/rb_tour_rating"/>
+
     </RelativeLayout>
 </android.support.v7.widget.CardView>

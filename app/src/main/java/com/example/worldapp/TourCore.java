@@ -14,7 +14,7 @@ public class TourCore {
     private String mTourDuration;
     private int mTourMaxParticipants;
     private String mUserId, mTourId;
-
+    private double mRating;
 
     public static TourCore Instance()
     {
@@ -25,6 +25,13 @@ public class TourCore {
         return mTourCore;
     }
 
+    public double getmRating() {
+        return mRating;
+    }
+
+    public void setmRating(double mRating) {
+        this.mRating = mRating;
+    }
     public String getmTourTitle() {
         return mTourTitle;
     }
