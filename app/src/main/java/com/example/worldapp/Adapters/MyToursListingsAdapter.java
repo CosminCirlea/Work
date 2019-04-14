@@ -24,6 +24,8 @@ import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 
+import static com.example.worldapp.Constants.NavigationConstants.TOUR_MODEL_KEY;
+
 public class MyToursListingsAdapter extends
     RecyclerView.Adapter<MyToursListingsAdapter.ViewHolder> {
 
@@ -86,7 +88,7 @@ public class MyToursListingsAdapter extends
             public void onClick(View v) {
                 Intent mIntent = new Intent(mContext, TourActivity.class);
                 String serializedTour = new Gson().toJson(mTours.get(position));
-                mIntent.putExtra("tour_model",serializedTour);
+                mIntent.putExtra(NavigationConstants.TOUR_MODEL_KEY,serializedTour);
                 mContext.startActivity(mIntent);
             }
         });

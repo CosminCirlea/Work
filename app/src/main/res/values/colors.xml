@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>#e1e4ea
     <color name="containerColor">#e1e4ea</color>
+    <color name="starsColor">#f2c80c</color>
 </resources>

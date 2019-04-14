@@ -1,11 +1,14 @@
 package com.example.worldapp.Activities;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.R;
 import com.google.gson.Gson;
@@ -14,6 +17,7 @@ public class TourActivity extends AppCompatActivity {
 
     private ImageView mTourImage;
     private TextView mTitle, mLocation, mType, mDescription, mParticipants, mDuration, mPrice, mLandmarks;
+    private RatingBar mRating;
 
     private GuidedToursModel mTour;
     @Override
@@ -26,7 +30,7 @@ public class TourActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tour);
         InitializeViews();
         Gson gson = new Gson();
-        String aux = getIntent().getStringExtra("tour_model");
+        String aux = getIntent().getStringExtra(NavigationConstants.TOUR_MODEL_KEY);
         mTour = gson.fromJson(aux, GuidedToursModel.class);
         SetValues();
     }
@@ -44,6 +48,7 @@ public class TourActivity extends AppCompatActivity {
         mPrice.setText(mTour.getmTourPrice()+" $");
         mLandmarks.setText(mTour.getmTourLandmarks());
         mParticipants.setText(mTour.getmTourMaxParticipants()+"");
+        mRating.setRating(3.4f);
     }
 
     private void InitializeViews()
@@ -57,5 +62,6 @@ public class TourActivity extends AppCompatActivity {
         mDuration = findViewById(R.id.tv_tour_details_duration);
         mPrice = findViewById(R.id.tv_tour_details_price);
         mLandmarks = findViewById(R.id.tv_tour_landmarks_details);
+        mRating = findViewById(R.id.rb_tour_rating_details);
     }
 }
