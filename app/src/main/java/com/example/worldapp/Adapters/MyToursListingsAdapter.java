@@ -76,6 +76,13 @@ public class MyToursListingsAdapter extends
         viewHolder.tvPricePerTour.setText(price.toString()+"$");
     }
 
+    public void updateList(List<GuidedToursModel> newList)
+    {
+        mTours = new ArrayList<>();
+        mTours.addAll(newList);
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return mTours.size();

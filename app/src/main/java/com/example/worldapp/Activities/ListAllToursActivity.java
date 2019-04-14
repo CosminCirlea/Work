@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -18,8 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ListAllToursActivity extends AppCompatActivity {
+public class ListAllToursActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     DatabaseReference mToursDatabaseReference;
     RecyclerView recyclerView;
     ArrayList<GuidedToursModel> mTourList;
@@ -36,6 +38,9 @@ public class ListAllToursActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_all_tours);
         recyclerView = findViewById(R.id.rv_listed_tours);
         recyclerView.setLayoutManager( new LinearLayoutManager(ListAllToursActivity.this));
+
+        SearchView mSearchView = findViewById(R.id.sv_filter_tours);
+        mSearchView.setOnQueryTextListener(this);
 
         mTourList = new ArrayList<>();
         mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours");
@@ -56,5 +61,25 @@ public class ListAllToursActivity extends AppCompatActivity {
                 Toast.makeText(ListAllToursActivity.this, "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        String userInput  = newText.toLowerCase();
+        List<GuidedToursModel> newList = new ArrayList<>();
+        for (GuidedToursModel city : mTourList)
+        {
+            if (city.getmTourCity().toLowerCase().contains(userInput))
+            {
+                newList.add(city);
+            }
+        }
+        mTourAdapter.updateList(newList);
+        return true;
     }
 }
