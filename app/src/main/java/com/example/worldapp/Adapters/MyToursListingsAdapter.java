@@ -1,6 +1,7 @@
 package com.example.worldapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,9 +12,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.worldapp.Activities.TourActivity;
+import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.Models.HomeDetailsModel;
 import com.example.worldapp.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Currency;
@@ -33,7 +37,9 @@ public class MyToursListingsAdapter extends
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvAnnouncementTitle, tvLocation, tvTourLandmarks, tvMaxGuests, tvDuration, tvPricePerTour;
-        ImageView ivTourPicture;
+        private ImageView ivTourPicture;
+
+
         public ViewHolder(View itemView) {
             super(itemView);
             InitializeViews(itemView);
@@ -58,7 +64,7 @@ public class MyToursListingsAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
         String tourTitle= mTours.get(position).getmTourTitle();
         String location = mTours.get(position).getmTourCountry() +", "+mTours.get(position).getmTourRegion()+", "+mTours.get(position).getmTourCity();
         String landmarks = mTours.get(position).getmTourLandmarks();
@@ -74,6 +80,16 @@ public class MyToursListingsAdapter extends
         viewHolder.tvDuration.setText(tourDuration+" hours");
         viewHolder.tvMaxGuests.setText(aux);
         viewHolder.tvPricePerTour.setText(price.toString()+"$");
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent = new Intent(mContext, TourActivity.class);
+                String serializedTour = new Gson().toJson(mTours.get(position));
+                mIntent.putExtra("tour_model",serializedTour);
+                mContext.startActivity(mIntent);
+            }
+        });
     }
 
     public void updateList(List<GuidedToursModel> newList)

@@ -13,6 +13,7 @@
             android:id="@+id/iv_tour_photo"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:scaleType="fitXY"
             android:layout_below="@+id/toolbar"/>
 
         <TextView
@@ -86,7 +87,7 @@
                     android:id="@+id/iv_tour_details_participants"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/ic_profile_navigation_foreground"
+                    android:src="@drawable/ic_profile"
                     android:layout_centerHorizontal="true"/>
 
                 <TextView
@@ -96,8 +97,14 @@
                     style="@style/BasicText"
                     android:layout_margin="4dp"
                     android:layout_below="@+id/iv_tour_details_participants"
-                    android:text="3 people"
                     android:layout_centerHorizontal="true"/>
+
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@android:color/darker_gray"/>
 
             </RelativeLayout>
 
@@ -122,6 +129,13 @@
                     android:layout_below="@+id/iv_tour_details_duration"
                     android:text="2.5 hrs"
                     android:layout_centerHorizontal="true"/>
+
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@android:color/darker_gray"/>
 
             </RelativeLayout>
 
@@ -165,9 +179,10 @@
             android:id="@+id/tv_tour_landmarks_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
             style="@style/BasicText"
             android:layout_margin="10dp"
-            android:text="Landmarks"
+            android:text="A very very long description to see how this reacts when the text is extremely long"
             android:layout_below="@+id/tv_tour_landmarks_text"/>
 
     </RelativeLayout>
