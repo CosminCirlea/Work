@@ -39,30 +39,6 @@ public class ActivityLogin extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         InitializeViews();
         mAuth = FirebaseAuth.getInstance();
-
-        /* TODO WHEN STORING USERS
-        final FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-        final DatabaseReference mDatabaseReference = mFirebaseDatabase.getReference("users");
-
-        mLogInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDatabaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String email = UsernameET.getText().toString();
-                        String password = PasswordET.getText().toString();
-                        UserDetailsModel user = dataSnapshot.child(email).getValue(UserDetailsModel.class);
-                        if (user.get)
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-            }
-        });*/
     }
 
 
@@ -100,6 +76,7 @@ public class ActivityLogin extends AppCompatActivity {
                             {
                                 Intent myIntent = new Intent(ActivityLogin.this, ActivityHome.class);
                                 startActivity(myIntent);
+
                                 finish();
                             }
                             else {

@@ -1,4 +1,4 @@
-package com.example.worldapp;
+package com.example.worldapp.Core;
 
 public class TourCore {
     private static TourCore mTourCore;

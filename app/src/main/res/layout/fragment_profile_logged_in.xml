@@ -1,49 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="24dp">
+    android:layout_height="match_parent">
 
-    <include
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/row_profile_picture" />
-    <Button
-        android:id="@+id/btn_sign_out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sign_out_string"
-        android:textSize="16sp"
-        android:textAllCaps="false"
-        android:onClick="SignOutMethod"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
 
-    <Button
-        android:id="@+id/btn_delete_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/delete_account_string"
-        android:textSize="16sp"
-        android:textAllCaps="false"
-        android:onClick="DeleteAccount"/>
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/row_profile_picture"/>
 
-    <Button
-        android:id="@+id/btn_edit_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit profile"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/yellowColor"
+            android:layout_marginBottom="20dp"/>
 
-    <Button
-        android:id="@+id/btn_my_listings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My listings"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        />
+        <Button
+            android:id="@+id/btn_edit_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_profile"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_gravity="center"
+            style="@style/BasicText"
+            android:textAllCaps="false"/>
 
-</LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/yellowColor"/>
+
+        <Button
+            android:id="@+id/btn_my_tour_listings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tour_listings"
+            android:background="?android:attr/selectableItemBackground"
+            android:textAllCaps="false"
+            style="@style/BasicText"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/yellowColor"/>
+
+        <Button
+            android:id="@+id/btn_parking_listings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/parking_listings"
+            android:background="?android:attr/selectableItemBackground"
+            style="@style/BasicText"
+            android:textAllCaps="false"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/yellowColor"/>
+
+        <Button
+            android:id="@+id/btn_add_tour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="Add tour"
+            android:textAllCaps="false"
+            style="@style/BasicText"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/yellowColor"/>
+
+        <Button
+            android:id="@+id/btn_sign_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_out_string"
+            android:layout_gravity="center"
+            android:background="?android:attr/selectableItemBackground"
+            style="@style/BasicText"
+            android:textAllCaps="false"
+            android:onClick="SignOutMethod"/>
+
+    </LinearLayout>
+</ScrollView>

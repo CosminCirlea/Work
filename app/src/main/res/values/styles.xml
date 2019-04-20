@@ -14,8 +14,6 @@
         <item name="android:textColorHint">#878e9e</item>
         <item name="android:inputType">textCapSentences</item>
 
-        <item name="colorAccent">#878e9e</item>
-
     </style>
 
 </resources>

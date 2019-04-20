@@ -14,4 +14,7 @@
     <string name="title_inbox">Inbox</string>
     <string name="delete_account_string">Delete account</string>
     <string name="sign_out_string">Sign Out</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="tour_listings">Tour listings</string>
+    <string name="parking_listings">Parking listings</string>
 </resources>

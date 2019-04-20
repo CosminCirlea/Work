@@ -1,8 +1,11 @@
-package com.example.worldapp.Models;
+package com.example.worldapp.Core;
+
+import com.example.worldapp.Models.GuidedToursModel;
 
 import java.util.ArrayList;
 
-public class UserDetailsModel {
+public class UserCore {
+    private static UserCore mUserCore;
     private String UserId;
     private String Firstname;
     private String Name;
@@ -13,17 +16,13 @@ public class UserDetailsModel {
     private ArrayList<GuidedToursModel> mFavoriteTours;
     private ArrayList<GuidedToursModel> mListedTours;
 
-    public UserDetailsModel() {
-    }
-
-    public UserDetailsModel(String id, String firstname, String name, String email, Double moneyAmount, String imageUri, String phoneNumber) {
-        UserId = id;
-        Firstname = firstname;
-        Name = name;
-        Email = email;
-        AccountBalance = moneyAmount;
-        ImageUri = imageUri;
-        PhoneNumber = phoneNumber;
+    public static UserCore Instance()
+    {
+        if (mUserCore == null)
+        {
+            mUserCore = new UserCore();
+        }
+        return mUserCore;
     }
 
     public String getUserId() {

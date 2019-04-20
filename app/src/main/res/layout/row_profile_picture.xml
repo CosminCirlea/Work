@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_toLeftOf="@+id/profile_picture"
+        style="@style/BasicText"
         android:textSize="20sp"
         android:gravity="center_vertical"/>
 
@@ -19,6 +20,7 @@
         android:id="@+id/tv_profile_family_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/BasicText"
         android:textSize="20sp"
         android:layout_below="@id/tv_profile_first_name"
          />

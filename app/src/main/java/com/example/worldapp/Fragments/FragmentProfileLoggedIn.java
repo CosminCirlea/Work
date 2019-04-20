@@ -22,6 +22,7 @@ import com.example.worldapp.Activities.ActivityHome;
 import com.example.worldapp.Activities.ActivityLogin;
 import com.example.worldapp.Activities.AddTour1Activity;
 import com.example.worldapp.Activities.ListingsActivity;
+import com.example.worldapp.Activities.MyToursActivity;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
 import com.google.android.gms.tasks.Continuation;
@@ -49,7 +50,7 @@ public class FragmentProfileLoggedIn extends Fragment {
     public static final int IMAGE_REQUEST=1;
     private static final String TAG = "AccountFragment";
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-    public  Button BtnSignOut, BtnEditProfile, BtnMyListings;
+    public  Button BtnSignOut, BtnEditProfile, BtnMyTourListings;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -71,8 +72,8 @@ public class FragmentProfileLoggedIn extends Fragment {
         mUser = mAuth.getCurrentUser();
         userID = mUser.getUid();
 
-
         setupFirebaseListener();
+
         BtnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,10 +81,10 @@ public class FragmentProfileLoggedIn extends Fragment {
             }
         });
 
-        BtnMyListings.setOnClickListener(new View.OnClickListener() {
+        BtnMyTourListings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), ListingsActivity.class));
+                startActivity(new Intent(getActivity(), MyToursActivity.class));
             }
         });
 
@@ -124,9 +125,6 @@ public class FragmentProfileLoggedIn extends Fragment {
         return view;
     }
 
-
-
-
     private void setupFirebaseListener(){
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -142,23 +140,6 @@ public class FragmentProfileLoggedIn extends Fragment {
                 }
             }
         };
-    }
-    //could be deleted soon
-    private void showProfileData(DataSnapshot dataSnapshot) {
-        for(DataSnapshot ds : dataSnapshot.getChildren()) {
-            UserDetailsModel uInfo = new UserDetailsModel();
-            try{
-                uInfo.setName(ds.child(userID).getValue(UserDetailsModel.class).getName());
-                uInfo.setImageUri(ds.child(userID).getValue(UserDetailsModel.class).getImageUri());
-                uInfo.setFirstname(ds.child(userID).getValue(UserDetailsModel.class).getFirstname());
-                TvName.setText(uInfo.getName());
-                //photoUri = Uri.parse(uInfo.getImageUri());
-                TvFirstName.setText(uInfo.getFirstname());
-            } catch (Exception e)
-            {
-                e.getMessage();
-            }
-        }
     }
 
     private void openImage() {
@@ -263,7 +244,7 @@ public class FragmentProfileLoggedIn extends Fragment {
     private void InitializeViews(View view)
     {
         BtnSignOut = view.findViewById(R.id.btn_sign_out);
-        BtnMyListings = view.findViewById(R.id.btn_my_listings);
+        BtnMyTourListings = view.findViewById(R.id.btn_my_tour_listings);
         BtnEditProfile = view.findViewById(R.id.btn_edit_profile);
         ivProfilePicture = view.findViewById(R.id.profile_picture);
         TvFirstName = view.findViewById(R.id.tv_profile_first_name);

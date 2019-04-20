@@ -1,19 +1,18 @@
 package com.example.worldapp.Activities;
 
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.R;
 import com.google.gson.Gson;
 
-public class TourActivity extends AppCompatActivity {
+public class TourActivity extends BaseAppCompat {
 
     private ImageView mTourImage;
     private TextView mTitle, mLocation, mType, mDescription, mParticipants, mDuration, mPrice, mLandmarks;
@@ -23,10 +22,7 @@ public class TourActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {
-            this.getSupportActionBar().hide();
-        } catch (NullPointerException e) {
-        }
+
         setContentView(R.layout.activity_tour);
         InitializeViews();
         Gson gson = new Gson();
