@@ -30,6 +30,7 @@ public class ActivityRegister extends AppCompatActivity {
     private FirebaseUser mUser;
     private String mUserId;
     private DatabaseReference mDatabaseReference;
+
 //TODO To be able to resend email verification for registration
     @Override
     protected void onCreate(Bundle savedInstanceState) {

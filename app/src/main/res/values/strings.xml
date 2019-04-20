@@ -17,4 +17,7 @@
     <string name="edit_profile">Edit profile</string>
     <string name="tour_listings">Tour listings</string>
     <string name="parking_listings">Parking listings</string>
+    <string name="delete_account">Are you sure you want to delete your account?</string>
+    <string name="ok">Yes</string>
+    <string name="no">NO</string>
 </resources>

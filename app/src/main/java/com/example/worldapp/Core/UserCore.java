@@ -1,11 +1,13 @@
 package com.example.worldapp.Core;
 
 import com.example.worldapp.Models.GuidedToursModel;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
 public class UserCore {
     private static UserCore mUserCore;
+    private FirebaseUser mUser;
     private String UserId;
     private String Firstname;
     private String Name;
@@ -96,4 +98,13 @@ public class UserCore {
     public void setmListedTours(ArrayList<GuidedToursModel> mListedTours) {
         this.mListedTours = mListedTours;
     }
+
+    public FirebaseUser getmUser() {
+        return mUser;
+    }
+
+    public void setmUser(FirebaseUser mUser) {
+        this.mUser = mUser;
+    }
+
 }

@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.worldapp.Common.Common;
+import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -76,7 +77,7 @@ public class ActivityLogin extends AppCompatActivity {
                             {
                                 Intent myIntent = new Intent(ActivityLogin.this, ActivityHome.class);
                                 startActivity(myIntent);
-
+                                UserCore.Instance().setmUser(mAuth.getCurrentUser());
                                 finish();
                             }
                             else {

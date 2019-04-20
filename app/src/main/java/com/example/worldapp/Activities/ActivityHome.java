@@ -1,10 +1,14 @@
 package com.example.worldapp.Activities;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -39,6 +43,7 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
     private FragmentProfile fragmentProfile;
     private FragmentHome fragmentHome;
     private BottomNavigationView navigation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +61,7 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-        if (mUser !=null)
+        if (mUser != null)
             userID = mUser.getUid();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mFirebaseDatabase.getReference();
@@ -66,8 +71,7 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Fragment fragment = null;
-        switch (menuItem.getItemId())
-        {
+        switch (menuItem.getItemId()) {
             case R.id.navigation_home:
                 fragment = fragmentHome;
                 break;
@@ -91,14 +95,11 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
         return LoadFragment(fragment);
     }
 
-    private boolean LoadFragment (Fragment fragment)
-    {
-        if (fragment !=null)
-        {
+    private boolean LoadFragment(Fragment fragment) {
+        if (fragment != null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
             return true;
-        }
-        else
+        } else
             return false;
     }
 
@@ -108,20 +109,26 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
     }
 
     public void DeleteAccount(View view) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        user.delete()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
+        new AlertDialog.Builder(this)
+                .setTitle("WARNING!")
+                .setMessage(R.string.delete_account)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                        }
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        user.delete()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                        }
+                                    }
+                                });
                     }
-                });
+                }).setNegativeButton(R.string.no, null).show();
     }
 
-    private void InitializeViews()
-    {
+    private void InitializeViews() {
         fragmentHome = new FragmentHome();
         fragmentProfile = new FragmentProfile();
         fragmentTrips = new FragmentTrips();
@@ -134,3 +141,4 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
         startActivity(mIntent);
     }
 }
+

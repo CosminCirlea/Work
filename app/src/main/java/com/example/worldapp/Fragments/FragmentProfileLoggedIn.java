@@ -1,7 +1,9 @@
 package com.example.worldapp.Fragments;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,6 +26,7 @@ import com.example.worldapp.Activities.AddTour1Activity;
 import com.example.worldapp.Activities.EditProfileActivity;
 import com.example.worldapp.Activities.ListingsActivity;
 import com.example.worldapp.Activities.MyToursActivity;
+import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
 import com.google.android.gms.tasks.Continuation;
@@ -68,9 +71,8 @@ public class FragmentProfileLoggedIn extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profile_logged_in, container, false);
         InitializeViews(view);
-        mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mUser = mAuth.getCurrentUser();
+        mUser = UserCore.Instance().getmUser();
         userID = mUser.getUid();
 
         setupFirebaseListener();
