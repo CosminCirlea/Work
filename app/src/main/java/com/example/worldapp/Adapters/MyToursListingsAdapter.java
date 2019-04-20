@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -40,7 +41,7 @@ public class MyToursListingsAdapter extends
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvAnnouncementTitle, tvLocation, tvTourLandmarks, tvMaxGuests, tvDuration, tvPricePerTour;
         private ImageView ivTourPicture;
-
+        private RatingBar mRatingBar;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -55,6 +56,7 @@ public class MyToursListingsAdapter extends
             tvDuration = itemView.findViewById(R.id.tv_tour_duration);
             tvPricePerTour = itemView.findViewById(R.id.tv_price_per_tour);
             ivTourPicture = itemView.findViewById(R.id.iv_listed_tour);
+            mRatingBar = itemView.findViewById(R.id.rb_tour_rating);
         }
     }
 
@@ -82,6 +84,7 @@ public class MyToursListingsAdapter extends
         viewHolder.tvDuration.setText(tourDuration+" hours");
         viewHolder.tvMaxGuests.setText(aux);
         viewHolder.tvPricePerTour.setText(price.toString()+"$");
+        viewHolder.mRatingBar.setRating(3.4f);
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.example.worldapp.Activities.ActivityHome;
 import com.example.worldapp.Activities.ActivityLogin;
 import com.example.worldapp.Activities.AddTour1Activity;
+import com.example.worldapp.Activities.EditProfileActivity;
 import com.example.worldapp.Activities.ListingsActivity;
 import com.example.worldapp.Activities.MyToursActivity;
 import com.example.worldapp.Models.UserDetailsModel;
@@ -118,7 +119,7 @@ public class FragmentProfileLoggedIn extends Fragment {
         BtnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), AddTour1Activity.class));
+                startActivity(new Intent(getActivity(), EditProfileActivity.class));
             }
         });
 

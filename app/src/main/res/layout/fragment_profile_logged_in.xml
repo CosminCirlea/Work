@@ -91,5 +91,21 @@
             android:textAllCaps="false"
             android:onClick="SignOutMethod"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/yellowColor"/>
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_account_string"
+            android:layout_gravity="center"
+            android:background="?android:attr/selectableItemBackground"
+            android:textSize="18sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:textAllCaps="false"
+            android:onClick="DeleteAccount"/>
     </LinearLayout>
 </ScrollView>
