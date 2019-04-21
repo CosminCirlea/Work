@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_simple"
     tools:context=".Activities.AddTour2Activity">
 
     <include layout="@layout/toolbar_with_back_button"/>
@@ -58,7 +57,6 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/photo_placeholder"
         />
 
         </RelativeLayout>
@@ -72,6 +70,7 @@
     <Button
         android:id="@+id/btn_add_tour_next_2"
         android:text="Next"
+        style="@style/BasicText"
         android:layout_margin="20dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/round_button"

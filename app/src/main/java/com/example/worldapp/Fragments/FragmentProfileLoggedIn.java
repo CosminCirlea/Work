@@ -54,7 +54,7 @@ public class FragmentProfileLoggedIn extends Fragment {
     public static final int IMAGE_REQUEST=1;
     private static final String TAG = "AccountFragment";
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-    public  Button BtnSignOut, BtnEditProfile, BtnMyTourListings;
+    public  Button BtnSignOut, BtnEditProfile, BtnMyTourListings, BtnParkings;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -72,7 +72,8 @@ public class FragmentProfileLoggedIn extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile_logged_in, container, false);
         InitializeViews(view);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mUser = UserCore.Instance().getmUser();
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
         userID = mUser.getUid();
 
         setupFirebaseListener();
@@ -249,6 +250,7 @@ public class FragmentProfileLoggedIn extends Fragment {
         BtnSignOut = view.findViewById(R.id.btn_sign_out);
         BtnMyTourListings = view.findViewById(R.id.btn_my_tour_listings);
         BtnEditProfile = view.findViewById(R.id.btn_edit_profile);
+        BtnParkings = view.findViewById(R.id.btn_parking_listings);
         ivProfilePicture = view.findViewById(R.id.profile_picture);
         TvFirstName = view.findViewById(R.id.tv_profile_first_name);
         TvName = view.findViewById(R.id.tv_profile_family_name);

@@ -5,6 +5,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.worldapp.R;
 import com.example.worldapp.Core.TourCore;
@@ -58,9 +59,10 @@ public class AddTour1Activity extends AppCompatActivity {
     public void GoToAddTour2(View view) {
         Intent myIntent = new Intent(this, AddTour2Activity.class);
         myIntent.putExtra("tourId", tourId);
-        GetValues();
-        AddNewTourPart1(mTitle, mLandmarks, mParticipants, mPrice, mDuration);
-        startActivity(myIntent);
+        if (GetValues()) {
+            AddNewTourPart1(mTitle, mLandmarks, mParticipants, mPrice, mDuration);
+            startActivity(myIntent);
+        }
     }
 
     public void InitializeViews()
@@ -72,12 +74,24 @@ public class AddTour1Activity extends AppCompatActivity {
         mTourPriceEt = findViewById(R.id.et_tour_price);
     }
 
-    private void GetValues()
+    private boolean GetValues()
     {
         mTitle = mTourTitleEt.getText().toString();
         mLandmarks = mTourLandmarksEt.getText().toString();
         mDuration= mTourDurationEt.getText().toString();
         mParticipants = Integer.parseInt(mTourParticipantsEt.getText().toString());
         mPrice = Double.parseDouble(mTourPriceEt.getText().toString());
+
+        if (mTitle ==null || mLandmarks==null || mDuration==null || mParticipants==0 || mPrice==0)
+        {
+            this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(AddTour1Activity.this, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show();
+                }
+            });
+            return false;
+        }
+        return true;
     }
 }

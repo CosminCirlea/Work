@@ -20,4 +20,6 @@
     <string name="delete_account">Are you sure you want to delete your account?</string>
     <string name="ok">Yes</string>
     <string name="no">NO</string>
+    <string name="favorites">Favorites</string>
+    <string name="fill_all_fields">All fields must be filled!</string>
 </resources>

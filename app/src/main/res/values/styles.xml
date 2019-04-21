@@ -10,10 +10,16 @@
 
     <style name="BasicText" parent="TextAppearance.AppCompat">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">#2f4987</item>
+        <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textColorHint">#878e9e</item>
         <item name="android:inputType">textCapSentences</item>
+    </style>
 
+    <style name="BasicButton" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:background">@color/yellowColor</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
 </resources>

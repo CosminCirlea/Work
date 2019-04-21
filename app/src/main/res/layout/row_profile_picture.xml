@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp">
+    android:layout_marginBottom="20dp"
+    android:background="@color/yellowColor">
 
     <TextView
         android:id="@+id/tv_profile_first_name"
@@ -13,6 +14,8 @@
         android:layout_toLeftOf="@+id/profile_picture"
         style="@style/BasicText"
         android:textSize="20sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
         android:gravity="center_vertical"/>
 
     <TextView
@@ -21,6 +24,8 @@
         android:layout_height="wrap_content"
         style="@style/BasicText"
         android:textSize="20sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="6dp"
         android:layout_below="@id/tv_profile_first_name"
          />
 
@@ -30,6 +35,9 @@
         android:layout_gravity="center"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="4dp"
         android:layout_alignParentEnd="true"
         />
 </RelativeLayout>

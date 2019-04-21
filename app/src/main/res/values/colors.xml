@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#2f4987</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>#e1e4ea
+    <color name="colorPrimaryDark">#2f4987</color>
+    <color name="colorAccent">#f2c80c</color>#e1e4ea
     <color name="containerColor">#e1e4ea</color>
     <color name="starsColor">#f2c80c</color>
     <color name="yellowColor">#f2c80c</color>

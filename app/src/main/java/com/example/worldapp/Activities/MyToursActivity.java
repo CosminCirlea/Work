@@ -1,11 +1,14 @@
 package com.example.worldapp.Activities;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.worldapp.Adapters.MyToursListingsAdapter;
@@ -23,14 +26,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class MyToursActivity extends AppCompatActivity {
-    DatabaseReference mToursDatabaseReference;
-    RecyclerView recyclerView;
+    private DatabaseReference mToursDatabaseReference;
+    private RecyclerView recyclerView;
     private FirebaseDatabase mFirebaseDatabase;
-    ArrayList<GuidedToursModel> mTourList;
-    MyToursListingsAdapter mTourAdapter;
+    private ArrayList<GuidedToursModel> mTourList;
+    private MyToursListingsAdapter mTourAdapter;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private String userID;
+    private FloatingActionButton mAddTourFAB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +44,20 @@ public class MyToursActivity extends AppCompatActivity {
         } catch (NullPointerException e) {
         }
         setContentView(R.layout.activity_my_tours);
+        InitializeViews();
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mUser = mAuth.getCurrentUser();
         userID = mUser.getUid();
 
-        recyclerView = findViewById(R.id.rv_my_listed_tours);
+        mAddTourFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyToursActivity.this, AddTour1Activity.class));
+            }
+        });
+
         recyclerView.setLayoutManager(new LinearLayoutManager(MyToursActivity.this));
 
         mTourList = new ArrayList<>();
@@ -68,6 +79,11 @@ public class MyToursActivity extends AppCompatActivity {
                 Toast.makeText(MyToursActivity.this, "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void InitializeViews(){
+        recyclerView = findViewById(R.id.rv_my_listed_tours);
+        mAddTourFAB = findViewById(R.id.fab_add_tour);
     }
 }
 
