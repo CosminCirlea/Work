@@ -22,7 +22,6 @@ public class TourActivity extends BaseAppCompat {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_tour);
         InitializeViews();
         Gson gson = new Gson();

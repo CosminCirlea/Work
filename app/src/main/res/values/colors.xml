@@ -6,6 +6,9 @@
     <color name="containerColor">#e1e4ea</color>
     <color name="starsColor">#f2c80c</color>
     <color name="yellowColor">#f2c80c</color>
+    <color name="toolbarTextColor">#fff</color>
+    <color name="toolbarColor">#f2c80c</color>
     <color name="favoriteColor">#4ec4e5</color>
     <color name="navigationIconNotSelected">#fff</color>
+    <color name="fui_transparent">#00000000</color>
 </resources>

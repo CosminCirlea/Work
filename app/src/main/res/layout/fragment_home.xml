@@ -28,17 +28,26 @@
                     android:alpha="0.7"
                     android:src="@drawable/guided_tour"/>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.3"
+                    android:background="#e6e9ef"/>
+
                 <TextView
                     android:id="@+id/tv_cardview_tours"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:textSize="20dp"
-                    android:textColor="@android:color/black"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
+                    style="@style/BasicText"
+                    android:layout_centerInParent="true"
                     android:text="Tours"/>
 
+            </RelativeLayout>
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
@@ -61,16 +70,26 @@
                     android:alpha="0.7"
                     android:src="@drawable/cv_homes"/>
 
-                <TextView
-                    android:id="@+id/tv_cardview_homes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="Homes"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.3"
+                        android:background="#e6e9ef"/>
+
+                    <TextView
+                        android:id="@+id/tv_cardview_homes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/BasicText"
+                        android:layout_centerInParent="true"
+                        android:text="Homes"/>
+
+                </RelativeLayout>
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>

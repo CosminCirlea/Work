@@ -43,6 +43,7 @@ public class MyToursActivity extends AppCompatActivity {
             this.getSupportActionBar().hide();
         } catch (NullPointerException e) {
         }
+
         setContentView(R.layout.activity_my_tours);
         InitializeViews();
 
@@ -67,7 +68,10 @@ public class MyToursActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     GuidedToursModel mGuidedTour = dataSnapshot1.getValue(GuidedToursModel.class);
-                    mTourList.add(mGuidedTour);
+                    if (mGuidedTour.getmUserId().contains(userID))
+                    {
+                        mTourList.add(mGuidedTour);
+                    }
                 }
 
                 mTourAdapter = new MyToursListingsAdapter(MyToursActivity.this, mTourList);
