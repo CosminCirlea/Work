@@ -1,5 +1,8 @@
 package com.example.worldapp.Models;
 
+import com.example.worldapp.Core.UserCore;
+import com.example.worldapp.Helpers.FirebaseHelper;
+
 import java.util.ArrayList;
 
 public class UserDetailsModel {
@@ -32,6 +35,7 @@ public class UserDetailsModel {
 
     public void setUserId(String userId) {
         UserId = userId;
+        SyncData();
     }
 
     public String getFirstname() {
@@ -96,5 +100,13 @@ public class UserDetailsModel {
 
     public void setmListedTours(ArrayList<GuidedToursModel> mListedTours) {
         this.mListedTours = mListedTours;
+    }
+
+    private void SyncData()
+    {
+        if(UserCore.Instance().isLoggedIn())
+        {
+            FirebaseHelper.Instance().SyncUserData(getUserId());
+        }
     }
 }

@@ -57,7 +57,7 @@ public class FragmentProfileLoggedIn extends Fragment {
     public  Button BtnSignOut, BtnEditProfile, BtnMyTourListings, BtnParkings;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
-    private FirebaseUser mUser;
+    private FirebaseUser mUser, mSecondUser;
     private DatabaseReference mDatabaseReference;
     private String userID;
     private TextView TvFirstName, TvName;
@@ -75,7 +75,7 @@ public class FragmentProfileLoggedIn extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         mUser = UserCore.Instance().getmFirebaseUser();
         userID = mUser.getUid();
-
+        mSecondUser = UserCore.Instance().getmFirebaseUser();
         setupFirebaseListener();
 
         BtnSignOut.setOnClickListener(new View.OnClickListener() {

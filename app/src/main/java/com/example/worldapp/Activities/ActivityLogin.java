@@ -2,7 +2,6 @@ package com.example.worldapp.Activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +9,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.worldapp.BaseClasses.BaseAppCompat;
-import com.example.worldapp.Common.Common;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
@@ -45,7 +43,6 @@ public class ActivityLogin extends BaseAppCompat {
         mAuth = FirebaseAuth.getInstance();
     }
 
-
     @Override
     public void onStart() {
         super.onStart();
@@ -71,6 +68,7 @@ public class ActivityLogin extends BaseAppCompat {
     public void LogInClick(View view) {
         String email = UsernameET.getText().toString();
         String password = PasswordET.getText().toString();
+        //SetIsBusy(true);
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -78,7 +76,8 @@ public class ActivityLogin extends BaseAppCompat {
                         if (task.isSuccessful()) {
                             if (mAuth.getCurrentUser().isEmailVerified())
                             {
-                                onSignInSuccessfull();
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                onSignInSuccessfull(user);
                             }
                             else {
                                 Toast.makeText(ActivityLogin.this, "Please verify your email address!",
@@ -92,10 +91,8 @@ public class ActivityLogin extends BaseAppCompat {
                 });
     }
 
-    private void onSignInSuccessfull() {
-        Toast.makeText(ActivityLogin.this, "Authentication succesfull.",
-                Toast.LENGTH_SHORT).show();
-        final FirebaseUser user = mAuth.getCurrentUser();
+    private void onSignInSuccessfull(final FirebaseUser user) {
+        //final FirebaseUser user = mAuth.getCurrentUser();
         UserCore.Instance().setmFirebaseUser(user);
         UserCore.Instance().User.setUserId(user.getUid());
 
@@ -113,7 +110,7 @@ public class ActivityLogin extends BaseAppCompat {
                         UserCore.Instance().setLoggedIn(true);
                         UserCore.Instance().setmUser(userData);
 
-                        SetIsBusy(false);
+                        //SetIsBusy(false);
 
                         Intent intent = new Intent(ActivityLogin.this, ActivityHome.class);
                         startActivity(intent);
@@ -129,7 +126,6 @@ public class ActivityLogin extends BaseAppCompat {
         });
 
     }
-
 
     private void InitializeViews()
     {

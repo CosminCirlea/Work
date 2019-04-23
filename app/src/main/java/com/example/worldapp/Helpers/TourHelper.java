@@ -22,7 +22,6 @@ public class TourHelper {
     private void LoadAllTours()
     {
         mDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mDatabase.getReference("tb_userData");
-        mDatabaseReference.child(userId).setValue(UserCore.Instance().User);
+        mDatabaseReference = mDatabase.getReference("Tours");
     }
 }

@@ -1,5 +1,7 @@
 package com.example.worldapp.Core;
 
+import com.example.worldapp.Helpers.FirebaseHelper;
+import com.example.worldapp.Helpers.TourHelper;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,6 +30,11 @@ public class UserCore {
             mUserCore = new UserCore();
         }
         return mUserCore;
+    }
+
+    public UserCore()
+    {
+        User = new UserDetailsModel();
     }
 
     public String getUserId() {
@@ -112,6 +119,7 @@ public class UserCore {
 
     public void setmUser(UserDetailsModel mUser) {
         this.User = mUser;
+        FirebaseHelper.Instance().SyncUserData(User.getUserId());
     }
 
     public boolean isLoggedIn() {
@@ -123,7 +131,7 @@ public class UserCore {
     }
 
     public void setmFirebaseUser(FirebaseUser mUser) {
-        this.FirebaseUser = FirebaseUser;
+        this.FirebaseUser = mUser;
     }
 
 }
