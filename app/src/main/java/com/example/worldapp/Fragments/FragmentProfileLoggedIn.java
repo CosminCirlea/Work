@@ -73,7 +73,7 @@ public class FragmentProfileLoggedIn extends Fragment {
         InitializeViews(view);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
+        mUser = UserCore.Instance().getmFirebaseUser();
         userID = mUser.getUid();
 
         setupFirebaseListener();

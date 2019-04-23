@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Common.Common;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Models.UserDetailsModel;
@@ -24,11 +25,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ActivityLogin extends AppCompatActivity {
+public class ActivityLogin extends BaseAppCompat {
 
     private FirebaseAuth mAuth;
     public EditText UsernameET, PasswordET;
     private Button mLogInButton;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,10 +78,7 @@ public class ActivityLogin extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             if (mAuth.getCurrentUser().isEmailVerified())
                             {
-                                Intent myIntent = new Intent(ActivityLogin.this, ActivityHome.class);
-                                startActivity(myIntent);
-                                UserCore.Instance().setmUser(mAuth.getCurrentUser());
-                                finish();
+                                onSignInSuccessfull();
                             }
                             else {
                                 Toast.makeText(ActivityLogin.this, "Please verify your email address!",
@@ -91,6 +91,45 @@ public class ActivityLogin extends AppCompatActivity {
                     }
                 });
     }
+
+    private void onSignInSuccessfull() {
+        Toast.makeText(ActivityLogin.this, "Authentication succesfull.",
+                Toast.LENGTH_SHORT).show();
+        final FirebaseUser user = mAuth.getCurrentUser();
+        UserCore.Instance().setmFirebaseUser(user);
+        UserCore.Instance().User.setUserId(user.getUid());
+
+        mDatabase = FirebaseDatabase.getInstance();
+        mReference = mDatabase.getReference("users");
+        DatabaseReference userData = mReference.child(user.getUid());
+        userData.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(!UserCore.Instance().isLoggedIn())
+                {
+                    UserDetailsModel userData = dataSnapshot.getValue(UserDetailsModel.class);
+                    if(userData.getUserId().contains(user.getUid()))
+                    {
+                        UserCore.Instance().setLoggedIn(true);
+                        UserCore.Instance().setmUser(userData);
+
+                        SetIsBusy(false);
+
+                        Intent intent = new Intent(ActivityLogin.this, ActivityHome.class);
+                        startActivity(intent);
+                        finish();
+                        return;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
+
+    }
+
 
     private void InitializeViews()
     {

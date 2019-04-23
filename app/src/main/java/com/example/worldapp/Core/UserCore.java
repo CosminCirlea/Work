@@ -1,13 +1,15 @@
 package com.example.worldapp.Core;
 
 import com.example.worldapp.Models.GuidedToursModel;
+import com.example.worldapp.Models.UserDetailsModel;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
 public class UserCore {
     private static UserCore mUserCore;
-    private FirebaseUser mUser;
+    private FirebaseUser FirebaseUser;
+    public UserDetailsModel User;
     private String UserId;
     private String Firstname;
     private String Name;
@@ -15,6 +17,7 @@ public class UserCore {
     private Double AccountBalance;
     private String ImageUri;
     private String PhoneNumber;
+    private boolean IsLoggedIn;
     private ArrayList<GuidedToursModel> mFavoriteTours;
     private ArrayList<GuidedToursModel> mListedTours;
 
@@ -99,12 +102,28 @@ public class UserCore {
         this.mListedTours = mListedTours;
     }
 
-    public FirebaseUser getmUser() {
-        return mUser;
+    public FirebaseUser getmFirebaseUser() {
+        return FirebaseUser;
     }
 
-    public void setmUser(FirebaseUser mUser) {
-        this.mUser = mUser;
+    public UserDetailsModel getmUser() {
+        return User;
+    }
+
+    public void setmUser(UserDetailsModel mUser) {
+        this.User = mUser;
+    }
+
+    public boolean isLoggedIn() {
+        return IsLoggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        IsLoggedIn = loggedIn;
+    }
+
+    public void setmFirebaseUser(FirebaseUser mUser) {
+        this.FirebaseUser = FirebaseUser;
     }
 
 }
