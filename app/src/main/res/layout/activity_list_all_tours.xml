@@ -7,6 +7,8 @@
     android:orientation="vertical"
     tools:context=".Activities.ListAllToursActivity">
 
+    <include layout="@layout/toolbar_with_back_button"/>
+
     <android.support.v7.widget.SearchView
         android:id="@+id/sv_filter_tours"
         android:layout_width="match_parent"

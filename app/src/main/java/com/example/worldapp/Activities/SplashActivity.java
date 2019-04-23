@@ -47,6 +47,12 @@ public class SplashActivity extends AppCompatActivity {
             {
                 ifLoggedIn(mUser);
             }
+            else
+            {
+                Intent intent = new Intent(SplashActivity.this, ActivityHome.class);
+                startActivity(intent);
+                finish();
+            }
         }
         catch (Exception e)
         {}
@@ -77,13 +83,18 @@ public class SplashActivity extends AppCompatActivity {
                         return;
                     }
                 }
+                else
+                {
+                    Intent intent = new Intent(SplashActivity.this, ActivityHome.class);
+                    startActivity(intent);
+                    finish();
+                    return;
+                }
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
             }
         });
-
     }
-
 }

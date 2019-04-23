@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.example.worldapp.Adapters.MyToursListingsAdapter;
+import com.example.worldapp.BaseClasses.BaseAppCompat;
+import com.example.worldapp.Helpers.FirebaseHelper;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.R;
 import com.google.firebase.database.DataSnapshot;
@@ -21,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListAllToursActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class ListAllToursActivity extends BaseAppCompat implements SearchView.OnQueryTextListener {
     DatabaseReference mToursDatabaseReference;
     RecyclerView recyclerView;
     ArrayList<GuidedToursModel> mTourList;
