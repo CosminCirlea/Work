@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.worldapp.Adapters.MyToursListingsAdapter;
+import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,11 +48,6 @@ public class MyToursActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_tours);
         InitializeViews();
 
-        mAuth = FirebaseAuth.getInstance();
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mUser = mAuth.getCurrentUser();
-        userID = mUser.getUid();
-
         mAddTourFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,10 +55,9 @@ public class MyToursActivity extends AppCompatActivity {
             }
         });
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(MyToursActivity.this));
 
         mTourList = new ArrayList<>();
-        mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours");
+        /*mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours");
         mToursDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -82,11 +77,15 @@ public class MyToursActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(MyToursActivity.this, "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
+        mTourList = UserCore.Instance().getmListedTours();
+        mTourAdapter = new MyToursListingsAdapter(MyToursActivity.this, mTourList);
+        recyclerView.setAdapter(mTourAdapter);
     }
 
     private void InitializeViews(){
         recyclerView = findViewById(R.id.rv_my_listed_tours);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MyToursActivity.this));
         mAddTourFAB = findViewById(R.id.fab_add_tour);
     }
 }

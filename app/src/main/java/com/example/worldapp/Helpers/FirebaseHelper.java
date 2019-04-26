@@ -37,7 +37,7 @@ public class FirebaseHelper {
     }
 
     //todo not working properly
-    public ArrayList<GuidedToursModel> GetAllTours(final ArrayList<GuidedToursModel> mTourList)
+    public ArrayList<GuidedToursModel> GetAllTours(final ArrayList<GuidedToursModel> tours)
     {
         mToursDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -45,7 +45,7 @@ public class FirebaseHelper {
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
                 {
                     GuidedToursModel mGuidedTour = dataSnapshot1.getValue(GuidedToursModel.class);
-                    mTourList.add(mGuidedTour);
+                    tours.add(mGuidedTour);
                 }
             }
 
@@ -53,8 +53,32 @@ public class FirebaseHelper {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-        return mTourList;
+        return tours;
     }
+
+    public void GetMyTours(final String userId)
+    {
+        mToursDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<GuidedToursModel> tours = new ArrayList<>();
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
+                {
+                    GuidedToursModel mGuidedTour = dataSnapshot1.getValue(GuidedToursModel.class);
+                    if (mGuidedTour.getmUserId().contains(userId))
+                    {
+                        tours.add(mGuidedTour);
+                    }
+                }
+                UserCore.Instance().setmListedTours(tours);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
 
     public void SyncUserData(String userId)
     {
