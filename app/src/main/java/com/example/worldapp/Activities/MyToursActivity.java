@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.worldapp.Adapters.MyToursListingsAdapter;
@@ -36,6 +37,7 @@ public class MyToursActivity extends AppCompatActivity {
     private FirebaseUser mUser;
     private String userID;
     private FloatingActionButton mAddTourFAB;
+    private TextView mNoToursTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,17 +57,18 @@ public class MyToursActivity extends AppCompatActivity {
             }
         });
 
-
+        userID = UserCore.Instance().User.getUserId();
         mTourList = new ArrayList<>();
-        /*mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours");
+        mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours");
         mToursDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     GuidedToursModel mGuidedTour = dataSnapshot1.getValue(GuidedToursModel.class);
-                    if (mGuidedTour.getmUserId().contains(userID))
-                    {
-                        mTourList.add(mGuidedTour);
+                    if (mGuidedTour != null) {
+                        if (mGuidedTour.getmUserId().contains(userID)) {
+                            mTourList.add(mGuidedTour);
+                        }
                     }
                 }
 
@@ -77,16 +80,25 @@ public class MyToursActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(MyToursActivity.this, "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
             }
-        });*/
-        mTourList = UserCore.Instance().getmListedTours();
-        mTourAdapter = new MyToursListingsAdapter(MyToursActivity.this, mTourList);
-        recyclerView.setAdapter(mTourAdapter);
+        });
+        if (UserCore.Instance().getmListedTours() != null)
+        {
+            mTourList = UserCore.Instance().getmListedTours();
+            mTourAdapter = new MyToursListingsAdapter(MyToursActivity.this, mTourList);
+            recyclerView.setAdapter(mTourAdapter);
+            mNoToursTv.setVisibility(View.GONE);
+        }
+        else
+        {
+            mNoToursTv.setVisibility(View.VISIBLE);
+        }
     }
 
     private void InitializeViews(){
         recyclerView = findViewById(R.id.rv_my_listed_tours);
         recyclerView.setLayoutManager(new LinearLayoutManager(MyToursActivity.this));
         mAddTourFAB = findViewById(R.id.fab_add_tour);
+        mNoToursTv = findViewById(R.id.tv_my_listed_tours_no_tour_text);
     }
 }
 

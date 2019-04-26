@@ -76,6 +76,7 @@ public class FragmentProfileLoggedIn extends Fragment {
         mUser = UserCore.Instance().getmFirebaseUser();
         userID = mUser.getUid();
         setupFirebaseListener();
+        InitialValues();
 
         BtnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,12 +105,10 @@ public class FragmentProfileLoggedIn extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UserDetailsModel user = dataSnapshot.getValue(UserDetailsModel.class);
-                TvName.setText(user.getName());
-                TvFirstName.setText(user.getFirstname());
                 if (user.getImageUri().equals("")) {
                         ivProfilePicture.setImageResource(R.mipmap.ic_logo);
                     } else {
-                        Glide.with(ivProfilePicture.getContext()).load(user.getImageUri()).into(ivProfilePicture);
+                        Glide.with(ivProfilePicture.getContext()).load(UserCore.Instance().User.getImageUri()).into(ivProfilePicture);
                     }
             }
 
@@ -242,6 +241,14 @@ public class FragmentProfileLoggedIn extends Fragment {
         super.onStop();
         if (mAuthStateListener != null)
             FirebaseAuth.getInstance().removeAuthStateListener(mAuthStateListener);
+    }
+
+    private void InitialValues()
+    {
+        String firstName = UserCore.Instance().User.getName();
+        String name = UserCore.Instance().User.getName();
+        TvName.setText(firstName);
+        TvFirstName.setText(name);
     }
 
     private void InitializeViews(View view)
