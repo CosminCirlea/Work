@@ -59,7 +59,6 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void ifLoggedIn(final FirebaseUser user) {
-        //final FirebaseUser user = mAuth.getCurrentUser();
         UserCore.Instance().setmFirebaseUser(user);
         UserCore.Instance().User.setUserId(user.getUid());
 
@@ -71,12 +70,11 @@ public class SplashActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(!UserCore.Instance().isLoggedIn())
                 {
-                    UserDetailsModel userData = dataSnapshot.getValue(UserDetailsModel.class);
-                    if(userData.getUserId().contains(user.getUid()))
+                    UserDetailsModel myUser = dataSnapshot.getValue(UserDetailsModel.class);
+                    if(myUser.getUserId().contains(user.getUid()))
                     {
                         UserCore.Instance().setLoggedIn(true);
-                        UserCore.Instance().setmUser(userData);
-
+                        UserCore.Instance().setmUser(myUser);
                         Intent intent = new Intent(SplashActivity.this, ActivityHome.class);
                         startActivity(intent);
                         finish();

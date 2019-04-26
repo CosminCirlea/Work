@@ -63,6 +63,8 @@ public class ActivityLogin extends BaseAppCompat {
         else
             intent.putExtra("extra_array", "");
         startActivity(intent);
+        PasswordET.setText("cosmin");
+        UsernameET.setText("cosmin@gustr.com");
     }
 
     public void LogInClick(View view) {
@@ -76,8 +78,11 @@ public class ActivityLogin extends BaseAppCompat {
                         if (task.isSuccessful()) {
                             if (mAuth.getCurrentUser().isEmailVerified())
                             {
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                onSignInSuccessfull(user);
+                               /* FirebaseUser user = mAuth.getCurrentUser();
+                                onSignInSuccessfull(user);*/
+                                Intent intent = new Intent(ActivityLogin.this, SplashActivity.class);
+                                startActivity(intent);
+                                finish();
                             }
                             else {
                                 Toast.makeText(ActivityLogin.this, "Please verify your email address!",
@@ -92,7 +97,6 @@ public class ActivityLogin extends BaseAppCompat {
     }
 
     private void onSignInSuccessfull(final FirebaseUser user) {
-        //final FirebaseUser user = mAuth.getCurrentUser();
         UserCore.Instance().setmFirebaseUser(user);
         UserCore.Instance().User.setUserId(user.getUid());
 
@@ -112,7 +116,7 @@ public class ActivityLogin extends BaseAppCompat {
 
                         //SetIsBusy(false);
 
-                        Intent intent = new Intent(ActivityLogin.this, ActivityHome.class);
+                        Intent intent = new Intent(ActivityLogin.this, SplashActivity.class);
                         startActivity(intent);
                         finish();
                         return;

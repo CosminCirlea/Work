@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.R;
 import com.example.worldapp.Core.TourCore;
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.UUID;
 
-public class AddTour1Activity extends AppCompatActivity {
+public class AddTour1Activity extends BaseAppCompat {
 
     private TextInputEditText mTourTitleEt, mTourLandmarksEt, mTourParticipantsEt, mTourPriceEt, mTourDurationEt;
     private FirebaseDatabase mFirebaseDatabase;

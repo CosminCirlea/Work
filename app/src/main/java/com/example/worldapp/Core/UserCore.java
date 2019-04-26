@@ -119,7 +119,7 @@ public class UserCore {
 
     public void setmUser(UserDetailsModel mUser) {
         this.User = mUser;
-        FirebaseHelper.Instance().SyncUserData(User.getUserId());
+        //FirebaseHelper.Instance().SyncUserData(User.getUserId());
     }
 
     public boolean isLoggedIn() {
