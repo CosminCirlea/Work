@@ -30,6 +30,7 @@ public class ActivityLogin extends BaseAppCompat {
     private Button mLogInButton;
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
+    private String mTourID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,12 @@ public class ActivityLogin extends BaseAppCompat {
         }
         setContentView(R.layout.activity_login);
         InitializeViews();
+        try {
+            Intent myIntent = new Intent();
+            mTourID = myIntent.getStringExtra("tourID");
+        }
+        catch (Exception e)
+        {}
         mAuth = FirebaseAuth.getInstance();
         UsernameET.setText("cirlea@cuvox.de");
         PasswordET.setText("cosmin");
@@ -82,9 +89,15 @@ public class ActivityLogin extends BaseAppCompat {
                             {
                                /* FirebaseUser user = mAuth.getCurrentUser();
                                 onSignInSuccessfull(user);*/
-                                Intent intent = new Intent(ActivityLogin.this, SplashActivity.class);
-                                startActivity(intent);
-                                finish();
+                                if (mTourID == null || mTourID.isEmpty()) {
+                                    Intent intent = new Intent(ActivityLogin.this, SplashActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                                else
+                                {
+
+                                }
                             }
                             else {
                                 Toast.makeText(ActivityLogin.this, "Please verify your email address!",
@@ -131,6 +144,11 @@ public class ActivityLogin extends BaseAppCompat {
             }
         });
 
+    }
+
+    private void OpenTourByID()
+    {
+        
     }
 
     private void InitializeViews()

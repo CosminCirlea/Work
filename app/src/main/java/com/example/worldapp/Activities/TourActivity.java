@@ -1,5 +1,6 @@
 package com.example.worldapp.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -139,13 +140,16 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     }
 
     public void OnBook(View view) {
-        if (UserCore.Instance().User !=null)
+        if (UserCore.Instance().isLoggedIn())
         {
             Toast.makeText(this, "You may buy!", Toast.LENGTH_SHORT).show();
         }
         else
         {
-            Toast.makeText(this, "You may not buy!", Toast.LENGTH_SHORT).show();
+            Intent myIntent = new Intent(TourActivity.this, ActivityLogin.class);
+            myIntent.putExtra("tourID", mTour.getmTourId());
+            startActivity(myIntent);
+            Toast.makeText(this, "You must be logged in in order to book!", Toast.LENGTH_SHORT).show();
         }
     }
 }

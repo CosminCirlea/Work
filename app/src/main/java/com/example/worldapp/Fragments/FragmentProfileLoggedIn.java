@@ -83,6 +83,7 @@ public class FragmentProfileLoggedIn extends Fragment {
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 UserCore.Instance().User = null;
+                UserCore.Instance().setLoggedIn(false);
             }
         });
 
