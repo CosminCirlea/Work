@@ -10,13 +10,19 @@ import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.R;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
-public class TourActivity extends BaseAppCompat {
-
+public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
+    private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
     private ImageView mTourImage;
     private TextView mTitle, mLocation, mType, mDescription, mParticipants, mDuration, mPrice, mLandmarks;
     private RatingBar mRating;
+    private MapView mMapView;
 
     private GuidedToursModel mTour;
     @Override
@@ -28,10 +34,32 @@ public class TourActivity extends BaseAppCompat {
         }
         setContentView(R.layout.activity_tour);
         InitializeViews();
+
+        Bundle mapViewBundle = null;
+        if (savedInstanceState != null) {
+            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
+        }
+
+        mMapView.onCreate(mapViewBundle);
+        mMapView.getMapAsync(this);
+
         Gson gson = new Gson();
         String aux = getIntent().getStringExtra(NavigationConstants.TOUR_MODEL_KEY);
         mTour = gson.fromJson(aux, GuidedToursModel.class);
         SetValues();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        Bundle mapViewBundle = outState.getBundle(MAPVIEW_BUNDLE_KEY);
+        if (mapViewBundle == null) {
+            mapViewBundle = new Bundle();
+            outState.putBundle(MAPVIEW_BUNDLE_KEY, mapViewBundle);
+        }
+
+        mMapView.onSaveInstanceState(mapViewBundle);
     }
 
     private void SetValues()
@@ -62,5 +90,46 @@ public class TourActivity extends BaseAppCompat {
         mPrice = findViewById(R.id.tv_tour_details_price);
         mLandmarks = findViewById(R.id.tv_tour_landmarks_details);
         mRating = findViewById(R.id.rb_tour_rating_details);
+        mMapView = findViewById(R.id.map_tour);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        map.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mMapView.onResume();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mMapView.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mMapView.onStop();
+    }
+    @Override
+    protected void onPause() {
+        mMapView.onPause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        mMapView.onDestroy();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mMapView.onLowMemory();
     }
 }

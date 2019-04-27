@@ -24,4 +24,6 @@
     <string name="fill_all_fields">All fields must be filled!</string>
     <string name="no_tour_text">You currently have no listed tour!</string>
     <string name="add_tour_text">Why not add one and start a new experience?</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="meeting_point">Meeting point</string>
 </resources>

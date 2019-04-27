@@ -222,6 +222,26 @@
                     android:text="A very very long description to see how this reacts when the text is extremely long"
                     android:layout_below="@+id/tv_tour_landmarks_text"/>
 
+                <TextView
+                    android:id="@+id/tv_tour_meeting_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    style="@style/BasicText"
+                    android:layout_below="@+id/tv_tour_landmarks_details"
+                    android:text="@string/meeting_point"/>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_tour_meeting_point"
+                    android:layout_marginTop="10dp">
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/map_tour"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                   />
+                </FrameLayout>
             </RelativeLayout>
 
             <ToggleButton
