@@ -20,7 +20,6 @@ import java.util.List;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private FirebaseDatabase mDatabase;
     private DatabaseReference mDatabaseReference;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -62,23 +61,21 @@ public class SplashActivity extends AppCompatActivity {
         UserCore.Instance().setmFirebaseUser(user);
         UserCore.Instance().User.setUserId(user.getUid());
 
-        mDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mDatabase.getReference("users");
-        DatabaseReference userData = mDatabaseReference.child(user.getUid());
-        userData.addValueEventListener(new ValueEventListener() {
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("users");
+        mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(!UserCore.Instance().isLoggedIn())
-                {
-                    UserDetailsModel myUser = dataSnapshot.getValue(UserDetailsModel.class);
-                    if(myUser.getUserId().contains(user.getUid()))
-                    {
-                        UserCore.Instance().setLoggedIn(true);
-                        UserCore.Instance().setmUser(myUser);
-                        Intent intent = new Intent(SplashActivity.this, ActivityHome.class);
-                        startActivity(intent);
-                        finish();
-                        return;
+                if(!UserCore.Instance().isLoggedIn()) {
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                        UserDetailsModel myUser = dataSnapshot1.getValue(UserDetailsModel.class);
+                        if (myUser.getUserId().contains(user.getUid())) {
+                            UserCore.Instance().setLoggedIn(true);
+                            UserCore.Instance().setmUser(myUser);
+                            Intent intent = new Intent(SplashActivity.this, ActivityHome.class);
+                            startActivity(intent);
+                            finish();
+                            return;
+                        }
                     }
                 }
                 else

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.worldapp.Adapters.MyToursListingsAdapter;
+import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.R;
@@ -27,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class MyToursActivity extends AppCompatActivity {
+public class MyToursActivity extends BaseAppCompat {
     private DatabaseReference mToursDatabaseReference;
     private RecyclerView recyclerView;
     private FirebaseDatabase mFirebaseDatabase;
@@ -37,7 +38,7 @@ public class MyToursActivity extends AppCompatActivity {
     private FirebaseUser mUser;
     private String userID;
     private FloatingActionButton mAddTourFAB;
-    private TextView mNoToursTv;
+    private TextView mNoToursTv, mAddTourTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +47,9 @@ public class MyToursActivity extends AppCompatActivity {
             this.getSupportActionBar().hide();
         } catch (NullPointerException e) {
         }
-
         setContentView(R.layout.activity_my_tours);
         InitializeViews();
+        super.SetToolbarTitle("My listed tours");
 
         mAddTourFAB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,11 +87,13 @@ public class MyToursActivity extends AppCompatActivity {
             mTourList = UserCore.Instance().getmListedTours();
             mTourAdapter = new MyToursListingsAdapter(MyToursActivity.this, mTourList);
             recyclerView.setAdapter(mTourAdapter);
-            mNoToursTv.setVisibility(View.GONE);
+            mNoToursTv.setVisibility(View.VISIBLE);
+            mAddTourTv.setVisibility(View.VISIBLE);
         }
         else
         {
-            mNoToursTv.setVisibility(View.VISIBLE);
+            mNoToursTv.setVisibility(View.INVISIBLE);
+            mAddTourTv.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -99,6 +102,7 @@ public class MyToursActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(MyToursActivity.this));
         mAddTourFAB = findViewById(R.id.fab_add_tour);
         mNoToursTv = findViewById(R.id.tv_my_listed_tours_no_tour_text);
+        mAddTourTv = findViewById(R.id.tv_my_listed_tours_add_tour_text);
     }
 }
 
