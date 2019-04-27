@@ -82,6 +82,7 @@ public class FragmentProfileLoggedIn extends Fragment {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
+                UserCore.Instance().User = null;
             }
         });
 
@@ -245,10 +246,10 @@ public class FragmentProfileLoggedIn extends Fragment {
 
     private void InitialValues()
     {
-        String firstName = UserCore.Instance().User.getName();
+        String firstName = UserCore.Instance().User.getFirstname();
         String name = UserCore.Instance().User.getName();
-        TvName.setText(firstName);
-        TvFirstName.setText(name);
+        TvName.setText(name);
+        TvFirstName.setText(firstName);
     }
 
     private void InitializeViews(View view)

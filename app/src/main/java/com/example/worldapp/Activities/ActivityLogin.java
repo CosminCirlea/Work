@@ -41,6 +41,8 @@ public class ActivityLogin extends BaseAppCompat {
         setContentView(R.layout.activity_login);
         InitializeViews();
         mAuth = FirebaseAuth.getInstance();
+        UsernameET.setText("cirlea@cuvox.de");
+        PasswordET.setText("cosmin");
     }
 
     @Override

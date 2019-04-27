@@ -265,6 +265,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/button_favorite"
                 android:text="Book"
+                android:onClick="OnBook"
                 />
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>

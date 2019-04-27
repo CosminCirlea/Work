@@ -1,13 +1,17 @@
 package com.example.worldapp.Activities;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Constants.NavigationConstants;
+import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.R;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,7 +27,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     private TextView mTitle, mLocation, mType, mDescription, mParticipants, mDuration, mPrice, mLandmarks;
     private RatingBar mRating;
     private MapView mMapView;
-
+    private Button mBookTour;
     private GuidedToursModel mTour;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +95,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mLandmarks = findViewById(R.id.tv_tour_landmarks_details);
         mRating = findViewById(R.id.rb_tour_rating_details);
         mMapView = findViewById(R.id.map_tour);
+        mBookTour = findViewById(R.id.btn_tour_book);
     }
 
     @Override
@@ -131,5 +136,16 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     public void onLowMemory() {
         super.onLowMemory();
         mMapView.onLowMemory();
+    }
+
+    public void OnBook(View view) {
+        if (UserCore.Instance().User !=null)
+        {
+            Toast.makeText(this, "You may buy!", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(this, "You may not buy!", Toast.LENGTH_SHORT).show();
+        }
     }
 }
