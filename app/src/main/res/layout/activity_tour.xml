@@ -202,6 +202,41 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_tour_owner_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tour_owner"
+                    style="@style/BasicText"
+                    android:layout_margin="10dp"
+                    android:layout_below="@id/ll_tour_details_container"/>
+
+                <RelativeLayout
+                    android:id="@+id/rl_owner_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_below="@+id/tv_tour_owner_text"
+                    android:onClick="GoToOwner">
+
+                    <ImageView
+                        android:id="@+id/iv_tour_owner_image"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/images"/>
+
+                    <TextView
+                        android:id="@+id/tv_tour_owner_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/BasicText"
+                        android:text="Dan Stone"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@id/iv_tour_owner_image"
+                        android:layout_centerVertical="true"/>
+
+                </RelativeLayout>
+
+                <TextView
                     android:id="@+id/tv_tour_landmarks_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -210,7 +245,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:text="Landmarks"
-                    android:layout_below="@+id/ll_tour_details_container"/>
+                    android:layout_below="@+id/rl_owner_container"/>
 
                 <TextView
                     android:id="@+id/tv_tour_landmarks_details"

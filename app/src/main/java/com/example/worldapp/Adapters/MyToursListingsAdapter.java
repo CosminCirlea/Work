@@ -77,6 +77,7 @@ public class MyToursListingsAdapter extends
         String tourDuration = mTours.get(position).getmTourDuration();
         Double price = mTours.get(position).getmTourPrice();
         Glide.with(viewHolder.ivTourPicture.getContext()).load(mTours.get(position).getmTourImageUrl()).into(viewHolder.ivTourPicture);
+        String userID = mTours.get(position).getmUserId();
 
         viewHolder.tvAnnouncementTitle.setText(tourTitle);
         viewHolder.tvLocation.setText(location);

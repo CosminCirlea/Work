@@ -10,26 +10,35 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Models.GuidedToursModel;
+import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
-    private ImageView mTourImage;
-    private TextView mTitle, mLocation, mType, mDescription, mParticipants, mDuration, mPrice, mLandmarks;
+    private ImageView mTourImage, mOwnerImage;
+    private TextView mTitle, mLocation, mType, mDescription, mParticipants, mDuration, mPrice, mLandmarks, mOwnerName;
     private RatingBar mRating;
     private MapView mMapView;
-    private Button mBookTour;
     private GuidedToursModel mTour;
+    private String mUserID;
+    private DatabaseReference mDatabaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +90,29 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mLandmarks.setText(mTour.getmTourLandmarks());
         mParticipants.setText(mTour.getmTourMaxParticipants()+"");
         mRating.setRating(3.4f);
+        mUserID = mTour.getmUserId();
+        GetUserDetails();
+    }
+
+    private void GetUserDetails()
+    {
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("users");
+        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                    UserDetailsModel myUser = dataSnapshot1.getValue(UserDetailsModel.class);
+                    if (myUser.getUserId().contains(mUserID)) {
+                        String fullname = myUser.getFirstname() + " " + myUser.getName();
+                        Glide.with(mOwnerImage.getContext()).load(myUser.getImageUri()).apply(new RequestOptions().placeholder(R.drawable.photo_placeholder).centerCrop()).into(mOwnerImage);
+                        mOwnerName.setText(fullname);
+                    }
+                }
+                }
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
     }
 
     private void InitializeViews()
@@ -96,7 +128,8 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mLandmarks = findViewById(R.id.tv_tour_landmarks_details);
         mRating = findViewById(R.id.rb_tour_rating_details);
         mMapView = findViewById(R.id.map_tour);
-        mBookTour = findViewById(R.id.btn_tour_book);
+        mOwnerImage = findViewById(R.id.iv_tour_owner_image);
+        mOwnerName = findViewById(R.id.tv_tour_owner_name);
     }
 
     @Override
@@ -151,5 +184,9 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
             startActivity(myIntent);
             Toast.makeText(this, "You must be logged in in order to book!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void GoToOwner(View view) {
+
     }
 }

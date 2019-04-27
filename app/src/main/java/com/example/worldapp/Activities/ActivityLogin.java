@@ -148,7 +148,7 @@ public class ActivityLogin extends BaseAppCompat {
 
     private void OpenTourByID()
     {
-        
+
     }
 
     private void InitializeViews()
