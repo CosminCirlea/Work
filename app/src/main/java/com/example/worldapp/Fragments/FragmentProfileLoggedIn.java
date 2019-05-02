@@ -189,6 +189,7 @@ public class FragmentProfileLoggedIn extends Fragment {
                         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(mUser.getUid());
                         HashMap<String, Object> map = new HashMap<>();
                         map.put("imageUri", mUri);
+                        UserCore.Instance().setImageUri(mUri);
                         mDatabaseReference.updateChildren(map);
                         pd.dismiss();
                     }

@@ -27,4 +27,6 @@
     <string name="title_activity_maps">Map</string>
     <string name="meeting_point">Meeting point</string>
     <string name="tour_owner">Tour owner</string>
+    <string name="meeting_location">Enter the meeting location</string>
+    <string name="meeting_map_point">Choose point on map</string>
 </resources>

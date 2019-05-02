@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.R;
 import com.example.worldapp.Core.TourCore;
 import com.google.android.gms.tasks.Continuation;
@@ -33,7 +34,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 
-public class AddTour2Activity extends AppCompatActivity {
+public class AddTour2Activity extends BaseAppCompat {
 
     public static final int IMAGE_REQUEST=1;
     private FirebaseDatabase mFirebaseDatabase;
