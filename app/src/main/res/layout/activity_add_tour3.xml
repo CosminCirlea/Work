@@ -84,7 +84,8 @@
     <Button
         android:id="@+id/btn_add_tour_next_1"
         android:layout_alignParentBottom="true"
-        android:text="Finish"
+        android:text="@string/next_text"
+        android:textAllCaps="false"
         android:layout_margin="20dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/round_button"

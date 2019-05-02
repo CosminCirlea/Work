@@ -29,4 +29,6 @@
     <string name="tour_owner">Tour owner</string>
     <string name="meeting_location">Enter the meeting location</string>
     <string name="meeting_map_point">Choose point on map</string>
+    <string name="next_text">Next</string>
+    <string name="finish_text">Finish</string>
 </resources>

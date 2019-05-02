@@ -21,7 +21,7 @@ public class AddTour3Activity extends BaseAppCompat {
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
-    private DatabaseReference mDatabaseReference, mDatabaseRef;
+    private DatabaseReference mDatabaseReference;
     private String mTourId, mUserId;
 
     @Override
@@ -55,9 +55,8 @@ public class AddTour3Activity extends BaseAppCompat {
     public void RegisterTour(View view) {
         AddNewTourPart3(mCountryEditText.getText().toString(), mRegionEditText.getText().toString(),
                 mCityEditText.getText().toString(),mTypeEditText.getText().toString());
-        Intent mIntent = new Intent(this, ActivityHome.class);
+        Intent mIntent = new Intent(this, AddTour4Activity.class);
         startActivity(mIntent);
-        Toast.makeText(this, "Tour added succesfully!", Toast.LENGTH_SHORT).show();
     }
 
     public void InitializeViews()

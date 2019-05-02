@@ -16,7 +16,7 @@ public class GuidedToursModel {
     private int mTourMaxParticipants;
     private String mUserId, mTourId;
     private double mRating;
-    private LatLng mLocationCoordinates;
+    private LatLng mMeetingPoint;
 
     public double getmRating() {
         return mRating;
@@ -162,4 +162,11 @@ public class GuidedToursModel {
         this.mTourType = mTourType;
     }
 
+    public LatLng getmMeetingPoint() {
+        return mMeetingPoint;
+    }
+
+    public void setmMeetingPoint(LatLng mMeetingPoint) {
+        this.mMeetingPoint = mMeetingPoint;
+    }
 }

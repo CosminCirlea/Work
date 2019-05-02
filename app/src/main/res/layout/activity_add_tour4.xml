@@ -51,13 +51,13 @@
         <com.google.android.gms.maps.MapView
             android:id="@+id/map_add_tour"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="350dp"
             />
     </FrameLayout>
 
     <Button
         android:id="@+id/btn_add_tour_next_4"
-        android:text="Next"
+        android:text="@string/finish_text"
         style="@style/BasicText"
         android:layout_margin="20dp"
         android:layout_centerHorizontal="true"

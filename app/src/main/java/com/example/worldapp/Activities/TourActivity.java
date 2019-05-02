@@ -1,7 +1,14 @@
 package com.example.worldapp.Activities;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,6 +24,7 @@ import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -38,6 +46,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     private GuidedToursModel mTour;
     private String mUserID;
     private DatabaseReference mDatabaseReference;
+    private LatLng mMeetingPoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,31 +85,30 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mMapView.onSaveInstanceState(mapViewBundle);
     }
 
-    private void SetValues()
-    {
+    private void SetValues() {
         Glide.with(mTourImage.getContext()).load(mTour.getmTourImageUrl()).into(mTourImage);
         mTitle.setText(mTour.getmTourTitle());
         mDescription.setText(mTour.getmTourDescription());
-        String location = mTour.getmTourCountry()+","+mTour.getmTourRegion()+","+mTour.getmTourCity();
+        String location = mTour.getmTourCountry() + "," + mTour.getmTourRegion() + "," + mTour.getmTourCity();
         mLocation.setText(location);
         mType.setText(mTour.getmTourType());
         mDescription.setText(mTour.getmTourDescription());
         mDuration.setText(mTour.getmTourDuration());
-        mPrice.setText(mTour.getmTourPrice()+" $");
+        mPrice.setText(mTour.getmTourPrice() + " $");
         mLandmarks.setText(mTour.getmTourLandmarks());
-        mParticipants.setText(mTour.getmTourMaxParticipants()+"");
+        mParticipants.setText(mTour.getmTourMaxParticipants() + "");
         mRating.setRating(3.4f);
         mUserID = mTour.getmUserId();
+        mMeetingPoint = mTour.getmMeetingPoint();
         GetUserDetails();
     }
 
-    private void GetUserDetails()
-    {
+    private void GetUserDetails() {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("users");
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     UserDetailsModel myUser = dataSnapshot1.getValue(UserDetailsModel.class);
                     if (myUser.getUserId().contains(mUserID)) {
                         String fullname = myUser.getFirstname() + " " + myUser.getName();
@@ -108,15 +116,15 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
                         mOwnerName.setText(fullname);
                     }
                 }
-                }
+            }
+
             @Override
             public void onCancelled(DatabaseError error) {
             }
         });
     }
 
-    private void InitializeViews()
-    {
+    private void InitializeViews() {
         mTourImage = findViewById(R.id.iv_tour_photo);
         mTitle = findViewById(R.id.tv_tour_title);
         mLocation = findViewById(R.id.tv_tour_location);
@@ -133,8 +141,37 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     }
 
     @Override
-    public void onMapReady(GoogleMap map) {
-        map.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+    public void onMapReady(final GoogleMap map) {
+        map.addMarker(new MarkerOptions().position(new LatLng(mMeetingPoint.latitude, mMeetingPoint.longitude)).title("Meeting point"));
+        //getMyLocation();
+    }
+
+    private Location getMyLocation() {
+        // Get location from GPS if it's available
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return null;
+        }
+        Location myLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+        // Location wasn't found, check the next most accurate place for the current location
+        if (myLocation == null) {
+            Criteria criteria = new Criteria();
+            criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+            // Finds a provider that matches the criteria
+            String provider = lm.getBestProvider(criteria, true);
+            // Use the provider to get the last known location
+            myLocation = lm.getLastKnownLocation(provider);
+        }
+
+        return myLocation;
     }
 
     @Override

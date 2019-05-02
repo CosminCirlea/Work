@@ -1,5 +1,7 @@
 package com.example.worldapp.Core;
 
+import com.google.android.gms.maps.model.LatLng;
+
 public class TourCore {
     private static TourCore mTourCore;
     private String mTourTitle;
@@ -15,6 +17,7 @@ public class TourCore {
     private int mTourMaxParticipants;
     private String mUserId, mTourId;
     private double mRating;
+    private LatLng mMeetingPoint;
 
     public static TourCore Instance()
     {
@@ -136,4 +139,11 @@ public class TourCore {
         this.mTourId = mTourId;
     }
 
+    public LatLng getmMeetingPoint() {
+        return mMeetingPoint;
+    }
+
+    public void setmMeetingPoint(LatLng mMeetingPoint) {
+        this.mMeetingPoint = mMeetingPoint;
+    }
 }
