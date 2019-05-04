@@ -17,7 +17,9 @@ public class TourCore {
     private int mTourMaxParticipants;
     private String mUserId, mTourId;
     private double mRating;
-    private LatLng mMeetingPoint;
+    private Double mMeetingPointLongitude;
+    private Double mMeetingPointLatitude;
+    private String mMeetingLocation;
 
     public static TourCore Instance()
     {
@@ -139,11 +141,29 @@ public class TourCore {
         this.mTourId = mTourId;
     }
 
-    public LatLng getmMeetingPoint() {
-        return mMeetingPoint;
+
+    public Double getmMeetingPointLongitude() {
+        return mMeetingPointLongitude;
     }
 
-    public void setmMeetingPoint(LatLng mMeetingPoint) {
-        this.mMeetingPoint = mMeetingPoint;
+    public void setmMeetingPointLongitude(Double mMeetingPointLongitude) {
+        this.mMeetingPointLongitude = mMeetingPointLongitude;
+    }
+
+    public Double getmMeetingPointLatitude() {
+        return mMeetingPointLatitude;
+    }
+
+    public void setmMeetingPointLatitude(Double mMeetingPointLatitude) {
+        this.mMeetingPointLatitude = mMeetingPointLatitude;
+    }
+
+
+    public String getmMeetingLocation() {
+        return mMeetingLocation;
+    }
+
+    public void setmMeetingLocation(String mMeetingLocation) {
+        this.mMeetingLocation = mMeetingLocation;
     }
 }

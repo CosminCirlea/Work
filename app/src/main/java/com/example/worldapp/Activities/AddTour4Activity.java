@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.worldapp.BaseClasses.BaseAppCompat;
+import com.example.worldapp.Core.TourCore;
 import com.example.worldapp.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -14,15 +17,24 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class AddTour4Activity extends AppCompatActivity implements OnMapReadyCallback {
+public class AddTour4Activity extends BaseAppCompat implements OnMapReadyCallback {
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
-    private TextView mTitle, mLocation, mType, mDescription, mParticipants, mDuration, mPrice, mLandmarks, mOwnerName;
+    private EditText mMeetingLocation;
     private MapView mMapView;
+    private LatLng mMeetingPoint;
+    private DatabaseReference mDatabaseReference;
+    private String mTourID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            this.getSupportActionBar().hide();
+        } catch (NullPointerException e) {
+        }
         setContentView(R.layout.activity_add_tour4);
         InitializeViews();
 
@@ -30,11 +42,21 @@ public class AddTour4Activity extends AppCompatActivity implements OnMapReadyCal
         if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
         }
+
         mMapView.onCreate(mapViewBundle);
         mMapView.getMapAsync(this);
+
+        mTourID = TourCore.Instance().getmTourId();
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("Tours");
+
     }
 
     public void RegisterTour(View view) {
+        String location = mMeetingLocation.getText().toString();
+        TourCore.Instance().setmMeetingPointLatitude(mMeetingPoint.latitude);
+        TourCore.Instance().setmMeetingPointLongitude(mMeetingPoint.longitude);
+        TourCore.Instance().setmMeetingLocation(location);
+        mDatabaseReference.child(mTourID).setValue(TourCore.Instance());
         Intent mIntent = new Intent(this, ActivityHome.class);
         startActivity(mIntent);
         Toast.makeText(this, "Tour added succesfully!", Toast.LENGTH_SHORT).show();
@@ -42,7 +64,8 @@ public class AddTour4Activity extends AppCompatActivity implements OnMapReadyCal
 
     private void InitializeViews()
     {
-        mMapView = findViewById(R.id.map_tour);
+        mMeetingLocation = findViewById(R.id.et_add_tour_location);
+        mMapView = findViewById(R.id.map_add_tour);
     }
 
     @Override
@@ -55,7 +78,7 @@ public class AddTour4Activity extends AppCompatActivity implements OnMapReadyCal
                 map.clear();
                 MarkerOptions marker = new MarkerOptions().position(
                         new LatLng(point.latitude, point.longitude)).title("Meeting point");
-
+                mMeetingPoint= point;
                 map.addMarker(marker);
             }
         });

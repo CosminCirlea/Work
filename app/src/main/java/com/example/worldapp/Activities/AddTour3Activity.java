@@ -18,10 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class AddTour3Activity extends BaseAppCompat {
 
     private EditText mCountryEditText, mRegionEditText, mCityEditText, mTypeEditText;
-    private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
-    private DatabaseReference mDatabaseReference;
     private String mTourId, mUserId;
 
     @Override
@@ -37,10 +35,8 @@ public class AddTour3Activity extends BaseAppCompat {
         InitializeViews();
 
         mAuth = FirebaseAuth.getInstance();
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
         mUser = mAuth.getCurrentUser();
         mUserId = mUser.getUid();
-        mDatabaseReference = mFirebaseDatabase.getReference("Tours");
     }
 
     public void AddNewTourPart3(String country, String region, String city, String type)
@@ -49,7 +45,6 @@ public class AddTour3Activity extends BaseAppCompat {
         TourCore.Instance().setmTourRegion(region);
         TourCore.Instance().setmTourCity(city);
         TourCore.Instance().setmTourType(type);
-        mDatabaseReference.child(mTourId).setValue(TourCore.Instance());
     }
 
     public void RegisterTour(View view) {

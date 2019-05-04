@@ -40,7 +40,7 @@ import com.google.gson.Gson;
 public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
     private ImageView mTourImage, mOwnerImage;
-    private TextView mTitle, mLocation, mType, mDescription, mParticipants, mDuration, mPrice, mLandmarks, mOwnerName;
+    private TextView mTitle, mLocation, mType, mDescription, mParticipants, mDuration, mPrice, mLandmarks, mOwnerName, tvMeetingLocation;
     private RatingBar mRating;
     private MapView mMapView;
     private GuidedToursModel mTour;
@@ -86,6 +86,8 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     }
 
     private void SetValues() {
+        LatLng meetingPoint = new LatLng(mTour.getmMeetingPointLatitude(),mTour.getmMeetingPointLongitude());
+
         Glide.with(mTourImage.getContext()).load(mTour.getmTourImageUrl()).into(mTourImage);
         mTitle.setText(mTour.getmTourTitle());
         mDescription.setText(mTour.getmTourDescription());
@@ -99,7 +101,8 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mParticipants.setText(mTour.getmTourMaxParticipants() + "");
         mRating.setRating(3.4f);
         mUserID = mTour.getmUserId();
-        mMeetingPoint = mTour.getmMeetingPoint();
+        mMeetingPoint = meetingPoint;
+        tvMeetingLocation.setText(mTour.getmMeetingLocation());
         GetUserDetails();
     }
 
@@ -138,11 +141,20 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mMapView = findViewById(R.id.map_tour);
         mOwnerImage = findViewById(R.id.iv_tour_owner_image);
         mOwnerName = findViewById(R.id.tv_tour_owner_name);
+        tvMeetingLocation = findViewById(R.id.tv_tour_meeting_location);
     }
 
     @Override
     public void onMapReady(final GoogleMap map) {
-        //map.addMarker(new MarkerOptions().position(new LatLng(mMeetingPoint.latitude, mMeetingPoint.longitude)).title("Meeting point"));
+        if (mMeetingPoint !=null)
+        {
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(mMeetingPoint, 13));
+            map.addMarker(new MarkerOptions().position(mMeetingPoint).title("Meeting point"));
+        }
+        else
+        {
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-33.88,151.21), 15));
+        }
     }
 
     @Override

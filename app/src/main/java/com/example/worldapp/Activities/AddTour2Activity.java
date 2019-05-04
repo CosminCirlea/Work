@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.worldapp.BaseClasses.BaseAppCompat;
+import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.R;
 import com.example.worldapp.Core.TourCore;
 import com.google.android.gms.tasks.Continuation;
@@ -25,8 +26,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
@@ -73,14 +77,17 @@ public class AddTour2Activity extends BaseAppCompat {
                 openImage();
             }
         });
-        //mDatabaseRef = mDatabaseReference.child(mTourId);
-       /* mDatabaseRef.addValueEventListener(new ValueEventListener() {
+
+        Glide.with(mTourImage.getContext()).load(uriProfilePicture).apply(new RequestOptions().placeholder(R.drawable.photo_placeholder).centerCrop()).into(mTourImage);
+
+        /*mDatabaseRef = mDatabaseReference.child(mTourId);
+        mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 GuidedToursModel tour = dataSnapshot.getValue(GuidedToursModel.class);
-                //String aux = tour.getmTourImageUrl();
+                String aux = tour.getmTourImageUrl();
                 try {
-                    Glide.with(mTourImage.getContext()).load(uriProfilePicture).apply(new RequestOptions().placeholder(R.drawable.photo_placeholder).centerCrop()).into(mTourImage);
+                    Glide.with(mTourImage.getContext()).load(aux).apply(new RequestOptions().placeholder(R.drawable.photo_placeholder).centerCrop()).into(mTourImage);
                 }
                 catch (Exception e){
                 }
