@@ -18,10 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class AddTour3Activity extends BaseAppCompat {
 
     private EditText mCountryEditText, mRegionEditText, mCityEditText, mTypeEditText;
-    private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
-    private DatabaseReference mDatabaseReference, mDatabaseRef;
     private String mTourId, mUserId;
 
     @Override
@@ -37,10 +35,8 @@ public class AddTour3Activity extends BaseAppCompat {
         InitializeViews();
 
         mAuth = FirebaseAuth.getInstance();
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
         mUser = mAuth.getCurrentUser();
         mUserId = mUser.getUid();
-        mDatabaseReference = mFirebaseDatabase.getReference("Tours");
     }
 
     public void AddNewTourPart3(String country, String region, String city, String type)
@@ -49,15 +45,13 @@ public class AddTour3Activity extends BaseAppCompat {
         TourCore.Instance().setmTourRegion(region);
         TourCore.Instance().setmTourCity(city);
         TourCore.Instance().setmTourType(type);
-        mDatabaseReference.child(mTourId).setValue(TourCore.Instance());
     }
 
     public void RegisterTour(View view) {
         AddNewTourPart3(mCountryEditText.getText().toString(), mRegionEditText.getText().toString(),
                 mCityEditText.getText().toString(),mTypeEditText.getText().toString());
-        Intent mIntent = new Intent(this, ActivityHome.class);
+        Intent mIntent = new Intent(this, AddTour4Activity.class);
         startActivity(mIntent);
-        Toast.makeText(this, "Tour added succesfully!", Toast.LENGTH_SHORT).show();
     }
 
     public void InitializeViews()

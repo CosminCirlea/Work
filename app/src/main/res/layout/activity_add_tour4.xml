@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+<android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.AddTour4Activity">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <include layout="@layout/toolbar_with_back_button"/>
 
@@ -51,13 +56,13 @@
         <com.google.android.gms.maps.MapView
             android:id="@+id/map_add_tour"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="350dp"
             />
     </FrameLayout>
 
     <Button
         android:id="@+id/btn_add_tour_next_4"
-        android:text="Next"
+        android:text="@string/finish_text"
         style="@style/BasicText"
         android:layout_margin="20dp"
         android:layout_centerHorizontal="true"
@@ -68,3 +73,4 @@
         android:onClick="RegisterTour" />
 
 </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

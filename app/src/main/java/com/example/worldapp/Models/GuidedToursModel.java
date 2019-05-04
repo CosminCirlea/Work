@@ -16,16 +16,9 @@ public class GuidedToursModel {
     private int mTourMaxParticipants;
     private String mUserId, mTourId;
     private double mRating;
-    private LatLng mLocationCoordinates;
-
-    public double getmRating() {
-        return mRating;
-    }
-
-    public void setmRating(double mRating) {
-        this.mRating = mRating;
-    }
-
+    private Double mMeetingPointLongitude;
+    private Double mMeetingPointLatitude;
+    private String mMeetingLocation;
 
     public GuidedToursModel()
     {
@@ -162,4 +155,35 @@ public class GuidedToursModel {
         this.mTourType = mTourType;
     }
 
+    public double getmRating() {
+        return mRating;
+    }
+
+    public void setmRating(double mRating) {
+        this.mRating = mRating;
+    }
+
+    public String getmMeetingLocation() {
+        return mMeetingLocation;
+    }
+
+    public void setmMeetingLocation(String mMeetingLocation) {
+        this.mMeetingLocation = mMeetingLocation;
+    }
+
+    public Double getmMeetingPointLatitude() {
+        return mMeetingPointLatitude;
+    }
+
+    public void setmMeetingPointLatitude(Double mMeetingPointLatitude) {
+        this.mMeetingPointLatitude = mMeetingPointLatitude;
+    }
+
+    public Double getmMeetingPointLongitude() {
+        return mMeetingPointLongitude;
+    }
+
+    public void setmMeetingPointLongitude(Double mMeetingPointLongitude) {
+        this.mMeetingPointLongitude = mMeetingPointLongitude;
+    }
 }

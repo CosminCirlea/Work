@@ -267,6 +267,7 @@
                     android:text="@string/meeting_point"/>
 
                 <FrameLayout
+                    android:id="@+id/map_tour_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_tour_meeting_point"
@@ -277,6 +278,15 @@
                     android:layout_height="200dp"
                    />
                 </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_tour_meeting_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    style="@style/BasicText"
+                    android:layout_below="@id/map_tour_container"/>
+
             </RelativeLayout>
 
             <ToggleButton
