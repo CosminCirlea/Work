@@ -142,36 +142,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(final GoogleMap map) {
-        map.addMarker(new MarkerOptions().position(new LatLng(mMeetingPoint.latitude, mMeetingPoint.longitude)).title("Meeting point"));
-        //getMyLocation();
-    }
-
-    private Location getMyLocation() {
-        // Get location from GPS if it's available
-        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return null;
-        }
-        Location myLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-        // Location wasn't found, check the next most accurate place for the current location
-        if (myLocation == null) {
-            Criteria criteria = new Criteria();
-            criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-            // Finds a provider that matches the criteria
-            String provider = lm.getBestProvider(criteria, true);
-            // Use the provider to get the last known location
-            myLocation = lm.getLastKnownLocation(provider);
-        }
-
-        return myLocation;
+        //map.addMarker(new MarkerOptions().position(new LatLng(mMeetingPoint.latitude, mMeetingPoint.longitude)).title("Meeting point"));
     }
 
     @Override
