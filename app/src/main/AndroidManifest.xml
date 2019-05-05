@@ -34,7 +34,7 @@
             android:name=".Activities.ActivityHome"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.EditProfileActivity"
+            android:name=".Activities.SplashActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.MyToursActivity"
@@ -79,7 +79,7 @@
             android:name=".Activities.ActivityLogin"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.SplashActivity"
+            android:name=".Activities.EditProfileActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

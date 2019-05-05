@@ -7,11 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".Activities.EditProfileActivity">
 
-    <include
+    <include layout="@layout/toolbar_with_back_button"/>
+
+    <com.squareup.timessquare.CalendarPickerView
+        android:id="@+id/calendar_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/row_profile_picture"/>
-
-
+        android:layout_height="350dp"
+        android:layout_margin="10dp"
+        app:
+        android:layout_below="@+id/toolbar_with_back_button"
+        />
 
 </RelativeLayout>
