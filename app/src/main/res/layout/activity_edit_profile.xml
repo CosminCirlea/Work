@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:layout_margin="10dp"
-        app:
         android:layout_below="@+id/toolbar_with_back_button"
         />
 

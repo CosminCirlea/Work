@@ -21,7 +21,6 @@ import javax.xml.datatype.Duration;
 
 public class EditProfileActivity extends BaseAppCompat {
 
-    private CalendarPickerView mCalendarPicker;
     private List<Date> mSelectedDates;
 
     @Override
@@ -46,7 +45,6 @@ public class EditProfileActivity extends BaseAppCompat {
             @Override
             public boolean isDateSelectable(Date date) {
                 if (date.equals(tomorrow)) {
-                    datePicker.setDecorators(new ArrayList<CalendarCellDecorator>());
                     return false;
                 }
                 else
@@ -62,7 +60,7 @@ public class EditProfileActivity extends BaseAppCompat {
                 mCalendar.setTime(date);
                 int days = daysBetween(mSelectedDates.get(0), mSelectedDates.get(mSelectedDates.size()-1));
 
-                String selectedDate = String.valueOf(days);
+                String selectedDate = String.valueOf(days+1);
                 Toast.makeText(EditProfileActivity.this, selectedDate, Toast.LENGTH_SHORT).show();
             }
 
@@ -79,6 +77,5 @@ public class EditProfileActivity extends BaseAppCompat {
 
     private void InitializeViews()
     {
-        mCalendarPicker = findViewById(R.id.calendar_view);
     }
 }
