@@ -31,4 +31,6 @@
     <string name="meeting_map_point">Choose point on map</string>
     <string name="next_text">Next</string>
     <string name="finish_text">Finish</string>
+    <string name="message_text">Message</string>
+    <string name="parking_spots">Parking spots</string>
 </resources>

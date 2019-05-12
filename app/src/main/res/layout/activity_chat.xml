@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.ChatActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/toolbar_with_back_button"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_chat_send_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="4dp"
+            android:clickable="true"
+            app:fabSize="mini"
+            android:src="@drawable/ic_send_message"
+            />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar_with_back_button"
+            android:layout_above="@id/et_chat_message_input">
+
+        </ListView>
+
+
+        <EditText
+            android:id="@+id/et_chat_message_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:hint="@string/message_text"
+            style="@style/BasicText"
+            android:layout_toStartOf="@+id/fab_chat_send_message"
+            android:layout_marginStart="10dp"/>
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

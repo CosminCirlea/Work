@@ -80,7 +80,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 1);
 
-        final CalendarPickerView datePicker = findViewById(R.id.calendar_view);
+       /* final CalendarPickerView datePicker = findViewById(R.id.calendar_view);
         Date today = new Date();
         final Date tomorrow = new GregorianCalendar(2019, Calendar.MAY, 11).getTime();
 
@@ -113,7 +113,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
             public void onDateUnselected(Date date) {
 
             }
-        });
+        });*/
     }
 
     public int daysBetween(Date d1, Date d2){
