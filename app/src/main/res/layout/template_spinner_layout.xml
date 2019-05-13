@@ -8,5 +8,5 @@
     android:layout_height="wrap_content"
     android:textSize="18sp"
     android:gravity="left"
-    android:textColor="#000"
+    android:textColor="@color/colorPrimary"
     />

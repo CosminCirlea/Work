@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.AddParkingActivity1"></activity>
+        <activity android:name=".Activities.SplashActivity"></activity>
+        <activity android:name=".Activities.AddParkingActivity1" />
         <activity android:name=".Activities.CheckOutActivity" />
         <activity android:name=".Activities.ChatActivity" />
         <activity android:name=".Activities.AddTour4Activity" />
@@ -84,7 +85,7 @@
             android:name=".Activities.ActivityLogin"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.SplashActivity"
+            android:name=".Activities.ToursFilterActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

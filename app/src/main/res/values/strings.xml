@@ -33,4 +33,10 @@
     <string name="finish_text">Finish</string>
     <string name="message_text">Message</string>
     <string name="parking_spots">Parking spots</string>
+    <string name="save_text">Save</string>
+    <string name="maximum_price_text">Maximum price</string>
+    <string name="city_text">City</string>
+    <string name="region_text">Region</string>
+    <string name="country_text">Country</string>
+    <string name="tour_type_text">Type (walking, bike, car)</string>
 </resources>

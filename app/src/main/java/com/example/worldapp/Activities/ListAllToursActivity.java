@@ -1,12 +1,15 @@
 package com.example.worldapp.Activities;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.worldapp.Adapters.MyToursListingsAdapter;
@@ -28,6 +31,8 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
     RecyclerView recyclerView;
     ArrayList<GuidedToursModel> mTourList;
     MyToursListingsAdapter mTourAdapter;
+    private Button mFilterButton;
+    private ArrayList<String> mFilterValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,9 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
         } catch (NullPointerException e) {
         }
         setContentView(R.layout.activity_list_all_tours);
+        InitializeViews();
+        SetFilters();
+
         recyclerView = findViewById(R.id.rv_listed_tours);
         recyclerView.setLayoutManager( new LinearLayoutManager(ListAllToursActivity.this));
 
@@ -62,6 +70,19 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
                 Toast.makeText(ListAllToursActivity.this, "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
             }
         });
+
+        mFilterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ListAllToursActivity.this, ToursFilterActivity.class));
+            }
+        });
+    }
+
+    private void SetFilters()
+    {
+        Intent myIntent = getIntent();
+        mFilterValues = myIntent.getStringArrayListExtra("filters");
     }
 
     @Override
@@ -82,5 +103,10 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
         }
         mTourAdapter.updateList(newList);
         return true;
+    }
+
+    private void InitializeViews()
+    {
+        mFilterButton = findViewById(R.id.btn_toolbar_filter);
     }
 }

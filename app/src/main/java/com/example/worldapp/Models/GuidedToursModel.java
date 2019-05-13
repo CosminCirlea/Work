@@ -19,6 +19,7 @@ public class GuidedToursModel {
     private Double mMeetingPointLongitude;
     private Double mMeetingPointLatitude;
     private String mMeetingLocation;
+    private int mToursBookedNumber;
 
     public GuidedToursModel()
     {
@@ -77,6 +78,14 @@ public class GuidedToursModel {
 
     public String getmTourImageUrl() {
         return mTourImageUrl;
+    }
+
+    public int getmToursBookedNumber() {
+        return mToursBookedNumber;
+    }
+
+    public void setmToursBookedNumber(int mToursBookedNumber) {
+        this.mToursBookedNumber = mToursBookedNumber;
     }
 
     public void setmTourImageUrl(String mTourImage) {

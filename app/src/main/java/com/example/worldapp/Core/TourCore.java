@@ -20,6 +20,7 @@ public class TourCore {
     private Double mMeetingPointLongitude;
     private Double mMeetingPointLatitude;
     private String mMeetingLocation;
+    private int mmToursBookedNumber;
 
     public static TourCore Instance()
     {
@@ -28,6 +29,14 @@ public class TourCore {
             mTourCore = new TourCore();
         }
         return mTourCore;
+    }
+
+    public int getMmToursBookedNumber() {
+        return mmToursBookedNumber;
+    }
+
+    public void setMmToursBookedNumber(int mmToursBookedNumber) {
+        this.mmToursBookedNumber = mmToursBookedNumber;
     }
 
     public double getmRating() {
