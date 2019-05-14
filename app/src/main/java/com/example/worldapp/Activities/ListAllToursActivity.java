@@ -33,6 +33,7 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
     MyToursListingsAdapter mTourAdapter;
     private Button mFilterButton;
     private String[] mFilterValues;
+    private ArrayList<String> mFiltersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,6 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
         }
         setContentView(R.layout.activity_list_all_tours);
         InitializeViews();
-        SetFilters();
 
         recyclerView = findViewById(R.id.rv_listed_tours);
         recyclerView.setLayoutManager( new LinearLayoutManager(ListAllToursActivity.this));
@@ -76,40 +76,43 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
         mFilterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ListAllToursActivity.this, ToursFilterActivity.class));
+                Intent myIntent = new Intent(ListAllToursActivity.this, ToursFilterActivity.class);
+                myIntent.putStringArrayListExtra("alreadyFiltered", mFiltersList);
+                startActivity(myIntent);
             }
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SetFilters();
+    }
+
     private boolean IsMatchingFilter(GuidedToursModel tour, String[] filter)
     {
-        if (!tour.getmTourCountry().toLowerCase().contains(filter[0].toLowerCase()))
-        {
-            return false;
-        }
-        if (!tour.getmTourRegion().toLowerCase().contains(filter[1].toLowerCase()))
-         {
-            return false;
-         }
-        if (!tour.getmTourCity().toLowerCase().contains(filter[2].toLowerCase()))
-        {
-            return false;
-        }
-        if (!tour.getmTourType().toLowerCase().contains(filter[4].toLowerCase()))
-        {
-            return false;
-        }
-        int price;
-        try
-        {
-            price = Integer.parseInt(filter[3]);
-        }
-        catch (Exception e)
-        {
-            price = Integer.MAX_VALUE;
-        }
-        if (tour.getmTourPrice() > price) {
-            return false;
+        if (filter!=null) {
+            if (!tour.getmTourCountry().toLowerCase().contains(filter[0].toLowerCase())) {
+                return false;
+            }
+            if (!tour.getmTourRegion().toLowerCase().contains(filter[1].toLowerCase())) {
+                return false;
+            }
+            if (!tour.getmTourCity().toLowerCase().contains(filter[2].toLowerCase())) {
+                return false;
+            }
+            if (!tour.getmTourType().toLowerCase().contains(filter[4].toLowerCase()) && !filter[4].toLowerCase().contains("all")) {
+                return false;
+            }
+            int price;
+            try {
+                price = Integer.parseInt(filter[3]);
+            } catch (Exception e) {
+                price = Integer.MAX_VALUE;
+            }
+            if (tour.getmTourPrice() > price) {
+                return false;
+            }
         }
         return true;
     }
@@ -117,9 +120,12 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
     private void SetFilters()
     {
         Intent myIntent = getIntent();
-        ArrayList<String> itemsList = myIntent.getStringArrayListExtra("filters");
-        mFilterValues = new String[itemsList.size()];
-        mFilterValues = itemsList.toArray(mFilterValues);
+        mFiltersList = myIntent.getStringArrayListExtra("filters");
+        if (mFiltersList!=null)
+        {
+            mFilterValues = new String[mFiltersList.size()];
+            mFilterValues = mFiltersList.toArray(mFilterValues);
+        }
     }
 
     @Override

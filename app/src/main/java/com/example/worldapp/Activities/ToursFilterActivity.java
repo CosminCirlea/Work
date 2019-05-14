@@ -3,7 +3,6 @@ package com.example.worldapp.Activities;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -20,8 +19,8 @@ public class ToursFilterActivity extends BaseAppCompat {
     private TextInputEditText mCountry, mRegion, mCity, mPrice;
     private Spinner mTypeSpinner;
     private FloatingActionButton mSearchButton;
-    private ArrayList<String> fieldValues;
-
+    private ArrayList<String> mFieldValues;
+    private String[] mFilterValues;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,31 +31,57 @@ public class ToursFilterActivity extends BaseAppCompat {
         setContentView(R.layout.activity_tours_filter);
         InitializeViews();
         SetSpinner();
+        SetFilters();
 
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 GetValues();
                 Intent myIntent = new Intent(ToursFilterActivity.this, ListAllToursActivity.class);
-                myIntent.putStringArrayListExtra("filters", fieldValues);
+                myIntent.putStringArrayListExtra("filters", mFieldValues);
                 startActivity(myIntent);
             }
         });
     }
 
+    private void SetFilters()
+    {
+        Intent myIntent = getIntent();
+        mFieldValues = myIntent.getStringArrayListExtra("alreadyFiltered");
+        if (mFieldValues != null) {
+            mFilterValues = new String[mFieldValues.size()];
+            mFilterValues = mFieldValues.toArray(mFilterValues);
+            SetFiltersValues();
+        }
+    }
+
+    private void SetFiltersValues()
+    {
+        mFilterValues = mFieldValues.toArray(mFilterValues);
+        SetEditTextValue(mCountry, mFilterValues[0]);
+        SetEditTextValue(mRegion, mFilterValues[1]);
+        SetEditTextValue(mCity, mFilterValues[2]);
+        SetEditTextValue(mPrice, mFilterValues[3]);
+    }
+
     private void GetValues()
     {
-        fieldValues = new ArrayList<>();
+        mFieldValues = new ArrayList<>();
         String country = GetEditTextValue(mCountry);
-        fieldValues.add(country);
+        mFieldValues.add(country);
         String region = GetEditTextValue(mRegion);
-        fieldValues.add(region);
+        mFieldValues.add(region);
         String city = GetEditTextValue(mCity);
-        fieldValues.add(city);
+        mFieldValues.add(city);
         String price = GetEditTextValue(mPrice);
-        fieldValues.add(price);
+        mFieldValues.add(price);
         String type = mTypeSpinner.getSelectedItem().toString();
-        fieldValues.add(type);
+        mFieldValues.add(type);
+    }
+
+    private void SetEditTextValue(TextInputEditText destination, String value)
+    {
+        destination.setText(value);
     }
 
     private String GetEditTextValue(TextInputEditText value)
@@ -69,7 +94,7 @@ public class ToursFilterActivity extends BaseAppCompat {
 
     private void SetSpinner()
     {
-        List<String> types = Arrays.asList("Walking", "Bike", "Car", "Boat","Other");
+        List<String> types = Arrays.asList("All","Walking", "Bike", "Car", "Boat","Other");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.template_spinner_layout, types);
         mTypeSpinner.setAdapter(adapter);
     }
