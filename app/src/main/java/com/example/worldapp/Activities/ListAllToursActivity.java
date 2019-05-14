@@ -32,7 +32,7 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
     ArrayList<GuidedToursModel> mTourList;
     MyToursListingsAdapter mTourAdapter;
     private Button mFilterButton;
-    private ArrayList<String> mFilterValues;
+    private String[] mFilterValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,9 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
                 {
                     GuidedToursModel mGuidedTour = dataSnapshot1.getValue(GuidedToursModel.class);
-                    mTourList.add(mGuidedTour);
+                    if (IsMatchingFilter(mGuidedTour, mFilterValues)) {
+                        mTourList.add(mGuidedTour);
+                    }
                 }
                 mTourAdapter = new MyToursListingsAdapter(ListAllToursActivity.this,mTourList);
                 recyclerView.setAdapter(mTourAdapter);
@@ -79,10 +81,45 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
         });
     }
 
+    private boolean IsMatchingFilter(GuidedToursModel tour, String[] filter)
+    {
+        if (!tour.getmTourCountry().toLowerCase().contains(filter[0].toLowerCase()))
+        {
+            return false;
+        }
+        if (!tour.getmTourRegion().toLowerCase().contains(filter[1].toLowerCase()))
+         {
+            return false;
+         }
+        if (!tour.getmTourCity().toLowerCase().contains(filter[2].toLowerCase()))
+        {
+            return false;
+        }
+        if (!tour.getmTourType().toLowerCase().contains(filter[4].toLowerCase()))
+        {
+            return false;
+        }
+        int price;
+        try
+        {
+            price = Integer.parseInt(filter[3]);
+        }
+        catch (Exception e)
+        {
+            price = Integer.MAX_VALUE;
+        }
+        if (tour.getmTourPrice() > price) {
+            return false;
+        }
+        return true;
+    }
+
     private void SetFilters()
     {
         Intent myIntent = getIntent();
-        mFilterValues = myIntent.getStringArrayListExtra("filters");
+        ArrayList<String> itemsList = myIntent.getStringArrayListExtra("filters");
+        mFilterValues = new String[itemsList.size()];
+        mFilterValues = itemsList.toArray(mFilterValues);
     }
 
     @Override
