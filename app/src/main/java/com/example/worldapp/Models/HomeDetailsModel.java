@@ -19,7 +19,6 @@ public class HomeDetailsModel {
     private String HomeId;
     private String UserId;
 
-
     public HomeDetailsModel(String announcementTitle, String city, String region, String country, String listingType, String ownerType, double pricePerNight, int RoomsToUse, double BedsToUse) {
         AnnouncementTitle = announcementTitle;
         City = city;

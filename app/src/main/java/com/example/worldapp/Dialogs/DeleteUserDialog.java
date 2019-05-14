@@ -1,4 +1,4 @@
-package com.example.worldapp.Activities;
+package com.example.worldapp.Dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

@@ -22,6 +22,7 @@ public class UserCore {
     private boolean IsLoggedIn;
     private ArrayList<GuidedToursModel> mFavoriteTours;
     private ArrayList<GuidedToursModel> mListedTours;
+    private ArrayList<BookingManager> mBooking;
 
     public static UserCore Instance()
     {
@@ -134,4 +135,11 @@ public class UserCore {
         this.FirebaseUser = mUser;
     }
 
+    public ArrayList<BookingManager> getmBooking() {
+        return mBooking;
+    }
+
+    public void setmBooking(ArrayList<BookingManager> mBooking) {
+        this.mBooking = mBooking;
+    }
 }

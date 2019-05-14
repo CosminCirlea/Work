@@ -1,12 +1,15 @@
 package com.example.worldapp.Activities;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.worldapp.Adapters.MyToursListingsAdapter;
@@ -28,6 +31,9 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
     RecyclerView recyclerView;
     ArrayList<GuidedToursModel> mTourList;
     MyToursListingsAdapter mTourAdapter;
+    private Button mFilterButton;
+    private String[] mFilterValues;
+    private ArrayList<String> mFiltersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,8 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
         } catch (NullPointerException e) {
         }
         setContentView(R.layout.activity_list_all_tours);
+        InitializeViews();
+
         recyclerView = findViewById(R.id.rv_listed_tours);
         recyclerView.setLayoutManager( new LinearLayoutManager(ListAllToursActivity.this));
 
@@ -51,7 +59,9 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
                 {
                     GuidedToursModel mGuidedTour = dataSnapshot1.getValue(GuidedToursModel.class);
-                    mTourList.add(mGuidedTour);
+                    if (IsMatchingFilter(mGuidedTour, mFilterValues)) {
+                        mTourList.add(mGuidedTour);
+                    }
                 }
                 mTourAdapter = new MyToursListingsAdapter(ListAllToursActivity.this,mTourList);
                 recyclerView.setAdapter(mTourAdapter);
@@ -62,6 +72,60 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
                 Toast.makeText(ListAllToursActivity.this, "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
             }
         });
+
+        mFilterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(ListAllToursActivity.this, ToursFilterActivity.class);
+                myIntent.putStringArrayListExtra("alreadyFiltered", mFiltersList);
+                startActivity(myIntent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SetFilters();
+    }
+
+    private boolean IsMatchingFilter(GuidedToursModel tour, String[] filter)
+    {
+        if (filter!=null) {
+            if (!tour.getmTourCountry().toLowerCase().contains(filter[0].toLowerCase())) {
+                return false;
+            }
+            if (!tour.getmTourRegion().toLowerCase().contains(filter[1].toLowerCase())) {
+                return false;
+            }
+            if (!tour.getmTourCity().toLowerCase().contains(filter[2].toLowerCase())) {
+                return false;
+            }
+            if (!tour.getmTourType().toLowerCase().contains(filter[4].toLowerCase()) && !filter[4].toLowerCase().contains("all")) {
+                return false;
+            }
+            int price;
+            try {
+                price = Integer.parseInt(filter[3]);
+            } catch (Exception e) {
+                price = Integer.MAX_VALUE;
+            }
+            if (tour.getmTourPrice() > price) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void SetFilters()
+    {
+        Intent myIntent = getIntent();
+        mFiltersList = myIntent.getStringArrayListExtra("filters");
+        if (mFiltersList!=null)
+        {
+            mFilterValues = new String[mFiltersList.size()];
+            mFilterValues = mFiltersList.toArray(mFilterValues);
+        }
     }
 
     @Override
@@ -82,5 +146,10 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
         }
         mTourAdapter.updateList(newList);
         return true;
+    }
+
+    private void InitializeViews()
+    {
+        mFilterButton = findViewById(R.id.btn_toolbar_filter);
     }
 }

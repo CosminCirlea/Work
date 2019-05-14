@@ -1,5 +1,6 @@
 package com.example.worldapp.Models;
 
+import com.example.worldapp.Core.BookingManager;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Helpers.FirebaseHelper;
 
@@ -15,6 +16,7 @@ public class UserDetailsModel {
     private String PhoneNumber;
     private ArrayList<GuidedToursModel> mFavoriteTours;
     private ArrayList<GuidedToursModel> mListedTours;
+    private ArrayList<BookingManager> mBooking;
 
     public UserDetailsModel() {
     }
@@ -108,5 +110,13 @@ public class UserDetailsModel {
         {
             FirebaseHelper.Instance().SyncUserData(getUserId());
         }
+    }
+
+    public ArrayList<BookingManager> getmBooking() {
+        return mBooking;
+    }
+
+    public void setmBooking(ArrayList<BookingManager> mBooking) {
+        this.mBooking = mBooking;
     }
 }

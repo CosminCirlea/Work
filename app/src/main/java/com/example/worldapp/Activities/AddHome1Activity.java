@@ -15,13 +15,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
 
-public class AddHome1Activity extends AppCompatActivity {
+public class AddHome1Activity extends BaseAppCompat {
 
     private Layout templateSpinner;
     private TextView mSpinnerTv;

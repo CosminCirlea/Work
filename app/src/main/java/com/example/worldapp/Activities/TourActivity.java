@@ -36,6 +36,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
+import com.squareup.timessquare.CalendarPickerView;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
@@ -47,6 +53,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     private String mUserID;
     private DatabaseReference mDatabaseReference;
     private LatLng mMeetingPoint;
+    private List<Date> mSelectedDates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +77,48 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         String aux = getIntent().getStringExtra(NavigationConstants.TOUR_MODEL_KEY);
         mTour = gson.fromJson(aux, GuidedToursModel.class);
         SetValues();
+        Calendar nextYear = Calendar.getInstance();
+        nextYear.add(Calendar.YEAR, 1);
+
+       /* final CalendarPickerView datePicker = findViewById(R.id.calendar_view);
+        Date today = new Date();
+        final Date tomorrow = new GregorianCalendar(2019, Calendar.MAY, 11).getTime();
+
+        datePicker.init(today, nextYear.getTime()).inMode(CalendarPickerView.SelectionMode.RANGE)
+                .withSelectedDate(today);
+        datePicker.setDateSelectableFilter(new CalendarPickerView.DateSelectableFilter() {
+            @Override
+            public boolean isDateSelectable(Date date) {
+                if (date.equals(tomorrow)) {
+                    return false;
+                }
+                else
+                    return true;
+            }
+        });
+        datePicker.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(Date date) {
+                mSelectedDates = datePicker.getSelectedDates();
+
+                Calendar mCalendar = Calendar.getInstance();
+                mCalendar.setTime(date);
+                int days = daysBetween(mSelectedDates.get(0), mSelectedDates.get(mSelectedDates.size()-1));
+
+                String selectedDate = String.valueOf(days+1);
+                Toast.makeText(TourActivity.this, selectedDate, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDateUnselected(Date date) {
+
+            }
+        });*/
     }
 
+    public int daysBetween(Date d1, Date d2){
+        return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+    }
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
