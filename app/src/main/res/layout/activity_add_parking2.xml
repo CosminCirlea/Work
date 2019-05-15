@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.AddParkingActivity2">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/toolbar_with_back_button"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/til_parking_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/BasicText"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_below="@+id/toolbar">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/et_parking_title"
+                    style="@style/BasicText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
+                    android:hint="Announcement title "/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/til_parking_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/BasicText"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_below="@+id/til_parking_title">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/et_parking_description"
+                    style="@style/BasicText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
+                    android:hint="Description "/>
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_parking_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BasicText"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/til_parking_description"
+                android:text="@string/parking_type_text"/>
+
+            <RadioGroup
+                android:id="@+id/radio_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:layout_below="@id/tv_parking_type">
+                <RadioButton
+                    android:id="@+id/radio_private"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/BasicText"
+                    android:checked="true"
+                    android:text="Private/home parking"
+                    android:onClick="onRadioButtonClicked"/>
+
+                <RadioButton
+                    android:id="@+id/radio_lot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/BasicText"
+                    android:text="Parking lot"
+                    android:onClick="onRadioButtonClicked"/>
+            </RadioGroup>
+
+            <View
+                android:id="@+id/view_separator"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="6dp"
+                android:background="@color/colorAccent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_below="@+id/radio_container"/>
+
+            <TextView
+                android:id="@+id/tv_parking_spots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Parkings spots"
+                style="@style/BasicText"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="10dp"
+                android:layout_below="@+id/view_separator"/>
+
+            <NumberPicker
+                android:id="@+id/number_picker_parking_spots"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginTop="4dp"
+                android:layout_centerHorizontal="true"
+                android:layout_toEndOf="@id/tv_parking_spots"
+                android:layout_below="@+id/view_separator"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/number_picker_parking_spots">
+
+                <TextView
+                    android:id="@+id/tv_parking_price_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price per "
+                    style="@style/BasicText"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"/>
+
+                <RadioGroup
+                    android:id="@+id/radio_price_container"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_toEndOf="@id/tv_parking_price_text"
+                    android:layout_margin="10dp">
+                    <RadioButton
+                        android:id="@+id/radio_day_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/BasicText"
+                        android:checked="true"
+                        android:text="Day"
+                        android:onClick="onRadioPriceButtonClicked"/>
+
+                    <RadioButton
+                        android:id="@+id/radio_hour_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/BasicText"
+                        android:text="Hour"
+                        android:onClick="onRadioPriceButtonClicked"/>
+                </RadioGroup>
+
+                <EditText
+                    android:id="@+id/et_parking_price"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/radio_price_container"
+                    android:inputType="numberDecimal"
+                    android:hint="@string/euro_sign"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/btn_add_tour_next_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/next_text"
+        style="@style/BasicText"
+        android:layout_margin="20dp"
+        android:background="@drawable/round_button"
+        android:onClick="GoToParking1" />
+
+</RelativeLayout>

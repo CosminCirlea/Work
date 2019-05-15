@@ -18,6 +18,7 @@ public class HomeDetailsModel {
     private String Amenities;
     private String HomeId;
     private String UserId;
+    private String[] mBookedDays;
 
     public HomeDetailsModel(String announcementTitle, String city, String region, String country, String listingType, String ownerType, double pricePerNight, int RoomsToUse, double BedsToUse) {
         AnnouncementTitle = announcementTitle;
@@ -120,6 +121,14 @@ public class HomeDetailsModel {
 
     public void setBedsToUse(double bedsToUse) {
         this.BedsToUse = bedsToUse;
+    }
+
+    public String[] getmBookedDays() {
+        return mBookedDays;
+    }
+
+    public void setmBookedDays(String[] mBookedDays) {
+        this.mBookedDays = mBookedDays;
     }
 
     public String getZipCode() {

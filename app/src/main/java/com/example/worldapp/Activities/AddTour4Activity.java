@@ -21,7 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AddTour4Activity extends BaseAppCompat implements OnMapReadyCallback {
-    private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
+    private static final String MAPVIEW_BUNDLE_KEY1 = "MapViewBundleKey";
     private EditText mMeetingLocation;
     private MapView mMapView;
     private LatLng mMeetingPoint;
@@ -40,7 +40,7 @@ public class AddTour4Activity extends BaseAppCompat implements OnMapReadyCallbac
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
-            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
+            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY1);
         }
 
         mMapView.onCreate(mapViewBundle);
@@ -48,7 +48,6 @@ public class AddTour4Activity extends BaseAppCompat implements OnMapReadyCallbac
 
         mTourID = TourCore.Instance().getmTourId();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("Tours");
-
     }
 
     public void RegisterTour(View view) {
@@ -122,13 +121,11 @@ public class AddTour4Activity extends BaseAppCompat implements OnMapReadyCallbac
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
-        Bundle mapViewBundle = outState.getBundle(MAPVIEW_BUNDLE_KEY);
+        Bundle mapViewBundle = outState.getBundle(MAPVIEW_BUNDLE_KEY1);
         if (mapViewBundle == null) {
             mapViewBundle = new Bundle();
-            outState.putBundle(MAPVIEW_BUNDLE_KEY, mapViewBundle);
+            outState.putBundle(MAPVIEW_BUNDLE_KEY1, mapViewBundle);
         }
-
         mMapView.onSaveInstanceState(mapViewBundle);
     }
 }

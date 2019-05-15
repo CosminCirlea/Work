@@ -41,4 +41,6 @@
     <string name="tour_type_text">Type (walking, bike, car)</string>
     <string name="parkings_text">Parkings</string>
     <string name="parking_type_text">Parking type</string>
+    <string name="parking_location_text">Parking location</string>
+    <string name="euro_sign"><![CDATA[&#8364]]></string>
 </resources>

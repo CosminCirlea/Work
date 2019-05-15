@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activities.MyParkingsActivity">
+
+    <include layout="@layout/toolbar_with_back_button"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_my_listed_parkings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar_with_back_button"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"/>
+
+    <TextView
+        android:id="@+id/tv_my_listed_parkings_no_parkings_text"
+        style="@style/BasicText"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:visibility="invisible"
+        android:text="@string/no_tour_text"/>
+
+    <TextView
+        android:id="@+id/tv_my_listed_tours_add_tour_text"
+        style="@style/BasicText"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv_my_listed_tours_no_tour_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:visibility="invisible"
+        android:text="@string/add_tour_text"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add_tour"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom|end"
+        android:background="@color/yellowColor"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="16dp"/>
+
+</RelativeLayout>
