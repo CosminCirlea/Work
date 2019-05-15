@@ -44,6 +44,7 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
         }
         setContentView(R.layout.activity_list_all_tours);
         InitializeViews();
+        super.SetToolbarTitle("Tours");
 
         recyclerView = findViewById(R.id.rv_listed_tours);
         recyclerView.setLayoutManager( new LinearLayoutManager(ListAllToursActivity.this));

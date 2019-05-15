@@ -96,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:orientation="vertical"
-            android:onClick="ShowTours"
+            android:onClick="ShowParkings"
             android:layout_margin="8dp">
 
             <RelativeLayout

@@ -4,12 +4,16 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Core.ParkingCore;
+import com.example.worldapp.Core.TourCore;
+import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -17,12 +21,19 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.UUID;
 
 public class AddParkingActivity1 extends BaseAppCompat implements OnMapReadyCallback {
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey1";
     private MapView mMapView;
-    private LatLng mMeetingPoint;
+    private EditText mSecurityDetails, mRestrictions;
+    private LatLng mParkingLocation;
     private LatLng mZoomPoint;
+    private DatabaseReference mDatabaseReference;
+    private String mParkingID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +65,35 @@ public class AddParkingActivity1 extends BaseAppCompat implements OnMapReadyCall
                 map.clear();
                 MarkerOptions marker = new MarkerOptions().position(
                         new LatLng(point.latitude, point.longitude)).title("Parking location");
-                mMeetingPoint= point;
+                mParkingLocation= point;
                 map.addMarker(marker);
             }
         });
+    }
+
+    private void GetValues()
+    {
+        String details = mSecurityDetails.getText().toString();
+        String restrictions = mRestrictions.getText().toString();
+        mParkingID = UUID.randomUUID().toString();
+
+        ParkingCore.Instance().setmSecurityDetails(details);
+        ParkingCore.Instance().setmRestrictions(restrictions);
+        ParkingCore.Instance().setmLatitude(mParkingLocation.latitude);
+        ParkingCore.Instance().setmLongitude(mParkingLocation.longitude);
+        ParkingCore.Instance().setmOwnerID(UserCore.Instance().getUserId());
+        ParkingCore.Instance().setmParkingID(mParkingID);
+
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("Parkings");
+        mDatabaseReference.child(mParkingID).setValue(ParkingCore.Instance());
     }
 
     private void InitializeViews()
     {
         mMapView = findViewById(R.id.map_add_parking);
         mZoomPoint = new LatLng(47.61328,18.69477);
+        mSecurityDetails = findViewById(R.id.et_parking_security);
+        mRestrictions = findViewById(R.id.et_parking_restrictions);
     }
 
     @Override
@@ -115,5 +145,8 @@ public class AddParkingActivity1 extends BaseAppCompat implements OnMapReadyCall
     }
 
     public void RegisterParking(View view) {
+        GetValues();
+        startActivity(new Intent(AddParkingActivity1.this, ActivityHome.class));
+        Toast.makeText(this, "Parking added!", Toast.LENGTH_SHORT).show();
     }
 }

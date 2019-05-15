@@ -17,7 +17,8 @@ public class AddParkingActivity2 extends BaseAppCompat {
     private NumberPicker mParkingSpotsPicker;
     private RadioGroup mRadioGroup;
     private double mParkingPrice;
-    private EditText mPriceEt;
+    private EditText mPriceEt, mAnnouncementTitle, mDescription;
+    private int mPriceType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,9 +64,31 @@ public class AddParkingActivity2 extends BaseAppCompat {
         mParkingSpotsPicker = findViewById(R.id.number_picker_parking_spots);
         mRadioGroup = findViewById(R.id.radio_container);
         mPriceEt = findViewById(R.id.et_parking_price);
+        mAnnouncementTitle = findViewById(R.id.et_parking_title);
+        mDescription = findViewById(R.id.et_parking_description);
+    }
+
+    private void GetValues()
+    {
+        String title = mAnnouncementTitle.getText().toString();
+        String description = mDescription.getText().toString();
+        int spots = mParkingSpotsPicker.getValue();
+
+        if (mPriceType == NavigationConstants.PRIVATE_PARKING_PRICE_HOUR) {
+            ParkingCore.Instance().setmPricePerHour(mParkingPrice);
+            ParkingCore.Instance().setmPricePerDay(0);
+        }
+        if (mPriceType == NavigationConstants.PRIVATE_PARKING_PRICE_DAY) {
+            ParkingCore.Instance().setmPricePerDay(mParkingPrice);
+            ParkingCore.Instance().setmPricePerHour(0);
+        }
+        ParkingCore.Instance().setmTitle(title);
+        ParkingCore.Instance().setmDescription(description);
+        ParkingCore.Instance().setmSpotsNumber(spots);
     }
 
     public void GoToParking1(View view) {
+        GetValues();
         startActivity(new Intent(AddParkingActivity2.this, AddParkingActivity1.class));
     }
 
@@ -74,14 +97,18 @@ public class AddParkingActivity2 extends BaseAppCompat {
         switch(view.getId()) {
             case R.id.radio_day_price:
                 if (checked) {
-                    mPriceEt.setText("");
-                    mParkingPrice = Integer.parseInt(mPriceEt.getText().toString());
+                    if (!mPriceEt.getText().toString().contains("")) {
+                        mParkingPrice = Double.parseDouble(mPriceEt.getText().toString());
+                        mPriceType = NavigationConstants.PRIVATE_PARKING_PRICE_DAY;
+                    }
                 }
                 break;
             case R.id.radio_hour_price:
                 if (checked) {
-                    mPriceEt.setText("");
-                    mParkingPrice = Integer.parseInt(mPriceEt.getText().toString());
+                    if (!mPriceEt.getText().toString().contains("")) {
+                        mParkingPrice = Double.parseDouble(mPriceEt.getText().toString());
+                        mPriceType = NavigationConstants.PRIVATE_PARKING_PRICE_HOUR;
+                    }
                 }
                 break;
         }

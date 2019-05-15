@@ -9,5 +9,6 @@ public final class NavigationConstants {
     public static final int PARKING_LOT = 11;
     public static final int PRIVATE_PARKING_MAX_SPOTS = 5;
     public static final int PARKING_LOT_MAX_SPOTS = 1000;
-
+    public static final int PRIVATE_PARKING_PRICE_DAY = 100;
+    public static final int PRIVATE_PARKING_PRICE_HOUR = 101;
 }

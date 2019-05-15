@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.MyParkingsActivity"></activity>
+        <activity android:name=".Activities.ListParkingsActivity"></activity>
+        <activity android:name=".Activities.MyParkingsActivity" />
         <activity android:name=".Activities.AddParkingActivity1" />
         <activity android:name=".Activities.ToursFilterActivity" />
         <activity android:name=".Activities.SplashActivity" />

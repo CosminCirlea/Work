@@ -10,11 +10,11 @@ public class ParkingCore {
     private String mRestrictions;
     private int mType;
     private int mSpotsNumber;
-    private int mPricePerDay;
+    private double mPricePerDay;
     private double mPricePerHour;
     private String[] mBookedDays;
-    private UUID mParkingID;
-    private UUID mOwnerID;
+    private String mParkingID;
+    private String mOwnerID;
     private Double mLongitude;
     private Double mLatitude;
 
@@ -28,11 +28,11 @@ public class ParkingCore {
     }
 
 
-    public int getmPricePerDay() {
+    public double getmPricePerDay() {
         return mPricePerDay;
     }
 
-    public void setmPricePerDay(int mPricePerDay) {
+    public void setmPricePerDay(double mPricePerDay) {
         this.mPricePerDay = mPricePerDay;
     }
 
@@ -44,19 +44,19 @@ public class ParkingCore {
         this.mBookedDays = mBookedDays;
     }
 
-    public UUID getmParkingID() {
+    public String getmParkingID() {
         return mParkingID;
     }
 
-    public void setmParkingID(UUID mParkingID) {
+    public void setmParkingID(String mParkingID) {
         this.mParkingID = mParkingID;
     }
 
-    public UUID getmOwnerID() {
+    public String getmOwnerID() {
         return mOwnerID;
     }
 
-    public void setmOwnerID(UUID mOwnerID) {
+    public void setmOwnerID(String mOwnerID) {
         this.mOwnerID = mOwnerID;
     }
 

@@ -9,7 +9,7 @@ public class ParkingModel {
     private String mRestrictions;
     private int mType;
     private int mSpotsNumber;
-    private int mPricePerDay;
+    private double mPricePerDay;
     private double mPricePerHour;
     private String[] mBookedDays;
     private UUID mParkingID;
@@ -81,7 +81,7 @@ public class ParkingModel {
         this.mSpotsNumber = mSpotsNumber;
     }
 
-    public int getmPricePerDay() {
+    public double getmPricePerDay() {
         return mPricePerDay;
     }
 
