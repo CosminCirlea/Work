@@ -39,4 +39,6 @@
     <string name="region_text">Region</string>
     <string name="country_text">Country</string>
     <string name="tour_type_text">Type (walking, bike, car)</string>
+    <string name="parkings_text">Parkings</string>
+    <string name="parking_type_text">Parking type</string>
 </resources>

@@ -12,31 +12,65 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_with_back_button">
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent">
+            android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_parking_type"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true">
+            style="@style/BasicText"
+            android:layout_margin="10dp"
+            android:text="@string/parking_type_text"/>
 
-         <TextView
-             android:id="@+id/tv_parking_spots"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="@string/parking_spots"
-             style="@style/BasicText"/>
+            <RadioGroup
+                android:id="@+id/radio_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:layout_below="@id/tv_parking_type">
+                <RadioButton
+                    android:id="@+id/radio_private"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/BasicText"
+                    android:text="Private/home parking"
+                    android:onClick="onRadioButtonClicked"/>
 
-        <NumberPicker
-            android:id="@+id/np_parking_spots"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@+id/tv_parking_spots"/>
-        </RelativeLayout>
+                <RadioButton
+                    android:id="@+id/radio_lot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    style="@style/BasicText"
+                    android:text="Parking lot"
+                    android:onClick="onRadioButtonClicked"/>
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv_parking_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BasicText"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/radio_container"
+                android:text="@string/parking_type_text"/>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_parking_location"
+                android:layout_marginTop="20dp">
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/map_add_tour"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    />
+            </FrameLayout>
+
         </RelativeLayout>
 
     </ScrollView>
