@@ -24,7 +24,7 @@
         <activity android:name=".Activities.MyParkingsActivity" />
         <activity android:name=".Activities.AddParkingActivity1" />
         <activity android:name=".Activities.ToursFilterActivity" />
-        <activity android:name=".Activities.SplashActivity" />
+        <activity android:name=".Activities.AddParkingActivity2" />
         <activity android:name=".Activities.CheckOutActivity" />
         <activity android:name=".Activities.ChatActivity" />
         <activity android:name=".Activities.AddTour4Activity" />
@@ -88,7 +88,7 @@
             android:name=".Activities.ActivityLogin"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.AddParkingActivity2"
+            android:name=".Activities.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

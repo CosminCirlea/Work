@@ -21,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/BasicText"
+        android:background="@drawable/round_button"
         android:onClick="LogInWithEmail"
         android:text="Log in with Email"/>
 
@@ -28,6 +29,8 @@
         android:id="@+id/btn_login_with_facebook"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         style="@style/BasicText"
+        android:background="@drawable/round_button"
         android:text="Log in with Facebook"/>
 </LinearLayout>

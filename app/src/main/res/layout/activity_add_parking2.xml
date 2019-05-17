@@ -177,6 +177,15 @@
                     android:layout_toEndOf="@id/radio_price_container"
                     android:inputType="numberDecimal"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/BasicText"
+                    android:text="/parking"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@id/et_parking_price"/>
+
             </RelativeLayout>
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
