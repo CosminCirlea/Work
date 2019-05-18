@@ -10,13 +10,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Constants.ConstantValues;
 import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Helpers.Converters;
-import com.example.worldapp.Helpers.FirebaseHelper;
 import com.example.worldapp.Models.TourBookingManager;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.Models.UserDetailsModel;
@@ -34,9 +32,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
@@ -48,9 +48,9 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     private GuidedToursModel mTour;
     private UserDetailsModel mTourOwner, mAuxUser;
     private String mOwnerId;
-    DatabaseReference mDatabaseReference, mUsersDatabase;
+    DatabaseReference mDatabaseReference, mUsersDatabase, mBookingDatabase;
     private LatLng mMeetingPoint;
-
+    ArrayList<String> mExistingBookingManagers = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +77,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 1);
 
+        mBookingDatabase = FirebaseDatabase.getInstance().getReference().child("BookingManager");
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("users");
         mUsersDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -221,8 +222,8 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
             mManager.setmTotalPrice(mTotalPrice);
             mManager.setmBookingDates(date);
             mManager.setmStatus(ConstantValues.BOOKING_PENDING);
-            mDatabaseReference = FirebaseDatabase.getInstance().getReference("BookingManager");
-            mDatabaseReference.child(newBookingManager.toString()).setValue(mManager);
+            mBookingDatabase.child(newBookingManager.toString()).setValue(mManager);
+            updateBookingManager(mManager);
         }
         else
         {
@@ -233,22 +234,16 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         }
     }
 
-    public void selectedDates()
+    public void updateBookingManager(TourBookingManager mManager)
     {
-        Date today = new Date();
-        Date tomorrow = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(today);
-        c.add(Calendar.DATE, 1);
-        today = c.getTime();
-        c.add(Calendar.DATE,1);
-        tomorrow = c.getTime();
-        String[] aux =
-                {
-                        today.toString(),
-                        tomorrow.toString()
-                };
-
+        if (mTourOwner.getmBooking()!=null) {
+            mExistingBookingManagers = mTourOwner.getmBooking();
+        }
+        mExistingBookingManagers.add(mManager.getmBookingId());
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("mBookingManager", mExistingBookingManagers);
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(mTourOwner.getUserId());
+        mDatabaseReference.updateChildren(map);
     }
 
     public void GoToOwner(View view) {
