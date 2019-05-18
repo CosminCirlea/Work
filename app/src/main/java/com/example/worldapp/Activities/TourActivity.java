@@ -86,7 +86,8 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
                     if (mAuxUser.getUserId().equals(mOwnerId))
                     {
                         mTourOwner = mAuxUser;
-                        mOwnerName.setText(mTourOwner.getName());
+                        String fullName= mTourOwner.getFirstname()+" "+mTourOwner.getName();
+                        mOwnerName.setText(fullName);
                         Glide.with(getApplicationContext()).load(mTourOwner.getImageUri()).into(mOwnerImage);
                     }
                 }

@@ -215,6 +215,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:background="@color/containerColor"
                     android:layout_below="@+id/tv_tour_owner_text"
                     android:onClick="GoToOwner">
 

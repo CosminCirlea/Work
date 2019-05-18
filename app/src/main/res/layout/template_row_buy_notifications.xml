@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp">
+
+    <TextView
+        android:id="@+id/tv_notifications_buyer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sandor clegane"
+        style="@style/BasicText"/>
+
+    <TextView
+        android:id="@+id/tv_notifications_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="wants to book your "
+        android:layout_toEndOf="@+id/tv_notifications_buyer_name"
+        style="@style/BasicText"/>
+
+    <TextView
+        android:id="@+id/tv_notifications_booking_day_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BasicText"
+        android:layout_below="@+id/tv_notifications_buyer_name"
+        android:text="Day of booking : "/>
+
+    <TextView
+        android:id="@+id/tv_notifications_booking_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BasicText"
+        android:layout_toEndOf="@id/tv_notifications_booking_day_text"
+        android:layout_below="@+id/tv_notifications_buyer_name"
+        android:text="13 JUN 2019"/>
+
+    <TextView
+        android:id="@+id/tv_notifications_price_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BasicText"
+        android:layout_below="@+id/tv_notifications_booking_day_text"
+        android:text="Your income : "/>
+
+</RelativeLayout>
