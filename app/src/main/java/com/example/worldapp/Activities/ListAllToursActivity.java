@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ListAllToursActivity extends BaseAppCompat implements SearchView.OnQueryTextListener {
@@ -113,6 +114,14 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
             }
             if (tour.getmTourPrice() > price) {
                 return false;
+            }
+
+            if (tour.getmBookedDates()!=null) {
+                String[] bookedDates = tour.getmBookedDates();
+                if(Arrays.asList(bookedDates).contains(filter[5]))
+                {
+                    return false;
+                }
             }
         }
         return true;

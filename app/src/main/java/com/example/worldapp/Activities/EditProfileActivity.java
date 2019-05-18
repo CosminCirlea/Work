@@ -51,6 +51,7 @@ public class EditProfileActivity extends BaseAppCompat {
                     return true;
             }
         });
+
         datePicker.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
             @Override
             public void onDateSelected(Date date) {

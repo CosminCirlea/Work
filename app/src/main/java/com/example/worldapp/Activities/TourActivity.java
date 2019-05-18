@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Constants.ConstantValues;
 import com.example.worldapp.Constants.NavigationConstants;
+import com.example.worldapp.Core.TourCore;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Helpers.Converters;
 import com.example.worldapp.Models.TourBookingManager;
@@ -222,8 +223,12 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
             mManager.setmTotalPrice(mTotalPrice);
             mManager.setmBookingDates(date);
             mManager.setmStatus(ConstantValues.BOOKING_PENDING);
+            mManager.setmAnnouncementTitle(mTour.getmTourTitle());
+            mManager.setmBuyerName(UserCore.Instance().getName());
+            mManager.setmOwnerName(mTourOwner.getName());
             mBookingDatabase.child(newBookingManager.toString()).setValue(mManager);
-            updateBookingManager(mManager);
+            updateBookingManager(mManager, mTourOwner);
+            updateBookingManager(mManager, UserCore.Instance().getmUser());
         }
         else
         {
@@ -234,15 +239,15 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         }
     }
 
-    public void updateBookingManager(TourBookingManager mManager)
+    public void updateBookingManager(TourBookingManager mManager, UserDetailsModel mUser)
     {
-        if (mTourOwner.getmBooking()!=null) {
-            mExistingBookingManagers = mTourOwner.getmBooking();
+        if (mUser.getmBooking()!=null) {
+            mExistingBookingManagers = mUser.getmBooking();
         }
         mExistingBookingManagers.add(mManager.getmBookingId());
         HashMap<String, Object> map = new HashMap<>();
         map.put("mBookingManager", mExistingBookingManagers);
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(mTourOwner.getUserId());
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(mUser.getUserId());
         mDatabaseReference.updateChildren(map);
     }
 
