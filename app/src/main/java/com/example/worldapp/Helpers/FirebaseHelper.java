@@ -3,10 +3,12 @@ package com.example.worldapp.Helpers;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.worldapp.Activities.ListAllToursActivity;
 import com.example.worldapp.Adapters.MyToursListingsAdapter;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Models.GuidedToursModel;
+import com.example.worldapp.Models.UserDetailsModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -14,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class FirebaseHelper {
 
@@ -21,9 +24,12 @@ public class FirebaseHelper {
     private DatabaseReference mToursDatabaseReference;
     private FirebaseDatabase mDatabase;
     private DatabaseReference mDatabaseReference;
+    private DatabaseReference mUserDatabase;
+    private UserDetailsModel mUser, mAuxUser;
 
     public FirebaseHelper()
     {
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("users");
         mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours");
     }
 
@@ -35,6 +41,9 @@ public class FirebaseHelper {
         }
         return mFirebaseHelper;
     }
+
+
+
 
     //todo not working properly
     public ArrayList<GuidedToursModel> GetAllTours(final ArrayList<GuidedToursModel> tours)

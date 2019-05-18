@@ -108,4 +108,8 @@ public class ToursFilterActivity extends BaseAppCompat {
         mSearchButton = findViewById(R.id.btn_filter_save);
         mTypeSpinner = findViewById(R.id.spinner_filter_tour_type);
     }
+
+    public void SelectDates(View view) {
+
+    }
 }

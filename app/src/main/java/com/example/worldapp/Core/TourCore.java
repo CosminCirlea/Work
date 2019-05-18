@@ -18,24 +18,27 @@ public class TourCore {
     private Double mMeetingPointLongitude;
     private Double mMeetingPointLatitude;
     private String mMeetingLocation;
-    private int mmToursBookedNumber;
-    private String[] mBookedDays;
+    private int mToursBookedNumber =0;
+    private int mToursGrades =0;
+    private double mToursRating = 0;
+    private static String[] mBookedDates;
 
     public static TourCore Instance()
     {
         if (mTourCore == null)
         {
             mTourCore = new TourCore();
+            mBookedDates[0]="";
         }
         return mTourCore;
     }
 
-    public int getMmToursBookedNumber() {
-        return mmToursBookedNumber;
+    public int getmToursBookedNumber() {
+        return mToursBookedNumber;
     }
 
-    public void setMmToursBookedNumber(int mmToursBookedNumber) {
-        this.mmToursBookedNumber = mmToursBookedNumber;
+    public void setmToursBookedNumber(int mToursBookedNumber) {
+        this.mToursBookedNumber = mToursBookedNumber;
     }
 
     public double getmRating() {
@@ -61,6 +64,22 @@ public class TourCore {
         this.mTourDescription = mTourDescription;
     }
 
+    public int getmToursGrades() {
+        return mToursGrades;
+    }
+
+    public void setmToursGrades(int mToursGrades) {
+        this.mToursGrades = mToursGrades;
+    }
+
+    public double getmToursRating() {
+        return mToursRating;
+    }
+
+    public void setmToursRating(double mToursRating) {
+        this.mToursRating = mToursRating;
+    }
+
     public String getmTourLandmarks() {
         return mTourLandmarks;
     }
@@ -69,12 +88,12 @@ public class TourCore {
         this.mTourLandmarks = mTourLandmarks;
     }
 
-    public String[] getmBookedDays() {
-        return mBookedDays;
+    public String[] getmBookedDates() {
+        return mBookedDates;
     }
 
-    public void setmBookedDays(String[] mBookedDays) {
-        this.mBookedDays = mBookedDays;
+    public void setmBookedDates(String[] mBookedDates) {
+        this.mBookedDates = mBookedDates;
     }
 
     public String getmTourImageUrl() {

@@ -16,7 +16,7 @@ public class UserDetailsModel {
     private String PhoneNumber;
     private ArrayList<GuidedToursModel> mFavoriteTours;
     private ArrayList<GuidedToursModel> mListedTours;
-    private ArrayList<BookingManager> mBooking;
+    private ArrayList<BookingManager> mBookingManager;
 
     public UserDetailsModel() {
     }
@@ -37,7 +37,6 @@ public class UserDetailsModel {
 
     public void setUserId(String userId) {
         UserId = userId;
-        SyncData();
     }
 
     public String getFirstname() {
@@ -113,10 +112,10 @@ public class UserDetailsModel {
     }
 
     public ArrayList<BookingManager> getmBooking() {
-        return mBooking;
+        return mBookingManager;
     }
 
     public void setmBooking(ArrayList<BookingManager> mBooking) {
-        this.mBooking = mBooking;
+        this.mBookingManager = mBooking;
     }
 }

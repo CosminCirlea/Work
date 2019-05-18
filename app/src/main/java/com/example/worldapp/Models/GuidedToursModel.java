@@ -1,7 +1,5 @@
 package com.example.worldapp.Models;
 
-import com.google.android.gms.maps.model.LatLng;
-
 public class GuidedToursModel {
     private String mTourTitle;
     private String mTourDescription;
@@ -20,6 +18,9 @@ public class GuidedToursModel {
     private Double mMeetingPointLatitude;
     private String mMeetingLocation;
     private int mToursBookedNumber;
+    private int mToursGrades;
+    private double mToursRating;
+    private String[] mBookedDates;
 
     public GuidedToursModel()
     {
@@ -106,6 +107,30 @@ public class GuidedToursModel {
 
     public void setmTourMaxParticipants(int mTourMaxParticipants) {
         this.mTourMaxParticipants = mTourMaxParticipants;
+    }
+
+    public int getmToursGrades() {
+        return mToursGrades;
+    }
+
+    public void setmToursGrades(int mToursGrades) {
+        this.mToursGrades = mToursGrades;
+    }
+
+    public double getmToursRating() {
+        return mToursRating;
+    }
+
+    public void setmToursRating(double mToursRating) {
+        this.mToursRating = mToursRating;
+    }
+
+    public String[] getmBookedDates() {
+        return mBookedDates;
+    }
+
+    public void setmBookedDates(String[] mBookedDates) {
+        this.mBookedDates = mBookedDates;
     }
 
     public String getmTourDuration() {

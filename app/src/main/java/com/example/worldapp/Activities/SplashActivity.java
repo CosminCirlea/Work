@@ -40,51 +40,32 @@ public class SplashActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         mAuth = FirebaseAuth.getInstance();
-        try{
+        try {
             mUser = mAuth.getCurrentUser();
-            if (mUser != null)
-            {
+            if (mUser != null) {
                 ifLoggedIn(mUser);
-            }
-            else
-            {
+            } else {
                 Intent intent = new Intent(SplashActivity.this, ActivityHome.class);
                 startActivity(intent);
                 finish();
             }
+        } catch (Exception e) {
         }
-        catch (Exception e)
-        {}
     }
 
     private void ifLoggedIn(final FirebaseUser user) {
-        UserCore.Instance().setmFirebaseUser(user);
-        UserCore.Instance().User.setUserId(user.getUid());
 
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("users");
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(!UserCore.Instance().isLoggedIn()) {
-                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                        UserDetailsModel myUser = dataSnapshot1.getValue(UserDetailsModel.class);
-                        if (myUser.getUserId().contains(user.getUid())) {
-                            UserCore.Instance().setLoggedIn(true);
-                            UserCore.Instance().setmUser(myUser);
-                            Intent intent = new Intent(SplashActivity.this, ActivityHome.class);
-                            startActivity(intent);
-                            finish();
-                            return;
-                        }
-                    }
-                }
-                else
-                {
-                    Intent intent = new Intent(SplashActivity.this, ActivityHome.class);
-                    startActivity(intent);
-                    finish();
-                    return;
-                }
+                UserDetailsModel myUser = dataSnapshot.getValue(UserDetailsModel.class);
+                UserCore.Instance().setmUser(myUser);
+                UserCore.Instance().setmFirebaseUser(user);
+                UserCore.Instance().setLoggedIn(true);
+                Intent intent = new Intent(SplashActivity.this, ActivityHome.class);
+                startActivity(intent);
+                finish();
             }
 
             @Override

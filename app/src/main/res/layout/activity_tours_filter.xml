@@ -28,7 +28,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/BasicText"
-                    android:layout_marginTop="50dp">
+                    android:layout_marginTop="20dp">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/et_filter_country"
@@ -95,6 +95,7 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <RelativeLayout
+                    android:id="@+id/rl_tour_filter_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/til_filter_price"
@@ -115,6 +116,18 @@
                         android:layout_marginStart="10dp"
                         android:layout_toEndOf="@id/tv_filter_type"/>
                 </RelativeLayout>
+
+                <Button
+                    android:id="@+id/btn_tour_dates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Select dates"
+                    android:textAllCaps="false"
+                    style="@style/BasicText"
+                    android:background="@color/fui_transparent"
+                    android:layout_below="@+id/rl_tour_filter_container"
+                    android:onClick="SelectDates"/>
             </RelativeLayout>
         </ScrollView>
 
