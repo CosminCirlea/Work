@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.worldapp.Adapters.MyToursListingsAdapter;
 import com.example.worldapp.BaseClasses.BaseAppCompat;
+import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Helpers.FirebaseHelper;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.R;
@@ -93,6 +94,10 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
 
     private boolean IsMatchingFilter(GuidedToursModel tour, String[] filter)
     {
+        if (tour.getmUserId().contains(UserCore.Instance().User.getUserId()))
+        {
+            return false;
+        }
         if (filter!=null) {
             if (!tour.getmTourCountry().toLowerCase().contains(filter[0].toLowerCase())) {
                 return false;
