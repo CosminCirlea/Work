@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.worldapp.Activities.ListAllToursActivity;
 import com.example.worldapp.Adapters.MyToursListingsAdapter;
 import com.example.worldapp.Adapters.TourBookingsAdapter;
+import com.example.worldapp.Constants.ConstantValues;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.Models.TourBookingManager;
@@ -24,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class FragmentInbox extends Fragment {
     RecyclerView recyclerView;
@@ -47,12 +49,13 @@ public class FragmentInbox extends Fragment {
         mToursDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mBookingList.clear();
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
                 {
-                    TourBookingManager mGuidedTour = dataSnapshot1.getValue(TourBookingManager.class);
-                    if (mGuidedTour.getmOwnerId().equals(mUserId) && !mBookingList.contains(mGuidedTour))
+                    TourBookingManager mBookedManager = dataSnapshot1.getValue(TourBookingManager.class);
+                    if (mBookedManager.getmOwnerId().equals(mUserId) && mBookedManager.getmStatus()== ConstantValues.BOOKING_PENDING)
                     {
-                        mBookingList.add(mGuidedTour);
+                        mBookingList.add(mBookedManager);
                     }
                 }
                 if (mBookingList != null) {
