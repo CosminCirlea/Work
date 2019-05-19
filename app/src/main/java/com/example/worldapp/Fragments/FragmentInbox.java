@@ -31,7 +31,6 @@ public class FragmentInbox extends Fragment {
     DatabaseReference mToursDatabaseReference;
     TourBookingsAdapter mTourAdapter;
     private String mUserId;
-    private TourBookingManager mBookingManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,14 +50,15 @@ public class FragmentInbox extends Fragment {
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
                 {
                     TourBookingManager mGuidedTour = dataSnapshot1.getValue(TourBookingManager.class);
-                    if (mGuidedTour.getmOwnerId().equals(mUserId))
+                    if (mGuidedTour.getmOwnerId().equals(mUserId) && !mBookingList.contains(mGuidedTour))
                     {
                         mBookingList.add(mGuidedTour);
                     }
                 }
-                mTourAdapter = new TourBookingsAdapter(getActivity(),mBookingList);
-                recyclerView.setAdapter(mTourAdapter);
-            }
+                if (mBookingList != null) {
+                    mTourAdapter = new TourBookingsAdapter(getActivity(), mBookingList);
+                    recyclerView.setAdapter(mTourAdapter);
+                }}
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -67,7 +67,6 @@ public class FragmentInbox extends Fragment {
         });
 
         return rootView;
-
     }
 }
 

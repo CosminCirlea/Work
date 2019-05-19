@@ -248,10 +248,12 @@ public class FragmentProfileLoggedIn extends Fragment {
 
     private void InitialValues()
     {
+        if (UserCore.Instance().User!=null){
         String firstName = UserCore.Instance().User.getFirstname();
         String name = UserCore.Instance().User.getName();
         TvName.setText(name);
         TvFirstName.setText(firstName);
+        }
     }
 
     private void InitializeViews(View view)

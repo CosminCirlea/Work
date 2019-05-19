@@ -11,33 +11,43 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.worldapp.Activities.TourActivity;
+import com.example.worldapp.Constants.ConstantValues;
 import com.example.worldapp.Constants.NavigationConstants;
+import com.example.worldapp.Interfaces.ClickListener;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.Models.TourBookingManager;
 import com.example.worldapp.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class TourBookingsAdapter extends
     RecyclerView.Adapter<TourBookingsAdapter.ViewHolder> {
-
     private Context mContext;
     private ArrayList<TourBookingManager> mTours;
+    private DatabaseReference mBookingDatabase;
+    private WeakReference<ClickListener> mWeakListener;
+    private Button mAcceptBook, mDenyBook;
 
     public TourBookingsAdapter(Context context, ArrayList<TourBookingManager> tours) {
         mTours = tours;
         mContext = context;
+        mBookingDatabase = FirebaseDatabase.getInstance().getReference().child("BookingManager");
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tvBuyerName, tvTitle, tvBookDay, tvIncome;
-        private Button mAcceptBook, mDenyBook;
-        public ViewHolder(View itemView) {
+
+        public ViewHolder(final View itemView) {
             super(itemView);
             InitializeViews(itemView);
         }
@@ -62,24 +72,32 @@ public class TourBookingsAdapter extends
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
         String tourTitle= mTours.get(position).getmAnnouncementTitle();
-        String buyerName = mTours.get(position).getmBuyerName();
+        final String buyerName = mTours.get(position).getmBuyerName();
         String bookDay = mTours.get(position).getmBookingDates();
-        Double income = mTours.get(position).getmPrice();
+        final Double income = mTours.get(position).getmPrice();
+        final String bookID = mTours.get(position).getmBookingId();
 
         viewHolder.tvTitle.setText(tourTitle);
         viewHolder.tvBuyerName.setText(buyerName);
         viewHolder.tvIncome.setText(income.toString());
         viewHolder.tvBookDay.setText(bookDay);
-
-        /*viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        mAcceptBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mIntent = new Intent(mContext, TourActivity.class);
-                String serializedTour = new Gson().toJson(mTours.get(position));
-                mIntent.putExtra(NavigationConstants.TOUR_MODEL_KEY,serializedTour);
-                mContext.startActivity(mIntent);
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("mStatus", ConstantValues.BOOKING_ACCEPTED);
+                mBookingDatabase.child(bookID).updateChildren(map);
             }
-        });*/
+        });
+
+        mDenyBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("mStatus", ConstantValues.BOOKING_DENIED);
+                mBookingDatabase.child(bookID).updateChildren(map);
+            }
+        });
     }
 
     @Override

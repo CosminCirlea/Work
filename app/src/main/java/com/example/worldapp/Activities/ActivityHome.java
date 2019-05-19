@@ -147,6 +147,7 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
     }
 
     public void OnAcceptBooking(View view) {
+
     }
 
     public void OnDenyBooking(View view) {

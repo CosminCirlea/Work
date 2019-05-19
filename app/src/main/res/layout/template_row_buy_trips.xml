@@ -9,28 +9,13 @@
     android:layout_marginBottom="10dp"
     android:padding="4dp">
 
-    <TextView
-        android:id="@+id/tv_notifications_buyer_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sandor clegane"
-        style="@style/SmallBasicText"/>
 
-    <TextView
-        android:id="@+id/tv_notifications_action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="wants to book your: "
-        android:layout_toEndOf="@+id/tv_notifications_buyer_name"
-        style="@style/SmallBasicText"/>
 
     <TextView
         android:id="@+id/tv_notifications_tour_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_toEndOf="@+id/tv_notifications_action"
+        android:layout_alignParentStart="true"
         style="@style/SmallBasicText"/>
 
     <TextView
@@ -38,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/SmallBasicText"
-        android:layout_below="@+id/tv_notifications_buyer_name"
+        android:layout_below="@+id/tv_notifications_tour_title"
         android:text="Day of booking : "/>
 
     <TextView
@@ -47,8 +32,7 @@
         android:layout_height="wrap_content"
         style="@style/SmallBasicText"
         android:layout_toEndOf="@id/tv_notifications_booking_day_text"
-        android:layout_below="@+id/tv_notifications_buyer_name"
-        android:text="13 JUN 2019"/>
+        android:layout_below="@+id/tv_notifications_tour_title"/>
 
     <TextView
         android:id="@+id/tv_notifications_price_text"
@@ -56,7 +40,7 @@
         android:layout_height="wrap_content"
         style="@style/SmallBasicText"
         android:layout_below="@+id/tv_notifications_booking_day_text"
-        android:text="Income : "/>
+        android:text="Price : "/>
 
     <TextView
         android:id="@+id/tv_notifications_price_amount"
@@ -67,26 +51,14 @@
         android:layout_toEndOf="@id/tv_notifications_price_text"
         android:layout_below="@+id/tv_notifications_booking_day_text"/>
 
-    <Button
-        android:id="@+id/btn_accept_booking"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+    <TextView
+        android:id="@+id/tv_notifications_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/SmallBasicText"
         android:layout_marginEnd="10dp"
-        android:padding="4dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/btn_deny_booking"
-        android:background="@drawable/check_button"
-        android:onClick="OnAcceptBooking"/>
-
-    <Button
-        android:id="@+id/btn_deny_booking"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:padding="4dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/denny_button"
-        android:onClick="OnDenyBooking"/>
+        android:layout_below="@+id/tv_notifications_booking_day_text"/>
+
 
 </RelativeLayout>
