@@ -87,8 +87,6 @@ public class ActivityLogin extends BaseAppCompat {
                         if (task.isSuccessful()) {
                             if (mAuth.getCurrentUser().isEmailVerified())
                             {
-                               /* FirebaseUser user = mAuth.getCurrentUser();
-                                onSignInSuccessfull(user);*/
                                 if (mTourID == null || mTourID.isEmpty()) {
                                     Intent intent = new Intent(ActivityLogin.this, SplashActivity.class);
                                     startActivity(intent);
