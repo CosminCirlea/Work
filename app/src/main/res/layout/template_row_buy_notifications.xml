@@ -3,7 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="2dp">
+    android:background="@color/containerColor"
+    android:layout_marginStart="2dp"
+    android:layout_marginEnd="2dp"
+    android:layout_marginBottom="10dp">
 
     <TextView
         android:id="@+id/tv_notifications_buyer_name"
@@ -17,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="wants to book your "
+        android:text="wants to book your: "
         android:layout_toEndOf="@+id/tv_notifications_buyer_name"
         style="@style/SmallBasicText"/>
 
@@ -26,7 +29,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:singleLine="true"
         android:layout_toEndOf="@+id/tv_notifications_action"
         style="@style/SmallBasicText"/>
 
@@ -66,17 +68,20 @@
 
     <Button
         android:id="@+id/btn_accept_booking"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="10dp"
+        android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/btn_deny_booking"
-        android:text="Yes"/>
+        android:background="@drawable/check_button"/>
 
     <Button
         android:id="@+id/btn_deny_booking"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:text="No"/>
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/denny_button"/>
 
 </RelativeLayout>

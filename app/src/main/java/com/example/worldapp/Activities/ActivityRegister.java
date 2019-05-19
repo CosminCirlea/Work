@@ -69,7 +69,6 @@ public class ActivityRegister extends BaseAppCompat {
                         progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
                             if (CheckPasswordsMatch(Password, PasswordRepeatET.getText().toString())) {
-                                // Sign in success, update UI with the signed-in user's information
                                 mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {

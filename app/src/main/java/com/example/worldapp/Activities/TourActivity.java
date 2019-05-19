@@ -224,7 +224,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
             mManager.setmBookingDates(date);
             mManager.setmStatus(ConstantValues.BOOKING_PENDING);
             mManager.setmAnnouncementTitle(mTour.getmTourTitle());
-            mManager.setmBuyerName(UserCore.Instance().getName());
+            mManager.setmBuyerName(UserCore.Instance().User.getName());
             mManager.setmOwnerName(mTourOwner.getName());
             mBookingDatabase.child(newBookingManager.toString()).setValue(mManager);
             updateBookingManager(mManager, mTourOwner);

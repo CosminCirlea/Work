@@ -41,7 +41,7 @@ public class FragmentInbox extends Fragment {
         recyclerView = rootView.findViewById(R.id.rv_notifications);
         recyclerView.setLayoutManager( new LinearLayoutManager(getActivity()));
 
-        mUserId = UserCore.Instance().getUserId();
+        mUserId = UserCore.Instance().User.getUserId();
         mBookingList = new ArrayList<>();
 
         mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("BookingManager");

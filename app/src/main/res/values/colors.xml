@@ -11,4 +11,6 @@
     <color name="favoriteColor">#4ec4e5</color>
     <color name="navigationIconNotSelected">#fff</color>
     <color name="fui_transparent">#00000000</color>
+    <color name="greenColor">#22b205</color>
+    <color name="redColor">#f41d1d</color>
 </resources>
