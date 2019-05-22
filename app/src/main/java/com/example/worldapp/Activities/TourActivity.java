@@ -16,6 +16,7 @@ import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Core.TourCore;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Helpers.Converters;
+import com.example.worldapp.Helpers.DatePickerFragment;
 import com.example.worldapp.Models.TourBookingManager;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.Models.UserDetailsModel;
@@ -206,6 +207,12 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     public void OnBook(View view) {
         if (UserCore.Instance().isLoggedIn())
         {
+            //if (TourCore.Instance().getmBookedDates()[0].equals(""))
+            //{
+                Toast.makeText(TourActivity.this,"Please select a date!", Toast.LENGTH_SHORT).show();
+                ToursFilterActivity.DatePickerFragment newFragment = new ToursFilterActivity.DatePickerFragment();
+                newFragment.show(getSupportFragmentManager(), "datePicker");
+           // }
             Toast.makeText(this, "You may buy!", Toast.LENGTH_SHORT).show();
             double mPrice = mTour.getmTourPrice();
             double mFee = mPrice * ConstantValues.BOOKING_APP_FEE;
@@ -226,6 +233,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
             mManager.setmAnnouncementTitle(mTour.getmTourTitle());
             mManager.setmBuyerName(UserCore.Instance().User.getName());
             mManager.setmOwnerName(mTourOwner.getName());
+            mManager.setmAnnouncementId((mTour.getmTourId()));
             mBookingDatabase.child(newBookingManager.toString()).setValue(mManager);
             updateBookingManager(mManager, mTourOwner);
             updateBookingManager(mManager, UserCore.Instance().getmUser());

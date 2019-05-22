@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Constants.ConstantValues;
+import com.example.worldapp.Core.TourCore;
 import com.example.worldapp.R;
 import com.squareup.timessquare.CalendarPickerView;
 
@@ -36,7 +37,6 @@ public class ToursFilterActivity extends BaseAppCompat {
     private ArrayList<String> mFieldValues;
     private String[] mFilterValues;
     public static String mChosenDate;
-    private DatePickerDialog datePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,6 +147,7 @@ public class ToursFilterActivity extends BaseAppCompat {
             SimpleDateFormat formatTime = new SimpleDateFormat(ConstantValues.DATE_FORMAT);
             mChosenDate = formatTime.format(date);
             mTourDate.setText(mChosenDate);
+            TourCore.Instance().getmBookedDates()[0]=mChosenDate;
         }
     }
 }

@@ -122,11 +122,8 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
             }
 
             if (tour.getmBookedDates()!=null) {
-                String[] bookedDates = tour.getmBookedDates();
-                if(Arrays.asList(bookedDates).contains(filter[5]))
-                {
-                    return false;
-                }
+                ArrayList<String> bookedDates = tour.getmBookedDates();
+                return bookedDates.contains(filter[5]);
             }
         }
         return true;

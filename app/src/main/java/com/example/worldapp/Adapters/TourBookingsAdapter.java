@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.worldapp.Activities.TourActivity;
 import com.example.worldapp.Constants.ConstantValues;
 import com.example.worldapp.Constants.NavigationConstants;
+import com.example.worldapp.Helpers.FirebaseHelper;
 import com.example.worldapp.Interfaces.ClickListener;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.Models.TourBookingManager;
@@ -35,8 +36,9 @@ public class TourBookingsAdapter extends
     private Context mContext;
     private ArrayList<TourBookingManager> mTours;
     private DatabaseReference mBookingDatabase;
-    private WeakReference<ClickListener> mWeakListener;
     private Button mAcceptBook, mDenyBook;
+    private GuidedToursModel mTour;
+    ArrayList<String> mExistingBookedTours = new ArrayList<>();
 
     public TourBookingsAdapter(Context context, ArrayList<TourBookingManager> tours) {
         mTours = tours;
@@ -73,9 +75,10 @@ public class TourBookingsAdapter extends
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
         String tourTitle= mTours.get(position).getmAnnouncementTitle();
         final String buyerName = mTours.get(position).getmBuyerName();
-        String bookDay = mTours.get(position).getmBookingDates();
+        final String bookDay = mTours.get(position).getmBookingDates();
         final Double income = mTours.get(position).getmPrice();
         final String bookID = mTours.get(position).getmBookingId();
+        final String tourId = mTours.get(position).getmAnnouncementId();
 
         viewHolder.tvTitle.setText(tourTitle);
         viewHolder.tvBuyerName.setText(buyerName);
@@ -87,6 +90,7 @@ public class TourBookingsAdapter extends
                 HashMap<String, Object> map = new HashMap<>();
                 map.put("mStatus", ConstantValues.BOOKING_ACCEPTED);
                 mBookingDatabase.child(bookID).updateChildren(map);
+                updateTourBookingDate(tourId, bookDay);
             }
         });
 
@@ -98,6 +102,18 @@ public class TourBookingsAdapter extends
                 mBookingDatabase.child(bookID).updateChildren(map);
             }
         });
+    }
+
+    private void updateTourBookingDate(String mTourId, String mDate)
+    {
+        mTour = new GuidedToursModel();
+        if (mTour.getmBookedDates()!=null) {
+            mExistingBookedTours = mTour.getmBookedDates();
+        }
+        mExistingBookedTours.addAll(mTour.getmBookedDates());
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("mBookedDates", mDate);
+        FirebaseHelper.Instance().mToursDatabaseReference.child(mTourId).updateChildren(map);
     }
 
     @Override

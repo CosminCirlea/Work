@@ -21,7 +21,7 @@ import java.util.UUID;
 public class FirebaseHelper {
 
     private static FirebaseHelper mFirebaseHelper;
-    private DatabaseReference mToursDatabaseReference;
+    public DatabaseReference mToursDatabaseReference;
     private FirebaseDatabase mDatabase;
     private DatabaseReference mDatabaseReference;
     private DatabaseReference mUserDatabase;
