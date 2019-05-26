@@ -207,17 +207,18 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     public void OnBook(View view) {
         if (UserCore.Instance().isLoggedIn())
         {
-            //if (TourCore.Instance().getmBookedDates()[0].equals(""))
-            //{
+            String aux;
+            aux =TourCore.Instance().getmBookedDates();
+            if (aux.isEmpty())
+            {
                 Toast.makeText(TourActivity.this,"Please select a date!", Toast.LENGTH_SHORT).show();
                 ToursFilterActivity.DatePickerFragment newFragment = new ToursFilterActivity.DatePickerFragment();
                 newFragment.show(getSupportFragmentManager(), "datePicker");
-           // }
-            Toast.makeText(this, "You may buy!", Toast.LENGTH_SHORT).show();
+            }
             double mPrice = mTour.getmTourPrice();
             double mFee = mPrice * ConstantValues.BOOKING_APP_FEE;
             double mTotalPrice = mPrice + mFee;
-            Date endDate = new GregorianCalendar(2019, Calendar.MAY, 23).getTime();
+            Date endDate = new GregorianCalendar(2019, Calendar.MAY, 27).getTime();
             String date = Converters.Instance().DateToString(endDate);
 
             UUID newBookingManager = UUID.randomUUID();

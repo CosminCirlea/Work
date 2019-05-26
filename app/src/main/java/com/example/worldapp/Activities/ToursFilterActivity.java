@@ -147,7 +147,7 @@ public class ToursFilterActivity extends BaseAppCompat {
             SimpleDateFormat formatTime = new SimpleDateFormat(ConstantValues.DATE_FORMAT);
             mChosenDate = formatTime.format(date);
             mTourDate.setText(mChosenDate);
-            TourCore.Instance().getmBookedDates()[0]=mChosenDate;
+            TourCore.Instance().setmBookedDates(mChosenDate);
         }
     }
 }
