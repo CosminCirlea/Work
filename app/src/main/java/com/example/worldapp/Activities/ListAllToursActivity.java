@@ -72,7 +72,7 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(ListAllToursActivity.this, "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListAllToursActivity.this, "Opsss.... Something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -123,7 +123,7 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
 
             if (tour.getmBookedDates()!=null) {
                 ArrayList<String>bookedDates = tour.getmBookedDates();
-                return bookedDates.contains(filter[5]);
+                return !bookedDates.contains(filter[5]);
             }
         }
         return true;
@@ -156,7 +156,7 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
                 newList.add(city);
             }
         }
-        mTourAdapter.updateList(newList);
+        //mTourAdapter.updateList(newList);
         return true;
     }
 

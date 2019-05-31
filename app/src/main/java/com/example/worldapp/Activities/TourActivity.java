@@ -1,9 +1,13 @@
 package com.example.worldapp.Activities;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -34,6 +38,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -50,9 +55,12 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     private GuidedToursModel mTour;
     private UserDetailsModel mTourOwner, mAuxUser;
     private String mOwnerId;
-    DatabaseReference mDatabaseReference, mUsersDatabase, mBookingDatabase;
+    private static String mChosenDate;
+    DatabaseReference mDatabaseReference, mUsersDatabase, mBookingDatabase, mToursDatabase;
     private LatLng mMeetingPoint;
     ArrayList<String> mExistingBookingManagers = new ArrayList<>();
+    ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +86,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
 
         Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 1);
+        mChosenDate = TourCore.Instance().getmBookedDates();
 
         mBookingDatabase = FirebaseDatabase.getInstance().getReference().child("BookingManager");
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("users");
@@ -215,29 +224,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
                 ToursFilterActivity.DatePickerFragment newFragment = new ToursFilterActivity.DatePickerFragment();
                 newFragment.show(getSupportFragmentManager(), "datePicker");
             }
-            double mPrice = mTour.getmTourPrice();
-            double mFee = mPrice * ConstantValues.BOOKING_APP_FEE;
-            double mTotalPrice = mPrice + mFee;
-            Date endDate = new GregorianCalendar(2019, Calendar.MAY, 27).getTime();
-            String date = Converters.Instance().DateToString(endDate);
-
-            UUID newBookingManager = UUID.randomUUID();
-            TourBookingManager mManager = new TourBookingManager();
-            mManager.setmBookingId(newBookingManager.toString());
-            mManager.setmOwnerId(mTour.getmUserId());
-            mManager.setmBuyerId(UserCore.Instance().User.getUserId());
-            mManager.setmPrice(mPrice);
-            mManager.setmFee(mFee);
-            mManager.setmTotalPrice(mTotalPrice);
-            mManager.setmBookingDates(date);
-            mManager.setmStatus(ConstantValues.BOOKING_PENDING);
-            mManager.setmAnnouncementTitle(mTour.getmTourTitle());
-            mManager.setmBuyerName(UserCore.Instance().User.getName());
-            mManager.setmOwnerName(mTourOwner.getName());
-            mManager.setmAnnouncementId((mTour.getmTourId()));
-            mBookingDatabase.child(newBookingManager.toString()).setValue(mManager);
-            updateBookingManager(mManager, mTourOwner);
-            updateBookingManager(mManager, UserCore.Instance().getmUser());
+            doTheBooking();
         }
         else
         {
@@ -260,7 +247,76 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mDatabaseReference.updateChildren(map);
     }
 
+    public void updateTourBookedDates(GuidedToursModel tour, String bookedDate)
+    {
+        if (tour.getmBookedDates()!=null)
+        {
+            mExistingBookedDatesTours = tour.getmBookedDates();
+        }
+        mExistingBookedDatesTours.add(bookedDate);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("mBookedDates", mExistingBookedDatesTours);
+        mToursDatabase = FirebaseDatabase.getInstance().getReference("Tours").child(tour.getmTourId());
+        mToursDatabase.updateChildren(map);
+    }
+
+    public void doTheBooking()
+    {
+        double mPrice = mTour.getmTourPrice();
+        double mFee = mPrice * ConstantValues.BOOKING_APP_FEE;
+        double mTotalPrice = mPrice + mFee;
+        Date endDate = new GregorianCalendar(2019, Calendar.MAY, 31).getTime();
+        String date = Converters.Instance().DateToString(endDate);
+
+        UUID newBookingManager = UUID.randomUUID();
+        TourBookingManager mManager = new TourBookingManager();
+        mManager.setmBookingId(newBookingManager.toString());
+        mManager.setmOwnerId(mTour.getmUserId());
+        mManager.setmBuyerId(UserCore.Instance().User.getUserId());
+        mManager.setmPrice(mPrice);
+        mManager.setmFee(mFee);
+        mManager.setmTotalPrice(mTotalPrice);
+        mManager.setmBookingDates(date);
+        mManager.setmStatus(ConstantValues.BOOKING_PENDING);
+        mManager.setmAnnouncementTitle(mTour.getmTourTitle());
+        mManager.setmBuyerName(UserCore.Instance().User.getName());
+        mManager.setmOwnerName(mTourOwner.getName());
+        mManager.setmAnnouncementId((mTour.getmTourId()));
+        mBookingDatabase.child(newBookingManager.toString()).setValue(mManager);
+        updateBookingManager(mManager, mTourOwner);
+        updateBookingManager(mManager, UserCore.Instance().getmUser());
+        Toast.makeText(this, "Working", Toast.LENGTH_SHORT).show();
+    }
+    public void SelectDates(View view) {
+        TourActivity.DatePickerFragment newFragment = new TourActivity.DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
     public void GoToOwner(View view) {
 
+    }
+
+    public static class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
+            dialog.getDatePicker().setMinDate(c.getTimeInMillis());
+            return dialog;
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(year, month - 1, day, 0, 0);
+            Date date = calendar.getTime();
+            SimpleDateFormat formatTime = new SimpleDateFormat(ConstantValues.DATE_FORMAT);
+            mChosenDate = formatTime.format(date);
+            TourCore.Instance().setmBookedDates(mChosenDate);
+        }
     }
 }

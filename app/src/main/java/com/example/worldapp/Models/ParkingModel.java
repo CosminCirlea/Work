@@ -12,12 +12,12 @@ public class ParkingModel {
     private double mPricePerDay;
     private double mPricePerHour;
     private String[] mBookedDays;
-    private UUID mParkingID;
-    private UUID mOwnerID;
+    private String mParkingID;
+    private String mOwnerID;
     private Double mLongitude;
     private Double mLatitude;
 
-    public ParkingModel(String mTitle, String mDescription, String mSecurityDetails, String mRestrictions, int mType, int mSpotsNumber, int mPricePerDay, double mPricePerHour, String[] mBookedDays, UUID mParkingID, UUID mOwnerID, Double mLongitude, Double mLatitude) {
+    public ParkingModel(String mTitle, String mDescription, String mSecurityDetails, String mRestrictions, int mType, int mSpotsNumber, int mPricePerDay, double mPricePerHour, String[] mBookedDays, String mParkingID, String mOwnerID, Double mLongitude, Double mLatitude) {
         this.mTitle = mTitle;
         this.mDescription = mDescription;
         this.mSecurityDetails = mSecurityDetails;
@@ -105,19 +105,19 @@ public class ParkingModel {
         this.mBookedDays = mBookedDays;
     }
 
-    public UUID getmParkingID() {
+    public String getmParkingID() {
         return mParkingID;
     }
 
-    public void setmParkingID(UUID mParkingID) {
+    public void setmParkingID(String mParkingID) {
         this.mParkingID = mParkingID;
     }
 
-    public UUID getmOwnerID() {
+    public String getmOwnerID() {
         return mOwnerID;
     }
 
-    public void setmOwnerID(UUID mOwnerID) {
+    public void setmOwnerID(String mOwnerID) {
         this.mOwnerID = mOwnerID;
     }
 

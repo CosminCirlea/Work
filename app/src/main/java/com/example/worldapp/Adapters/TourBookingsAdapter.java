@@ -90,7 +90,8 @@ public class TourBookingsAdapter extends
                 HashMap<String, Object> map = new HashMap<>();
                 map.put("mStatus", ConstantValues.BOOKING_ACCEPTED);
                 mBookingDatabase.child(bookID).updateChildren(map);
-                updateTourBookingDate(tourId, bookDay);
+                //updateTourBookingDate(tourId, bookDay);
+                FirebaseHelper.updateTourBookedDates(tourId,bookDay);
             }
         });
 
@@ -104,15 +105,16 @@ public class TourBookingsAdapter extends
         });
     }
 
+
     private void updateTourBookingDate(String mTourId, String mDate)
     {
         mTour = new GuidedToursModel();
         if (mTour.getmBookedDates()!=null) {
             mExistingBookedTours = mTour.getmBookedDates();
         }
-        mExistingBookedTours.addAll(mTour.getmBookedDates());
+        mExistingBookedTours.add(mDate);
         HashMap<String, Object> map = new HashMap<>();
-        map.put("mBookedDates", mDate);
+        map.put("mBookedDates", mExistingBookedTours);
         FirebaseHelper.Instance().mToursDatabaseReference.child(mTourId).updateChildren(map);
     }
 

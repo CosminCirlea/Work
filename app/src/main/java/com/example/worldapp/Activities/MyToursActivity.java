@@ -31,11 +31,8 @@ import java.util.Iterator;
 public class MyToursActivity extends BaseAppCompat {
     private DatabaseReference mToursDatabaseReference;
     private RecyclerView recyclerView;
-    private FirebaseDatabase mFirebaseDatabase;
     private ArrayList<GuidedToursModel> mTourList;
     private MyToursListingsAdapter mTourAdapter;
-    private FirebaseAuth mAuth;
-    private FirebaseUser mUser;
     private String userID;
     private FloatingActionButton mAddTourFAB;
     private TextView mNoToursTv, mAddTourTv;
@@ -49,7 +46,7 @@ public class MyToursActivity extends BaseAppCompat {
         }
         setContentView(R.layout.activity_my_tours);
         InitializeViews();
-        super.SetToolbarTitle("My listed tours");
+        super.SetToolbarTitle("My tours");
 
         mAddTourFAB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +99,6 @@ public class MyToursActivity extends BaseAppCompat {
         recyclerView.setLayoutManager(new LinearLayoutManager(MyToursActivity.this));
         mAddTourFAB = findViewById(R.id.fab_add_tour);
         mNoToursTv = findViewById(R.id.tv_my_listed_tours_no_tour_text);
-        mAddTourTv = findViewById(R.id.tv_my_listed_tours_add_tour_text);
     }
 }
 

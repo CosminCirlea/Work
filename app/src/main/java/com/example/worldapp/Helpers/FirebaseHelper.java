@@ -16,16 +16,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class FirebaseHelper {
 
     private static FirebaseHelper mFirebaseHelper;
-    public DatabaseReference mToursDatabaseReference;
+    public static DatabaseReference mToursDatabaseReference;
     private FirebaseDatabase mDatabase;
     private DatabaseReference mDatabaseReference;
     private DatabaseReference mUserDatabase;
     private UserDetailsModel mUser, mAuxUser;
+    static ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
 
     public FirebaseHelper()
     {
@@ -42,8 +44,63 @@ public class FirebaseHelper {
         return mFirebaseHelper;
     }
 
+    public static boolean checkTourDates(String tourID, final String date)
+    {
+        final boolean[] isDateAvailable = {true};
+        mFirebaseHelper.mToursDatabaseReference.child(tourID).child("mBookedDates").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean isDateAvailableAux = true;
+                for (DataSnapshot data : dataSnapshot.getChildren())
+                {
+                    String existingDate = data.toString();
+                    if (date.equalsIgnoreCase(existingDate))
+                    {
+                        isDateAvailableAux =false;
+                    }
+                }
+                isDateAvailable[0] = isDateAvailableAux;
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+        return isDateAvailable[0];
+    }
+
+    public static GuidedToursModel getTourById(String tourID)
+    {
+        final GuidedToursModel[] tour = {new GuidedToursModel()};
+        mToursDatabaseReference.child(tourID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                GuidedToursModel mTour = dataSnapshot.getValue(GuidedToursModel.class);
+                tour[0] = mTour;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        return tour[0];
+    }
+
+    public static void updateTourBookedDates(String tourID, String bookDate)
+    {
+        GuidedToursModel tour = getTourById(tourID);
+        if (tour.getmBookedDates()!=null)
+        {
+            mExistingBookedDatesTours = tour.getmBookedDates();
+        }
+        mExistingBookedDatesTours.add(bookDate);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("mBookedDates", mExistingBookedDatesTours);
+        mToursDatabaseReference = FirebaseDatabase.getInstance().getReference("Tours").child(tourID);
+        mToursDatabaseReference.updateChildren(map);
+    }
 
     //todo not working properly
     public ArrayList<GuidedToursModel> GetAllTours(final ArrayList<GuidedToursModel> tours)

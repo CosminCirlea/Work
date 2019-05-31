@@ -3,6 +3,7 @@ package com.example.worldapp.Core;
 import com.example.worldapp.Helpers.FirebaseHelper;
 import com.example.worldapp.Helpers.TourHelper;
 import com.example.worldapp.Models.GuidedToursModel;
+import com.example.worldapp.Models.ParkingModel;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -23,6 +24,7 @@ public class UserCore {
     private ArrayList<GuidedToursModel> mFavoriteTours;
     private ArrayList<GuidedToursModel> mListedTours;
     private ArrayList<BookingManager> mBooking;
+    private ArrayList<ParkingModel> mListedParkings;
 
     public static UserCore Instance()
     {
@@ -100,6 +102,15 @@ public class UserCore {
 
     public void setmFavoriteTours(ArrayList<GuidedToursModel> mFavoriteTours) {
         this.mFavoriteTours = mFavoriteTours;
+    }
+
+
+    public ArrayList<ParkingModel> getmListedParkings() {
+        return mListedParkings;
+    }
+
+    public void setmListedParkings(ArrayList<ParkingModel> mListedParkings) {
+        this.mListedParkings = mListedParkings;
     }
 
     public ArrayList<GuidedToursModel> getmListedTours() {
