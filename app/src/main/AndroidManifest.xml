@@ -26,7 +26,8 @@
         <activity android:name=".Activities.ListParkingsActivity" />
         <activity android:name=".Activities.MyParkingsActivity" />
         <activity android:name=".Activities.AddParkingActivity1" />
-        <activity android:name=".Activities.ToursFilterActivity" />
+        <activity android:name=".Activities.MyAccommodationsActivity" />
+        <activity android:name=".Activities.ToursFilterActivity"/>
         <activity android:name=".Activities.AddParkingActivity2" />
         <activity android:name=".Activities.CheckOutActivity" />
         <activity android:name=".Activities.ChatActivity" />

@@ -265,8 +265,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         double mPrice = mTour.getmTourPrice();
         double mFee = mPrice * ConstantValues.BOOKING_APP_FEE;
         double mTotalPrice = mPrice + mFee;
-        Date endDate = new GregorianCalendar(2019, Calendar.MAY, 31).getTime();
-        String date = Converters.Instance().DateToString(endDate);
+        String date = TourCore.Instance().getmBookedDates();
 
         UUID newBookingManager = UUID.randomUUID();
         TourBookingManager mManager = new TourBookingManager();
@@ -317,6 +316,8 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
             SimpleDateFormat formatTime = new SimpleDateFormat(ConstantValues.DATE_FORMAT);
             mChosenDate = formatTime.format(date);
             TourCore.Instance().setmBookedDates(mChosenDate);
+            mChosenDate = TourCore.Instance().getmBookedDates();
+
         }
     }
 }

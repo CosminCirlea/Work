@@ -22,17 +22,18 @@ import java.util.UUID;
 public class FirebaseHelper {
 
     private static FirebaseHelper mFirebaseHelper;
-    public static DatabaseReference mToursDatabaseReference;
+    public static DatabaseReference mToursDatabaseReference = FirebaseDatabase.getInstance().getReference();
     private FirebaseDatabase mDatabase;
     private DatabaseReference mDatabaseReference;
     private DatabaseReference mUserDatabase;
     private UserDetailsModel mUser, mAuxUser;
     static ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
+    public static GuidedToursModel mCurrentTour ;
 
     public FirebaseHelper()
     {
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("users");
-        mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours");
+        //mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours");
     }
 
     public static FirebaseHelper Instance()
@@ -70,30 +71,34 @@ public class FirebaseHelper {
         return isDateAvailable[0];
     }
 
-    public static GuidedToursModel getTourById(String tourID)
+    public  void getTourById(final String mTourID)
     {
-        final GuidedToursModel[] tour = {new GuidedToursModel()};
-        mToursDatabaseReference.child(tourID).addListenerForSingleValueEvent(new ValueEventListener() {
+        mToursDatabaseReference.child("Tours").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                GuidedToursModel mTour = dataSnapshot.getValue(GuidedToursModel.class);
-                tour[0] = mTour;
+                for (DataSnapshot data : dataSnapshot.getChildren())
+                {
+                    GuidedToursModel tour = data.getValue(GuidedToursModel.class);
+                    if (tour.getmUserId().equalsIgnoreCase(mTourID))
+                    {
+                        mCurrentTour = tour;
+                    }
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                databaseError.toString();
             }
         });
-        return tour[0];
     }
 
-    public static void updateTourBookedDates(String tourID, String bookDate)
+    public  void updateTourBookedDates(String tourID, String bookDate)
     {
-        GuidedToursModel tour = getTourById(tourID);
-        if (tour.getmBookedDates()!=null)
+        getTourById(tourID);
+        if (mCurrentTour.getmBookedDates()!=null)
         {
-            mExistingBookedDatesTours = tour.getmBookedDates();
+            mExistingBookedDatesTours = mCurrentTour.getmBookedDates();
         }
         mExistingBookedDatesTours.add(bookDate);
         HashMap<String, Object> map = new HashMap<>();
@@ -145,21 +150,4 @@ public class FirebaseHelper {
         });
     }
 
-
-    public void SyncUserData(String userId)
-    {
-        mDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mDatabase.getReference("users");
-        mDatabaseReference.child(userId).setValue(UserCore.Instance().User);
-    }
-
-    public void SyncUserData()
-    {
-        if(UserCore.Instance().isLoggedIn())
-        {
-            mDatabase = FirebaseDatabase.getInstance();
-            mDatabaseReference = mDatabase.getReference("users");
-            mDatabaseReference.child(UserCore.Instance().User.getUserId()).setValue(UserCore.Instance().User);
-        }
-    }
 }

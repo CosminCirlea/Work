@@ -103,13 +103,6 @@ public class UserDetailsModel {
         this.mListedTours = mListedTours;
     }
 
-    private void SyncData()
-    {
-        if(UserCore.Instance().isLoggedIn())
-        {
-            FirebaseHelper.Instance().SyncUserData(getUserId());
-        }
-    }
 
     public ArrayList<String> getmBooking() {
         return mBookingManager;

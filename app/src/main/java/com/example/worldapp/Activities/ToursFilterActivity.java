@@ -77,6 +77,7 @@ public class ToursFilterActivity extends BaseAppCompat {
         SetEditTextValue(mRegion, mFilterValues[1]);
         SetEditTextValue(mCity, mFilterValues[2]);
         SetEditTextValue(mPrice, mFilterValues[3]);
+        mTourDate.setText(TourCore.Instance().getmBookedDates());
     }
 
     private void GetValues() {
@@ -142,7 +143,7 @@ public class ToursFilterActivity extends BaseAppCompat {
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
             Calendar calendar = Calendar.getInstance();
-            calendar.set(year, month - 1, day, 0, 0);
+            calendar.set(year, month, day, 0, 0);
             Date date = calendar.getTime();
             SimpleDateFormat formatTime = new SimpleDateFormat(ConstantValues.DATE_FORMAT);
             mChosenDate = formatTime.format(date);

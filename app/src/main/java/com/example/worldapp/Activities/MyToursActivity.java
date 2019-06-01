@@ -35,7 +35,7 @@ public class MyToursActivity extends BaseAppCompat {
     private MyToursListingsAdapter mTourAdapter;
     private String userID;
     private FloatingActionButton mAddTourFAB;
-    private TextView mNoToursTv, mAddTourTv;
+    private TextView mNoToursTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,12 +85,10 @@ public class MyToursActivity extends BaseAppCompat {
             mTourAdapter = new MyToursListingsAdapter(MyToursActivity.this, mTourList);
             recyclerView.setAdapter(mTourAdapter);
             mNoToursTv.setVisibility(View.VISIBLE);
-            mAddTourTv.setVisibility(View.VISIBLE);
         }
         else
         {
             mNoToursTv.setVisibility(View.INVISIBLE);
-            mAddTourTv.setVisibility(View.INVISIBLE);
         }
     }
 

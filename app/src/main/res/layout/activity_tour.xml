@@ -37,6 +37,7 @@
                     style="@style/BasicText"
                     android:textSize="24sp"
                     android:textStyle="bold"
+                    android:inputType="textMultiLine"
                     android:text="Tour title"
                     android:layout_margin="10dp"/>
 

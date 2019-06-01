@@ -1,41 +1,33 @@
 package com.example.worldapp.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.example.worldapp.Activities.TourActivity;
 import com.example.worldapp.Constants.ConstantValues;
-import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Helpers.FirebaseHelper;
-import com.example.worldapp.Interfaces.ClickListener;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.Models.TourBookingManager;
 import com.example.worldapp.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.gson.Gson;
+import com.google.firebase.database.ValueEventListener;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class TourBookingsAdapter extends
     RecyclerView.Adapter<TourBookingsAdapter.ViewHolder> {
     private Context mContext;
     private ArrayList<TourBookingManager> mTours;
-    private DatabaseReference mBookingDatabase;
+    private DatabaseReference mBookingDatabase, mTourDatabase;
     private Button mAcceptBook, mDenyBook;
     private GuidedToursModel mTour;
     ArrayList<String> mExistingBookedTours = new ArrayList<>();
@@ -44,6 +36,7 @@ public class TourBookingsAdapter extends
         mTours = tours;
         mContext = context;
         mBookingDatabase = FirebaseDatabase.getInstance().getReference().child("BookingManager");
+        mTourDatabase = FirebaseDatabase.getInstance().getReference().child("Tours");
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -90,8 +83,10 @@ public class TourBookingsAdapter extends
                 HashMap<String, Object> map = new HashMap<>();
                 map.put("mStatus", ConstantValues.BOOKING_ACCEPTED);
                 mBookingDatabase.child(bookID).updateChildren(map);
-                //updateTourBookingDate(tourId, bookDay);
-                FirebaseHelper.updateTourBookedDates(tourId,bookDay);
+                if (bookDay !=null && tourId != null) {
+                    updateTourBookingDate(tourId, bookDay);
+                    //FirebaseHelper.Instance().updateTourBookedDates(tourId, bookDay);
+                }
             }
         });
 
@@ -106,9 +101,27 @@ public class TourBookingsAdapter extends
     }
 
 
-    private void updateTourBookingDate(String mTourId, String mDate)
+    private void updateTourBookingDate(final String mTourId, String mDate)
     {
-        mTour = new GuidedToursModel();
+        mTourDatabase = FirebaseDatabase.getInstance().getReference().child("Tours");
+        mTourDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot data : dataSnapshot.getChildren())
+                {
+                    GuidedToursModel mAuxTour = data.getValue(GuidedToursModel.class);
+                    if (mAuxTour.getmTourId().contains(mTourId))
+                    {
+                        mTour = mAuxTour;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         if (mTour.getmBookedDates()!=null) {
             mExistingBookedTours = mTour.getmBookedDates();
         }

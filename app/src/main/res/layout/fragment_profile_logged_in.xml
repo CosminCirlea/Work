@@ -36,6 +36,21 @@
             android:background="@color/yellowColor"/>
 
         <Button
+            android:id="@+id/btn_my_accommodations_listings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/accommodation_listings"
+            android:background="?android:attr/selectableItemBackground"
+            android:textAllCaps="false"
+            style="@style/BasicText"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/yellowColor"/>
+
+        <Button
             android:id="@+id/btn_my_tour_listings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
