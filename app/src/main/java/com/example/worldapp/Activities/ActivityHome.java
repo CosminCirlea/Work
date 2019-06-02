@@ -145,5 +145,12 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
         Intent mIntent = new Intent(ActivityHome.this, ListParkingsActivity.class);
         startActivity(mIntent);
     }
+
+    public void OnAcceptBooking(View view) {
+
+    }
+
+    public void OnDenyBooking(View view) {
+    }
 }
 

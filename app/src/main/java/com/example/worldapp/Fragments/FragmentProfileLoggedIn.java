@@ -1,9 +1,7 @@
 package com.example.worldapp.Fragments;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,11 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.worldapp.Activities.ActivityHome;
 import com.example.worldapp.Activities.ActivityLogin;
-import com.example.worldapp.Activities.AddTour1Activity;
 import com.example.worldapp.Activities.EditProfileActivity;
-import com.example.worldapp.Activities.ListingsActivity;
+import com.example.worldapp.Activities.MyAccommodationsActivity;
 import com.example.worldapp.Activities.MyToursActivity;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Models.UserDetailsModel;
@@ -54,7 +50,7 @@ public class FragmentProfileLoggedIn extends Fragment {
     public static final int IMAGE_REQUEST=1;
     private static final String TAG = "AccountFragment";
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-    public  Button BtnSignOut, BtnEditProfile, BtnMyTourListings, BtnParkings;
+    public  Button BtnSignOut, BtnEditProfile, BtnMyTourListings, BtnParkings, BtnAccommodationsListings;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -91,6 +87,13 @@ public class FragmentProfileLoggedIn extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), MyToursActivity.class));
+            }
+        });
+
+        BtnAccommodationsListings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), MyAccommodationsActivity.class));
             }
         });
 
@@ -248,10 +251,12 @@ public class FragmentProfileLoggedIn extends Fragment {
 
     private void InitialValues()
     {
+        if (UserCore.Instance().User!=null){
         String firstName = UserCore.Instance().User.getFirstname();
         String name = UserCore.Instance().User.getName();
         TvName.setText(name);
         TvFirstName.setText(firstName);
+        }
     }
 
     private void InitializeViews(View view)
@@ -263,5 +268,6 @@ public class FragmentProfileLoggedIn extends Fragment {
         ivProfilePicture = view.findViewById(R.id.profile_picture);
         TvFirstName = view.findViewById(R.id.tv_profile_first_name);
         TvName = view.findViewById(R.id.tv_profile_family_name);
+        BtnAccommodationsListings = view.findViewById(R.id.btn_my_accommodations_listings);
     }
 }

@@ -1,5 +1,7 @@
 package com.example.worldapp.Models;
 
+import java.util.ArrayList;
+
 public class GuidedToursModel {
     private String mTourTitle;
     private String mTourDescription;
@@ -20,7 +22,7 @@ public class GuidedToursModel {
     private int mToursBookedNumber;
     private int mToursGrades;
     private double mToursRating;
-    private String[] mBookedDates;
+    private ArrayList<String> mBookedDates;
 
     public GuidedToursModel()
     {
@@ -125,11 +127,11 @@ public class GuidedToursModel {
         this.mToursRating = mToursRating;
     }
 
-    public String[] getmBookedDates() {
+    public ArrayList<String> getmBookedDates() {
         return mBookedDates;
     }
 
-    public void setmBookedDates(String[] mBookedDates) {
+    public void setmBookedDates(ArrayList<String> mBookedDates) {
         this.mBookedDates = mBookedDates;
     }
 

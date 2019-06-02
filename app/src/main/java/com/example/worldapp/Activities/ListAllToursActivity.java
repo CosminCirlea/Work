@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.worldapp.Adapters.MyToursListingsAdapter;
 import com.example.worldapp.BaseClasses.BaseAppCompat;
+import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Helpers.FirebaseHelper;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.R;
@@ -24,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ListAllToursActivity extends BaseAppCompat implements SearchView.OnQueryTextListener {
@@ -70,7 +72,7 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(ListAllToursActivity.this, "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListAllToursActivity.this, "Opsss.... Something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -92,6 +94,10 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
 
     private boolean IsMatchingFilter(GuidedToursModel tour, String[] filter)
     {
+        if (tour.getmUserId().contains(UserCore.Instance().User.getUserId()))
+        {
+            return false;
+        }
         if (filter!=null) {
             if (!tour.getmTourCountry().toLowerCase().contains(filter[0].toLowerCase())) {
                 return false;
@@ -113,6 +119,11 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
             }
             if (tour.getmTourPrice() > price) {
                 return false;
+            }
+
+            if (tour.getmBookedDates()!=null) {
+                ArrayList<String>bookedDates = tour.getmBookedDates();
+                return !bookedDates.contains(filter[5]);
             }
         }
         return true;
@@ -145,7 +156,7 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
                 newList.add(city);
             }
         }
-        mTourAdapter.updateList(newList);
+        //mTourAdapter.updateList(newList);
         return true;
     }
 

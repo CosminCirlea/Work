@@ -13,6 +13,10 @@ public class TourBookingManager {
     private double mFee;
     private double mTotalPrice;
     private int mStatus;
+    private String mBuyerName;
+    private String mOwnerName;
+    private String mAnnouncementTitle;
+    private String mAnnouncementId;
 
     public String getmBookingId() {
         return mBookingId;
@@ -76,5 +80,37 @@ public class TourBookingManager {
 
     public void setmStatus(int mStatus) {
         this.mStatus = mStatus;
+    }
+
+    public String getmBuyerName() {
+        return mBuyerName;
+    }
+
+    public void setmBuyerName(String mBuyerName) {
+        this.mBuyerName = mBuyerName;
+    }
+
+    public String getmOwnerName() {
+        return mOwnerName;
+    }
+
+    public void setmOwnerName(String mOwnerName) {
+        this.mOwnerName = mOwnerName;
+    }
+
+    public String getmAnnouncementTitle() {
+        return mAnnouncementTitle;
+    }
+
+    public void setmAnnouncementTitle(String mAnnouncementTitle) {
+        this.mAnnouncementTitle = mAnnouncementTitle;
+    }
+
+    public String getmAnnouncementId() {
+        return mAnnouncementId;
+    }
+
+    public void setmAnnouncementId(String mAnnouncementId) {
+        this.mAnnouncementId = mAnnouncementId;
     }
 }

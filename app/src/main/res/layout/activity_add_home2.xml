@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_simple"
     tools:context=".Activities.AddHome2Activity">
 
     <include layout="@layout/toolbar_with_back_button"/>
@@ -13,9 +12,11 @@
     <LinearLayout
         android:id="@+id/ll_select_number_of_guests"
         android:orientation="horizontal"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/toolbar_with_back_button"
         android:layout_width="match_parent"
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/tv_number_of_guests"

@@ -29,20 +29,6 @@
         android:visibility="invisible"
         android:text="@string/no_tour_text"/>
 
-    <TextView
-        android:id="@+id/tv_my_listed_tours_add_tour_text"
-        style="@style/BasicText"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/tv_my_listed_tours_no_tour_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:visibility="invisible"
-        android:text="@string/add_tour_text"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_add_tour"

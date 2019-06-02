@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class ActivityRegister extends AppCompatActivity {
+public class ActivityRegister extends BaseAppCompat {
 
     EditText UsernameET, PasswordET, NameET, FirstnameET, PasswordRepeatET, PhoneNumberET, AddressLineET;
     FirebaseAuth mAuth;
@@ -68,7 +69,6 @@ public class ActivityRegister extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
                             if (CheckPasswordsMatch(Password, PasswordRepeatET.getText().toString())) {
-                                // Sign in success, update UI with the signed-in user's information
                                 mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {

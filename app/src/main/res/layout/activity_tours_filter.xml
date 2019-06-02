@@ -99,7 +99,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/til_filter_price"
-                    android:layout_marginStart="4dp"
                     android:layout_marginTop="20dp">
 
                     <TextView
@@ -118,16 +117,28 @@
                 </RelativeLayout>
 
                 <Button
-                    android:id="@+id/btn_tour_dates"
+                    android:id="@+id/btn_filter_tour_dates"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Select dates"
+                    android:text="Select date"
                     android:textAllCaps="false"
                     style="@style/BasicText"
                     android:background="@color/fui_transparent"
                     android:layout_below="@+id/rl_tour_filter_container"
                     android:onClick="SelectDates"/>
+
+                <TextView
+                    android:id="@+id/tv_filter_set_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@+id/btn_filter_tour_dates"
+                    android:layout_below="@+id/rl_tour_filter_container"
+                    style="@style/BasicText"
+                    android:textColor="@color/colorAccent"/>
+
             </RelativeLayout>
         </ScrollView>
 

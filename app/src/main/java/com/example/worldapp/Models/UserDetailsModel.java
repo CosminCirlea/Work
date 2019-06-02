@@ -16,7 +16,7 @@ public class UserDetailsModel {
     private String PhoneNumber;
     private ArrayList<GuidedToursModel> mFavoriteTours;
     private ArrayList<GuidedToursModel> mListedTours;
-    private ArrayList<BookingManager> mBookingManager;
+    private ArrayList<String> mBookingManager;
 
     public UserDetailsModel() {
     }
@@ -103,19 +103,12 @@ public class UserDetailsModel {
         this.mListedTours = mListedTours;
     }
 
-    private void SyncData()
-    {
-        if(UserCore.Instance().isLoggedIn())
-        {
-            FirebaseHelper.Instance().SyncUserData(getUserId());
-        }
-    }
 
-    public ArrayList<BookingManager> getmBooking() {
+    public ArrayList<String> getmBooking() {
         return mBookingManager;
     }
 
-    public void setmBooking(ArrayList<BookingManager> mBooking) {
+    public void setmBooking(ArrayList<String> mBooking) {
         this.mBookingManager = mBooking;
     }
 }

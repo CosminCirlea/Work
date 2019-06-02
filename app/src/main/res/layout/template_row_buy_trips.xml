@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/containerColor"
+    android:layout_marginStart="2dp"
+    android:layout_marginEnd="2dp"
+    android:layout_marginBottom="10dp"
+    android:padding="4dp">
+
+
+
+    <TextView
+        android:id="@+id/tv_notifications_tour_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        style="@style/SmallBasicText"/>
+
+    <TextView
+        android:id="@+id/tv_notifications_booking_day_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/SmallBasicText"
+        android:layout_below="@+id/tv_notifications_tour_title"
+        android:text="Day of booking : "/>
+
+    <TextView
+        android:id="@+id/tv_notifications_booking_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/SmallBasicText"
+        android:layout_toEndOf="@id/tv_notifications_booking_day_text"
+        android:layout_below="@+id/tv_notifications_tour_title"/>
+
+    <TextView
+        android:id="@+id/tv_notifications_price_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/SmallBasicText"
+        android:layout_below="@+id/tv_notifications_booking_day_text"
+        android:text="Price : "/>
+
+    <TextView
+        android:id="@+id/tv_notifications_price_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/SmallBasicText"
+        android:layout_marginStart="2dp"
+        android:layout_toEndOf="@id/tv_notifications_price_text"
+        android:layout_below="@+id/tv_notifications_booking_day_text"/>
+
+    <TextView
+        android:id="@+id/tv_notifications_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/SmallBasicText"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/tv_notifications_booking_day_text"/>
+
+
+</RelativeLayout>

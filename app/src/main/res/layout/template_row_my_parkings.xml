@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_parking_announcement_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BasicText"
+        android:text="Regular parking spot"/>
+
+    <TextView
+        android:id="@+id/tv_parking_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        style="@style/BasicText"
+        android:layout_below="@+id/tv_parking_announcement_title"
+        android:text="West Street, 21st corner, Budapest "/>
+
+    <TextView
+        android:id="@+id/tv_parking_availability"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BasicText"
+        android:layout_marginTop="10dp"
+        android:text="dasdas dasdas"
+        android:layout_below="@+id/tv_parking_location"/>
+
+    <TextView
+        android:id="@+id/tv_parking_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BasicText"
+        android:layout_below="@+id/tv_parking_location"/>
+
+</RelativeLayout>

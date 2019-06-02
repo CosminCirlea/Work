@@ -9,13 +9,14 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AddHome2Activity extends AppCompatActivity {
+public class AddHome2Activity extends BaseAppCompat {
 
     private Spinner listingsSpinner;
     @Override

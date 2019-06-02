@@ -43,4 +43,6 @@
     <string name="parking_type_text">Parking type</string>
     <string name="parking_location_text">Parking location</string>
     <string name="euro_sign"><![CDATA[&#8364]]></string>
+    <string name="spare_parking_text">Have a spare parking spot?</string>
+    <string name="accommodation_listings">Accommodation listings</string>
 </resources>

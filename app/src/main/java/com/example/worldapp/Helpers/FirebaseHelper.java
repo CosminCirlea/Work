@@ -16,21 +16,24 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class FirebaseHelper {
 
     private static FirebaseHelper mFirebaseHelper;
-    private DatabaseReference mToursDatabaseReference;
+    public static DatabaseReference mToursDatabaseReference = FirebaseDatabase.getInstance().getReference();
     private FirebaseDatabase mDatabase;
     private DatabaseReference mDatabaseReference;
     private DatabaseReference mUserDatabase;
     private UserDetailsModel mUser, mAuxUser;
+    static ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
+    public static GuidedToursModel mCurrentTour ;
 
     public FirebaseHelper()
     {
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("users");
-        mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours");
+        //mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours");
     }
 
     public static FirebaseHelper Instance()
@@ -42,8 +45,61 @@ public class FirebaseHelper {
         return mFirebaseHelper;
     }
 
+    public static boolean checkTourDates(String tourID, final String date)
+    {
+        final boolean[] isDateAvailable = {true};
+        mFirebaseHelper.mToursDatabaseReference.child(tourID).child("mBookedDates").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean isDateAvailableAux = true;
+                for (DataSnapshot data : dataSnapshot.getChildren())
+                {
+                    String existingDate = data.toString();
+                    if (date.equalsIgnoreCase(existingDate))
+                    {
+                        isDateAvailableAux =false;
+                    }
+                }
+                isDateAvailable[0] = isDateAvailableAux;
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+        return isDateAvailable[0];
+    }
+
+    public  void getTourById(String mTourID)
+    {
+        mToursDatabaseReference.child("Tours").child(mTourID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mCurrentTour = dataSnapshot.getValue(GuidedToursModel.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                databaseError.toString();
+            }
+        });
+    }
+
+    public  void updateTourBookedDates(String tourID, String bookDate)
+    {
+        //getTourById(tourID);
+        mCurrentTour = new GuidedToursModel();
+        if (mCurrentTour.getmBookedDates()!=null)
+        {
+            mExistingBookedDatesTours = mCurrentTour.getmBookedDates();
+        }
+        mExistingBookedDatesTours.add(bookDate);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("mBookedDates", mExistingBookedDatesTours);
+        mToursDatabaseReference = FirebaseDatabase.getInstance().getReference("Tours").child(tourID);
+        mToursDatabaseReference.updateChildren(map);
+    }
 
     //todo not working properly
     public ArrayList<GuidedToursModel> GetAllTours(final ArrayList<GuidedToursModel> tours)
@@ -88,21 +144,4 @@ public class FirebaseHelper {
         });
     }
 
-
-    public void SyncUserData(String userId)
-    {
-        mDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mDatabase.getReference("users");
-        mDatabaseReference.child(userId).setValue(UserCore.Instance().User);
-    }
-
-    public void SyncUserData()
-    {
-        if(UserCore.Instance().isLoggedIn())
-        {
-            mDatabase = FirebaseDatabase.getInstance();
-            mDatabaseReference = mDatabase.getReference("users");
-            mDatabaseReference.child(UserCore.Instance().User.getUserId()).setValue(UserCore.Instance().User);
-        }
-    }
 }

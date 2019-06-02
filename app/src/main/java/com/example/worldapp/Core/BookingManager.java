@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class BookingManager {
-    private static BookingManager mBookingManager;
+   /* private static BookingManager mBookingManager;
     private String mOwnerID;
     private String mBookingID;
     private List<Date> mSelectedDates;
@@ -20,6 +20,6 @@ public class BookingManager {
         }
         return mBookingManager;
     }
-
+*/
 
 }

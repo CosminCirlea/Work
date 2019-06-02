@@ -1,5 +1,7 @@
 package com.example.worldapp.Core;
 
+import java.util.ArrayList;
+
 public class TourCore {
     private static TourCore mTourCore;
     private String mTourTitle;
@@ -21,14 +23,14 @@ public class TourCore {
     private int mToursBookedNumber =0;
     private int mToursGrades =0;
     private double mToursRating = 0;
-    private static String[] mBookedDates;
+    private static String mBookedDate;
 
     public static TourCore Instance()
     {
         if (mTourCore == null)
         {
             mTourCore = new TourCore();
-            mBookedDates[0]="";
+            mBookedDate = "";
         }
         return mTourCore;
     }
@@ -88,12 +90,12 @@ public class TourCore {
         this.mTourLandmarks = mTourLandmarks;
     }
 
-    public String[] getmBookedDates() {
-        return mBookedDates;
+    public String getmBookedDates() {
+        return mBookedDate;
     }
 
-    public void setmBookedDates(String[] mBookedDates) {
-        this.mBookedDates = mBookedDates;
+    public void setmBookedDates(String mBookedDates) {
+        this.mBookedDate = mBookedDates;
     }
 
     public String getmTourImageUrl() {

@@ -24,12 +24,10 @@ import java.util.Locale;
 
 public class AddHome1Activity extends BaseAppCompat {
 
-    private Layout templateSpinner;
     private TextView mSpinnerTv;
     Spinner citizenshipSpinner;
     private TextInputEditText mAnnouncementTitleEt, mRegionEt, mCityEt, mAddressLineEt, mZipCodeEt;
-    private Button mNextButton;
-    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,15 +39,7 @@ public class AddHome1Activity extends BaseAppCompat {
         InitializeViews();
         SetWhitelabelColors();
         InitializeCountrySpinner();
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // back button pressed
-            }
-        });
     }
-
-
 
     private void InitializeCountrySpinner()
     {
@@ -73,8 +63,6 @@ public class AddHome1Activity extends BaseAppCompat {
         mCityEt = findViewById(R.id.et_city);
         mAddressLineEt=findViewById(R.id.et_address_line);
         mZipCodeEt =findViewById(R.id.et_zip_code);
-        mNextButton = findViewById(R.id.btn_add_new_home);
-        toolbar = findViewById(R.id.toolbar);
         citizenshipSpinner = findViewById(R.id.spinner_select_country);
         citizenshipSpinner.setBackgroundColor(Color.parseColor("#D7DE9B"));
     }

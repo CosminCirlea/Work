@@ -56,7 +56,7 @@ public class SplashActivity extends AppCompatActivity {
     private void ifLoggedIn(final FirebaseUser user) {
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+        mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 UserDetailsModel myUser = dataSnapshot.getValue(UserDetailsModel.class);
