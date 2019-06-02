@@ -84,9 +84,11 @@ public class TourBookingsAdapter extends
                 map.put("mStatus", ConstantValues.BOOKING_ACCEPTED);
                 mBookingDatabase.child(bookID).updateChildren(map);
                 if (bookDay !=null && tourId != null) {
+                    HashMap<String, Object> auxMap = new HashMap<>();
+                    auxMap.put("mBookedDates", bookDay );
                     //updateTourBookingDate(tourId, bookDay);
-                    //FirebaseHelper.Instance().updateTourBookedDates(tourId, bookDay);
-                    mTourDatabase.child(tourId).child("mBookedDates").push().setValue(bookDay);
+                    FirebaseHelper.Instance().updateTourBookedDates(tourId, bookDay);
+                    //mTourDatabase.child(tourId).child("mBookedDates").updateChildren(auxMap);
                 }
             }
         });
