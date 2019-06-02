@@ -13,11 +13,13 @@ import android.widget.TextView;
 import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Core.AccommodationCore;
 import com.example.worldapp.Core.TourCore;
+import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 public class AddHome2Activity extends BaseAppCompat {
 
@@ -111,13 +113,15 @@ public class AddHome2Activity extends BaseAppCompat {
         int rooms = Integer.getInteger(roomsSpinner.getSelectedItem().toString());
         int bathrooms = Integer.getInteger(bathroomsSpinner.getSelectedItem().toString());
         double beds = Double.valueOf(bedsSpinner.getSelectedItem().toString());
-
+        String homeID = UUID.randomUUID().toString();
 
         AccommodationCore.Instance().setAnnouncementTitle(title);
         AccommodationCore.Instance().setRoomsToUse(rooms);
         AccommodationCore.Instance().setBathroomsToUse(bathrooms);
         AccommodationCore.Instance().setBedsToUse(beds);
         AccommodationCore.Instance().setListingType(listingsSpinner.getSelectedItem().toString());
+        AccommodationCore.Instance().setHomeId(homeID);
+        AccommodationCore.Instance().setUserId(UserCore.Instance().User.getUserId());
     }
 
     private void InitializeViews()

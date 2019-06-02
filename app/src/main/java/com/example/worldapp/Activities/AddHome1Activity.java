@@ -2,6 +2,7 @@ package com.example.worldapp.Activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -24,10 +25,9 @@ import java.util.Locale;
 
 public class AddHome1Activity extends BaseAppCompat {
 
-    private TextView mSpinnerTv;
-    Spinner citizenshipSpinner;
-    private TextInputEditText mAnnouncementTitleEt, mRegionEt, mCityEt, mAddressLineEt, mZipCodeEt;
-    private String mTitle, mCountry, mRegion, mCity;
+    private static final int RESULT_LOAD_IMAGE=1;
+    private Button mUpload;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,48 +37,37 @@ public class AddHome1Activity extends BaseAppCompat {
         } catch (NullPointerException e) {
         }
         setContentView(R.layout.activity_add_home1);
-        super.SetToolbarTitle("Add accommodation");
-        InitializeViews();
-        SetWhitelabelColors();
-        InitializeCountrySpinner();
+        super.SetToolbarTitle("Add photos");
+        InitializeView();
+
+        mUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent = new Intent();
+                mIntent.setType("image/*");
+                mIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                mIntent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(mIntent,"Select photos"),RESULT_LOAD_IMAGE);
+            }
+        });
+
     }
 
-    private void InitializeCountrySpinner()
-    {
-        Locale[] locale = Locale.getAvailableLocales();
-        ArrayList<String> countries = new ArrayList<>();
-        String country;
-        for( Locale loc : locale ){
-            country = loc.getDisplayCountry();
-            if( country.length() > 0 && !countries.contains(country) ){
-                countries.add( country );
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode== RESULT_LOAD_IMAGE && resultCode == RESULT_OK)
+        {
+            if (data.getClipData() != null)
+            {
+
             }
         }
-        Collections.sort(countries, String.CASE_INSENSITIVE_ORDER);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.template_spinner_layout, countries);
-        citizenshipSpinner.setAdapter(adapter);
     }
 
-    private void InitializeViews() {
-        mAnnouncementTitleEt =findViewById(R.id.et_announcement_title);
-        mRegionEt =findViewById(R.id.et_region);
-        mCityEt = findViewById(R.id.et_city);
-        mAddressLineEt=findViewById(R.id.et_address_line);
-        mZipCodeEt =findViewById(R.id.et_zip_code);
-        citizenshipSpinner = findViewById(R.id.spinner_select_country);
-    }
-
-    private void SetWhitelabelColors()
+    private void InitializeView()
     {
-        int hintColor = Color.parseColor("#D0D0D0");
-        mAnnouncementTitleEt.setHintTextColor(hintColor);
-        mRegionEt.setHintTextColor(hintColor);
-        mCityEt.setHintTextColor(hintColor);
-    }
-
-    private void GetValues()
-    {
-
+        mUpload = findViewById(R.id.btn_accommodation_select);
     }
 
     public void GoToAddHome4(View view) {

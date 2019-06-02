@@ -19,6 +19,11 @@ public class AccommodationCore {
     private String UserId;
     private String[] mBookedDays;
     private String[] mImagesUrls;
+    private Double mLocationLongitude;
+    private Double mLocationLatitude;
+    private int mBookedNumber =0;
+    private int mGrades =0;
+    private double mRating = 0;
 
     public static AccommodationCore Instance()
     {
@@ -43,6 +48,46 @@ public class AccommodationCore {
 
     public void setAnnouncementTitle(String announcementTitle) {
         AnnouncementTitle = announcementTitle;
+    }
+
+    public Double getmLocationLongitude() {
+        return mLocationLongitude;
+    }
+
+    public void setmLocationLongitude(Double mLocationLongitude) {
+        this.mLocationLongitude = mLocationLongitude;
+    }
+
+    public Double getmLocationLatitude() {
+        return mLocationLatitude;
+    }
+
+    public void setmLocationLatitude(Double mLocationLatitude) {
+        this.mLocationLatitude = mLocationLatitude;
+    }
+
+    public int getmBookedNumber() {
+        return mBookedNumber;
+    }
+
+    public void setmBookedNumber(int mBookedNumber) {
+        this.mBookedNumber = mBookedNumber;
+    }
+
+    public int getmGrades() {
+        return mGrades;
+    }
+
+    public void setmGrades(int mGrades) {
+        this.mGrades = mGrades;
+    }
+
+    public double getmRating() {
+        return mRating;
+    }
+
+    public void setmRating(double mRating) {
+        this.mRating = mRating;
     }
 
     public String getCity() {

@@ -1,14 +1,17 @@
 package com.example.worldapp.Activities;
 
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Core.AccommodationCore;
 import com.example.worldapp.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -22,7 +25,8 @@ public class AddHome4Activity extends BaseAppCompat implements OnMapReadyCallbac
     private static final String MAPVIEW_BUNDLE_KEY1 = "MapViewBundleKey";
     private MapView mMapView;
     private LatLng mLocation;
-    private EditText mAddressET, mZipCodeET;
+    private EditText mAddressET, mZipCodeET, mRegionET;
+    private LatLng mZoomPoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,7 @@ public class AddHome4Activity extends BaseAppCompat implements OnMapReadyCallbac
         } catch (NullPointerException e) {
         }
         setContentView(R.layout.activity_add_home4);
-        super.SetToolbarTitle("Add accommodation");
+        super.SetToolbarTitle("Add location");
 
         InitializeViews();
 
@@ -46,6 +50,7 @@ public class AddHome4Activity extends BaseAppCompat implements OnMapReadyCallbac
     }
 
     public void onMapReady(final GoogleMap map) {
+        map.moveCamera( CameraUpdateFactory.newLatLngZoom(mZoomPoint , 4.0f) );
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 
             @Override
@@ -79,9 +84,11 @@ public class AddHome4Activity extends BaseAppCompat implements OnMapReadyCallbac
             AccommodationCore.Instance().setRegion(state);
             AccommodationCore.Instance().setCity(city);
             AccommodationCore.Instance().setZipCode(postalCode);
-
+            AccommodationCore.Instance().setmLocationLongitude(mLocation.longitude);
+            AccommodationCore.Instance().setmLocationLatitude(mLocation.latitude);
             mAddressET.setText(address);
             mZipCodeET.setText(postalCode);
+            mRegionET.setText(state);
         }
         catch (Exception e)
         {
@@ -139,6 +146,12 @@ public class AddHome4Activity extends BaseAppCompat implements OnMapReadyCallbac
     {
         mAddressET = findViewById(R.id.et_address_line);
         mZipCodeET = findViewById(R.id.et_zip_code);
+        mRegionET = findViewById(R.id.et_region);
         mMapView = findViewById(R.id.map_add_accommodation);
+        mZoomPoint = new LatLng(47.61328,18.69477);
+    }
+
+    public void GoToAddHome3(View view) {
+        startActivity(new Intent(this, AddHome3Activity.class));
     }
 }
