@@ -71,19 +71,12 @@ public class FirebaseHelper {
         return isDateAvailable[0];
     }
 
-    public  void getTourById(final String mTourID)
+    public  void getTourById(String mTourID)
     {
-        mToursDatabaseReference.child("Tours").addListenerForSingleValueEvent(new ValueEventListener() {
+        mToursDatabaseReference.child("Tours").child(mTourID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot data : dataSnapshot.getChildren())
-                {
-                    GuidedToursModel tour = data.getValue(GuidedToursModel.class);
-                    if (tour.getmUserId().equalsIgnoreCase(mTourID))
-                    {
-                        mCurrentTour = tour;
-                    }
-                }
+                mCurrentTour = dataSnapshot.getValue(GuidedToursModel.class);
             }
 
             @Override
