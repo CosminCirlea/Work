@@ -17,6 +17,8 @@ public class AddHome3Activity extends BaseAppCompat {
             this.getSupportActionBar().hide();
         } catch (NullPointerException e) {
         }
+        super.SetToolbarTitle("Add accommodation");
+
         setContentView(R.layout.activity_add_home3);
     }
 

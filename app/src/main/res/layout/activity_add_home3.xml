@@ -11,7 +11,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_below="@+id/toolbar_with_back_button">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -46,7 +48,6 @@
                 android:layout_margin="10dp"
                 android:layout_height="wrap_content"
                 >
-
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/et_region"
                     android:textSize="@dimen/text_size_classic"
@@ -56,19 +57,19 @@
                     android:layout_height="wrap_content"
                     />
             </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_next_home_register_page_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:textAllCaps="false"
+                android:background="@drawable/round_button"
+                style="@style/BasicText"
+                android:text="Next"
+                android:onClick="GoToAddHome4"/>
         </RelativeLayout>
     </ScrollView>
-    <Button
-        android:id="@+id/btn_next_home_register_page_3"
-        android:text="Next"
-        style="@style/BasicText"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:textAllCaps="false"
-        android:background="@drawable/round_button"
-        android:layout_marginBottom="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="GoToAddHome4"/>
-
 </RelativeLayout>

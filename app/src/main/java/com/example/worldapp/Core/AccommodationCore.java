@@ -18,6 +18,7 @@ public class AccommodationCore {
     private String HomeId;
     private String UserId;
     private String[] mBookedDays;
+    private String[] mImagesUrls;
 
     public static AccommodationCore Instance()
     {
@@ -30,6 +31,14 @@ public class AccommodationCore {
 
     public String getAnnouncementTitle() {
         return AnnouncementTitle;
+    }
+
+    public String[] getmImagesUrls() {
+        return mImagesUrls;
+    }
+
+    public void setmImagesUrls(String[] mImagesUrls) {
+        this.mImagesUrls = mImagesUrls;
     }
 
     public void setAnnouncementTitle(String announcementTitle) {

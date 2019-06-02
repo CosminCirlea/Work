@@ -27,6 +27,7 @@ public class AddHome1Activity extends BaseAppCompat {
     private TextView mSpinnerTv;
     Spinner citizenshipSpinner;
     private TextInputEditText mAnnouncementTitleEt, mRegionEt, mCityEt, mAddressLineEt, mZipCodeEt;
+    private String mTitle, mCountry, mRegion, mCity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class AddHome1Activity extends BaseAppCompat {
         } catch (NullPointerException e) {
         }
         setContentView(R.layout.activity_add_home1);
+        super.SetToolbarTitle("Add accommodation");
         InitializeViews();
         SetWhitelabelColors();
         InitializeCountrySpinner();
@@ -64,7 +66,6 @@ public class AddHome1Activity extends BaseAppCompat {
         mAddressLineEt=findViewById(R.id.et_address_line);
         mZipCodeEt =findViewById(R.id.et_zip_code);
         citizenshipSpinner = findViewById(R.id.spinner_select_country);
-        citizenshipSpinner.setBackgroundColor(Color.parseColor("#D7DE9B"));
     }
 
     private void SetWhitelabelColors()
@@ -75,7 +76,12 @@ public class AddHome1Activity extends BaseAppCompat {
         mCityEt.setHintTextColor(hintColor);
     }
 
-    public void GoToAddHome2(View view) {
-        startActivity(new Intent(this, AddHome2Activity.class));
+    private void GetValues()
+    {
+
+    }
+
+    public void GoToAddHome4(View view) {
+        startActivity(new Intent(this, AddHome4Activity.class));
     }
 }
