@@ -10,10 +10,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.worldapp.Adapters.MyHomesListingsAdapter;
 import com.example.worldapp.Adapters.MyToursListingsAdapter;
 import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Core.UserCore;
-import com.example.worldapp.Models.GuidedToursModel;
+import com.example.worldapp.Models.HomeDetailsModel;
 import com.example.worldapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,8 +27,8 @@ import java.util.ArrayList;
 public class MyAccommodationsActivity extends BaseAppCompat {
     private DatabaseReference mToursDatabaseReference;
     private RecyclerView recyclerView;
-    private ArrayList<GuidedToursModel> mTourList;
-    private MyToursListingsAdapter mTourAdapter;
+    private ArrayList<HomeDetailsModel> mHomeList;
+    private MyHomesListingsAdapter mHomesAdapter;
     private String userID;
     private FloatingActionButton mAddAccommodationFAB;
     private TextView mNoToursTv;
@@ -46,27 +47,27 @@ public class MyAccommodationsActivity extends BaseAppCompat {
         mAddAccommodationFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MyAccommodationsActivity.this, AddHome1Activity.class));
+                startActivity(new Intent(MyAccommodationsActivity.this, AddHome2Activity.class));
             }
         });
 
         userID = UserCore.Instance().User.getUserId();
-        mTourList = new ArrayList<>();
-        mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours");
+        mHomeList = new ArrayList<>();
+        mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Accommodation");
         mToursDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    GuidedToursModel mGuidedTour = dataSnapshot1.getValue(GuidedToursModel.class);
-                    if (mGuidedTour != null) {
-                        if (mGuidedTour.getmUserId().contains(userID)) {
-                            mTourList.add(mGuidedTour);
+                    HomeDetailsModel mHome = dataSnapshot1.getValue(HomeDetailsModel.class);
+                    if (mHome != null) {
+                        if (mHome.getUserId().contains(userID)) {
+                            mHomeList.add(mHome);
                         }
                     }
                 }
 
-                mTourAdapter = new MyToursListingsAdapter(MyAccommodationsActivity.this, mTourList);
-                recyclerView.setAdapter(mTourAdapter);
+                mHomesAdapter = new MyHomesListingsAdapter(MyAccommodationsActivity.this, mHomeList);
+                recyclerView.setAdapter(mHomesAdapter);
             }
 
             @Override
@@ -74,11 +75,11 @@ public class MyAccommodationsActivity extends BaseAppCompat {
                 Toast.makeText(MyAccommodationsActivity.this, "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
             }
         });
-        if (UserCore.Instance().getmListedTours() != null)
+        if (UserCore.Instance().getmListedHomes() != null)
         {
-            mTourList = UserCore.Instance().getmListedTours();
-            mTourAdapter = new MyToursListingsAdapter(MyAccommodationsActivity.this, mTourList);
-            recyclerView.setAdapter(mTourAdapter);
+            mHomeList = UserCore.Instance().getmListedHomes();
+            mHomesAdapter = new MyHomesListingsAdapter(MyAccommodationsActivity.this, mHomeList);
+            recyclerView.setAdapter(mHomesAdapter);
             mNoToursTv.setVisibility(View.VISIBLE);
         }
         else
@@ -88,7 +89,7 @@ public class MyAccommodationsActivity extends BaseAppCompat {
     }
 
     private void InitializeViews(){
-        recyclerView = findViewById(R.id.rv_my_listed_tours);
+        recyclerView = findViewById(R.id.rv_my_listed_homes);
         recyclerView.setLayoutManager(new LinearLayoutManager(MyAccommodationsActivity.this));
         mAddAccommodationFAB = findViewById(R.id.fab_add_accommodations);
         mNoToursTv = findViewById(R.id.tv_my_listed_tours_no_tour_text);

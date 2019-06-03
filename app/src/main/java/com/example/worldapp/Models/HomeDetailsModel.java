@@ -39,6 +39,9 @@ public class HomeDetailsModel {
         OwnerType = ownerType;
     }
 
+    public HomeDetailsModel() {
+    }
+
     private static int lastContactId = 0;
 
     public static ArrayList<HomeDetailsModel> createHomeList(int numHomes) {

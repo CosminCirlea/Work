@@ -28,9 +28,6 @@ public class ListingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_listings);
         RecyclerView rvListedHomesAdaptor = findViewById(R.id.rv_listed_homes);
         rvListedHomesAdaptor.setHasFixedSize(true);
-        homesHomeDetailsModelsList = HomeDetailsModel.createHomeList(7);
-        MyHomesListingsAdapter adapter = new MyHomesListingsAdapter(homesHomeDetailsModelsList);
-        rvListedHomesAdaptor.setAdapter(adapter);
         rvListedHomesAdaptor.setLayoutManager(new LinearLayoutManager(this));
     }
 

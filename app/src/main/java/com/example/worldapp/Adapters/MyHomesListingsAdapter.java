@@ -20,9 +20,11 @@ public class MyHomesListingsAdapter extends
 
     private TextView tvAnnouncementTitle, tvLocation, tvHouseType, tvMaxGuests, tvBeds, tvPricePerNight;
     private List<HomeDetailsModel> mHomes;
+    private Context mContext;
 
-    public MyHomesListingsAdapter(List<HomeDetailsModel> homes) {
+    public MyHomesListingsAdapter(Context context, List<HomeDetailsModel> homes) {
         mHomes = homes;
+        mContext =context;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

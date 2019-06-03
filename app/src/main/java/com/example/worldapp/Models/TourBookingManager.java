@@ -2,6 +2,7 @@ package com.example.worldapp.Models;
 
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 public class TourBookingManager {
@@ -17,6 +18,7 @@ public class TourBookingManager {
     private String mOwnerName;
     private String mAnnouncementTitle;
     private String mAnnouncementId;
+    private HashMap<String, String> mSelectedDates;
 
     public String getmBookingId() {
         return mBookingId;
@@ -64,6 +66,14 @@ public class TourBookingManager {
 
     public void setmFee(double mFee) {
         this.mFee = mFee;
+    }
+
+    public HashMap<String, String> getmSelectedDates() {
+        return mSelectedDates;
+    }
+
+    public void setmSelectedDates(HashMap<String, String> mSelectedDates) {
+        this.mSelectedDates = mSelectedDates;
     }
 
     public double getmTotalPrice() {

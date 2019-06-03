@@ -74,7 +74,7 @@
             android:name=".Activities.AddHome3Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.SplashActivity"
+            android:name=".Activities.AddHome2Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.AddHome1Activity"
@@ -92,7 +92,7 @@
             android:name=".Activities.ActivityLogin"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.AddHome2Activity"
+            android:name=".Activities.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
