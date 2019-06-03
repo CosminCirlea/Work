@@ -140,10 +140,6 @@ public class AddTour2Activity extends BaseAppCompat {
                         Uri downloadUri = task.getResult();
                         String mUri = downloadUri.toString();
                         TourCore.Instance().setmTourImageUrl(mUri);
-                        //mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours").child(mUserId).child(mTourId);
-                        //HashMap<String, Object> map = new HashMap<>();
-                        //map.put("mTourImageUrl", mUri);
-                        //mDatabaseReference.updateChildren(map);
                         Glide.with(mTourImage.getContext()).load(uriProfilePicture).apply(new RequestOptions().placeholder(R.drawable.photo_placeholder).centerCrop()).into(mTourImage);
                         pd.dismiss();
                     }

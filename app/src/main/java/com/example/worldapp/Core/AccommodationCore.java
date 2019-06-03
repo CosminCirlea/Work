@@ -1,5 +1,7 @@
 package com.example.worldapp.Core;
 
+import java.util.ArrayList;
+
 public class AccommodationCore {
     private static AccommodationCore mAccommodationCore;
     private String AnnouncementTitle;
@@ -18,7 +20,7 @@ public class AccommodationCore {
     private String HomeId;
     private String UserId;
     private String[] mBookedDays;
-    private String[] mImagesUrls;
+    private ArrayList<String> mImagesUrls;
     private Double mLocationLongitude;
     private Double mLocationLatitude;
     private int mBookedNumber =0;
@@ -38,11 +40,11 @@ public class AccommodationCore {
         return AnnouncementTitle;
     }
 
-    public String[] getmImagesUrls() {
+    public ArrayList<String> getmImagesUrls() {
         return mImagesUrls;
     }
 
-    public void setmImagesUrls(String[] mImagesUrls) {
+    public void setmImagesUrls(ArrayList<String> mImagesUrls) {
         this.mImagesUrls = mImagesUrls;
     }
 

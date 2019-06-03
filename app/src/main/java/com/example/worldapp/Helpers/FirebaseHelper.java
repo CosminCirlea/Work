@@ -14,6 +14,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +29,7 @@ public class FirebaseHelper {
     private DatabaseReference mDatabaseReference;
     private DatabaseReference mUserDatabase;
     private UserDetailsModel mUser, mAuxUser;
+    public static StorageReference mAccommodationStorageReference = FirebaseStorage.getInstance().getReference("AccommodationPictures");
     static ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
     public static GuidedToursModel mCurrentTour ;
 

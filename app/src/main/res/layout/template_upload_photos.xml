@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
+
+    <ImageView
+        android:id="@+id/iv_row_home"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/images"/>
+
+    <TextView
+        android:id="@+id/tv_row_home_filename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/iv_row_home"
+        android:layout_marginStart="10dp"
+        android:textColor="#000"
+        android:text="adsa das das das "
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_done"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="20dp"/>
+
+</RelativeLayout>
