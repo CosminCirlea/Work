@@ -79,7 +79,7 @@
         <counts>
           <entry key="class" value="17" />
           <entry key="gradle" value="13" />
-          <entry key="java" value="435" />
+          <entry key="java" value="439" />
           <entry key="jpg" value="1" />
           <entry key="png" value="1" />
           <entry key="properties" value="1" />
@@ -91,7 +91,7 @@
           <entry key="CLASS" value="17" />
           <entry key="Groovy" value="13" />
           <entry key="Image" value="2" />
-          <entry key="JAVA" value="435" />
+          <entry key="JAVA" value="439" />
           <entry key="Properties" value="1" />
           <entry key="XML" value="218" />
         </counts>
@@ -100,14 +100,14 @@
         <counts>
           <entry key="dummy" value="16" />
           <entry key="gradle" value="161" />
-          <entry key="java" value="22856" />
+          <entry key="java" value="23061" />
           <entry key="xml" value="8136" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="161" />
-          <entry key="JAVA" value="22856" />
+          <entry key="JAVA" value="23061" />
           <entry key="PLAIN_TEXT" value="16" />
           <entry key="XML" value="8136" />
         </counts>
@@ -116,66 +116,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome3Activity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="760">
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome1Activity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome4Activity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="734">
-              <caret line="174" column="82" selection-start-line="174" selection-start-column="82" selection-end-line="174" selection-end-column="82" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1736#2179#0" expanded="true" />
-                <element signature="e#2178#2179#0" expanded="true" />
-                <element signature="e#3601#4017#0" expanded="true" />
-                <element signature="e#4016#4017#0" expanded="true" />
-                <element signature="e#4041#4843#0" expanded="true" />
-                <element signature="e#4842#4843#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour4Activity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="58" column="8" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome2Activity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="524">
-              <caret line="114" column="41" selection-start-line="114" selection-start-column="41" selection-end-line="114" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Helpers/FirebaseHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="27" column="67" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="67" />
-              <folding>
-                <element signature="method#checkTourDates#0;class#FirebaseHelper#0" />
-                <element signature="method#GetAllTours#0;class#FirebaseHelper#0" />
-                <element signature="method#GetMyTours#0;class#FirebaseHelper#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Core/AccommodationCore.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="55" column="31" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
-              <folding>
-                <element signature="e#1551#1552#0" expanded="true" />
-                <element signature="e#1595#1596#0" expanded="true" />
-                <element signature="e#1626#1627#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="411">
+              <caret line="148" column="77" selection-start-line="148" selection-start-column="77" selection-end-line="148" selection-end-column="77" />
             </state>
           </provider>
         </entry>
@@ -265,8 +219,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_home2.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_home4.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour4Activity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome4Activity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome3Activity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Adapters/UploadPicturesAdapater.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_home3.xml" />
@@ -282,6 +234,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome2Activity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Helpers/FirebaseHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome1Activity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome3Activity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome4Activity.java" />
       </list>
     </option>
   </component>
@@ -547,7 +501,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.15458423" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.15458423" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -556,7 +510,7 @@
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Run" order="0" sideWeight="0.49731544" weight="0.12765957" />
       <window_info anchor="bottom" id="TODO" order="1" sideWeight="0.49932885" weight="0.22695035" />
-      <window_info active="true" anchor="bottom" id="Debug" order="2" sideWeight="0.54228187" visible="true" weight="0.0032537961" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.54228187" visible="true" weight="0.0032537961" />
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.32765958" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.45771813" side_tool="true" weight="0.33617023" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.3617021" />
@@ -741,12 +695,6 @@
           <line>125</line>
           <properties />
           <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome1Activity.java</url>
-          <line>172</line>
-          <properties />
-          <option name="timeStamp" value="127" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -959,17 +907,6 @@
       <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome4Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="37" column="37" selection-start-line="37" selection-start-column="37" selection-end-line="37" selection-end-column="37" />
-          <folding>
-            <element signature="e#4976#4977#0" expanded="true" />
-            <element signature="e#5047#5048#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -995,13 +932,6 @@
         </state>
       </provider>
       <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome3Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_home3.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -1094,13 +1024,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome2Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="114" column="41" selection-start-line="114" selection-start-column="41" selection-end-line="114" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Helpers/FirebaseHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -1134,8 +1057,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome1Activity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="734">
-          <caret line="174" column="82" selection-start-line="174" selection-start-column="82" selection-end-line="174" selection-end-column="82" />
+        <state relative-caret-position="631">
+          <caret line="167" selection-start-line="167" selection-end-line="167" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1736#2179#0" expanded="true" />
@@ -1145,6 +1068,27 @@
             <element signature="e#4041#4843#0" expanded="true" />
             <element signature="e#4842#4843#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome2Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="524">
+          <caret line="114" column="41" selection-start-line="114" selection-start-column="41" selection-end-line="114" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome3Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="760">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome4Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="148" column="77" selection-start-line="148" selection-start-column="77" selection-end-line="148" selection-end-column="77" />
         </state>
       </provider>
     </entry>

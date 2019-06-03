@@ -142,6 +142,13 @@ public class AddHome4Activity extends BaseAppCompat implements OnMapReadyCallbac
         mMapView.onSaveInstanceState(mapViewBundle);
     }
 
+    private void GetValues()
+    {
+        AccommodationCore.Instance().setAddressLine(mAddressET.getText().toString());
+        AccommodationCore.Instance().setZipCode(mZipCodeET.getText().toString());
+        AccommodationCore.Instance().setRegion(mRegionET.getText().toString());
+    }
+
     private void InitializeViews()
     {
         mAddressET = findViewById(R.id.et_address_line);
@@ -152,6 +159,7 @@ public class AddHome4Activity extends BaseAppCompat implements OnMapReadyCallbac
     }
 
     public void GoToAddHome3(View view) {
+        GetValues();
         startActivity(new Intent(this, AddHome3Activity.class));
     }
 }

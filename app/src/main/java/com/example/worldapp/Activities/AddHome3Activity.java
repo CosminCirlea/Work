@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.worldapp.BaseClasses.BaseAppCompat;
+import com.example.worldapp.Core.AccommodationCore;
 import com.example.worldapp.R;
 
 public class AddHome3Activity extends BaseAppCompat {
@@ -22,8 +23,15 @@ public class AddHome3Activity extends BaseAppCompat {
         setContentView(R.layout.activity_add_home3);
         super.SetToolbarTitle("Add details");
         InitializeViews();
+    }
 
+    private void GetValues()
+    {
+        String price = mPrice.getText().toString();
+        String amenities = mAmenities.getText().toString();
 
+        AccommodationCore.Instance().setPricePerNight(Double.parseDouble(price));
+        AccommodationCore.Instance().setAmenities(amenities);
     }
 
     private void InitializeViews()
@@ -32,6 +40,8 @@ public class AddHome3Activity extends BaseAppCompat {
         mPrice = findViewById(R.id.et_price_per_night);
     }
 
-    public void GoToAddHome4(View view) {startActivity(new Intent(this, AddHome1Activity.class));}
-
+    public void GoToAddHome4(View view) {
+        GetValues();
+        startActivity(new Intent(this, AddHome1Activity.class));
+    }
 }

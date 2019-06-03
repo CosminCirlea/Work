@@ -165,10 +165,6 @@ public class AddHome1Activity extends BaseAppCompat {
         mFinishButton = findViewById(R.id.btn_accommodation_select);
     }
 
-    public void GoToAddHome4(View view) {
-        startActivity(new Intent(this, AddHome4Activity.class));
-    }
-
     public void FinishRegistration(View view) {
         mAccommodationDatabaseReference.child(AccommodationCore.Instance().getHomeId()).setValue(AccommodationCore.Instance());
         startActivity(new Intent(this , ActivityHome.class));
