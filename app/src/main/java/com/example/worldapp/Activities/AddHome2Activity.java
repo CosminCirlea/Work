@@ -15,6 +15,7 @@ import com.example.worldapp.Core.AccommodationCore;
 import com.example.worldapp.Core.TourCore;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -126,7 +127,7 @@ public class AddHome2Activity extends BaseAppCompat {
         AccommodationCore.Instance().setOwnerType(owner);
         AccommodationCore.Instance().setListingType(listing);
         AccommodationCore.Instance().setHomeId(homeID);
-        AccommodationCore.Instance().setUserId(UserCore.Instance().User.getUserId());
+        AccommodationCore.Instance().setUserId(FirebaseAuth.getInstance().getUid());
     }
 
     private void InitializeViews()

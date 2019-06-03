@@ -21,13 +21,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.AddParkingActivity3"></activity>
+        <activity android:name=".Activities.AccommodationActivity"></activity>
+        <activity android:name=".Activities.AddParkingActivity3" />
         <activity android:name=".Activities.ParkingActivity" />
         <activity android:name=".Activities.ListParkingsActivity" />
         <activity android:name=".Activities.MyParkingsActivity" />
         <activity android:name=".Activities.AddParkingActivity1" />
         <activity android:name=".Activities.MyAccommodationsActivity" />
-        <activity android:name=".Activities.ToursFilterActivity"/>
+        <activity android:name=".Activities.ToursFilterActivity" />
         <activity android:name=".Activities.AddParkingActivity2" />
         <activity android:name=".Activities.CheckOutActivity" />
         <activity android:name=".Activities.ChatActivity" />

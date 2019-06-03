@@ -1,13 +1,17 @@
 package com.example.worldapp.Adapters;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.worldapp.Models.HomeDetailsModel;
 import com.example.worldapp.R;
 
@@ -27,13 +31,6 @@ public class MyHomesListingsAdapter extends
         mContext =context;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-    public ViewHolder(View itemView) {
-        super(itemView);
-        InitializeViews(itemView);
-    }
-}
 
     @NonNull
     @Override
@@ -48,12 +45,15 @@ public class MyHomesListingsAdapter extends
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         HomeDetailsModel home = mHomes.get(position);
+        Uri mUri = Uri.parse(home.getmImagesUrls().get(0));
         String location =home.getCity()+"," + home.getRegion() +","+home.getCountry();
+        String accommodates = String.valueOf(home.getGuests())+" - " +home.getRoomsToUse() +" rooms";
         tvAnnouncementTitle.setText(home.getAnnouncementTitle());
         tvLocation.setText(location);
         tvHouseType.setText(home.getListingType() + " - "+ home.getOwnerType());
-        tvBeds.setText(String.valueOf(home.getBedsToUse())+" - " +home.getRoomsToUse());
-        tvPricePerNight.setText(String.valueOf(home.getPricePerNight())+Currency.getInstance(Locale.GERMANY).getCurrencyCode()+" per night ");
+        tvBeds.setText("Accommodates " + accommodates);
+        tvPricePerNight.setText(String.valueOf(home.getPricePerNight())+Currency.getInstance(Locale.GERMANY).getCurrencyCode()+" /night ");
+        Glide.with(viewHolder.mImage.getContext()).load(mUri).apply(new RequestOptions().centerCrop()).into(viewHolder.mImage);
     }
 
     @Override
@@ -67,7 +67,17 @@ public class MyHomesListingsAdapter extends
         tvLocation = itemView.findViewById(R.id.tv_location);
         tvHouseType = itemView.findViewById(R.id.tv_venue_type);
         tvMaxGuests = itemView.findViewById(R.id.tv_guest_capacity);
-        tvBeds = itemView.findViewById(R.id.tv_beds);
+        tvBeds = itemView.findViewById(R.id.tv_guest_capacity);
         tvPricePerNight= itemView.findViewById(R.id.tv_price_per_night);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public ImageView mImage;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            mImage = itemView.findViewById(R.id.iv_listed_home);
+            InitializeViews(itemView);
+        }
     }
 }
