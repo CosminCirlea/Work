@@ -25,6 +25,7 @@ public class FirebaseHelper {
 
     private static FirebaseHelper mFirebaseHelper;
     public static DatabaseReference mToursDatabaseReference = FirebaseDatabase.getInstance().getReference();
+    public static DatabaseReference mAccommodationDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Accommodation");
     private FirebaseDatabase mDatabase;
     private DatabaseReference mDatabaseReference;
     private DatabaseReference mUserDatabase;

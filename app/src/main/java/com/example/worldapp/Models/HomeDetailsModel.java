@@ -7,6 +7,7 @@ public class HomeDetailsModel {
     private String City;
     private String Region="";
     private String Country;
+    private String Guests;
     private String ListingType;
     private String OwnerType;
     private double PricePerNight;
@@ -71,6 +72,14 @@ public class HomeDetailsModel {
 
     public void setmLocationLatitude(Double mLocationLatitude) {
         this.mLocationLatitude = mLocationLatitude;
+    }
+
+    public String getGuests() {
+        return Guests;
+    }
+
+    public void setGuests(String guests) {
+        Guests = guests;
     }
 
     public int getmBookedNumber() {

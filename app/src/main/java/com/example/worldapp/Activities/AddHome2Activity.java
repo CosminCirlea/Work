@@ -110,16 +110,21 @@ public class AddHome2Activity extends BaseAppCompat {
     private void GetValues()
     {
         String title = mTitle.getText().toString();
-        int rooms = Integer.getInteger(roomsSpinner.getSelectedItem().toString());
-        int bathrooms = Integer.getInteger(bathroomsSpinner.getSelectedItem().toString());
-        double beds = Double.valueOf(bedsSpinner.getSelectedItem().toString());
+        int rooms = Integer.parseInt(roomsSpinner.getSelectedItem().toString());
+        int bathrooms = Integer.parseInt(bathroomsSpinner.getSelectedItem().toString());
+        double beds = Double.parseDouble(bedsSpinner.getSelectedItem().toString());
         String homeID = UUID.randomUUID().toString();
+        String guests = guestsSpinner.getSelectedItem().toString();
+        String owner = ownerTypeSpinner.getSelectedItem().toString();
+        String listing = listingsSpinner.getSelectedItem().toString();
 
         AccommodationCore.Instance().setAnnouncementTitle(title);
+        AccommodationCore.Instance().setGuests(guests);
         AccommodationCore.Instance().setRoomsToUse(rooms);
-        AccommodationCore.Instance().setBathroomsToUse(bathrooms);
         AccommodationCore.Instance().setBedsToUse(beds);
-        AccommodationCore.Instance().setListingType(listingsSpinner.getSelectedItem().toString());
+        AccommodationCore.Instance().setBathroomsToUse(bathrooms);
+        AccommodationCore.Instance().setOwnerType(owner);
+        AccommodationCore.Instance().setListingType(listing);
         AccommodationCore.Instance().setHomeId(homeID);
         AccommodationCore.Instance().setUserId(UserCore.Instance().User.getUserId());
     }
@@ -136,6 +141,7 @@ public class AddHome2Activity extends BaseAppCompat {
     }
 
     public void GoToAddHome4(View view) {
+        GetValues();
         startActivity(new Intent(this, AddHome4Activity.class));
     }
 

@@ -30,6 +30,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 
+import static com.example.worldapp.Helpers.FirebaseHelper.mAccommodationDatabaseReference;
+
 public class AddHome1Activity extends BaseAppCompat {
 
     private static final int RESULT_LOAD_IMAGE=1;
@@ -165,5 +167,11 @@ public class AddHome1Activity extends BaseAppCompat {
 
     public void GoToAddHome4(View view) {
         startActivity(new Intent(this, AddHome4Activity.class));
+    }
+
+    public void FinishRegistration(View view) {
+        mAccommodationDatabaseReference.child(AccommodationCore.Instance().getHomeId()).setValue(AccommodationCore.Instance());
+        startActivity(new Intent(this , ActivityHome.class));
+        Toast.makeText(this, "Accommodation added succesfully!", Toast.LENGTH_LONG).show();
     }
 }

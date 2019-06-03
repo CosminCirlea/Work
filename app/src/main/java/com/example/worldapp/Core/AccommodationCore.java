@@ -6,6 +6,7 @@ public class AccommodationCore {
     private static AccommodationCore mAccommodationCore;
     private String AnnouncementTitle;
     private String City;
+    private String Guests;
     private String Region="";
     private String Country;
     private String ListingType;
@@ -50,6 +51,14 @@ public class AccommodationCore {
 
     public void setAnnouncementTitle(String announcementTitle) {
         AnnouncementTitle = announcementTitle;
+    }
+
+    public String getGuests() {
+        return Guests;
+    }
+
+    public void setGuests(String guests) {
+        Guests = guests;
     }
 
     public Double getmLocationLongitude() {
