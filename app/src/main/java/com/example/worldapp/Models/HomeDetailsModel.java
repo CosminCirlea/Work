@@ -27,31 +27,9 @@ public class HomeDetailsModel {
     private int mGrades =0;
     private double mRating = 0;
 
-    public HomeDetailsModel(String announcementTitle, String city, String region, String country, String listingType, String ownerType, double pricePerNight, int RoomsToUse, double BedsToUse) {
-        AnnouncementTitle = announcementTitle;
-        City = city;
-        Region = region;
-        Country = country;
-        PricePerNight = pricePerNight;
-        this.RoomsToUse = RoomsToUse;
-        this.BedsToUse = BedsToUse;
-        ListingType = listingType;
-        OwnerType = ownerType;
-    }
-
     public HomeDetailsModel() {
     }
 
-    private static int lastContactId = 0;
-
-    public static ArrayList<HomeDetailsModel> createHomeList(int numHomes) {
-        ArrayList<HomeDetailsModel> homes = new ArrayList<HomeDetailsModel>();
-        for (int i = 0; i <= numHomes; i++) {
-            homes.add(new HomeDetailsModel("Very cool private room, vinteage, in the city center", "Venice", "Veneto","Italy",
-                    "Private room", "Private house", 40, ++lastContactId, 2));
-        }
-        return homes;
-    }
 
     public ArrayList<String> getmImagesUrls() {
         return mImagesUrls;
@@ -107,14 +85,6 @@ public class HomeDetailsModel {
 
     public void setmRating(double mRating) {
         this.mRating = mRating;
-    }
-
-    public static int getLastContactId() {
-        return lastContactId;
-    }
-
-    public static void setLastContactId(int lastContactId) {
-        HomeDetailsModel.lastContactId = lastContactId;
     }
 
     public String getListingType() {
