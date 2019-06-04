@@ -1,6 +1,10 @@
 package com.example.worldapp.Core;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 public class AccommodationCore {
     private static AccommodationCore mAccommodationCore;
@@ -29,6 +33,7 @@ public class AccommodationCore {
     private double mRating = 0;
     private String mStartDate;
     private String mEndDate;
+    private int mNumberOfNights;
 
     public static AccommodationCore Instance()
     {
@@ -69,6 +74,28 @@ public class AccommodationCore {
 
     public void setmEndDate(String mEndDate) {
         this.mEndDate = mEndDate;
+    }
+
+    public List<Date> getBookedDates(Date startDate, Date endDate)
+    {
+        List<Date> allDates = new ArrayList<>();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(startDate);
+
+        Calendar endCalendar = new GregorianCalendar();
+        endCalendar.setTime(endDate);
+
+        while (calendar.before(endCalendar)) {
+            Date result = calendar.getTime();
+            allDates.add(result);
+            calendar.add(Calendar.DATE, 1);
+        }
+        mNumberOfNights = daysBetween(startDate,endDate) + 1;
+        return allDates;
+    }
+
+    public int daysBetween(Date d1, Date d2){
+        return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
     }
 
     public String getGuests() {

@@ -26,7 +26,7 @@ import java.util.Date;
 
 public class AccommodationFilterActivity extends BaseAppCompat {
     private TextInputEditText mCountry, mRegion, mCity, mPrice;
-    private static TextView mStartDateTv, mEndDateTv, mNightsTv;
+    private static TextView mStartDateTv, mEndDateTv;
     private FloatingActionButton mSearchButton;
     private ArrayList<String> mFieldValues;
     private String[] mFilterValues;
@@ -48,6 +48,7 @@ public class AccommodationFilterActivity extends BaseAppCompat {
             @Override
             public void onClick(View v) {
                 GetValues();
+                AccommodationCore.Instance().getBookedDates(mStartDay, mEndDay);
                 Intent myIntent = new Intent(AccommodationFilterActivity.this, ListAllAccommodationActivity.class);
                 myIntent.putStringArrayListExtra("filters", mFieldValues);
                 startActivity(myIntent);
@@ -73,6 +74,12 @@ public class AccommodationFilterActivity extends BaseAppCompat {
         calendar.setTime(today);
         calendar.add(Calendar.DATE,1);
         mEndDay = calendar.getTime();
+
+        SimpleDateFormat formatTime = new SimpleDateFormat(ConstantValues.DATE_FORMAT);
+        mStartDate = formatTime.format(mStartDay);
+        mStartDateTv.setText(mStartDate);
+        mEndDate = formatTime.format(mEndDay);
+        mEndDateTv.setText(mEndDate);
     }
 
     private void SetFiltersValues() {
@@ -113,7 +120,6 @@ public class AccommodationFilterActivity extends BaseAppCompat {
         mCity = findViewById(R.id.et_filter_city);
         mPrice = findViewById(R.id.et_filter_price);
         mSearchButton = findViewById(R.id.btn_filter_save);
-        mNightsTv = findViewById(R.id.tv_accommodation_filter_nights);
         mStartDateTv = findViewById(R.id.tv_filter_set_start_date);
         mEndDateTv = findViewById(R.id.tv_filter_set_end_date);
     }

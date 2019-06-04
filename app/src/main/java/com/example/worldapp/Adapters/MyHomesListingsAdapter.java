@@ -1,6 +1,7 @@
 package com.example.worldapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,8 +13,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.worldapp.Activities.AccommodationActivity;
+import com.example.worldapp.Activities.TourActivity;
+import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Models.HomeDetailsModel;
 import com.example.worldapp.R;
+import com.google.gson.Gson;
 
 import java.util.Currency;
 import java.util.List;
@@ -43,8 +48,8 @@ public class MyHomesListingsAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        HomeDetailsModel home = mHomes.get(position);
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
+        final HomeDetailsModel home = mHomes.get(position);
         Uri mUri = Uri.parse(home.getmImagesUrls().get(0));
         String location =home.getCity()+"," + home.getRegion() +","+home.getCountry();
         String accommodates = String.valueOf(home.getGuests())+" - " +home.getRoomsToUse() +" rooms";
@@ -54,6 +59,16 @@ public class MyHomesListingsAdapter extends
         tvBeds.setText("Accommodates " + accommodates);
         tvPricePerNight.setText(String.valueOf(home.getPricePerNight())+Currency.getInstance(Locale.GERMANY).getCurrencyCode()+" /night ");
         Glide.with(viewHolder.mImage.getContext()).load(mUri).apply(new RequestOptions().centerCrop()).into(viewHolder.mImage);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent = new Intent(mContext, AccommodationActivity.class);
+                String serializedHome = new Gson().toJson(home);
+                mIntent.putExtra(NavigationConstants.ACCOMMODATION_MODEL_KEY,serializedHome);
+                mContext.startActivity(mIntent);
+            }
+        });
     }
 
     @Override

@@ -75,7 +75,6 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
         }
-
         mMapView.onCreate(mapViewBundle);
         mMapView.getMapAsync(this);
 
@@ -111,7 +110,6 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         });
 
         SetValues();
-        Date startDate = Calendar.getInstance().getTime();
     }
 
     @Override
@@ -123,6 +121,8 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
             mapViewBundle = new Bundle();
             outState.putBundle(MAPVIEW_BUNDLE_KEY, mapViewBundle);
         }
+        mMapView.onCreate(mapViewBundle);
+        mMapView.getMapAsync(this);
 
         mMapView.onSaveInstanceState(mapViewBundle);
     }
