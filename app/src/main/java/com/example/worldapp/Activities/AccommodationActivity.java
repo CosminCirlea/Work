@@ -99,7 +99,11 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
         });
 
         SetValues();
+        setGallery();
+    }
 
+    private void setGallery()
+    {
         GlideMediaHelper mediaHelper = new GlideMediaHelper();
         List<MediaInfo> list = mediaHelper.images(mHome.getmImagesUrls());
 
@@ -117,6 +121,7 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
                 .build();
     }
 
+
     private void InitializeViews() {
         mMapView = findViewById(R.id.map_accommodation);
         mTitleTv = findViewById(R.id.tv_announcement_title);
@@ -131,7 +136,6 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
         mExactLocationTv = findViewById(R.id.tv_accommodation_address);
         mOwnerImage = findViewById(R.id.iv_accommodation_owner_image);
         mOwnerNameTv = findViewById(R.id.tv_accommodation_owner_name);
-        galleryView = findViewById(R.id.scroll_gallery_view);
     }
 
     public void OnBook(View view) {
