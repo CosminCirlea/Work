@@ -3,6 +3,8 @@ package com.example.worldapp.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +16,7 @@ import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Core.TourCore;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Helpers.FirebaseHelper;
+import com.example.worldapp.Helpers.GlideMediaHelper;
 import com.example.worldapp.Models.HomeDetailsModel;
 import com.example.worldapp.Models.TourBookingManager;
 import com.example.worldapp.Models.UserDetailsModel;
@@ -30,9 +33,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
+import com.veinhorn.scrollgalleryview.MediaInfo;
+import com.veinhorn.scrollgalleryview.ScrollGalleryView;
+import com.veinhorn.scrollgalleryview.builder.GallerySettings;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCallback {
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
@@ -43,11 +50,12 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
     private MapView mMapView;
     private DatabaseReference mDatabaseReference;
     private LatLng mMeetingPoint;
-    private ImageView mImage , mOwnerImage;
+    private ImageView mOwnerImage;
     private DatabaseReference mBookingDatabase, mUsersDatabase;
     ArrayList<String> mExistingBookingManagers = new ArrayList<>();
     ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
     private UserDetailsModel mTourOwner, mAuxUser;
+    private ScrollGalleryView galleryView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +99,22 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
         });
 
         SetValues();
+
+        GlideMediaHelper mediaHelper = new GlideMediaHelper();
+        List<MediaInfo> list = mediaHelper.images(mHome.getmImagesUrls());
+
+        galleryView = ScrollGalleryView
+                .from((ScrollGalleryView) findViewById(R.id.scroll_gallery_view))
+                .settings(
+                        GallerySettings
+                                .from(getSupportFragmentManager())
+                                .thumbnailSize(100)
+                                .enableZoom(true)
+                                .build()
+                )
+                .onPageChangeListener(new CustomOnPageListener())
+                .add(list)
+                .build();
     }
 
     private void InitializeViews() {
@@ -105,9 +129,9 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
         mBathsTv = findViewById(R.id.tv_tour_details_baths);
         mAmenitiesTv = findViewById(R.id.tv_accommodation_amenities);
         mExactLocationTv = findViewById(R.id.tv_accommodation_address);
-        mImage = findViewById(R.id.iv_accommodation_picture);
         mOwnerImage = findViewById(R.id.iv_accommodation_owner_image);
         mOwnerNameTv = findViewById(R.id.tv_accommodation_owner_name);
+        galleryView = findViewById(R.id.scroll_gallery_view);
     }
 
     public void OnBook(View view) {
@@ -149,7 +173,6 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
         String mLocation = mHome.getCity()+", "+ mHome.getRegion()+", "+ mHome.getCountry();
         String mVenue = mHome.getListingType() +" - "+mHome.getOwnerType();
 
-        Glide.with(getApplicationContext()).load(mHome.getmImagesUrls().get(0)).into(mImage);
         mTitleTv.setText(mHome.getAnnouncementTitle());
         mLocationTv.setText(mLocation);
         mVenueTypeTv.setText(mVenue);
@@ -223,4 +246,9 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
         mMapView.onLowMemory();
     }
 
+    private class CustomOnPageListener extends ViewPager.SimpleOnPageChangeListener {
+        @Override
+        public void onPageSelected(int position) {
+        }
+    }
 }

@@ -17,15 +17,20 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/toolbar_with_back_button">
 
-            <ImageView
-                android:id="@+id/iv_accommodation_picture"
+            <LinearLayout
+                android:id="@+id/ll_gallery_container"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:scaleType="fitXY"/>
+                android:layout_height="250dp">
+                <com.veinhorn.scrollgalleryview.ScrollGalleryView
+                    android:id="@+id/scroll_gallery_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#000"/>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_announcement_title"
-                android:layout_below="@+id/iv_accommodation_picture"
+                android:layout_below="@+id/ll_gallery_container"
                 android:textStyle="bold"
                 style="@style/BlackText"
                 android:text="Lovely entire flat in the center of the city"
