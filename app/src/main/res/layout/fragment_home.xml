@@ -54,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:orientation="vertical"
+            android:onClick="ShowAccommodation"
             android:layout_margin="8dp">
 
             <RelativeLayout
@@ -85,7 +86,7 @@
                         android:layout_height="wrap_content"
                         style="@style/BasicText"
                         android:layout_centerInParent="true"
-                        android:text="Homes"/>
+                        android:text="Accommodation"/>
 
                 </RelativeLayout>
 

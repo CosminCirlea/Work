@@ -27,6 +27,8 @@ public class AccommodationCore {
     private int mBookedNumber =0;
     private int mGrades =0;
     private double mRating = 0;
+    private String mStartDate;
+    private String mEndDate;
 
     public static AccommodationCore Instance()
     {
@@ -51,6 +53,22 @@ public class AccommodationCore {
 
     public void setAnnouncementTitle(String announcementTitle) {
         AnnouncementTitle = announcementTitle;
+    }
+
+    public String getmStartDate() {
+        return mStartDate;
+    }
+
+    public void setmStartDate(String mStartDate) {
+        this.mStartDate = mStartDate;
+    }
+
+    public String getmEndDate() {
+        return mEndDate;
+    }
+
+    public void setmEndDate(String mEndDate) {
+        this.mEndDate = mEndDate;
     }
 
     public String getGuests() {

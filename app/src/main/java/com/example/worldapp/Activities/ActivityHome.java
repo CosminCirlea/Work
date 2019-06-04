@@ -53,7 +53,6 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
         }
         setContentView(R.layout.activity_home);
         navigation = findViewById(R.id.navigation);
-        //fragment chooser
         navigation.setOnNavigationItemSelectedListener(this);
 
         InitializeViews();
@@ -146,11 +145,18 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
         startActivity(mIntent);
     }
 
+    public void ShowAccommodation(View view) {
+        Intent mIntent = new Intent(ActivityHome.this, ListAllAccommodationActivity.class);
+        startActivity(mIntent);
+    }
+
     public void OnAcceptBooking(View view) {
 
     }
 
     public void OnDenyBooking(View view) {
     }
+
+
 }
 
