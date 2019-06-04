@@ -46,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_tour_title"
-                    style="@style/BasicText"
+                    style="@style/BlackText"
                     android:layout_margin="10dp"
                     android:textSize="20sp"
                     android:text="Venice, Veneto, Italy"
@@ -59,7 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    style="@style/BasicText"
+                    style="@style/BlackText"
                     android:text="Tour type - "
                     android:layout_below="@id/tv_tour_location"/>
 
@@ -83,7 +83,7 @@
                     android:layout_marginBottom="4dp"
                     android:text="Rating - "
                     android:layout_below="@+id/tv_tour_type_text"
-                    style="@style/BasicText" />
+                    style="@style/BlackText" />
 
                 <RatingBar
                     android:id="@+id/rb_tour_rating_details"
@@ -103,7 +103,7 @@
                     android:inputType="textMultiLine"
                     android:layout_margin="10dp"
                     android:text="A very very long description to see how this reacts when the text is extremely long"
-                    style="@style/BasicText"
+                    style="@style/BlackText"
                     android:layout_below="@+id/rb_tour_rating_details"/>
 
                 <LinearLayout
@@ -207,7 +207,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tour_owner"
-                    style="@style/BasicText"
+                    style="@style/BlackText"
                     android:layout_margin="10dp"
                     android:layout_below="@id/ll_tour_details_container"/>
 
@@ -254,7 +254,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
-                    style="@style/BasicText"
+                    style="@style/BlackText"
                     android:layout_margin="10dp"
                     android:text="A very very long description to see how this reacts when the text is extremely long"
                     android:layout_below="@+id/tv_tour_landmarks_text"/>
@@ -264,7 +264,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    style="@style/BasicText"
+                    style="@style/BlackText"
                     android:layout_below="@+id/tv_tour_landmarks_details"
                     android:text="@string/meeting_point"/>
 
@@ -286,7 +286,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    style="@style/BasicText"
+                    style="@style/BlackText"
                     android:layout_below="@id/map_tour_container"/>
 
             </RelativeLayout>

@@ -1,25 +1,34 @@
 package com.example.worldapp.Activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Core.TourCore;
 import com.example.worldapp.Core.UserCore;
-import com.example.worldapp.Models.GuidedToursModel;
+import com.example.worldapp.Helpers.FirebaseHelper;
 import com.example.worldapp.Models.HomeDetailsModel;
 import com.example.worldapp.Models.TourBookingManager;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -27,19 +36,25 @@ import java.util.HashMap;
 
 public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCallback {
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
+    private TextView mTitleTv, mLocationTv, mVenueTypeTv, mPriceTv , mGuestTv , mRoomsTv, mBedsTv , mBathsTv ,
+            mAmenitiesTv , mExactLocationTv , mOwnerNameTv;
     private HomeDetailsModel mHome;
     private String mOwnerId;
     private MapView mMapView;
     private DatabaseReference mDatabaseReference;
+    private LatLng mMeetingPoint;
+    private ImageView mImage , mOwnerImage;
+    private DatabaseReference mBookingDatabase, mUsersDatabase;
     ArrayList<String> mExistingBookingManagers = new ArrayList<>();
     ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
+    private UserDetailsModel mTourOwner, mAuxUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accommodation);
         InitializeViews();
-
+        super.SetToolbarTitle("Accommodation");
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
@@ -51,10 +66,48 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
         String aux = getIntent().getStringExtra(NavigationConstants.ACCOMMODATION_MODEL_KEY);
         mHome = gson.fromJson(aux, HomeDetailsModel.class);
         mOwnerId = mHome.getUserId();
+
+        mBookingDatabase = FirebaseHelper.mBookingManagerDatabase;
+        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("users");
+        mUsersDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot child: dataSnapshot.getChildren()) {
+                    mAuxUser = child.getValue(UserDetailsModel.class);
+                    String userId = mAuxUser.getUserId();
+                    if (userId.equalsIgnoreCase(mOwnerId))
+                    {
+                        mTourOwner = mAuxUser;
+                        String fullName= mTourOwner.getFirstname()+" "+mTourOwner.getName();
+                        mOwnerNameTv.setText(fullName);
+                        Glide.with(getApplicationContext()).load(mTourOwner.getImageUri()).into(mOwnerImage);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
+
+        SetValues();
     }
 
     private void InitializeViews() {
         mMapView = findViewById(R.id.map_accommodation);
+        mTitleTv = findViewById(R.id.tv_announcement_title);
+        mLocationTv = findViewById(R.id.tv_location);
+        mVenueTypeTv = findViewById(R.id.tv_venue_type);
+        mPriceTv = findViewById(R.id.tv_price_per_night);
+        mGuestTv = findViewById(R.id.tv_accommodation_guests);
+        mRoomsTv = findViewById(R.id.tv_accommodation_rooms);
+        mBedsTv = findViewById(R.id.tv_accommodation_beds);
+        mBathsTv = findViewById(R.id.tv_tour_details_baths);
+        mAmenitiesTv = findViewById(R.id.tv_accommodation_amenities);
+        mExactLocationTv = findViewById(R.id.tv_accommodation_address);
+        mImage = findViewById(R.id.iv_accommodation_picture);
+        mOwnerImage = findViewById(R.id.iv_accommodation_owner_image);
+        mOwnerNameTv = findViewById(R.id.tv_accommodation_owner_name);
     }
 
     public void OnBook(View view) {
@@ -91,9 +144,36 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
         mDatabaseReference.updateChildren(map);
     }
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
+    private void SetValues() {
+        LatLng meetingPoint = new LatLng(mHome.getmLocationLatitude(),mHome.getmLocationLongitude());
+        String mLocation = mHome.getCity()+", "+ mHome.getRegion()+", "+ mHome.getCountry();
+        String mVenue = mHome.getListingType() +" - "+mHome.getOwnerType();
 
+        Glide.with(getApplicationContext()).load(mHome.getmImagesUrls().get(0)).into(mImage);
+        mTitleTv.setText(mHome.getAnnouncementTitle());
+        mLocationTv.setText(mLocation);
+        mVenueTypeTv.setText(mVenue);
+        mPriceTv.setText(Double.toString(mHome.getPricePerNight())+" EUR /night");
+        mGuestTv.setText(mHome.getGuests());
+        mBedsTv.setText(Double.toString(mHome.getBedsToUse()));
+        mBathsTv.setText(Integer.toString(mHome.getBathroomsToUse()));
+        mRoomsTv.setText(Integer.toString(mHome.getRoomsToUse()));
+        mMeetingPoint = meetingPoint;
+        mAmenitiesTv.setText(mHome.getAmenities());
+        mExactLocationTv.setText(mHome.getAddressLine());
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        if (mMeetingPoint !=null)
+        {
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(mMeetingPoint, 13));
+            map.addMarker(new MarkerOptions().position(mMeetingPoint).title("Accommodation"));
+        }
+        else
+        {
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-33.88,151.21), 15));
+        }
     }
 
     @Override

@@ -160,7 +160,7 @@ public class AccommodationFilterActivity extends BaseAppCompat {
             if (mDate == 0 )
             {
                 mStartDay = date;
-                if (mStartDay.after(mEndDay))
+                if (mStartDay.after(mEndDay) || mStartDay.compareTo(mEndDay) == 0)
                 {
                     Calendar aux = Calendar.getInstance();
                     aux.setTime(mStartDay);

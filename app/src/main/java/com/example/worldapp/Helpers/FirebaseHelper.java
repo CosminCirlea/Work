@@ -25,10 +25,11 @@ public class FirebaseHelper {
 
     private static FirebaseHelper mFirebaseHelper;
     public static DatabaseReference mToursDatabaseReference = FirebaseDatabase.getInstance().getReference();
+    public static DatabaseReference mBookingManagerDatabase = FirebaseDatabase.getInstance().getReference().child("BookingManager");
     public static DatabaseReference mAccommodationDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Accommodation");
+    public static DatabaseReference mUserDatabase = FirebaseDatabase.getInstance().getReference().child("users");
     private FirebaseDatabase mDatabase;
     private DatabaseReference mDatabaseReference;
-    private DatabaseReference mUserDatabase;
     private UserDetailsModel mUser, mAuxUser;
     public static StorageReference mAccommodationStorageReference = FirebaseStorage.getInstance().getReference("AccommodationPictures");
     static ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
@@ -36,8 +37,6 @@ public class FirebaseHelper {
 
     public FirebaseHelper()
     {
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("users");
-        //mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours");
     }
 
     public static FirebaseHelper Instance()
