@@ -17,6 +17,7 @@ public class ParkingCore {
     private String mOwnerID;
     private Double mLongitude;
     private Double mLatitude;
+    private String mDate;
 
     public static ParkingCore Instance()
     {
@@ -82,6 +83,14 @@ public class ParkingCore {
 
     public void setmSecurityDetails(String mSecurityDetails) {
         this.mSecurityDetails = mSecurityDetails;
+    }
+
+    public String getmDate() {
+        return mDate;
+    }
+
+    public void setmDate(String mDate) {
+        this.mDate = mDate;
     }
 
     public String getmRestrictions() {

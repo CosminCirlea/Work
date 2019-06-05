@@ -117,7 +117,7 @@ public class TourBookingsAdapterTrips extends
         }
         if (status == ConstantValues.BOOKING_INCOMING)
         {
-            statusTV.setText("Denied");
+            statusTV.setText("Incoming");
             statusTV.setTextColor(ContextCompat.getColor(mContext, R.color.incomingColor));
         }
         if (status == ConstantValues.BOOKING_COMPLETED)

@@ -1,5 +1,6 @@
 package com.example.worldapp.Fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -10,9 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.worldapp.Adapters.TourBookingsAdapter;
 import com.example.worldapp.Adapters.TourBookingsAdapterTrips;
+import com.example.worldapp.Constants.ConstantValues;
 import com.example.worldapp.Core.UserCore;
+import com.example.worldapp.Helpers.FirebaseHelper;
 import com.example.worldapp.Models.TourBookingManager;
 import com.example.worldapp.R;
 import com.google.firebase.database.DataSnapshot;
@@ -24,10 +26,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class FragmentTrips extends Fragment {
-    RecyclerView recyclerView;
-    ArrayList<TourBookingManager> mBookingList;
-    DatabaseReference mToursDatabaseReference;
-    TourBookingsAdapterTrips mTourAdapter;
+    RecyclerView recyclerView, incomingRecyclerView;
+    ArrayList<TourBookingManager> mBookingList, mIncomingList;
+    DatabaseReference mBookingManagerDatabase;
+    TourBookingsAdapterTrips mTourAdapter , mIncomingAdapter;
     private String mUserId;
 
     @Override
@@ -36,25 +38,39 @@ public class FragmentTrips extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_trips, container, false);
 
         recyclerView = rootView.findViewById(R.id.rv_notifications);
+        incomingRecyclerView = rootView.findViewById(R.id.rv_notifications_incoming);
         recyclerView.setLayoutManager( new LinearLayoutManager(getActivity()));
+        incomingRecyclerView.setLayoutManager( new LinearLayoutManager(getActivity()));
 
         mUserId = UserCore.Instance().User.getUserId();
         mBookingList = new ArrayList<>();
+        mIncomingList = new ArrayList<>();
 
-        mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("BookingManager");
-        mToursDatabaseReference.addValueEventListener(new ValueEventListener() {
+        final ProgressDialog pd = new ProgressDialog(getActivity());
+        pd.show();
+
+        mBookingManagerDatabase = FirebaseHelper.mBookingManagerDatabase;
+        mBookingManagerDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
                 {
-                    TourBookingManager mGuidedTour = dataSnapshot1.getValue(TourBookingManager.class);
-                    if (mGuidedTour.getmBuyerId().equals(mUserId))
+                    TourBookingManager mManager = dataSnapshot1.getValue(TourBookingManager.class);
+                    if (mManager.getmBuyerId().equals(mUserId))
                     {
-                        mBookingList.add(mGuidedTour);
+                        mBookingList.add(mManager);
+                    }
+                    else if (mManager.getmOwnerId().equals(mUserId) && mManager.getmStatus()== ConstantValues.BOOKING_ACCEPTED)
+                    {
+                        mManager.setmStatus(ConstantValues.BOOKING_INCOMING);
+                        mIncomingList.add(mManager);
                     }
                 }
                 mTourAdapter = new TourBookingsAdapterTrips(getActivity(),mBookingList);
                 recyclerView.setAdapter(mTourAdapter);
+                mIncomingAdapter = new TourBookingsAdapterTrips(getActivity(),mIncomingList);
+                incomingRecyclerView.setAdapter(mIncomingAdapter);
+                pd.dismiss();
             }
 
             @Override
