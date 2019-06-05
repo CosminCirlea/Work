@@ -34,6 +34,7 @@ public class AccommodationCore {
     private String mStartDate;
     private String mEndDate;
     private int mNumberOfNights;
+    private String mSchedule;
 
     public static AccommodationCore Instance()
     {
@@ -112,6 +113,14 @@ public class AccommodationCore {
 
     public void setmLocationLongitude(Double mLocationLongitude) {
         this.mLocationLongitude = mLocationLongitude;
+    }
+
+    public String getmSchedule() {
+        return mSchedule;
+    }
+
+    public void setmSchedule(String mSchedule) {
+        this.mSchedule = mSchedule;
     }
 
     public Double getmLocationLatitude() {

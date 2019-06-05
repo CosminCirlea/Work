@@ -40,7 +40,7 @@ public class TourBookingsAdapter extends
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView tvBuyerName, tvTitle, tvBookDay, tvIncome;
+        private TextView tvBuyerName, tvTitle, tvBookDay, tvIncome, tvBuyerPhone;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -54,6 +54,8 @@ public class TourBookingsAdapter extends
             tvIncome = itemView.findViewById(R.id.tv_notifications_price_amount);
             mAcceptBook = itemView.findViewById(R.id.btn_accept_booking);
             mDenyBook = itemView.findViewById(R.id.btn_deny_booking);
+            tvBuyerPhone = itemView.findViewById(R.id.tv_notifications_phone_number);
+
         }
     }
 
@@ -72,11 +74,13 @@ public class TourBookingsAdapter extends
         final Double income = mTours.get(position).getmPrice();
         final String bookID = mTours.get(position).getmBookingId();
         final String tourId = mTours.get(position).getmAnnouncementId();
+        String buyerPhone = mTours.get(position).getmBuyerPhone();
 
         viewHolder.tvTitle.setText(tourTitle);
         viewHolder.tvBuyerName.setText(buyerName);
-        viewHolder.tvIncome.setText(income.toString());
+        viewHolder.tvIncome.setText(income.toString()+" EUR");
         viewHolder.tvBookDay.setText(bookDay);
+        viewHolder.tvBuyerPhone.setText(buyerPhone);
         mAcceptBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

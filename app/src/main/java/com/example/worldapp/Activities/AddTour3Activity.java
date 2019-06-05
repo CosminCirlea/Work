@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddTour3Activity extends BaseAppCompat {
 
-    private EditText mCountryEditText, mRegionEditText, mCityEditText, mTypeEditText;
+    private EditText mCountryEditText, mRegionEditText, mCityEditText, mTypeEditText, mScheduleEditText;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private String mTourId, mUserId;
@@ -39,17 +39,18 @@ public class AddTour3Activity extends BaseAppCompat {
         mUserId = mUser.getUid();
     }
 
-    public void AddNewTourPart3(String country, String region, String city, String type)
+    public void AddNewTourPart3(String country, String region, String city, String type, String schedule)
     {
         TourCore.Instance().setmTourCountry(country);
         TourCore.Instance().setmTourRegion(region);
         TourCore.Instance().setmTourCity(city);
         TourCore.Instance().setmTourType(type);
+        TourCore.Instance().setmSchedule(schedule);
     }
 
     public void RegisterTour(View view) {
         AddNewTourPart3(mCountryEditText.getText().toString(), mRegionEditText.getText().toString(),
-                mCityEditText.getText().toString(),mTypeEditText.getText().toString());
+                mCityEditText.getText().toString(),mTypeEditText.getText().toString(), mScheduleEditText.getText().toString());
         Intent mIntent = new Intent(this, AddTour4Activity.class);
         startActivity(mIntent);
     }
@@ -60,5 +61,6 @@ public class AddTour3Activity extends BaseAppCompat {
         mRegionEditText = findViewById(R.id.et_tour_region);
         mCityEditText =findViewById(R.id.et_tour_city);
         mTypeEditText=findViewById(R.id.et_tour_type);
+        mScheduleEditText = findViewById(R.id.et_tour_schedule);
     }
 }

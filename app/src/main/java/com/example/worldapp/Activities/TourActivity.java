@@ -49,7 +49,8 @@ import java.util.UUID;
 public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
     private ImageView mTourImage, mOwnerImage;
-    private TextView mTitle, mLocation, mType, mDescription, mParticipants, mDuration, mPrice, mLandmarks, mOwnerName, tvMeetingLocation;
+    private TextView mTitle, mLocation, mType, mDescription, mParticipants, mDuration, mPrice, mLandmarks, mOwnerName,
+            tvMeetingLocation, mScheduleTv;
     private RatingBar mRating;
     private MapView mMapView;
     private GuidedToursModel mTour;
@@ -70,7 +71,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         }
         setContentView(R.layout.activity_tour);
         InitializeViews();
-
+        super.SetToolbarTitle("Tour");
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
@@ -145,7 +146,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mOwnerId = mTour.getmUserId();
         mMeetingPoint = meetingPoint;
         tvMeetingLocation.setText(mTour.getmMeetingLocation());
-
+        mScheduleTv.setText(mTour.getmSchedule());
     }
 
     private void InitializeViews() {
@@ -163,6 +164,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mOwnerImage = findViewById(R.id.iv_tour_owner_image);
         mOwnerName = findViewById(R.id.tv_tour_owner_name);
         tvMeetingLocation = findViewById(R.id.tv_tour_meeting_location);
+        mScheduleTv = findViewById(R.id.tv_tour_schedule);
     }
 
     @Override
@@ -266,6 +268,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         double mFee = mPrice * ConstantValues.BOOKING_APP_FEE;
         double mTotalPrice = mPrice + mFee;
         String date = TourCore.Instance().getmBookedDates();
+        String schedule = mTour.getmSchedule();
 
         UUID newBookingManager = UUID.randomUUID();
         TourBookingManager mManager = new TourBookingManager();
@@ -281,6 +284,10 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mManager.setmBuyerName(UserCore.Instance().User.getName());
         mManager.setmOwnerName(mTourOwner.getName());
         mManager.setmAnnouncementId((mTour.getmTourId()));
+        mManager.setmOwnerPhone(mTourOwner.getPhoneNumber());
+        mManager.setmBuyerPhone(UserCore.Instance().User.getPhoneNumber());
+        mManager.setmSchedule(schedule);
+        mManager.setmManagerType(ConstantValues.BOOKING_TYPE_TOUR);
         mBookingDatabase.child(newBookingManager.toString()).setValue(mManager);
         updateBookingManager(mManager, mTourOwner);
         updateBookingManager(mManager, UserCore.Instance().getmUser());

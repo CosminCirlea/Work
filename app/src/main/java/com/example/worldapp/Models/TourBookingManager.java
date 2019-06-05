@@ -16,9 +16,15 @@ public class TourBookingManager {
     private int mStatus;
     private String mBuyerName;
     private String mOwnerName;
+    private String mBuyerPhone;
+    private String mOwnerPhone;
     private String mAnnouncementTitle;
     private String mAnnouncementId;
+    private String mSchedule;
     private HashMap<String, String> mSelectedDates;
+    private String mStartDate;
+    private String mEndDate;
+    private int mManagerType;
 
     public String getmBookingId() {
         return mBookingId;
@@ -64,6 +70,38 @@ public class TourBookingManager {
         return mFee;
     }
 
+    public String getmStartDate() {
+        return mStartDate;
+    }
+
+    public String getmSchedule() {
+        return mSchedule;
+    }
+
+    public void setmSchedule(String mSchedule) {
+        this.mSchedule = mSchedule;
+    }
+
+    public void setmStartDate(String mStartDate) {
+        this.mStartDate = mStartDate;
+    }
+
+    public int getmManagerType() {
+        return mManagerType;
+    }
+
+    public void setmManagerType(int mManagerType) {
+        this.mManagerType = mManagerType;
+    }
+
+    public String getmEndDate() {
+        return mEndDate;
+    }
+
+    public void setmEndDate(String mEndDate) {
+        this.mEndDate = mEndDate;
+    }
+
     public void setmFee(double mFee) {
         this.mFee = mFee;
     }
@@ -78,6 +116,22 @@ public class TourBookingManager {
 
     public double getmTotalPrice() {
         return mTotalPrice;
+    }
+
+    public String getmBuyerPhone() {
+        return mBuyerPhone;
+    }
+
+    public void setmBuyerPhone(String mBuyerPhone) {
+        this.mBuyerPhone = mBuyerPhone;
+    }
+
+    public String getmOwnerPhone() {
+        return mOwnerPhone;
+    }
+
+    public void setmOwnerPhone(String mOwnerPhone) {
+        this.mOwnerPhone = mOwnerPhone;
     }
 
     public void setmTotalPrice(double mTotalPrice) {

@@ -41,6 +41,7 @@ public class ActivityLogin extends BaseAppCompat {
         }
         setContentView(R.layout.activity_login);
         InitializeViews();
+        super.SetToolbarTitle("Log In");
         try {
             Intent myIntent = new Intent();
             mTourID = myIntent.getStringExtra("tourID");
