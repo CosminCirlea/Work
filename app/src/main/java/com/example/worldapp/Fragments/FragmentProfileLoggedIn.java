@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.example.worldapp.Activities.ActivityLogin;
 import com.example.worldapp.Activities.EditProfileActivity;
 import com.example.worldapp.Activities.MyAccommodationsActivity;
+import com.example.worldapp.Activities.MyParkingsActivity;
 import com.example.worldapp.Activities.MyToursActivity;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Models.UserDetailsModel;
@@ -87,6 +88,13 @@ public class FragmentProfileLoggedIn extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), MyToursActivity.class));
+            }
+        });
+
+        BtnParkings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), MyParkingsActivity.class));
             }
         });
 

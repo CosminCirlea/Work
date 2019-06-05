@@ -74,7 +74,7 @@ public class MyParkingsActivity extends BaseAppCompat {
                 Toast.makeText(MyParkingsActivity.this, "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
             }
         });
-        if (UserCore.Instance().getmListedTours() != null)
+        if (UserCore.Instance().getmListedParkings() != null)
         {
             mParkingList = UserCore.Instance().getmListedParkings();
             myParkingsAdapter = new MyParkingsAdapter(MyParkingsActivity.this, mParkingList);

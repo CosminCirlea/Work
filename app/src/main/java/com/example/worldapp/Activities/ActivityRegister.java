@@ -43,6 +43,7 @@ public class ActivityRegister extends BaseAppCompat {
         setContentView(R.layout.activity_register);
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         InitializeViews();
+        super.SetToolbarTitle("Register");
         SetWhitelabelColors();
         mAuth = FirebaseAuth.getInstance();
 

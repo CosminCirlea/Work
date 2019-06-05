@@ -1,9 +1,16 @@
 package com.example.worldapp.Core;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+
 public class AccommodationCore {
     private static AccommodationCore mAccommodationCore;
     private String AnnouncementTitle;
     private String City;
+    private String Guests;
     private String Region="";
     private String Country;
     private String ListingType;
@@ -18,6 +25,16 @@ public class AccommodationCore {
     private String HomeId;
     private String UserId;
     private String[] mBookedDays;
+    private ArrayList<String> mImagesUrls;
+    private Double mLocationLongitude;
+    private Double mLocationLatitude;
+    private int mBookedNumber =0;
+    private int mGrades =0;
+    private double mRating = 0;
+    private String mStartDate;
+    private String mEndDate;
+    private int mNumberOfNights;
+    private String mSchedule;
 
     public static AccommodationCore Instance()
     {
@@ -32,8 +49,118 @@ public class AccommodationCore {
         return AnnouncementTitle;
     }
 
+    public ArrayList<String> getmImagesUrls() {
+        return mImagesUrls;
+    }
+
+    public void setmImagesUrls(ArrayList<String> mImagesUrls) {
+        this.mImagesUrls = mImagesUrls;
+    }
+
     public void setAnnouncementTitle(String announcementTitle) {
         AnnouncementTitle = announcementTitle;
+    }
+
+    public String getmStartDate() {
+        return mStartDate;
+    }
+
+    public void setmStartDate(String mStartDate) {
+        this.mStartDate = mStartDate;
+    }
+
+    public String getmEndDate() {
+        return mEndDate;
+    }
+
+    public void setmEndDate(String mEndDate) {
+        this.mEndDate = mEndDate;
+    }
+
+    public List<Date> getBookedDates(Date startDate, Date endDate)
+    {
+        List<Date> allDates = new ArrayList<>();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(startDate);
+
+        Calendar endCalendar = new GregorianCalendar();
+        endCalendar.setTime(endDate);
+
+        while (calendar.before(endCalendar)) {
+            Date result = calendar.getTime();
+            allDates.add(result);
+            calendar.add(Calendar.DATE, 1);
+        }
+        mNumberOfNights = daysBetween(startDate,endDate);
+        return allDates;
+    }
+
+    public int daysBetween(Date d1, Date d2){
+        return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+    }
+
+    public String getGuests() {
+        return Guests;
+    }
+
+    public void setGuests(String guests) {
+        Guests = guests;
+    }
+
+    public int getmNumberOfNights() {
+        return mNumberOfNights;
+    }
+
+    public void setmNumberOfNights(int mNumberOfNights) {
+        this.mNumberOfNights = mNumberOfNights;
+    }
+
+    public Double getmLocationLongitude() {
+        return mLocationLongitude;
+    }
+
+    public void setmLocationLongitude(Double mLocationLongitude) {
+        this.mLocationLongitude = mLocationLongitude;
+    }
+
+    public String getmSchedule() {
+        return mSchedule;
+    }
+
+    public void setmSchedule(String mSchedule) {
+        this.mSchedule = mSchedule;
+    }
+
+    public Double getmLocationLatitude() {
+        return mLocationLatitude;
+    }
+
+    public void setmLocationLatitude(Double mLocationLatitude) {
+        this.mLocationLatitude = mLocationLatitude;
+    }
+
+    public int getmBookedNumber() {
+        return mBookedNumber;
+    }
+
+    public void setmBookedNumber(int mBookedNumber) {
+        this.mBookedNumber = mBookedNumber;
+    }
+
+    public int getmGrades() {
+        return mGrades;
+    }
+
+    public void setmGrades(int mGrades) {
+        this.mGrades = mGrades;
+    }
+
+    public double getmRating() {
+        return mRating;
+    }
+
+    public void setmRating(double mRating) {
+        this.mRating = mRating;
     }
 
     public String getCity() {

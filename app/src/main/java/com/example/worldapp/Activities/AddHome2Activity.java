@@ -6,19 +6,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.worldapp.BaseClasses.BaseAppCompat;
+import com.example.worldapp.Core.AccommodationCore;
+import com.example.worldapp.Core.TourCore;
+import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 public class AddHome2Activity extends BaseAppCompat {
 
-    private Spinner listingsSpinner;
+    private EditText mTitle;
+    private Spinner listingsSpinner, roomsSpinner,guestsSpinner, bedsSpinner, bathroomsSpinner,ownerTypeSpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +34,8 @@ public class AddHome2Activity extends BaseAppCompat {
             this.getSupportActionBar().hide();
         } catch (NullPointerException e) {
         }
+        super.SetToolbarTitle("Add accommodation");
+
         InitializeViews();
         InitializeSpinners();
     }
@@ -38,9 +47,8 @@ public class AddHome2Activity extends BaseAppCompat {
         {
             rooms.add(i);
         }
-        Spinner roomsSpinner = findViewById(R.id.spinner_select_number_of_guests);
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, R.layout.template_spinner_layout, rooms);
-        roomsSpinner.setAdapter(adapter);
+        guestsSpinner.setAdapter(adapter);
     }
 
     private void InitializeRooomsSpinner()
@@ -50,7 +58,6 @@ public class AddHome2Activity extends BaseAppCompat {
         {
             rooms.add(i);
         }
-        Spinner roomsSpinner = findViewById(R.id.spinner_select_number_of_rooms);
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, R.layout.template_spinner_layout, rooms);
         roomsSpinner.setAdapter(adapter);
     }
@@ -62,9 +69,8 @@ public class AddHome2Activity extends BaseAppCompat {
         {
             rooms.add(i);
         }
-        Spinner roomsSpinner = findViewById(R.id.spinner_select_number_of_beds);
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, R.layout.template_spinner_layout, rooms);
-        roomsSpinner.setAdapter(adapter);
+        bedsSpinner.setAdapter(adapter);
     }
 
     private void InitializeBathroomSpinner()
@@ -74,11 +80,8 @@ public class AddHome2Activity extends BaseAppCompat {
         {
             rooms.add(i);
         }
-        TextView textView = findViewById(R.id.default_spinner_tv);
-        Spinner roomsSpinner = findViewById(R.id.spinner_select_bathrooms_number);
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, R.layout.template_spinner_layout, rooms);
-        roomsSpinner.setAdapter(adapter);
-       // textView.setBackgroundColor(Color.parseColor("#D7DE9B"));
+        bathroomsSpinner.setAdapter(adapter);
     }
 
     private void InitializeListingTypeSpinner() {
@@ -91,9 +94,8 @@ public class AddHome2Activity extends BaseAppCompat {
     private void InitializeOwnerTypeSpinner() {
         String[] listingType = {"Private home","Hotel","Mansion", "Inn","Hostel"};
         List<String> listings = Arrays.asList(listingType);
-        Spinner roomsSpinner = findViewById(R.id.spinner_select_owner_type);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.template_spinner_layout, listings);
-        roomsSpinner.setAdapter(adapter);
+        ownerTypeSpinner.setAdapter(adapter);
     }
 
     private void InitializeSpinners()
@@ -106,13 +108,42 @@ public class AddHome2Activity extends BaseAppCompat {
         InitializeListingTypeSpinner();
     }
 
-    private void InitializeViews()
+    private void GetValues()
     {
-        listingsSpinner = findViewById(R.id.spinner_select_listing_type);
+        String title = mTitle.getText().toString();
+        int rooms = Integer.parseInt(roomsSpinner.getSelectedItem().toString());
+        int bathrooms = Integer.parseInt(bathroomsSpinner.getSelectedItem().toString());
+        double beds = Double.parseDouble(bedsSpinner.getSelectedItem().toString());
+        String homeID = UUID.randomUUID().toString();
+        String guests = guestsSpinner.getSelectedItem().toString();
+        String owner = ownerTypeSpinner.getSelectedItem().toString();
+        String listing = listingsSpinner.getSelectedItem().toString();
+
+        AccommodationCore.Instance().setAnnouncementTitle(title);
+        AccommodationCore.Instance().setGuests(guests);
+        AccommodationCore.Instance().setRoomsToUse(rooms);
+        AccommodationCore.Instance().setBedsToUse(beds);
+        AccommodationCore.Instance().setBathroomsToUse(bathrooms);
+        AccommodationCore.Instance().setOwnerType(owner);
+        AccommodationCore.Instance().setListingType(listing);
+        AccommodationCore.Instance().setHomeId(homeID);
+        AccommodationCore.Instance().setUserId(FirebaseAuth.getInstance().getUid());
     }
 
-    public void GoToAddHome3(View view) {
-        startActivity(new Intent(this, AddHome3Activity.class));
+    private void InitializeViews()
+    {
+        mTitle = findViewById(R.id.et_announcement_title);
+        listingsSpinner = findViewById(R.id.spinner_select_listing_type);
+        guestsSpinner = findViewById(R.id.spinner_select_number_of_guests);
+        ownerTypeSpinner = findViewById(R.id.spinner_select_owner_type);
+        bathroomsSpinner = findViewById(R.id.spinner_select_bathrooms_number);
+        bedsSpinner = findViewById(R.id.spinner_select_number_of_beds);
+        roomsSpinner = findViewById(R.id.spinner_select_number_of_rooms);
+    }
+
+    public void GoToAddHome4(View view) {
+        GetValues();
+        startActivity(new Intent(this, AddHome4Activity.class));
     }
 
 }

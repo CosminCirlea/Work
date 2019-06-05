@@ -1,15 +1,24 @@
 package com.example.worldapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.worldapp.Activities.AccommodationActivity;
+import com.example.worldapp.Activities.TourActivity;
+import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Models.HomeDetailsModel;
 import com.example.worldapp.R;
+import com.google.gson.Gson;
 
 import java.util.Currency;
 import java.util.List;
@@ -20,18 +29,13 @@ public class MyHomesListingsAdapter extends
 
     private TextView tvAnnouncementTitle, tvLocation, tvHouseType, tvMaxGuests, tvBeds, tvPricePerNight;
     private List<HomeDetailsModel> mHomes;
+    private Context mContext;
 
-    public MyHomesListingsAdapter(List<HomeDetailsModel> homes) {
+    public MyHomesListingsAdapter(Context context, List<HomeDetailsModel> homes) {
         mHomes = homes;
+        mContext =context;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-    public ViewHolder(View itemView) {
-        super(itemView);
-        InitializeViews(itemView);
-    }
-}
 
     @NonNull
     @Override
@@ -44,14 +48,27 @@ public class MyHomesListingsAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        HomeDetailsModel home = mHomes.get(position);
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
+        final HomeDetailsModel home = mHomes.get(position);
+        Uri mUri = Uri.parse(home.getmImagesUrls().get(0));
         String location =home.getCity()+"," + home.getRegion() +","+home.getCountry();
+        String accommodates = String.valueOf(home.getGuests())+" - " +home.getRoomsToUse() +" rooms";
         tvAnnouncementTitle.setText(home.getAnnouncementTitle());
         tvLocation.setText(location);
         tvHouseType.setText(home.getListingType() + " - "+ home.getOwnerType());
-        tvBeds.setText(String.valueOf(home.getBedsToUse())+" - " +home.getRoomsToUse());
-        tvPricePerNight.setText(String.valueOf(home.getPricePerNight())+Currency.getInstance(Locale.GERMANY).getCurrencyCode()+" per night ");
+        tvBeds.setText("Accommodates " + accommodates);
+        tvPricePerNight.setText(String.valueOf(home.getPricePerNight())+Currency.getInstance(Locale.GERMANY).getCurrencyCode()+" /night ");
+        Glide.with(viewHolder.mImage.getContext()).load(mUri).apply(new RequestOptions().centerCrop()).into(viewHolder.mImage);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent = new Intent(mContext, AccommodationActivity.class);
+                String serializedHome = new Gson().toJson(home);
+                mIntent.putExtra(NavigationConstants.ACCOMMODATION_MODEL_KEY,serializedHome);
+                mContext.startActivity(mIntent);
+            }
+        });
     }
 
     @Override
@@ -65,7 +82,17 @@ public class MyHomesListingsAdapter extends
         tvLocation = itemView.findViewById(R.id.tv_location);
         tvHouseType = itemView.findViewById(R.id.tv_venue_type);
         tvMaxGuests = itemView.findViewById(R.id.tv_guest_capacity);
-        tvBeds = itemView.findViewById(R.id.tv_beds);
+        tvBeds = itemView.findViewById(R.id.tv_guest_capacity);
         tvPricePerNight= itemView.findViewById(R.id.tv_price_per_night);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public ImageView mImage;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            mImage = itemView.findViewById(R.id.iv_listed_home);
+            InitializeViews(itemView);
+        }
     }
 }

@@ -24,6 +24,7 @@ public class TourCore {
     private int mToursGrades =0;
     private double mToursRating = 0;
     private static String mBookedDate;
+    private String mSchedule;
 
     public static TourCore Instance()
     {
@@ -76,6 +77,14 @@ public class TourCore {
 
     public double getmToursRating() {
         return mToursRating;
+    }
+
+    public String getmSchedule() {
+        return mSchedule;
+    }
+
+    public void setmSchedule(String mSchedule) {
+        this.mSchedule = mSchedule;
     }
 
     public void setmToursRating(double mToursRating) {

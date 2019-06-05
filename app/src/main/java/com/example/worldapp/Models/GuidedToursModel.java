@@ -23,6 +23,7 @@ public class GuidedToursModel {
     private int mToursGrades;
     private double mToursRating;
     private ArrayList<String> mBookedDates;
+    private String mSchedule;
 
     public GuidedToursModel()
     {
@@ -89,6 +90,14 @@ public class GuidedToursModel {
 
     public void setmToursBookedNumber(int mToursBookedNumber) {
         this.mToursBookedNumber = mToursBookedNumber;
+    }
+
+    public String getmSchedule() {
+        return mSchedule;
+    }
+
+    public void setmSchedule(String mSchedule) {
+        this.mSchedule = mSchedule;
     }
 
     public void setmTourImageUrl(String mTourImage) {

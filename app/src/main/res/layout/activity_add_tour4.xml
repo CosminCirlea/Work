@@ -49,6 +49,7 @@
         style="@style/BasicText"/>
 
     <FrameLayout
+        android:id="@+id/fl_map_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_add_tour_choose_on_map"
@@ -56,8 +57,7 @@
         <com.google.android.gms.maps.MapView
             android:id="@+id/map_add_tour"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
-            />
+            android:layout_height="350dp"/>
     </FrameLayout>
 
     <Button
@@ -67,6 +67,7 @@
         android:layout_margin="20dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_below="@+id/fl_map_container"
         android:background="@drawable/round_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

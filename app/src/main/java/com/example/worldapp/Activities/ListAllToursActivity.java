@@ -18,6 +18,7 @@ import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Helpers.FirebaseHelper;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -94,9 +95,10 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
 
     private boolean IsMatchingFilter(GuidedToursModel tour, String[] filter)
     {
-        if (tour.getmUserId().contains(UserCore.Instance().User.getUserId()))
-        {
-            return false;
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            if (tour.getmUserId().contains(UserCore.Instance().User.getUserId())) {
+                return false;
+            }
         }
         if (filter!=null) {
             if (!tour.getmTourCountry().toLowerCase().contains(filter[0].toLowerCase())) {

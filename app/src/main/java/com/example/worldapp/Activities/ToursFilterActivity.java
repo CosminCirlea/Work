@@ -46,6 +46,7 @@ public class ToursFilterActivity extends BaseAppCompat {
         } catch (NullPointerException e) {
         }
         setContentView(R.layout.activity_tours_filter);
+        super.SetToolbarTitle("Filter tours");
         InitializeViews();
         SetSpinner();
         SetFilters();

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/containerColor"
@@ -8,8 +9,6 @@
     android:layout_marginEnd="2dp"
     android:layout_marginBottom="10dp"
     android:padding="4dp">
-
-
 
     <TextView
         android:id="@+id/tv_notifications_tour_title"
@@ -22,7 +21,7 @@
         android:id="@+id/tv_notifications_booking_day_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/SmallBasicText"
+        style="@style/SmallBlackText"
         android:layout_below="@+id/tv_notifications_tour_title"
         android:text="Day of booking : "/>
 
@@ -35,11 +34,28 @@
         android:layout_below="@+id/tv_notifications_tour_title"/>
 
     <TextView
-        android:id="@+id/tv_notifications_price_text"
+        android:id="@+id/tv_notifications_schedule_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/SmallBlackText"
+        android:layout_below="@+id/tv_notifications_booking_day"
+        android:text="Schedule : "/>
+
+    <TextView
+        android:id="@+id/tv_notifications_schedule_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/SmallBasicText"
-        android:layout_below="@+id/tv_notifications_booking_day_text"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@id/tv_notifications_schedule_text"
+        android:layout_below="@+id/tv_notifications_booking_day"/>
+
+    <TextView
+        android:id="@+id/tv_notifications_price_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/SmallBlackText"
+        android:layout_below="@+id/tv_notifications_schedule_text"
         android:text="Price : "/>
 
     <TextView
@@ -49,7 +65,25 @@
         style="@style/SmallBasicText"
         android:layout_marginStart="2dp"
         android:layout_toEndOf="@id/tv_notifications_price_text"
-        android:layout_below="@+id/tv_notifications_booking_day_text"/>
+        android:layout_below="@+id/tv_notifications_schedule_text"/>
+
+    <TextView
+        android:id="@+id/tv_notifications_phone_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_notifications_price_amount"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/ic_phone"/>
+
+    <TextView
+        android:id="@+id/tv_notifications_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_notifications_price_amount"
+        android:layout_toEndOf="@+id/tv_notifications_phone_text"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        style="@style/SmallBlackText"/>
 
     <TextView
         android:id="@+id/tv_notifications_status"

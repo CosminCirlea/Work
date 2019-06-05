@@ -12,7 +12,7 @@ import com.example.worldapp.R;
 
 public class FragmentProfile extends Fragment {
     TextView YourProfileDisplayTv;
-    Button BtnLogInWithEmail, LogInWithFacebook;
+    Button BtnLogInWithEmail;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);

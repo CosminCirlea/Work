@@ -3,6 +3,7 @@ package com.example.worldapp.Constants;
 public final class NavigationConstants {
     public static String TOUR_MODEL_KEY = "tour_model";
     public static String PARKING_MODEL_KEY = "parking_model";
+    public static String ACCOMMODATION_MODEL_KEY = "accommodation_model";
     public static final int ERROR_DIALOG_REQUEST = 9001;
     public static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 9002;
     public static final int PERMISSIONS_REQUEST_ENABLE_GPS = 9003;

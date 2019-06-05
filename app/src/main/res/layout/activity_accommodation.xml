@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.AccommodationActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/toolbar_with_back_button"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar_with_back_button">
+
+            <LinearLayout
+                android:id="@+id/ll_gallery_container"
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+                <com.veinhorn.scrollgalleryview.ScrollGalleryView
+                    android:id="@+id/scroll_gallery_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#fff"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_announcement_title"
+                android:layout_below="@+id/ll_gallery_container"
+                android:textStyle="bold"
+                style="@style/BlackText"
+                android:text="Lovely entire flat in the center of the city"
+                android:layout_alignParentStart="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_below="@+id/tv_announcement_title"
+                android:text="Milan, Region of Milan,Italy"
+                android:layout_alignParentStart="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_venue_type"
+                android:layout_below="@+id/tv_location"
+                android:text="Private room - Located in a Hotel"
+                android:layout_alignParentStart="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_price_per_night"
+                android:layout_below="@+id/tv_venue_type"
+                android:text="130$ per night"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                />
+
+            <LinearLayout
+                android:id="@+id/ll_accommodation_details_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="4"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:layout_marginTop="10dp"
+                android:paddingTop="4dp"
+                android:background="@color/containerColor"
+                android:layout_below="@+id/tv_price_per_night">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/iv_accommodation_guests"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_profile"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:id="@+id/tv_accommodation_guests"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/BlackText"
+                        android:text="4 people"
+                        android:layout_margin="4dp"
+                        android:layout_below="@+id/iv_accommodation_guests"
+                        android:layout_centerHorizontal="true"/>
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@android:color/darker_gray"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/iv_accommodation_rooms"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_rooms"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:id="@+id/tv_accommodation_rooms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/BlackText"
+                        android:layout_margin="4dp"
+                        android:layout_below="@+id/iv_accommodation_rooms"
+                        android:text="2 rooms"
+                        android:layout_centerHorizontal="true"/>
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@android:color/darker_gray"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/iv_accommodation_beds"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_bed"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:id="@+id/tv_accommodation_beds"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/BlackText"
+                        android:layout_margin="4dp"
+                        android:layout_below="@+id/iv_accommodation_beds"
+                        android:text="3 beds"
+                        android:layout_centerHorizontal="true"/>
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@android:color/darker_gray"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/iv_tour_details_baths"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_bathroom"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:id="@+id/tv_tour_details_baths"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/BlackText"
+                        android:layout_margin="4dp"
+                        android:layout_below="@+id/iv_tour_details_baths"
+                        android:text="3 baths"
+                        android:layout_centerHorizontal="true"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <RatingBar
+                android:id="@+id/rb_accommodation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_accommodation_details_container"
+                android:layout_centerHorizontal="true"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                android:isIndicator="true"/>
+
+            <TextView
+                android:id="@+id/tv_accommodation_amenities_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amenities"
+                style="@style/BlackText"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_below="@+id/rb_accommodation"/>
+
+            <TextView
+                android:id="@+id/tv_accommodation_amenities"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="a lot of words"
+                android:textSize="12sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_below="@+id/tv_accommodation_amenities_text"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_owner_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/containerColor"
+                android:layout_below="@+id/tv_accommodation_amenities">
+
+                <ImageView
+                    android:id="@+id/iv_accommodation_owner_image"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/images"/>
+
+                <TextView
+                    android:id="@+id/tv_accommodation_owner_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/BlackText"
+                    android:text="Dan Stone"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/iv_accommodation_owner_image"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_accommodation_location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                style="@style/BlackText"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_below="@+id/rl_owner_container"/>
+
+            <FrameLayout
+                android:id="@+id/map_accommodation_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_accommodation_location_text"
+                android:layout_marginTop="10dp">
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/map_accommodation"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_accommodation_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/map_accommodation_container"
+                android:layout_marginTop="10dp"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="Exact location"/>
+
+            <Button
+                android:id="@+id/btn_accommodation_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                style="@style/BasicText"
+                android:background="@drawable/round_button"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/tv_accommodation_address"
+                android:text="Book"
+                android:onClick="OnBook"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

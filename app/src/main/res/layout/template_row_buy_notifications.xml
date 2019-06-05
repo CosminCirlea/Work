@@ -23,7 +23,7 @@
         android:layout_marginStart="4dp"
         android:text="wants to book your: "
         android:layout_toEndOf="@+id/tv_notifications_buyer_name"
-        style="@style/SmallBasicText"/>
+        style="@style/SmallBlackText"/>
 
     <TextView
         android:id="@+id/tv_notifications_tour_title"
@@ -37,7 +37,7 @@
         android:id="@+id/tv_notifications_booking_day_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/SmallBasicText"
+        style="@style/SmallBlackText"
         android:layout_below="@+id/tv_notifications_buyer_name"
         android:text="Day of booking : "/>
 
@@ -51,11 +51,28 @@
         android:text="13 JUN 2019"/>
 
     <TextView
-        android:id="@+id/tv_notifications_price_text"
+        android:id="@+id/tv_notifications_schedule_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/SmallBlackText"
+        android:layout_below="@+id/tv_notifications_booking_day"
+        android:text="Schedule : "/>
+
+    <TextView
+        android:id="@+id/tv_notifications_schedule_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/SmallBasicText"
-        android:layout_below="@+id/tv_notifications_booking_day_text"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@id/tv_notifications_schedule_text"
+        android:layout_below="@+id/tv_notifications_booking_day"/>
+
+    <TextView
+        android:id="@+id/tv_notifications_price_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/SmallBlackText"
+        android:layout_below="@+id/tv_notifications_schedule_text"
         android:text="Income : "/>
 
     <TextView
@@ -65,7 +82,25 @@
         style="@style/SmallBasicText"
         android:layout_marginStart="2dp"
         android:layout_toEndOf="@id/tv_notifications_price_text"
-        android:layout_below="@+id/tv_notifications_booking_day_text"/>
+        android:layout_below="@+id/tv_notifications_schedule_text"/>
+
+    <TextView
+        android:id="@+id/tv_notifications_phone_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_notifications_price_amount"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/ic_phone"/>
+
+    <TextView
+        android:id="@+id/tv_notifications_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_notifications_price_amount"
+        android:layout_toEndOf="@+id/tv_notifications_phone_text"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        style="@style/SmallBlackText"/>
 
     <Button
         android:id="@+id/btn_accept_booking"

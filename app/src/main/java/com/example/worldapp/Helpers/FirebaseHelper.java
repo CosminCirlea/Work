@@ -14,6 +14,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,17 +25,18 @@ public class FirebaseHelper {
 
     private static FirebaseHelper mFirebaseHelper;
     public static DatabaseReference mToursDatabaseReference = FirebaseDatabase.getInstance().getReference();
+    public static DatabaseReference mBookingManagerDatabase = FirebaseDatabase.getInstance().getReference().child("BookingManager");
+    public static DatabaseReference mAccommodationDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Accommodation");
+    public static DatabaseReference mUserDatabase = FirebaseDatabase.getInstance().getReference().child("users");
     private FirebaseDatabase mDatabase;
     private DatabaseReference mDatabaseReference;
-    private DatabaseReference mUserDatabase;
     private UserDetailsModel mUser, mAuxUser;
+    public static StorageReference mAccommodationStorageReference = FirebaseStorage.getInstance().getReference("AccommodationPictures");
     static ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
     public static GuidedToursModel mCurrentTour ;
 
     public FirebaseHelper()
     {
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("users");
-        //mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours");
     }
 
     public static FirebaseHelper Instance()

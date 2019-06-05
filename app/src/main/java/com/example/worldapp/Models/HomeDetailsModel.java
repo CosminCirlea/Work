@@ -7,6 +7,7 @@ public class HomeDetailsModel {
     private String City;
     private String Region="";
     private String Country;
+    private String Guests;
     private String ListingType;
     private String OwnerType;
     private double PricePerNight;
@@ -19,28 +20,71 @@ public class HomeDetailsModel {
     private String HomeId;
     private String UserId;
     private String[] mBookedDays;
+    private ArrayList<String> mImagesUrls;
+    private Double mLocationLongitude;
+    private Double mLocationLatitude;
+    private int mBookedNumber =0;
+    private int mGrades =0;
+    private double mRating = 0;
 
-    public HomeDetailsModel(String announcementTitle, String city, String region, String country, String listingType, String ownerType, double pricePerNight, int RoomsToUse, double BedsToUse) {
-        AnnouncementTitle = announcementTitle;
-        City = city;
-        Region = region;
-        Country = country;
-        PricePerNight = pricePerNight;
-        this.RoomsToUse = RoomsToUse;
-        this.BedsToUse = BedsToUse;
-        ListingType = listingType;
-        OwnerType = ownerType;
+    public HomeDetailsModel() {
     }
 
-    private static int lastContactId = 0;
 
-    public static ArrayList<HomeDetailsModel> createHomeList(int numHomes) {
-        ArrayList<HomeDetailsModel> homes = new ArrayList<HomeDetailsModel>();
-        for (int i = 0; i <= numHomes; i++) {
-            homes.add(new HomeDetailsModel("Very cool private room, vinteage, in the city center", "Venice", "Veneto","Italy",
-                    "Private room", "Private house", 40, ++lastContactId, 2));
-        }
-        return homes;
+    public ArrayList<String> getmImagesUrls() {
+        return mImagesUrls;
+    }
+
+    public void setmImagesUrls(ArrayList<String> mImagesUrls) {
+        this.mImagesUrls = mImagesUrls;
+    }
+
+    public Double getmLocationLongitude() {
+        return mLocationLongitude;
+    }
+
+    public void setmLocationLongitude(Double mLocationLongitude) {
+        this.mLocationLongitude = mLocationLongitude;
+    }
+
+    public Double getmLocationLatitude() {
+        return mLocationLatitude;
+    }
+
+    public void setmLocationLatitude(Double mLocationLatitude) {
+        this.mLocationLatitude = mLocationLatitude;
+    }
+
+    public String getGuests() {
+        return Guests;
+    }
+
+    public void setGuests(String guests) {
+        Guests = guests;
+    }
+
+    public int getmBookedNumber() {
+        return mBookedNumber;
+    }
+
+    public void setmBookedNumber(int mBookedNumber) {
+        this.mBookedNumber = mBookedNumber;
+    }
+
+    public int getmGrades() {
+        return mGrades;
+    }
+
+    public void setmGrades(int mGrades) {
+        this.mGrades = mGrades;
+    }
+
+    public double getmRating() {
+        return mRating;
+    }
+
+    public void setmRating(double mRating) {
+        this.mRating = mRating;
     }
 
     public String getListingType() {

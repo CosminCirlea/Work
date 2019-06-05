@@ -84,7 +84,7 @@ public class MyToursListingsAdapter extends
         viewHolder.tvTourLandmarks.setText(landmarks);
         viewHolder.tvDuration.setText(tourDuration+" hours");
         viewHolder.tvMaxGuests.setText(aux);
-        viewHolder.tvPricePerTour.setText(price.toString()+"$");
+        viewHolder.tvPricePerTour.setText(price.toString()+" EUR");
         viewHolder.mRatingBar.setRating(3.4f);
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {

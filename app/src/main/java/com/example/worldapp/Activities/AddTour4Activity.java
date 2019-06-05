@@ -27,6 +27,7 @@ public class AddTour4Activity extends BaseAppCompat implements OnMapReadyCallbac
     private LatLng mMeetingPoint;
     private DatabaseReference mDatabaseReference;
     private String mTourID;
+    private LatLng mZoomPoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +66,12 @@ public class AddTour4Activity extends BaseAppCompat implements OnMapReadyCallbac
     {
         mMeetingLocation = findViewById(R.id.et_add_tour_location);
         mMapView = findViewById(R.id.map_add_tour);
+        mZoomPoint = new LatLng(47.61328,18.69477);
     }
 
     @Override
     public void onMapReady(final GoogleMap map) {
+        map.moveCamera( CameraUpdateFactory.newLatLngZoom(mZoomPoint , 4.0f) );
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 
             @Override
