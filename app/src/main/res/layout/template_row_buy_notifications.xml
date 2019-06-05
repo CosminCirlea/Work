@@ -51,11 +51,28 @@
         android:text="13 JUN 2019"/>
 
     <TextView
+        android:id="@+id/tv_notifications_schedule_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/SmallBlackText"
+        android:layout_below="@+id/tv_notifications_booking_day"
+        android:text="Schedule : "/>
+
+    <TextView
+        android:id="@+id/tv_notifications_schedule_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/SmallBasicText"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@id/tv_notifications_schedule_text"
+        android:layout_below="@+id/tv_notifications_booking_day"/>
+
+    <TextView
         android:id="@+id/tv_notifications_price_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/SmallBlackText"
-        android:layout_below="@+id/tv_notifications_booking_day_text"
+        android:layout_below="@+id/tv_notifications_schedule_text"
         android:text="Income : "/>
 
     <TextView
@@ -65,7 +82,7 @@
         style="@style/SmallBasicText"
         android:layout_marginStart="2dp"
         android:layout_toEndOf="@id/tv_notifications_price_text"
-        android:layout_below="@+id/tv_notifications_booking_day_text"/>
+        android:layout_below="@+id/tv_notifications_schedule_text"/>
 
     <TextView
         android:id="@+id/tv_notifications_phone_text"

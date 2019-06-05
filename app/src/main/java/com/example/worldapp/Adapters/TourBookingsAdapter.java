@@ -26,21 +26,22 @@ import java.util.HashMap;
 public class TourBookingsAdapter extends
     RecyclerView.Adapter<TourBookingsAdapter.ViewHolder> {
     private Context mContext;
-    private ArrayList<TourBookingManager> mTours;
-    private DatabaseReference mBookingDatabase, mTourDatabase;
+    private ArrayList<TourBookingManager> mBookingManager;
+    private DatabaseReference mBookingDatabase, mTourDatabase, mAccommodationDatabase;
     private Button mAcceptBook, mDenyBook;
     private GuidedToursModel mTour;
     ArrayList<String> mExistingBookedTours = new ArrayList<>();
 
     public TourBookingsAdapter(Context context, ArrayList<TourBookingManager> tours) {
-        mTours = tours;
+        mBookingManager = tours;
         mContext = context;
         mBookingDatabase = FirebaseDatabase.getInstance().getReference().child("BookingManager");
         mTourDatabase = FirebaseDatabase.getInstance().getReference().child("Tours");
+        mAccommodationDatabase = FirebaseHelper.mAccommodationDatabaseReference;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView tvBuyerName, tvTitle, tvBookDay, tvIncome, tvBuyerPhone;
+        private TextView tvBuyerName, tvTitle, tvBookDay, tvIncome, tvBuyerPhone, tvBookDayText, tvScheduleText, tvSchedule;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -55,7 +56,9 @@ public class TourBookingsAdapter extends
             mAcceptBook = itemView.findViewById(R.id.btn_accept_booking);
             mDenyBook = itemView.findViewById(R.id.btn_deny_booking);
             tvBuyerPhone = itemView.findViewById(R.id.tv_notifications_phone_number);
-
+            tvBookDayText =itemView.findViewById(R.id.tv_notifications_booking_day_text);
+            tvScheduleText =itemView.findViewById(R.id.tv_notifications_schedule_text);
+            tvSchedule =itemView.findViewById(R.id.tv_notifications_schedule_day);
         }
     }
 
@@ -68,43 +71,106 @@ public class TourBookingsAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
-        String tourTitle= mTours.get(position).getmAnnouncementTitle();
-        final String buyerName = mTours.get(position).getmBuyerName();
-        final String bookDay = mTours.get(position).getmBookingDates();
-        final Double income = mTours.get(position).getmPrice();
-        final String bookID = mTours.get(position).getmBookingId();
-        final String tourId = mTours.get(position).getmAnnouncementId();
-        String buyerPhone = mTours.get(position).getmBuyerPhone();
+       /* String tourTitle= mBookingManager.get(position).getmAnnouncementTitle();
+        final String buyerName = mBookingManager.get(position).getmBuyerName();
+        final String bookDay = mBookingManager.get(position).getmBookingDates();
+        final Double income = mBookingManager.get(position).getmPrice();
+        final String bookID = mBookingManager.get(position).getmBookingId();
+        final String itemId = mBookingManager.get(position).getmAnnouncementId();
+        String buyerPhone = mBookingManager.get(position).getmBuyerPhone();
 
         viewHolder.tvTitle.setText(tourTitle);
         viewHolder.tvBuyerName.setText(buyerName);
         viewHolder.tvIncome.setText(income.toString()+" EUR");
         viewHolder.tvBookDay.setText(bookDay);
-        viewHolder.tvBuyerPhone.setText(buyerPhone);
-        mAcceptBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HashMap<String, Object> map = new HashMap<>();
-                map.put("mStatus", ConstantValues.BOOKING_ACCEPTED);
-                mBookingDatabase.child(bookID).updateChildren(map);
-                if (bookDay !=null && tourId != null) {
-                    HashMap<String, Object> auxMap = new HashMap<>();
-                    auxMap.put("mBookedDates", bookDay );
-                    //updateTourBookingDate(tourId, bookDay);
-                    FirebaseHelper.Instance().updateTourBookedDates(tourId, bookDay);
-                    //mTourDatabase.child(tourId).child("mBookedDates").updateChildren(auxMap);
-                }
-            }
-        });
+        viewHolder.tvBuyerPhone.setText(buyerPhone);*/
+        final String bookID = mBookingManager.get(position).getmBookingId();
+        final String itemId = mBookingManager.get(position).getmAnnouncementId();
 
-        mDenyBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HashMap<String, Object> map = new HashMap<>();
-                map.put("mStatus", ConstantValues.BOOKING_DENIED);
-                mBookingDatabase.child(bookID).updateChildren(map);
-            }
-        });
+        if (mBookingManager.get(position).getmManagerType() == ConstantValues.BOOKING_TYPE_TOUR) {
+            String tourTitle = mBookingManager.get(position).getmAnnouncementTitle();
+            final String bookingDate = mBookingManager.get(position).getmBookingDates();
+            Double income = mBookingManager.get(position).getmTotalPrice();
+            String phoneNumber = mBookingManager.get(position).getmOwnerPhone();
+            String schedule = mBookingManager.get(position).getmSchedule();
+
+            viewHolder.tvScheduleText.setText("Schedule: ");
+            viewHolder.tvBookDayText.setText("Booking day :");
+            viewHolder.tvTitle.setText(tourTitle);
+            viewHolder.tvBookDay.setText(bookingDate);
+            viewHolder.tvIncome.setText(income.toString() + " EUR");
+            viewHolder.tvBuyerPhone.setText(phoneNumber);
+            viewHolder.tvSchedule.setText(schedule);
+
+            mAcceptBook.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    HashMap<String, Object> map = new HashMap<>();
+                    map.put("mStatus", ConstantValues.BOOKING_ACCEPTED);
+                    mBookingDatabase.child(bookID).updateChildren(map);
+                    if (bookingDate !=null && itemId != null) {
+                        HashMap<String, Object> auxMap = new HashMap<>();
+                        auxMap.put("mBookedDates", bookingDate );
+                        //updateTourBookingDate(itemId, bookDay);
+                        FirebaseHelper.Instance().updateTourBookedDates(itemId, bookingDate);
+                        //mTourDatabase.child(itemId).child("mBookedDates").updateChildren(auxMap);
+                    }
+                }
+            });
+
+            mDenyBook.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    HashMap<String, Object> map = new HashMap<>();
+                    map.put("mStatus", ConstantValues.BOOKING_DENIED);
+                    mBookingDatabase.child(bookID).updateChildren(map);
+                }
+            });
+        }
+        else if (mBookingManager.get(position).getmManagerType() == ConstantValues.BOOKING_TYPE_ACCOMMODATION)
+        {
+            TourBookingManager mHome = mBookingManager.get(position);
+            String title = mHome.getmAnnouncementTitle();
+            final String startDate = mHome.getmStartDate();
+            String endDate = mHome.getmEndDate();
+            String price = Double.toString(mHome.getmPrice());
+            String phone = mHome.getmOwnerPhone();
+
+            viewHolder.tvScheduleText.setText("End date: ");
+            viewHolder.tvBookDayText.setText("Start date :");
+            viewHolder.tvTitle.setText(title);
+            viewHolder.tvBookDay.setText(startDate);
+            viewHolder.tvIncome.setText(price + " EUR");
+            viewHolder.tvBuyerPhone.setText(phone);
+            viewHolder.tvSchedule.setText(endDate);
+
+            mAcceptBook.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    HashMap<String, Object> map = new HashMap<>();
+                    map.put("mStatus", ConstantValues.BOOKING_ACCEPTED);
+                    mBookingDatabase.child(bookID).updateChildren(map);
+                    if (startDate !=null && itemId != null) {
+                        HashMap<String, Object> auxMap = new HashMap<>();
+                        auxMap.put("mBookedDates", startDate );
+                        //updateTourBookingDate(itemId, bookDay);
+                        //FirebaseHelper.Instance().updateTourBookedDates(itemId, startDate);
+                        //mTourDatabase.child(itemId).child("mBookedDates").updateChildren(auxMap);
+                    }
+                }
+            });
+
+            mDenyBook.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    HashMap<String, Object> map = new HashMap<>();
+                    map.put("mStatus", ConstantValues.BOOKING_DENIED);
+                    mBookingDatabase.child(bookID).updateChildren(map);
+                }
+            });
+        }
+
+
     }
 
 
@@ -140,7 +206,7 @@ public class TourBookingsAdapter extends
 
     @Override
     public int getItemCount() {
-        return mTours.size();
+        return mBookingManager.size();
     }
 
 }

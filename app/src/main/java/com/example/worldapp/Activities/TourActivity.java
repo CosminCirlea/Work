@@ -139,7 +139,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mType.setText(mTour.getmTourType());
         mDescription.setText(mTour.getmTourDescription());
         mDuration.setText(mTour.getmTourDuration());
-        mPrice.setText(mTour.getmTourPrice() + " $");
+        mPrice.setText(mTour.getmTourPrice() + " EUR");
         mLandmarks.setText(mTour.getmTourLandmarks());
         mParticipants.setText(mTour.getmTourMaxParticipants() + "");
         mRating.setRating(3.4f);

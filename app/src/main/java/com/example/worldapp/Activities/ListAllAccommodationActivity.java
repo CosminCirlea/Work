@@ -16,6 +16,7 @@ import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Helpers.FirebaseHelper;
 import com.example.worldapp.Models.HomeDetailsModel;
 import com.example.worldapp.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -80,9 +81,11 @@ public class ListAllAccommodationActivity extends BaseAppCompat {
 
     private boolean IsMatchingFilter(HomeDetailsModel house, String[] filter)
     {
-        if (house.getUserId().contains(UserCore.Instance().User.getUserId()))
-        {
-            return false;
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            if (house.getUserId().contains(UserCore.Instance().User.getUserId()))
+            {
+                return false;
+            }
         }
         if (filter!=null) {
             if (!house.getCountry().toLowerCase().contains(filter[0].toLowerCase())) {
