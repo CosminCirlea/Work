@@ -91,7 +91,7 @@ public class AccommodationCore {
             allDates.add(result);
             calendar.add(Calendar.DATE, 1);
         }
-        mNumberOfNights = daysBetween(startDate,endDate) + 1;
+        mNumberOfNights = daysBetween(startDate,endDate);
         return allDates;
     }
 
@@ -105,6 +105,14 @@ public class AccommodationCore {
 
     public void setGuests(String guests) {
         Guests = guests;
+    }
+
+    public int getmNumberOfNights() {
+        return mNumberOfNights;
+    }
+
+    public void setmNumberOfNights(int mNumberOfNights) {
+        this.mNumberOfNights = mNumberOfNights;
     }
 
     public Double getmLocationLongitude() {

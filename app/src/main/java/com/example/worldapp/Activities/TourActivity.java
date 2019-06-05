@@ -291,8 +291,8 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mBookingDatabase.child(newBookingManager.toString()).setValue(mManager);
         updateBookingManager(mManager, mTourOwner);
         updateBookingManager(mManager, UserCore.Instance().getmUser());
-        Toast.makeText(this, "Working", Toast.LENGTH_SHORT).show();
     }
+
     public void SelectDates(View view) {
         TourActivity.DatePickerFragment newFragment = new TourActivity.DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");

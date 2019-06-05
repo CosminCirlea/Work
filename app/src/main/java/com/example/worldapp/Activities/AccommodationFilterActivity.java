@@ -185,7 +185,7 @@ public class AccommodationFilterActivity extends BaseAppCompat {
                 {
                     mEndDate = formatTime.format(date);
                     mEndDateTv.setText(mEndDate);
-                    AccommodationCore.Instance().setmStartDate(mEndDate);
+                    AccommodationCore.Instance().setmEndDate(mEndDate);
                 }
             }
         }

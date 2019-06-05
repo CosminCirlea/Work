@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,7 +11,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.worldapp.BaseClasses.BaseAppCompat;
+import com.example.worldapp.Constants.ConstantValues;
 import com.example.worldapp.Constants.NavigationConstants;
+import com.example.worldapp.Core.AccommodationCore;
 import com.example.worldapp.Core.TourCore;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Helpers.FirebaseHelper;
@@ -40,6 +41,7 @@ import com.veinhorn.scrollgalleryview.builder.GallerySettings;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCallback {
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
@@ -54,7 +56,7 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
     private DatabaseReference mBookingDatabase, mUsersDatabase;
     ArrayList<String> mExistingBookingManagers = new ArrayList<>();
     ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
-    private UserDetailsModel mTourOwner, mAuxUser;
+    private UserDetailsModel mHomeOwner, mAuxUser;
     private ScrollGalleryView galleryView;
 
     @Override
@@ -85,10 +87,10 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
                     String userId = mAuxUser.getUserId();
                     if (userId.equalsIgnoreCase(mOwnerId))
                     {
-                        mTourOwner = mAuxUser;
-                        String fullName= mTourOwner.getFirstname()+" "+mTourOwner.getName();
+                        mHomeOwner = mAuxUser;
+                        String fullName= mHomeOwner.getFirstname()+" "+ mHomeOwner.getName();
                         mOwnerNameTv.setText(fullName);
-                        Glide.with(getApplicationContext()).load(mTourOwner.getImageUri()).into(mOwnerImage);
+                        Glide.with(getApplicationContext()).load(mHomeOwner.getImageUri()).into(mOwnerImage);
                     }
                 }
             }
@@ -141,15 +143,7 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
     public void OnBook(View view) {
         if (UserCore.Instance().isLoggedIn())
         {
-            String aux;
-            aux = TourCore.Instance().getmBookedDates();
-           /* if (aux.isEmpty())
-            {
-                Toast.makeText(AccommodationActivity.this,"Please select a date!", Toast.LENGTH_SHORT).show();
-                ToursFilterActivity.DatePickerFragment newFragment = new ToursFilterActivity.DatePickerFragment();
-                newFragment.show(getSupportFragmentManager(), "datePicker");
-            }*/
-            //doTheBooking();
+            doTheBooking();
         }
         else
         {
@@ -158,6 +152,38 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
             startActivity(myIntent);
             Toast.makeText(this, "You must be logged in in order to book!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void doTheBooking()
+    {
+        double mPrice = mHome.getPricePerNight();
+        int night = AccommodationCore.Instance().getmNumberOfNights();
+        double mFee = night * mPrice * ConstantValues.BOOKING_APP_FEE;
+        double mTotalPrice = night * mPrice + mFee;
+        String startDate = AccommodationCore.Instance().getmStartDate();
+        String endDate = AccommodationCore.Instance().getmEndDate();
+
+        UUID newBookingManager = UUID.randomUUID();
+        TourBookingManager mManager = new TourBookingManager();
+        mManager.setmBookingId(newBookingManager.toString());
+        mManager.setmOwnerId(mHome.getUserId());
+        mManager.setmBuyerId(UserCore.Instance().User.getUserId());
+        mManager.setmAnnouncementId((mHome.getHomeId()));
+        mManager.setmPrice(mPrice);
+        mManager.setmFee(mFee);
+        mManager.setmTotalPrice(mTotalPrice);
+        mManager.setmStartDate(startDate);
+        mManager.setmEndDate(endDate);
+        mManager.setmStatus(ConstantValues.BOOKING_PENDING);
+        mManager.setmAnnouncementTitle(mHome.getAnnouncementTitle());
+        mManager.setmBuyerName(UserCore.Instance().User.getName());
+        mManager.setmOwnerName(mHomeOwner.getName());
+        mManager.setmOwnerPhone(mHomeOwner.getPhoneNumber());
+        mManager.setmBuyerPhone(UserCore.Instance().User.getPhoneNumber());
+        mManager.setmManagerType(ConstantValues.BOOKING_TYPE_ACCOMMODATION);
+        mBookingDatabase.child(newBookingManager.toString()).setValue(mManager);
+        updateBookingManager(mManager, mHomeOwner);
+        updateBookingManager(mManager, UserCore.Instance().getmUser());
     }
 
     public void updateBookingManager(TourBookingManager mManager, UserDetailsModel mUser)
