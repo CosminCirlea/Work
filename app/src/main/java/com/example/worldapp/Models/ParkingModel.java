@@ -19,6 +19,7 @@ public class ParkingModel {
     private String mOwnerID;
     private Double mLongitude;
     private Double mLatitude;
+    private String mBookedDate;
 
     public ParkingModel() {
     }
@@ -45,6 +46,14 @@ public class ParkingModel {
 
     public void setmSecurityDetails(String mSecurityDetails) {
         this.mSecurityDetails = mSecurityDetails;
+    }
+
+    public String getmBookedDate() {
+        return mBookedDate;
+    }
+
+    public void setmBookedDate(String mBookedDate) {
+        this.mBookedDate = mBookedDate;
     }
 
     public String getmRestrictions() {

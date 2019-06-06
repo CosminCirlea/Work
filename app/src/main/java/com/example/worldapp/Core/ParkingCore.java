@@ -21,6 +21,7 @@ public class ParkingCore {
     private Double mLongitude;
     private Double mLatitude;
     private String mDate;
+    private String mBookedDate;
 
     public static ParkingCore Instance()
     {
@@ -62,6 +63,14 @@ public class ParkingCore {
 
     public void setmCountry(String mCountry) {
         this.mCountry = mCountry;
+    }
+
+    public String getmBookedDate() {
+        return mBookedDate;
+    }
+
+    public void setmBookedDate(String mBookedDate) {
+        this.mBookedDate = mBookedDate;
     }
 
     public String getmCity() {

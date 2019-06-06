@@ -8,117 +8,132 @@
     tools:context=".Activities.ParkingActivity">
 
     <include layout="@layout/toolbar_with_back_button"/>
-
-    <RelativeLayout
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsv_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar_with_back_button"
-        android:layout_margin="10dp">
-
-        <TextView
-            android:id="@+id/tv_parking_announcement_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/BasicText"
-            android:text="Some title for the announcement"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/tv_parking_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/BasicText"
-            android:inputType="textMultiLine"
-            android:layout_below="@+id/tv_parking_announcement_title"
-            android:text="Some description for the announcement announcement"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/tv_parking_type_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/BasicText"
-            android:layout_below="@+id/tv_parking_description"
-            android:text="Parking type : "
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/tv_parking_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/BasicText"
-            android:layout_below="@+id/tv_parking_description"
-            android:layout_toEndOf="@+id/tv_parking_type_text"
-            android:text="private"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/tv_parking_availability_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/BasicText"
-            android:layout_below="@+id/tv_parking_type"
-            android:text="Available parking spots : "
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/tv_parking_availability"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/BasicText"
-            android:layout_below="@+id/tv_parking_type"
-            android:layout_toRightOf="@+id/tv_parking_availability_text"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/tv_parking_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/BasicText"
-            android:text="Price : "
-            android:layout_below="@+id/tv_parking_availability"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/tv_parking_security_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_parking_price"
-            android:text="Security details : "
-            style="@style/BasicText"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/tv_parking_restrictions_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_parking_security_details"
-            android:text="Restrictions : "
-            style="@style/BasicText"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/tv_parking_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/BasicText"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="10dp"
-            android:layout_below="@+id/tv_parking_restrictions_details"
-            android:text="@string/parking_location_text"/>
-        <FrameLayout
-            android:id="@+id/frame_show_parking"
+        android:layout_height="wrap_content">
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_parking_location"
-            android:layout_marginTop="20dp">
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/map_show_parking"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                />
-        </FrameLayout>
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar_with_back_button"
+            android:layout_margin="10dp">
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_parking_announcement_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BasicText"
+                android:text="Some title for the announcement"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_parking_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BasicText"
+                android:inputType="textMultiLine"
+                android:layout_below="@+id/tv_parking_announcement_title"
+                android:text="Some description for the announcement announcement"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_parking_type_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BasicText"
+                android:layout_below="@+id/tv_parking_description"
+                android:text="Parking type : "
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_parking_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BasicText"
+                android:layout_below="@+id/tv_parking_description"
+                android:layout_toEndOf="@+id/tv_parking_type_text"
+                android:text="private"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_parking_availability_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BasicText"
+                android:layout_below="@+id/tv_parking_type"
+                android:text="Available parking spots : "
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_parking_availability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BasicText"
+                android:layout_below="@+id/tv_parking_type"
+                android:layout_toRightOf="@+id/tv_parking_availability_text"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_parking_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BasicText"
+                android:text="Price : "
+                android:layout_below="@+id/tv_parking_availability"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_parking_security_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_parking_price"
+                android:text="Security details : "
+                style="@style/BasicText"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_parking_restrictions_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_parking_security_details"
+                android:text="Restrictions : "
+                style="@style/BasicText"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_parking_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BasicText"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/tv_parking_restrictions_details"
+                android:text="@string/parking_location_text"/>
+            <FrameLayout
+                android:id="@+id/frame_show_parking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_parking_location"
+                android:layout_marginTop="20dp">
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/map_show_parking"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    />
+            </FrameLayout>
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/btn_parking_book"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        style="@style/BasicText"
+        android:background="@drawable/round_button"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="Book"
+        android:onClick="OnBook"
+        />
 </RelativeLayout>
