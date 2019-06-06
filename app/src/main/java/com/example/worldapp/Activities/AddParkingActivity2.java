@@ -18,7 +18,7 @@ public class AddParkingActivity2 extends BaseAppCompat {
     private RadioGroup mRadioGroup;
     private double mParkingPrice;
     private EditText mPriceEt, mAnnouncementTitle, mDescription;
-    private int mPriceType;
+    //private int mPriceType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,15 +73,17 @@ public class AddParkingActivity2 extends BaseAppCompat {
         String title = mAnnouncementTitle.getText().toString();
         String description = mDescription.getText().toString();
         int spots = mParkingSpotsPicker.getValue();
+        mParkingPrice = Double.parseDouble(mPriceEt.getText().toString());
 
-        if (mPriceType == NavigationConstants.PRIVATE_PARKING_PRICE_HOUR) {
+       /* if (mPriceType == NavigationConstants.PRIVATE_PARKING_PRICE_HOUR) {
             ParkingCore.Instance().setmPricePerHour(mParkingPrice);
             ParkingCore.Instance().setmPricePerDay(0);
         }
         if (mPriceType == NavigationConstants.PRIVATE_PARKING_PRICE_DAY) {
-            ParkingCore.Instance().setmPricePerDay(mParkingPrice);
+
             ParkingCore.Instance().setmPricePerHour(0);
-        }
+        }*/
+        ParkingCore.Instance().setmPricePerDay(mParkingPrice);
         ParkingCore.Instance().setmTitle(title);
         ParkingCore.Instance().setmDescription(description);
         ParkingCore.Instance().setmSpotsNumber(spots);
@@ -92,7 +94,7 @@ public class AddParkingActivity2 extends BaseAppCompat {
         startActivity(new Intent(AddParkingActivity2.this, AddParkingActivity1.class));
     }
 
-    public void onRadioPriceButtonClicked(View view) {
+    /*public void onRadioPriceButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
         switch(view.getId()) {
             case R.id.radio_day_price:
@@ -112,5 +114,5 @@ public class AddParkingActivity2 extends BaseAppCompat {
                 }
                 break;
         }
-    }
+    }*/
 }
