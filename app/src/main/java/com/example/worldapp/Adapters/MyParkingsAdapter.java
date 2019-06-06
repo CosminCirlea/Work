@@ -59,8 +59,8 @@ public class MyParkingsAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull MyParkingsAdapter.ViewHolder viewHolder, final int position) {
-        String tourTitle = mParkings.get(position).getmTitle();
-        /*String location = mParkings.get(position).getmTourCountry() + ", " + mParkings.get(position).getmTourRegion() + ", " + mParkings.get(position).getmTourCity();
+        /*String tourTitle = mParkings.get(position).getmTitle();
+        String location = mParkings.get(position).getmTourCountry() + ", " + mParkings.get(position).getmTourRegion() + ", " + mParkings.get(position).getmTourCity();
         String landmarks = mParkings.get(position).getmTourLandmarks();
         int maxParticipants = mParkings.get(position).getmTourMaxParticipants();
         String aux = String.valueOf(maxParticipants) + " participants - ";
