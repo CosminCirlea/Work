@@ -5,13 +5,16 @@ import java.util.UUID;
 public class ParkingCore {
     private static ParkingCore mParkingCore;
     private String mTitle;
+    private String mCountry;
+    private String mCity;
+    private String mAddress;
     private String mDescription;
     private String mSecurityDetails;
     private String mRestrictions;
     private int mType;
     private int mSpotsNumber;
     private double mPricePerDay;
-    private double mPricePerHour;
+    //private double mPricePerHour;
     private String[] mBookedDays;
     private String mParkingID;
     private String mOwnerID;
@@ -51,6 +54,30 @@ public class ParkingCore {
 
     public void setmParkingID(String mParkingID) {
         this.mParkingID = mParkingID;
+    }
+
+    public String getmCountry() {
+        return mCountry;
+    }
+
+    public void setmCountry(String mCountry) {
+        this.mCountry = mCountry;
+    }
+
+    public String getmCity() {
+        return mCity;
+    }
+
+    public void setmCity(String mCity) {
+        this.mCity = mCity;
+    }
+
+    public String getmAddress() {
+        return mAddress;
+    }
+
+    public void setmAddress(String mAddress) {
+        this.mAddress = mAddress;
     }
 
     public String getmOwnerID() {
@@ -117,13 +144,13 @@ public class ParkingCore {
         this.mSpotsNumber = mSpotsNumber;
     }
 
-    public double getmPricePerHour() {
+    /*public double getmPricePerHour() {
         return mPricePerHour;
     }
 
     public void setmPricePerHour(double mPricePerHour) {
         this.mPricePerHour = mPricePerHour;
-    }
+    }*/
 
     public Double getmLongitude() {
         return mLongitude;

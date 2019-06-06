@@ -4,33 +4,23 @@ import java.util.UUID;
 
 public class ParkingModel {
     private String mTitle;
+    private String mCountry;
+    private String mCity;
+    private String mAddress;
     private String mDescription;
     private String mSecurityDetails;
     private String mRestrictions;
     private int mType;
     private int mSpotsNumber;
     private double mPricePerDay;
-    private double mPricePerHour;
+    //private double mPricePerHour;
     private String[] mBookedDays;
     private String mParkingID;
     private String mOwnerID;
     private Double mLongitude;
     private Double mLatitude;
 
-    public ParkingModel(String mTitle, String mDescription, String mSecurityDetails, String mRestrictions, int mType, int mSpotsNumber, int mPricePerDay, double mPricePerHour, String[] mBookedDays, String mParkingID, String mOwnerID, Double mLongitude, Double mLatitude) {
-        this.mTitle = mTitle;
-        this.mDescription = mDescription;
-        this.mSecurityDetails = mSecurityDetails;
-        this.mRestrictions = mRestrictions;
-        this.mType = mType;
-        this.mSpotsNumber = mSpotsNumber;
-        this.mPricePerDay = mPricePerDay;
-        this.mPricePerHour = mPricePerHour;
-        this.mBookedDays = mBookedDays;
-        this.mParkingID = mParkingID;
-        this.mOwnerID = mOwnerID;
-        this.mLongitude = mLongitude;
-        this.mLatitude = mLatitude;
+    public ParkingModel() {
     }
 
     public String getmTitle() {
@@ -89,13 +79,41 @@ public class ParkingModel {
         this.mPricePerDay = mPricePerDay;
     }
 
-    public double getmPricePerHour() {
+    /*public double getmPricePerHour() {
         return mPricePerHour;
+    }*/
+
+    public String getmCountry() {
+        return mCountry;
     }
 
-    public void setmPricePerHour(double mPricePerHour) {
-        this.mPricePerHour = mPricePerHour;
+    public void setmCountry(String mCountry) {
+        this.mCountry = mCountry;
     }
+
+    public String getmCity() {
+        return mCity;
+    }
+
+    public void setmCity(String mCity) {
+        this.mCity = mCity;
+    }
+
+    public String getmAddress() {
+        return mAddress;
+    }
+
+    public void setmAddress(String mAddress) {
+        this.mAddress = mAddress;
+    }
+
+    public void setmPricePerDay(double mPricePerDay) {
+        this.mPricePerDay = mPricePerDay;
+    }
+
+    /*public void setmPricePerHour(double mPricePerHour) {
+        this.mPricePerHour = mPricePerHour;
+    }*/
 
     public String[] getmBookedDays() {
         return mBookedDays;

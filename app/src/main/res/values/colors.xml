@@ -13,6 +13,6 @@
     <color name="fui_transparent">#00000000</color>
     <color name="greenColor">#22b205</color>
     <color name="redColor">#f41d1d</color>
-    <color name="incomingColor">#077b82</color>
+    <color name="incomingColor">#35e5fc</color>
     <color name="completedCOlor">#07822c</color>
 </resources>
