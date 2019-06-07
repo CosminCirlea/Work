@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.yongbeam:AirCalendar:1.2.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/AirCalendar-1.2.0.aar/47863e600bb8fcdb2d647e58b15cf627/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/AirCalendar-1.2.0.aar/47863e600bb8fcdb2d647e58b15cf627/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/64703dae0cdfc6784ab789bf89a12d92/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/64703dae0cdfc6784ab789bf89a12d92/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
