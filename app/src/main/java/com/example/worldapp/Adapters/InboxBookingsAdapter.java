@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.example.worldapp.Constants.ConstantValues;
 import com.example.worldapp.Helpers.FirebaseHelper;
 import com.example.worldapp.Models.GuidedToursModel;
-import com.example.worldapp.Models.TourBookingManager;
+import com.example.worldapp.Models.BookingManager;
 import com.example.worldapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,21 +23,22 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TourBookingsAdapter extends
-    RecyclerView.Adapter<TourBookingsAdapter.ViewHolder> {
+public class InboxBookingsAdapter extends
+    RecyclerView.Adapter<InboxBookingsAdapter.ViewHolder> {
     private Context mContext;
-    private ArrayList<TourBookingManager> mBookingManager;
-    private DatabaseReference mBookingDatabase, mTourDatabase, mAccommodationDatabase;
+    private ArrayList<BookingManager> mBookingManager;
+    private DatabaseReference mBookingDatabase, mTourDatabase, mAccommodationDatabase, mParkingsDatabase;
     private Button mAcceptBook, mDenyBook;
     private GuidedToursModel mTour;
     ArrayList<String> mExistingBookedTours = new ArrayList<>();
 
-    public TourBookingsAdapter(Context context, ArrayList<TourBookingManager> tours) {
+    public InboxBookingsAdapter(Context context, ArrayList<BookingManager> tours) {
         mBookingManager = tours;
         mContext = context;
         mBookingDatabase = FirebaseDatabase.getInstance().getReference().child("BookingManager");
         mTourDatabase = FirebaseDatabase.getInstance().getReference().child("Tours");
         mAccommodationDatabase = FirebaseHelper.mAccommodationDatabaseReference;
+        mParkingsDatabase = FirebaseHelper.mParkingsDatabaseReference;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -93,7 +94,9 @@ public class TourBookingsAdapter extends
             Double income = mBookingManager.get(position).getmTotalPrice();
             String phoneNumber = mBookingManager.get(position).getmOwnerPhone();
             String schedule = mBookingManager.get(position).getmSchedule();
+            String buyerName = mBookingManager.get(position).getmBuyerName();
 
+            viewHolder.tvBuyerName.setText(buyerName);
             viewHolder.tvScheduleText.setText("Schedule: ");
             viewHolder.tvBookDayText.setText("Booking day :");
             viewHolder.tvTitle.setText(tourTitle);
@@ -129,13 +132,15 @@ public class TourBookingsAdapter extends
         }
         else if (mBookingManager.get(position).getmManagerType() == ConstantValues.BOOKING_TYPE_ACCOMMODATION)
         {
-            TourBookingManager mHome = mBookingManager.get(position);
+            BookingManager mHome = mBookingManager.get(position);
             String title = mHome.getmAnnouncementTitle();
             final String startDate = mHome.getmStartDate();
             String endDate = mHome.getmEndDate();
             String price = Double.toString(mHome.getmPrice());
             String phone = mHome.getmOwnerPhone();
+            String buyerName = mBookingManager.get(position).getmBuyerName();
 
+            viewHolder.tvBuyerName.setText(buyerName);
             viewHolder.tvScheduleText.setText("End date: ");
             viewHolder.tvBookDayText.setText("Start date :");
             viewHolder.tvTitle.setText(title);
@@ -170,7 +175,50 @@ public class TourBookingsAdapter extends
             });
         }
 
+        else if (mBookingManager.get(position).getmManagerType() == ConstantValues.BOOKING_TYPE_PARKING)
+        {
+            BookingManager mHome = mBookingManager.get(position);
+            String title = mHome.getmAnnouncementTitle();
+            final String startDate = mHome.getmStartDate();
+            String endDate = mHome.getmEndDate();
+            String price = Double.toString(mHome.getmPrice());
+            String phone = mHome.getmOwnerPhone();
+            String buyerName = mBookingManager.get(position).getmBuyerName();
 
+            viewHolder.tvBuyerName.setText(buyerName);
+            viewHolder.tvScheduleText.setText("End date: ");
+            viewHolder.tvBookDayText.setText("Start date :");
+            viewHolder.tvTitle.setText(title);
+            viewHolder.tvBookDay.setText(startDate);
+            viewHolder.tvIncome.setText(price + " EUR");
+            viewHolder.tvBuyerPhone.setText(phone);
+            viewHolder.tvSchedule.setText(endDate);
+
+            mAcceptBook.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    HashMap<String, Object> map = new HashMap<>();
+                    map.put("mStatus", ConstantValues.BOOKING_ACCEPTED);
+                    mBookingDatabase.child(bookID).updateChildren(map);
+                    if (startDate !=null && itemId != null) {
+                        HashMap<String, Object> auxMap = new HashMap<>();
+                        auxMap.put("mBookedDates", startDate );
+                        //updateTourBookingDate(itemId, bookDay);
+                        //FirebaseHelper.Instance().updateTourBookedDates(itemId, startDate);
+                        //mTourDatabase.child(itemId).child("mBookedDates").updateChildren(auxMap);
+                    }
+                }
+            });
+
+            mDenyBook.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    HashMap<String, Object> map = new HashMap<>();
+                    map.put("mStatus", ConstantValues.BOOKING_DENIED);
+                    mBookingDatabase.child(bookID).updateChildren(map);
+                }
+            });
+        }
     }
 
 

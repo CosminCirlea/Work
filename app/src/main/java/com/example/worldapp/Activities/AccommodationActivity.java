@@ -14,12 +14,11 @@ import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Constants.ConstantValues;
 import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Core.AccommodationCore;
-import com.example.worldapp.Core.TourCore;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Helpers.FirebaseHelper;
 import com.example.worldapp.Helpers.GlideMediaHelper;
 import com.example.worldapp.Models.HomeDetailsModel;
-import com.example.worldapp.Models.TourBookingManager;
+import com.example.worldapp.Models.BookingManager;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -178,6 +177,7 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
         String endDate = AccommodationCore.Instance().getmEndDate();
 
         UUID newBookingManager = UUID.randomUUID();
+        BookingManager mManager = new BookingManager();
         mManager.setmBookingId(newBookingManager.toString());
         mManager.setmOwnerId(mHome.getUserId());
         mManager.setmBuyerId(UserCore.Instance().User.getUserId());
@@ -199,7 +199,7 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
         updateBookingManager(mManager, UserCore.Instance().getmUser());
     }
 
-    public void updateBookingManager(TourBookingManager mManager, UserDetailsModel mUser)
+    public void updateBookingManager(BookingManager mManager, UserDetailsModel mUser)
     {
         if (mUser.getmBooking()!=null) {
             mExistingBookingManagers = mUser.getmBooking();

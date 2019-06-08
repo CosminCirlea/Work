@@ -11,25 +11,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.worldapp.Adapters.TourBookingsAdapterTrips;
+import com.example.worldapp.Adapters.TripsBookingAdapter;
 import com.example.worldapp.Constants.ConstantValues;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Helpers.FirebaseHelper;
-import com.example.worldapp.Models.TourBookingManager;
+import com.example.worldapp.Models.BookingManager;
 import com.example.worldapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class FragmentTrips extends Fragment {
     RecyclerView recyclerView, incomingRecyclerView;
-    ArrayList<TourBookingManager> mBookingList, mIncomingList;
+    ArrayList<BookingManager> mBookingList, mIncomingList;
     DatabaseReference mBookingManagerDatabase;
-    TourBookingsAdapterTrips mTourAdapter , mIncomingAdapter;
+    TripsBookingAdapter mTourAdapter , mIncomingAdapter;
     private String mUserId;
 
     @Override
@@ -55,7 +54,7 @@ public class FragmentTrips extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
                 {
-                    TourBookingManager mManager = dataSnapshot1.getValue(TourBookingManager.class);
+                    BookingManager mManager = dataSnapshot1.getValue(BookingManager.class);
                     if (mManager.getmBuyerId().equals(mUserId))
                     {
                         mBookingList.add(mManager);
@@ -66,9 +65,9 @@ public class FragmentTrips extends Fragment {
                         mIncomingList.add(mManager);
                     }
                 }
-                mTourAdapter = new TourBookingsAdapterTrips(getActivity(),mBookingList);
+                mTourAdapter = new TripsBookingAdapter(getActivity(),mBookingList);
                 recyclerView.setAdapter(mTourAdapter);
-                mIncomingAdapter = new TourBookingsAdapterTrips(getActivity(),mIncomingList);
+                mIncomingAdapter = new TripsBookingAdapter(getActivity(),mIncomingList);
                 incomingRecyclerView.setAdapter(mIncomingAdapter);
                 pd.dismiss();
             }

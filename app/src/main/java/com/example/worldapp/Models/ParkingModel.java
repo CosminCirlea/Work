@@ -10,7 +10,7 @@ public class ParkingModel {
     private String mDescription;
     private String mSecurityDetails;
     private String mRestrictions;
-    private int mType;
+    private String mType;
     private int mSpotsNumber;
     private double mPricePerDay;
     //private double mPricePerHour;
@@ -64,11 +64,11 @@ public class ParkingModel {
         this.mRestrictions = mRestrictions;
     }
 
-    public int getmType() {
+    public String getmType() {
         return mType;
     }
 
-    public void setmType(int mType) {
+    public void setmType(String mType) {
         this.mType = mType;
     }
 

@@ -31,7 +31,7 @@ public class MyParkingsAdapter extends
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvAnnouncementTitle, tvLocation, tvTourLandmarks, tvMaxGuests, tvDuration, tvPricePerTour;
+        private TextView tvAnnouncementTitle, tvLocation, tvAvailability, tvMaxGuests, tvDuration, tvPricePerTour;
         private ImageView ivTourPicture;
 
         public ViewHolder(View itemView) {
@@ -42,7 +42,7 @@ public class MyParkingsAdapter extends
         private void InitializeViews(View itemView) {
             tvAnnouncementTitle = itemView.findViewById(R.id.tv_announcement_title);
             tvLocation = itemView.findViewById(R.id.tv_tour_location);
-            tvTourLandmarks = itemView.findViewById(R.id.tv_tour_landmarks);
+            //tvAvailability = itemView.findViewById(R.id.tva);
             tvMaxGuests = itemView.findViewById(R.id.tv_tour_capacity);
             tvDuration = itemView.findViewById(R.id.tv_tour_duration);
             tvPricePerTour = itemView.findViewById(R.id.tv_price_per_tour);
