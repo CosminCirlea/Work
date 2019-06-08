@@ -12,7 +12,8 @@
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nsv_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
         android:layout_below="@+id/toolbar_with_back_button">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -131,19 +132,20 @@
                 style="@style/SmallBlackText"
                 android:layout_marginTop="4dp"/>
 
+            <Button
+                android:id="@+id/btn_parking_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                style="@style/BasicText"
+                android:background="@drawable/round_button"
+                android:layout_below="@+id/tv_parking_address"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:text="Book"
+                android:onClick="OnBook"
+                />
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <Button
-        android:id="@+id/btn_parking_book"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        style="@style/BasicText"
-        android:background="@drawable/round_button"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:text="Book"
-        android:onClick="OnBook"
-        />
 </RelativeLayout>

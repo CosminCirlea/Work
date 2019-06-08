@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         style="@style/SmallBlackText"
         android:layout_marginTop="2dp"
-        android:text="dasdas dasdas"
+        android:text="1 spot"
         android:layout_marginStart="4dp"
         android:layout_below="@+id/tv_parking_location"
         android:layout_toEndOf="@+id/tv_parking_type"/>
@@ -35,8 +35,17 @@
         android:id="@+id/tv_parking_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ddasd asdsa"
+        android:layout_marginTop="2dp"
+        android:text="Private parking - "
         style="@style/SmallBlackText"
         android:layout_below="@+id/tv_parking_location"/>
+
+    <TextView
+        android:id="@+id/tv_parking_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_parking_type"
+        style="@style/SmallBlackText"
+        android:text="423 $"/>
 
 </RelativeLayout>

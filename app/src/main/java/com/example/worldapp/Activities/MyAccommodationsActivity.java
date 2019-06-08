@@ -14,6 +14,7 @@ import com.example.worldapp.Adapters.MyHomesListingsAdapter;
 import com.example.worldapp.Adapters.MyToursListingsAdapter;
 import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Core.UserCore;
+import com.example.worldapp.Helpers.FirebaseHelper;
 import com.example.worldapp.Models.HomeDetailsModel;
 import com.example.worldapp.R;
 import com.google.firebase.database.DataSnapshot;
@@ -53,7 +54,8 @@ public class MyAccommodationsActivity extends BaseAppCompat {
 
         userID = UserCore.Instance().User.getUserId();
         mHomeList = new ArrayList<>();
-        mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Accommodation");
+
+        mToursDatabaseReference = FirebaseHelper.mAccommodationDatabaseReference;
         mToursDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -75,7 +77,8 @@ public class MyAccommodationsActivity extends BaseAppCompat {
                 Toast.makeText(MyAccommodationsActivity.this, "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
             }
         });
-        if (UserCore.Instance().getmListedHomes() != null)
+
+       /* if (UserCore.Instance().getmListedHomes() != null)
         {
             mHomeList = UserCore.Instance().getmListedHomes();
             mHomesAdapter = new MyHomesListingsAdapter(MyAccommodationsActivity.this, mHomeList);
@@ -85,7 +88,7 @@ public class MyAccommodationsActivity extends BaseAppCompat {
         else
         {
             mNoToursTv.setVisibility(View.INVISIBLE);
-        }
+        }*/
     }
 
     private void InitializeViews(){

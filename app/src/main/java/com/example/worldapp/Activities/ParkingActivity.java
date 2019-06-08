@@ -45,7 +45,7 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
         } catch (NullPointerException e) {
         }
         setContentView(R.layout.activity_parking);
-        super.SetToolbarTitle("Accommodation");
+        super.SetToolbarTitle("Parking");
         InitializeViews();
 
         Bundle mapViewBundle = null;

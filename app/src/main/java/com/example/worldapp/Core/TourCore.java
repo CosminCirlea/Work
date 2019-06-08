@@ -147,9 +147,6 @@ public class TourCore {
         this.mTourType = mTourType;
     }
 
-    public double getmTourPrice() {
-        return mTourPrice;
-    }
 
     public void setmTourPrice(double mTourPrice) {
         this.mTourPrice = mTourPrice;
