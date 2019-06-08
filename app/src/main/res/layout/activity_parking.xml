@@ -8,21 +8,22 @@
     tools:context=".Activities.ParkingActivity">
 
     <include layout="@layout/toolbar_with_back_button"/>
+
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nsv_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar_with_back_button">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar_with_back_button"
             android:layout_margin="10dp">
 
             <TextView
                 android:id="@+id/tv_parking_announcement_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/BasicText"
+                style="@style/BlackText"
                 android:text="Some title for the announcement"
                 android:layout_marginTop="10dp"/>
 
@@ -30,7 +31,7 @@
                 android:id="@+id/tv_parking_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/BasicText"
+                style="@style/BlackText"
                 android:inputType="textMultiLine"
                 android:layout_below="@+id/tv_parking_announcement_title"
                 android:text="Some description for the announcement announcement"
@@ -40,7 +41,7 @@
                 android:id="@+id/tv_parking_type_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/BasicText"
+                style="@style/BlackText"
                 android:layout_below="@+id/tv_parking_description"
                 android:text="Parking type : "
                 android:layout_marginTop="10dp"/>
@@ -49,7 +50,7 @@
                 android:id="@+id/tv_parking_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/BasicText"
+                style="@style/BlackText"
                 android:layout_below="@+id/tv_parking_description"
                 android:layout_toEndOf="@+id/tv_parking_type_text"
                 android:text="private"
@@ -60,7 +61,7 @@
                 android:id="@+id/tv_parking_availability_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/BasicText"
+                style="@style/BlackText"
                 android:layout_below="@+id/tv_parking_type"
                 android:text="Available parking spots : "
                 android:layout_marginTop="10dp"/>
@@ -69,7 +70,7 @@
                 android:id="@+id/tv_parking_availability"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/BasicText"
+                style="@style/BlackText"
                 android:layout_below="@+id/tv_parking_type"
                 android:layout_toRightOf="@+id/tv_parking_availability_text"
                 android:layout_marginTop="10dp"/>
@@ -78,7 +79,7 @@
                 android:id="@+id/tv_parking_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/BasicText"
+                style="@style/BlackText"
                 android:text="Price : "
                 android:layout_below="@+id/tv_parking_availability"
                 android:layout_marginTop="10dp"/>
@@ -89,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_parking_price"
                 android:text="Security details : "
-                style="@style/BasicText"
+                style="@style/BlackText"
                 android:layout_marginTop="10dp"/>
 
             <TextView
@@ -98,14 +99,14 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_parking_security_details"
                 android:text="Restrictions : "
-                style="@style/BasicText"
+                style="@style/BlackText"
                 android:layout_marginTop="10dp"/>
 
             <TextView
                 android:id="@+id/tv_parking_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/BasicText"
+                style="@style/BlackText"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/tv_parking_restrictions_details"
                 android:text="@string/parking_location_text"/>
@@ -121,6 +122,15 @@
                     android:layout_height="250dp"
                     />
             </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_parking_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/frame_show_parking"
+                style="@style/SmallBlackText"
+                android:layout_marginTop="4dp"/>
+
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 

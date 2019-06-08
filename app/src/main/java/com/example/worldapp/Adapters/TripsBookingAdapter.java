@@ -1,33 +1,27 @@
 package com.example.worldapp.Adapters;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.bumptech.glide.load.engine.Resource;
 import com.example.worldapp.Constants.ConstantValues;
-import com.example.worldapp.Constants.NavigationConstants;
-import com.example.worldapp.Models.HomeDetailsModel;
-import com.example.worldapp.Models.TourBookingManager;
+import com.example.worldapp.Models.BookingManager;
 import com.example.worldapp.R;
 
 import java.util.ArrayList;
 
-public class TourBookingsAdapterTrips extends
-    RecyclerView.Adapter<TourBookingsAdapterTrips.ViewHolder> {
+public class TripsBookingAdapter extends
+    RecyclerView.Adapter<TripsBookingAdapter.ViewHolder> {
 
     private Context mContext;
-    private ArrayList<TourBookingManager> mTours;
+    private ArrayList<BookingManager> mTours;
 
-    public TourBookingsAdapterTrips(Context context, ArrayList<TourBookingManager> tours) {
+    public TripsBookingAdapter(Context context, ArrayList<BookingManager> tours) {
         mTours = tours;
         mContext = context;
     }
@@ -79,7 +73,7 @@ public class TourBookingsAdapterTrips extends
         }
         else if (mTours.get(position).getmManagerType() == ConstantValues.BOOKING_TYPE_ACCOMMODATION)
         {
-            TourBookingManager mHome = mTours.get(position);
+            BookingManager mHome = mTours.get(position);
             String title = mHome.getmAnnouncementTitle();
             String startDate = mHome.getmStartDate();
             String endDate = mHome.getmEndDate();

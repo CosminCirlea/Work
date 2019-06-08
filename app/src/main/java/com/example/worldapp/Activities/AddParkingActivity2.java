@@ -37,14 +37,14 @@ public class AddParkingActivity2 extends BaseAppCompat {
         switch(view.getId()) {
             case R.id.radio_private:
                 if (checked) {
-                    ParkingCore.Instance().setmType(NavigationConstants.PRIVATE_PARKING);
+                    ParkingCore.Instance().setmType("Private");
                     mParkingSpotsPicker.setMinValue(1);
                     mParkingSpotsPicker.setMaxValue(NavigationConstants.PRIVATE_PARKING_MAX_SPOTS);
                 }
                 break;
             case R.id.radio_lot:
                 if (checked) {
-                    ParkingCore.Instance().setmType(NavigationConstants.PARKING_LOT);
+                    ParkingCore.Instance().setmType("Parking lot");
                     mParkingSpotsPicker.setMinValue(1);
                     mParkingSpotsPicker.setMaxValue(NavigationConstants.PARKING_LOT_MAX_SPOTS);
                 }
