@@ -21,8 +21,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.PaymentActivity"></activity>
+        <activity android:name=".Activities.PaymentActivity"/>
         <activity android:name=".Activities.AccommodationFilterActivity" />
+        <activity android:name=".Activities.ParkingsFilterActivity" />
         <activity android:name=".Activities.ListAllAccommodationActivity" />
         <activity android:name=".Activities.AccommodationActivity" />
         <activity android:name=".Activities.AddParkingActivity3" />

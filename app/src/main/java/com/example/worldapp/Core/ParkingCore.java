@@ -25,7 +25,8 @@ public class ParkingCore {
     private Double mLongitude;
     private Double mLatitude;
     private String mDate;
-    private String mBookedDate;
+    private String mStartDate;
+    private String mEndDate;
     private int mNumberOfDays;
 
     public static ParkingCore Instance()
@@ -51,7 +52,7 @@ public class ParkingCore {
             allDates.add(result);
             calendar.add(Calendar.DATE, 1);
         }
-        mNumberOfDays = daysBetween(startDate,endDate);
+        mNumberOfDays = daysBetween(startDate,endDate)+1;
         return allDates;
     }
 
@@ -59,6 +60,21 @@ public class ParkingCore {
         return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
     }
 
+    public String getmStartDate() {
+        return mStartDate;
+    }
+
+    public void setmStartDate(String mStartDate) {
+        this.mStartDate = mStartDate;
+    }
+
+    public String getmEndDate() {
+        return mEndDate;
+    }
+
+    public void setmEndDate(String mEndDate) {
+        this.mEndDate = mEndDate;
+    }
 
     public double getmPricePerDay() {
         return mPricePerDay;
@@ -101,11 +117,11 @@ public class ParkingCore {
     }
 
     public String getmBookedDate() {
-        return mBookedDate;
+        return mStartDate;
     }
 
     public void setmBookedDate(String mBookedDate) {
-        this.mBookedDate = mBookedDate;
+        this.mStartDate = mBookedDate;
     }
 
     public String getmCity() {

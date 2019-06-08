@@ -1,20 +1,19 @@
 package com.example.worldapp.Activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Constants.ConstantValues;
 import com.example.worldapp.Constants.NavigationConstants;
-import com.example.worldapp.Core.AccommodationCore;
+import com.example.worldapp.Core.ParkingCore;
 import com.example.worldapp.Core.UserCore;
+import com.example.worldapp.Helpers.FirebaseHelper;
 import com.example.worldapp.Models.BookingManager;
-import com.example.worldapp.Models.HomeDetailsModel;
 import com.example.worldapp.Models.ParkingModel;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
@@ -24,8 +23,11 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -37,12 +39,12 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
     private String mOwnerId;
     private MapView mMapView;
     private ParkingModel mParking;
-    private DatabaseReference mDatabaseReference;
+    private DatabaseReference mDatabaseReference, mUsersDatabase;
     private LatLng mMeetingPoint;
     private DatabaseReference mBookingDatabase;
     ArrayList<String> mExistingBookingManagers = new ArrayList<>();
     ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
-    private UserDetailsModel mHomeOwner;
+    private UserDetailsModel mParkingOwner, mAuxUser;
     private TextView mTitleTv, mLocationTv, mVenueTypeTv, mPriceTv , mDescriptionTv , mParkingTypeTv , mAvailabilityTv , mSecurityDetailsTv ,
             mRestrictionsTv;
     BookingManager mManager = new BookingManager();
@@ -69,6 +71,26 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
         String aux = getIntent().getStringExtra(NavigationConstants.PARKING_MODEL_KEY);
         mParking = gson.fromJson(aux, ParkingModel.class);
         mOwnerId = mParking.getmOwnerID();
+
+        mBookingDatabase = FirebaseHelper.mBookingManagerDatabase;
+        mUsersDatabase = FirebaseHelper.mUserDatabase;
+        mUsersDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot child: dataSnapshot.getChildren()) {
+                    mAuxUser = child.getValue(UserDetailsModel.class);
+                    String userId = mAuxUser.getUserId();
+                    if (userId.equalsIgnoreCase(mOwnerId))
+                    {
+                        mParkingOwner = mAuxUser;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
 
         SetValues();
     }
@@ -109,12 +131,12 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
     public void doTheBooking()
     {
         double mPricePerDay = mParking.getmPricePerDay();
-        int days = AccommodationCore.Instance().getmNumberOfNights();
+        int days = ParkingCore.Instance().getmNumberOfDays();
         double mPrice = days*mPricePerDay;
         double mFee = days * mPrice * ConstantValues.BOOKING_APP_FEE;
         double mTotalPrice = days * mPrice + mFee;
-        String startDate = AccommodationCore.Instance().getmStartDate();
-        String endDate = AccommodationCore.Instance().getmEndDate();
+        String startDate = ParkingCore.Instance().getmStartDate();
+        String endDate = ParkingCore.Instance().getmEndDate();
 
         UUID newBookingManager = UUID.randomUUID();
         mManager.setmBookingId(newBookingManager.toString());
@@ -129,12 +151,12 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
         mManager.setmStatus(ConstantValues.BOOKING_PENDING);
         mManager.setmAnnouncementTitle(mParking.getmTitle());
         mManager.setmBuyerName(UserCore.Instance().User.getName());
-        mManager.setmOwnerName(mHomeOwner.getName());
-        mManager.setmOwnerPhone(mHomeOwner.getPhoneNumber());
+        mManager.setmOwnerName(mParkingOwner.getName());
+        mManager.setmOwnerPhone(mParkingOwner.getPhoneNumber());
         mManager.setmBuyerPhone(UserCore.Instance().User.getPhoneNumber());
         mManager.setmManagerType(ConstantValues.BOOKING_TYPE_PARKING);
         mBookingDatabase.child(newBookingManager.toString()).setValue(mManager);
-        updateBookingManager(mManager, mHomeOwner);
+        updateBookingManager(mManager, mParkingOwner);
         updateBookingManager(mManager, UserCore.Instance().getmUser());
     }
 
