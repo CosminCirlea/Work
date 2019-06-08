@@ -49,8 +49,9 @@ public class AddParkingActivity1 extends BaseAppCompat implements OnMapReadyCall
         } catch (NullPointerException e) {
         }
         setContentView(R.layout.activity_add_parking1);
-        InitializeViews();
         super.SetToolbarTitle("Add parking");
+        InitializeViews();
+
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
@@ -59,7 +60,6 @@ public class AddParkingActivity1 extends BaseAppCompat implements OnMapReadyCall
         mMapView.onCreate(mapViewBundle);
         mMapView.getMapAsync(this);
     }
-
 
     @Override
     public void onMapReady(final GoogleMap map) {
@@ -112,7 +112,7 @@ public class AddParkingActivity1 extends BaseAppCompat implements OnMapReadyCall
         ParkingCore.Instance().setmRestrictions(restrictions);
         ParkingCore.Instance().setmLatitude(mParkingLocation.latitude);
         ParkingCore.Instance().setmLongitude(mParkingLocation.longitude);
-        ParkingCore.Instance().setmOwnerID(UserCore.Instance().getUserId());
+        ParkingCore.Instance().setmOwnerID(UserCore.Instance().User.getUserId());
         ParkingCore.Instance().setmParkingID(mParkingID);
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("Parkings");

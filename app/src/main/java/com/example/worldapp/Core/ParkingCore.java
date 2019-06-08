@@ -1,5 +1,6 @@
 package com.example.worldapp.Core;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class ParkingCore {
@@ -14,8 +15,7 @@ public class ParkingCore {
     private String mType;
     private int mSpotsNumber;
     private double mPricePerDay;
-    //private double mPricePerHour;
-    private String[] mBookedDays;
+    private ArrayList<String> mBookedDays;
     private String mParkingID;
     private String mOwnerID;
     private Double mLongitude;
@@ -32,20 +32,15 @@ public class ParkingCore {
         return mParkingCore;
     }
 
-
-    public double getmPricePerDay() {
-        return mPricePerDay;
-    }
-
     public void setmPricePerDay(double mPricePerDay) {
         this.mPricePerDay = mPricePerDay;
     }
 
-    public String[] getmBookedDays() {
+    public ArrayList<String> getmBookedDays() {
         return mBookedDays;
     }
 
-    public void setmBookedDays(String[] mBookedDays) {
+    public void setmBookedDays(ArrayList<String>  mBookedDays) {
         this.mBookedDays = mBookedDays;
     }
 

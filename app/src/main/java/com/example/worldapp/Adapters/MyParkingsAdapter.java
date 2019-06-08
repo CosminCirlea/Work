@@ -11,8 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.worldapp.Activities.ParkingActivity;
 import com.example.worldapp.Activities.TourActivity;
 import com.example.worldapp.Constants.NavigationConstants;
+import com.example.worldapp.Core.ParkingCore;
 import com.example.worldapp.Models.ParkingModel;
 import com.example.worldapp.R;
 import com.google.gson.Gson;
@@ -30,9 +32,47 @@ public class MyParkingsAdapter extends
         mContext = context;
     }
 
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        Context context = viewGroup.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View contactView = inflater.inflate(R.layout.template_row_my_parkings, viewGroup, false);
+        ViewHolder viewHolder = new ViewHolder(contactView);
+        return viewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
+        String title = mParkings.get(position).getmTitle();
+        String location = mParkings.get(position).getmAddress();
+        double pricePerDay = mParkings.get(position).getmPricePerDay();
+        String price = pricePerDay +" EUR/day";
+
+        viewHolder.tvAnnouncementTitle.setText(title);
+        viewHolder.tvLocation.setText(location);
+        viewHolder.tvPrice.setText(price);
+        viewHolder.tvType.setText(mParkings.get(position).getmType());
+        viewHolder.tvAvailability.setText(Integer.toString(mParkings.get(position).getmSpotsNumber()));
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent = new Intent(mContext, ParkingActivity.class);
+                String serializedParking = new Gson().toJson(mParkings.get(position));
+                mIntent.putExtra(NavigationConstants.PARKING_MODEL_KEY, serializedParking);
+                mContext.startActivity(mIntent);
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return mParkings.size();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvAnnouncementTitle, tvLocation, tvAvailability, tvMaxGuests, tvDuration, tvPricePerTour;
-        private ImageView ivTourPicture;
+        private TextView tvAnnouncementTitle, tvLocation, tvAvailability, tvType, tvPrice;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -40,56 +80,12 @@ public class MyParkingsAdapter extends
         }
 
         private void InitializeViews(View itemView) {
-            tvAnnouncementTitle = itemView.findViewById(R.id.tv_announcement_title);
-            tvLocation = itemView.findViewById(R.id.tv_tour_location);
-            //tvAvailability = itemView.findViewById(R.id.tva);
-            tvMaxGuests = itemView.findViewById(R.id.tv_tour_capacity);
-            tvDuration = itemView.findViewById(R.id.tv_tour_duration);
-            tvPricePerTour = itemView.findViewById(R.id.tv_price_per_tour);
-            ivTourPicture = itemView.findViewById(R.id.iv_listed_tour);
+            tvAnnouncementTitle = itemView.findViewById(R.id.tv_parking_announcement_title);
+            tvLocation = itemView.findViewById(R.id.tv_parking_location);
+            tvType = itemView.findViewById(R.id.tv_parking_type);
+            tvAvailability = itemView.findViewById(R.id.tv_parking_availability);
+            tvPrice = itemView.findViewById(R.id.tv_parking_price);
         }
-    }
-
-    @NonNull
-    @Override
-    public MyParkingsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        Context context = viewGroup.getContext();
-        return new MyParkingsAdapter.ViewHolder(LayoutInflater.from(context).inflate(R.layout.template_row_my_parkings, viewGroup, false));
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull MyParkingsAdapter.ViewHolder viewHolder, final int position) {
-        /*String tourTitle = mParkings.get(position).getmTitle();
-        String location = mParkings.get(position).getmTourCountry() + ", " + mParkings.get(position).getmTourRegion() + ", " + mParkings.get(position).getmTourCity();
-        String landmarks = mParkings.get(position).getmTourLandmarks();
-        int maxParticipants = mParkings.get(position).getmTourMaxParticipants();
-        String aux = String.valueOf(maxParticipants) + " participants - ";
-        String tourDuration = mParkings.get(position).getmTourDuration();
-        Double price = mParkings.get(position).getmTourPrice();
-        Glide.with(viewHolder.ivTourPicture.getContext()).load(mParkings.get(position).getmTourImageUrl()).into(viewHolder.ivTourPicture);
-        String userID = mParkings.get(position).getmUserId();*/
-
-       /* viewHolder.tvAnnouncementTitle.setText(tourTitle);
-        viewHolder.tvLocation.setText(location);
-        viewHolder.tvTourLandmarks.setText(landmarks);
-        viewHolder.tvDuration.setText(tourDuration + " hours");
-        viewHolder.tvMaxGuests.setText(aux);
-        viewHolder.tvPricePerTour.setText(price.toString() + "$");
-
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mIntent = new Intent(mContext, TourActivity.class);
-                String serializedTour = new Gson().toJson(mParkings.get(position));
-                mIntent.putExtra(NavigationConstants.PARKING_MODEL_KEY, serializedTour);
-                mContext.startActivity(mIntent);
-            }
-        });*/
-    }
-
-    @Override
-    public int getItemCount() {
-        return mParkings.size();
     }
 }
 

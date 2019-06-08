@@ -58,7 +58,7 @@ public class AddHome4Activity extends BaseAppCompat implements OnMapReadyCallbac
 
                 map.clear();
                 MarkerOptions marker = new MarkerOptions().position(
-                        new LatLng(point.latitude, point.longitude)).title("Map location");
+                        new LatLng(point.latitude, point.longitude)).title("Accommodation location");
                 mLocation= point;
                 map.addMarker(marker);
                 LocationInitializer();

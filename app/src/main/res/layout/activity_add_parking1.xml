@@ -86,6 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/SmallBlackText"
+                android:text="das dasdasd "
                 android:layout_below="@+id/frame_parking"
                 android:layout_marginTop="2dp"
                 android:layout_marginStart="10dp"/>

@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Core.ParkingCore;
+import com.example.worldapp.Models.ParkingModel;
 import com.example.worldapp.R;
 
 public class AddParkingActivity2 extends BaseAppCompat {
@@ -57,6 +58,7 @@ public class AddParkingActivity2 extends BaseAppCompat {
         mParkingSpotsPicker.setMinValue(1);
         mParkingSpotsPicker.setMaxValue(NavigationConstants.PRIVATE_PARKING_MAX_SPOTS);
         mRadioGroup.check(R.id.radio_private);
+        ParkingCore.Instance().setmType("Private");
     }
 
     private void InitializeViews()
