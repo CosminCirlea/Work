@@ -58,7 +58,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     private LatLng mMeetingPoint;
     ArrayList<String> mExistingBookingManagers = new ArrayList<>();
     ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
-    TourBookingManager mManager = new TourBookingManager();
+    BookingManager mManager = new BookingManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -283,7 +283,6 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         String schedule = mTour.getmSchedule();
 
         UUID newBookingManager = UUID.randomUUID();
-        BookingManager mManager = new BookingManager();
         mManager.setmBookingId(newBookingManager.toString());
         mManager.setmOwnerId(mTour.getmUserId());
         mManager.setmBuyerId(UserCore.Instance().User.getUserId());

@@ -58,7 +58,7 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
     ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
     private UserDetailsModel mHomeOwner, mAuxUser;
     private ScrollGalleryView galleryView;
-    TourBookingManager mManager = new TourBookingManager();
+    BookingManager mManager = new BookingManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,7 +177,6 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
         String endDate = AccommodationCore.Instance().getmEndDate();
 
         UUID newBookingManager = UUID.randomUUID();
-        BookingManager mManager = new BookingManager();
         mManager.setmBookingId(newBookingManager.toString());
         mManager.setmOwnerId(mHome.getUserId());
         mManager.setmBuyerId(UserCore.Instance().User.getUserId());

@@ -1,6 +1,10 @@
 package com.example.worldapp.Core;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.UUID;
 
 public class ParkingCore {
@@ -22,6 +26,7 @@ public class ParkingCore {
     private Double mLatitude;
     private String mDate;
     private String mBookedDate;
+    private int mNumberOfDays;
 
     public static ParkingCore Instance()
     {
@@ -30,6 +35,41 @@ public class ParkingCore {
             mParkingCore = new ParkingCore();
         }
         return mParkingCore;
+    }
+
+    public List<Date> getBookedDates(Date startDate, Date endDate)
+    {
+        List<Date> allDates = new ArrayList<>();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(startDate);
+
+        Calendar endCalendar = new GregorianCalendar();
+        endCalendar.setTime(endDate);
+
+        while (calendar.before(endCalendar)) {
+            Date result = calendar.getTime();
+            allDates.add(result);
+            calendar.add(Calendar.DATE, 1);
+        }
+        mNumberOfDays = daysBetween(startDate,endDate);
+        return allDates;
+    }
+
+    public int daysBetween(Date d1, Date d2){
+        return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+    }
+
+
+    public double getmPricePerDay() {
+        return mPricePerDay;
+    }
+
+    public int getmNumberOfDays() {
+        return mNumberOfDays;
+    }
+
+    public void setmNumberOfDays(int mNumberOfDays) {
+        this.mNumberOfDays = mNumberOfDays;
     }
 
     public void setmPricePerDay(double mPricePerDay) {

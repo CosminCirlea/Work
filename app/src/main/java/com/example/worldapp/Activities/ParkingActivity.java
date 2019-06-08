@@ -39,13 +39,14 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
     private ParkingModel mParking;
     private DatabaseReference mDatabaseReference;
     private LatLng mMeetingPoint;
-    private ImageView mOwnerImage;
-    private DatabaseReference mBookingDatabase, mUsersDatabase;
+    private DatabaseReference mBookingDatabase;
     ArrayList<String> mExistingBookingManagers = new ArrayList<>();
     ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
-    private UserDetailsModel mHomeOwner, mAuxUser;
+    private UserDetailsModel mHomeOwner;
     private TextView mTitleTv, mLocationTv, mVenueTypeTv, mPriceTv , mDescriptionTv , mParkingTypeTv , mAvailabilityTv , mSecurityDetailsTv ,
             mRestrictionsTv;
+    BookingManager mManager = new BookingManager();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +77,16 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
         if (UserCore.Instance().isLoggedIn())
         {
             doTheBooking();
+            Intent myIntent = new Intent(this, PaymentActivity.class);
+            String[] mPurchaseValues =
+                    {
+                            Double.toString(mManager.getmPrice()),
+                            Double.toString(mManager.getmFee()),
+                            Double.toString(mManager.getmTotalPrice())
+
+                    };
+            myIntent.putExtra("paymentDetails", mPurchaseValues);
+            startActivity(myIntent);
         }
         else
         {
@@ -97,15 +108,15 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
 
     public void doTheBooking()
     {
-        double mPrice = mParking.getmPricePerDay();
-        int night = AccommodationCore.Instance().getmNumberOfNights();
-        double mFee = night * mPrice * ConstantValues.BOOKING_APP_FEE;
-        double mTotalPrice = night * mPrice + mFee;
+        double mPricePerDay = mParking.getmPricePerDay();
+        int days = AccommodationCore.Instance().getmNumberOfNights();
+        double mPrice = days*mPricePerDay;
+        double mFee = days * mPrice * ConstantValues.BOOKING_APP_FEE;
+        double mTotalPrice = days * mPrice + mFee;
         String startDate = AccommodationCore.Instance().getmStartDate();
         String endDate = AccommodationCore.Instance().getmEndDate();
 
         UUID newBookingManager = UUID.randomUUID();
-        BookingManager mManager = new BookingManager();
         mManager.setmBookingId(newBookingManager.toString());
         mManager.setmOwnerId(mParking.getmOwnerID());
         mManager.setmBuyerId(UserCore.Instance().User.getUserId());
