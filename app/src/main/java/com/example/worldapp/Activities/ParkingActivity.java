@@ -1,13 +1,19 @@
 package com.example.worldapp.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.worldapp.BaseClasses.BaseAppCompat;
+import com.example.worldapp.Constants.ConstantValues;
 import com.example.worldapp.Constants.NavigationConstants;
+import com.example.worldapp.Core.AccommodationCore;
+import com.example.worldapp.Core.UserCore;
+import com.example.worldapp.Models.BookingManager;
 import com.example.worldapp.Models.HomeDetailsModel;
 import com.example.worldapp.Models.ParkingModel;
 import com.example.worldapp.Models.UserDetailsModel;
@@ -19,9 +25,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallback {
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
@@ -64,6 +73,14 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
     }
 
     public void OnBook(View view) {
+        if (UserCore.Instance().isLoggedIn())
+        {
+            doTheBooking();
+        }
+        else
+        {
+            Toast.makeText(this, "You must be logged in in order to book!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void InitializeViews() {
@@ -76,6 +93,50 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
         mAvailabilityTv = findViewById(R.id.tv_parking_availability);
         mSecurityDetailsTv = findViewById(R.id.tv_parking_security_details);
         mRestrictionsTv = findViewById(R.id.tv_parking_restrictions_details);
+    }
+
+    public void doTheBooking()
+    {
+        double mPrice = mParking.getmPricePerDay();
+        int night = AccommodationCore.Instance().getmNumberOfNights();
+        double mFee = night * mPrice * ConstantValues.BOOKING_APP_FEE;
+        double mTotalPrice = night * mPrice + mFee;
+        String startDate = AccommodationCore.Instance().getmStartDate();
+        String endDate = AccommodationCore.Instance().getmEndDate();
+
+        UUID newBookingManager = UUID.randomUUID();
+        BookingManager mManager = new BookingManager();
+        mManager.setmBookingId(newBookingManager.toString());
+        mManager.setmOwnerId(mParking.getmOwnerID());
+        mManager.setmBuyerId(UserCore.Instance().User.getUserId());
+        mManager.setmAnnouncementId((mParking.getmParkingID()));
+        mManager.setmPrice(mPrice);
+        mManager.setmFee(mFee);
+        mManager.setmTotalPrice(mTotalPrice);
+        mManager.setmStartDate(startDate);
+        mManager.setmEndDate(endDate);
+        mManager.setmStatus(ConstantValues.BOOKING_PENDING);
+        mManager.setmAnnouncementTitle(mParking.getmTitle());
+        mManager.setmBuyerName(UserCore.Instance().User.getName());
+        mManager.setmOwnerName(mHomeOwner.getName());
+        mManager.setmOwnerPhone(mHomeOwner.getPhoneNumber());
+        mManager.setmBuyerPhone(UserCore.Instance().User.getPhoneNumber());
+        mManager.setmManagerType(ConstantValues.BOOKING_TYPE_PARKING);
+        mBookingDatabase.child(newBookingManager.toString()).setValue(mManager);
+        updateBookingManager(mManager, mHomeOwner);
+        updateBookingManager(mManager, UserCore.Instance().getmUser());
+    }
+
+    public void updateBookingManager(BookingManager mManager, UserDetailsModel mUser)
+    {
+        if (mUser.getmBooking()!=null) {
+            mExistingBookingManagers = mUser.getmBooking();
+        }
+        mExistingBookingManagers.add(mManager.getmBookingId());
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("mBookingManager", mExistingBookingManagers);
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(mUser.getUserId());
+        mDatabaseReference.updateChildren(map);
     }
 
     private void SetValues() {
