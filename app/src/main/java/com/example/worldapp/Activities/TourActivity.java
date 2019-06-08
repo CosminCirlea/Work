@@ -61,6 +61,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     private LatLng mMeetingPoint;
     ArrayList<String> mExistingBookingManagers = new ArrayList<>();
     ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
+    TourBookingManager mManager = new TourBookingManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +131,8 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
 
     private void SetValues() {
         LatLng meetingPoint = new LatLng(mTour.getmMeetingPointLatitude(),mTour.getmMeetingPointLongitude());
+        //double ratingValue = mTour.getmToursGrades() /mTour.getmToursRating();
+        //String rating = String.valueOf(ratingValue);
 
         Glide.with(getApplicationContext()).load(mTour.getmTourImageUrl()).into(mTourImage);
         mTitle.setText(mTour.getmTourTitle());
@@ -142,7 +145,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mPrice.setText(mTour.getmTourPrice() + " EUR");
         mLandmarks.setText(mTour.getmTourLandmarks());
         mParticipants.setText(mTour.getmTourMaxParticipants() + "");
-        mRating.setRating(3.4f);
+        mRating.setRating(5f);
         mOwnerId = mTour.getmUserId();
         mMeetingPoint = meetingPoint;
         tvMeetingLocation.setText(mTour.getmMeetingLocation());
@@ -226,7 +229,19 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
                 ToursFilterActivity.DatePickerFragment newFragment = new ToursFilterActivity.DatePickerFragment();
                 newFragment.show(getSupportFragmentManager(), "datePicker");
             }
-            doTheBooking();
+            else{
+                doTheBooking();
+                Intent myIntent = new Intent(TourActivity.this, PaymentActivity.class);
+                String[] mPurchaseValues =
+                        {
+                                Double.toString(mManager.getmPrice()),
+                                Double.toString(mManager.getmFee()),
+                                Double.toString(mManager.getmTotalPrice())
+
+                        };
+                myIntent.putExtra("paymentDetails", mPurchaseValues);
+                startActivity(myIntent);
+            }
         }
         else
         {
@@ -271,7 +286,6 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         String schedule = mTour.getmSchedule();
 
         UUID newBookingManager = UUID.randomUUID();
-        TourBookingManager mManager = new TourBookingManager();
         mManager.setmBookingId(newBookingManager.toString());
         mManager.setmOwnerId(mTour.getmUserId());
         mManager.setmBuyerId(UserCore.Instance().User.getUserId());

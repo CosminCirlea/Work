@@ -38,6 +38,7 @@ import com.veinhorn.scrollgalleryview.MediaInfo;
 import com.veinhorn.scrollgalleryview.ScrollGalleryView;
 import com.veinhorn.scrollgalleryview.builder.GallerySettings;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,6 +59,7 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
     ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
     private UserDetailsModel mHomeOwner, mAuxUser;
     private ScrollGalleryView galleryView;
+    TourBookingManager mManager = new TourBookingManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +146,16 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
         if (UserCore.Instance().isLoggedIn())
         {
             doTheBooking();
+            Intent myIntent = new Intent(this, PaymentActivity.class);
+            String[] mPurchaseValues =
+                    {
+                            Double.toString(mManager.getmPrice()),
+                            Double.toString(mManager.getmFee()),
+                            Double.toString(mManager.getmTotalPrice())
+
+                    };
+            myIntent.putExtra("paymentDetails", mPurchaseValues);
+            startActivity(myIntent);
         }
         else
         {
@@ -156,21 +168,22 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
 
     public void doTheBooking()
     {
-        double mPrice = mHome.getPricePerNight();
+        double mPricePerNight = mHome.getPricePerNight();
         int night = AccommodationCore.Instance().getmNumberOfNights();
-        double mFee = night * mPrice * ConstantValues.BOOKING_APP_FEE;
-        double mTotalPrice = night * mPrice + mFee;
+        double mPrice = night*mPricePerNight;
+        double mFee = mPrice * ConstantValues.BOOKING_APP_FEE;
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+        double mTotalPrice = mPrice + mFee;
         String startDate = AccommodationCore.Instance().getmStartDate();
         String endDate = AccommodationCore.Instance().getmEndDate();
 
         UUID newBookingManager = UUID.randomUUID();
-        TourBookingManager mManager = new TourBookingManager();
         mManager.setmBookingId(newBookingManager.toString());
         mManager.setmOwnerId(mHome.getUserId());
         mManager.setmBuyerId(UserCore.Instance().User.getUserId());
         mManager.setmAnnouncementId((mHome.getHomeId()));
         mManager.setmPrice(mPrice);
-        mManager.setmFee(mFee);
+        mManager.setmFee(Double.valueOf(numberFormat.format(mFee)));
         mManager.setmTotalPrice(mTotalPrice);
         mManager.setmStartDate(startDate);
         mManager.setmEndDate(endDate);

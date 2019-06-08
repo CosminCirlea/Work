@@ -23,6 +23,7 @@ import com.example.worldapp.Activities.EditProfileActivity;
 import com.example.worldapp.Activities.MyAccommodationsActivity;
 import com.example.worldapp.Activities.MyParkingsActivity;
 import com.example.worldapp.Activities.MyToursActivity;
+import com.example.worldapp.Activities.PaymentActivity;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
@@ -133,7 +134,7 @@ public class FragmentProfileLoggedIn extends Fragment {
         BtnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), EditProfileActivity.class));
+                startActivity(new Intent(getActivity(), PaymentActivity.class));
             }
         });
 

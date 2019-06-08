@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".Activities.PaymentActivity">
 
     <RelativeLayout
@@ -16,14 +17,96 @@
         <EditText
             android:id="@+id/et_payment_card"
             android:hint="Card number"
-            android:inputType="text"
+            android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             style="@style/BlackText"
+            android:drawableStart="@drawable/ic_credit_card"
             android:layout_below="@+id/toolbar_with_back_button"
             />
 
-    </RelativeLayout>
+        <EditText
+            android:id="@+id/et_payment_cvv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="60dp"
+            android:inputType="number"
+            android:layout_below="@+id/et_payment_card"
+            android:layout_marginStart="10dp"
+            android:hint="CVV"
+            style="@style/BlackText"/>
 
-</android.support.constraint.ConstraintLayout>
+        <EditText
+            android:id="@+id/et_payment_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="100dp"
+            android:layout_below="@+id/et_payment_card"
+            android:layout_marginEnd="20dp"
+            android:hint="Date"
+            android:inputType="date"
+            android:layout_alignParentEnd="true"
+            style="@style/BlackText"/>
+
+
+        <ImageView
+            android:id="@+id/iv_secure"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_sec"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_secure"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            style="@style/BlackText"
+            android:text="Payment is secured!"/>
+
+        <TextView
+            android:id="@+id/tv_payment_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/BlackText"
+            android:layout_marginStart="10dp"
+            android:text="Price"
+            android:layout_above="@+id/tv_payment_fee"/>
+
+        <TextView
+            android:id="@+id/tv_payment_fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/BlackText"
+            android:layout_marginStart="10dp"
+            android:text="Fee"
+            android:layout_above="@+id/tv_payment_total_price"/>
+
+        <TextView
+            android:id="@+id/tv_payment_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/BlackText"
+            android:layout_marginStart="10dp"
+            android:text="Total price"
+            android:layout_above="@+id/btn_payment_done"/>
+
+        <Button
+            android:id="@+id/btn_payment_done"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button_primary"
+            android:textColor="#fff"
+            android:text="Finish purchase"
+            android:textAllCaps="false"
+            android:padding="4dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:onClick="FinishPurchase"
+            />
+
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>
