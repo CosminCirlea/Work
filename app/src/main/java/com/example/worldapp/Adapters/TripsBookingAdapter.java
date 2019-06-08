@@ -20,14 +20,16 @@ public class TripsBookingAdapter extends
 
     private Context mContext;
     private ArrayList<BookingManager> mTours;
+    private int mAdapterType;
 
-    public TripsBookingAdapter(Context context, ArrayList<BookingManager> tours) {
+    public TripsBookingAdapter(Context context, ArrayList<BookingManager> tours, int adapterType) {
         mTours = tours;
         mContext = context;
+        mAdapterType = adapterType;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvStatus, tvTitle, tvBookDay, tvPrice, tvPhoneOwner, tvBookDayText, tvScheduleText, tvSchedule;
+        private TextView tvStatus, tvTitle, tvBookDay, tvPrice, tvPhoneOwner, tvBookDayText, tvScheduleText, tvSchedule, tvPriceText;
         public ViewHolder(View itemView) {
             super(itemView);
             InitializeViews(itemView);
@@ -42,6 +44,7 @@ public class TripsBookingAdapter extends
             tvBookDayText =itemView.findViewById(R.id.tv_notifications_booking_day_text);
             tvScheduleText =itemView.findViewById(R.id.tv_notifications_schedule_text);
             tvSchedule =itemView.findViewById(R.id.tv_notifications_schedule_day);
+            tvPriceText = itemView.findViewById(R.id.tv_notifications_price_text);
         }
     }
 
@@ -62,6 +65,7 @@ public class TripsBookingAdapter extends
             String phoneNumber = mTours.get(position).getmOwnerPhone();
             String schedule = mTours.get(position).getmSchedule();
 
+            //viewHolder.tvPriceText.setText("Price: ");
             viewHolder.tvScheduleText.setText("Schedule: ");
             viewHolder.tvBookDayText.setText("Booking day :");
             viewHolder.tvTitle.setText(tourTitle);
@@ -70,6 +74,11 @@ public class TripsBookingAdapter extends
             viewHolder.tvPhoneOwner.setText(phoneNumber);
             viewHolder.tvSchedule.setText(schedule);
             setStatusWhitelabel(status, viewHolder.tvStatus);
+            if (mAdapterType == 1) //if adapter is for Incoming bookings
+            {
+                viewHolder.tvPrice.setText(String.valueOf(mTours.get(position).getmPrice())+" EUR");
+                viewHolder.tvPriceText.setText("Income: ");
+            }
         }
         else if (mTours.get(position).getmManagerType() == ConstantValues.BOOKING_TYPE_ACCOMMODATION)
         {
@@ -89,6 +98,37 @@ public class TripsBookingAdapter extends
             viewHolder.tvPhoneOwner.setText(phone);
             viewHolder.tvSchedule.setText(endDate);
             setStatusWhitelabel(status, viewHolder.tvStatus);
+            if (mAdapterType == 1) //if adapter is for Incoming bookings
+            {
+                viewHolder.tvPrice.setText(String.valueOf(mTours.get(position).getmPrice())+" EUR");
+                viewHolder.tvPriceText.setText("Income: ");
+            }
+        }
+
+        else if (mTours.get(position).getmManagerType() == ConstantValues.BOOKING_TYPE_PARKING)
+        {
+            BookingManager mHome = mTours.get(position);
+            String title = mHome.getmAnnouncementTitle();
+            String startDate = mHome.getmStartDate();
+            String endDate = mHome.getmEndDate();
+            String price = Double.toString(mHome.getmTotalPrice());
+            String phone = mHome.getmOwnerPhone();
+            int status = mHome.getmStatus();
+
+            viewHolder.tvScheduleText.setText("End date: ");
+            viewHolder.tvBookDayText.setText("Start date :");
+            viewHolder.tvTitle.setText(title);
+            viewHolder.tvBookDay.setText(startDate);
+            viewHolder.tvPrice.setText(price + " EUR");
+            viewHolder.tvPhoneOwner.setText(phone);
+            viewHolder.tvSchedule.setText(endDate);
+            setStatusWhitelabel(status, viewHolder.tvStatus);
+
+            if (mAdapterType == 1) //if adapter is for Incoming bookings
+            {
+                viewHolder.tvPrice.setText(String.valueOf(mTours.get(position).getmPrice())+" EUR");
+                viewHolder.tvPriceText.setText("Income: ");
+            }
         }
     }
 

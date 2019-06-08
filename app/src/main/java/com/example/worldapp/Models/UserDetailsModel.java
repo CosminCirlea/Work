@@ -31,6 +31,14 @@ public class UserDetailsModel {
         PhoneNumber = phoneNumber;
     }
 
+    public ArrayList<String> getmBookingManager() {
+        return mBookingManager;
+    }
+
+    public void setmBookingManager(ArrayList<String> mBookingManager) {
+        this.mBookingManager = mBookingManager;
+    }
+
     public String getUserId() {
         return UserId;
     }

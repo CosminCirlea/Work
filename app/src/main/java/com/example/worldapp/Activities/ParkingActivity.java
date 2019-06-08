@@ -133,8 +133,8 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
         double mPricePerDay = mParking.getmPricePerDay();
         int days = ParkingCore.Instance().getmNumberOfDays();
         double mPrice = days*mPricePerDay;
-        double mFee = days * mPrice * ConstantValues.BOOKING_APP_FEE;
-        double mTotalPrice = days * mPrice + mFee;
+        double mFee = mPrice * ConstantValues.BOOKING_APP_FEE;
+        double mTotalPrice =  mPrice + mFee;
         String startDate = ParkingCore.Instance().getmStartDate();
         String endDate = ParkingCore.Instance().getmEndDate();
 

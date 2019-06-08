@@ -171,7 +171,7 @@ public class ParkingsFilterActivity extends BaseAppCompat {
             else if (mDate == 1 )
             {
                 mEndDay = date;
-                if (mStartDay.after(date) || mStartDay.equals(mEndDay))
+                if (mStartDay.after(date))
                 {
                     Toast.makeText(getActivity(), "End day must be after the start day!", Toast.LENGTH_SHORT).show();
                 }

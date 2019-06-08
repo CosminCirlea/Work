@@ -34,7 +34,7 @@ public class FragmentTrips extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_trips, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_trips, container, false);
 
         recyclerView = rootView.findViewById(R.id.rv_notifications);
         incomingRecyclerView = rootView.findViewById(R.id.rv_notifications_incoming);
@@ -63,11 +63,12 @@ public class FragmentTrips extends Fragment {
                     {
                         mManager.setmStatus(ConstantValues.BOOKING_INCOMING);
                         mIncomingList.add(mManager);
+                        mManager.setmTotalPrice(mManager.getmPrice());
                     }
                 }
-                mTourAdapter = new TripsBookingAdapter(getActivity(),mBookingList);
+                mTourAdapter = new TripsBookingAdapter(getActivity(),mBookingList,2);
                 recyclerView.setAdapter(mTourAdapter);
-                mIncomingAdapter = new TripsBookingAdapter(getActivity(),mIncomingList);
+                mIncomingAdapter = new TripsBookingAdapter(getActivity(),mIncomingList,1);
                 incomingRecyclerView.setAdapter(mIncomingAdapter);
                 pd.dismiss();
             }
