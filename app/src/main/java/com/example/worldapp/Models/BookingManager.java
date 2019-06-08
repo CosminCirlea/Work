@@ -5,7 +5,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class TourBookingManager {
+public class BookingManager {
     private String mBookingId;
     private String mBuyerId;
     private String mOwnerId;

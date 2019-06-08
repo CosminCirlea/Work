@@ -19,9 +19,7 @@ import com.example.worldapp.Constants.ConstantValues;
 import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Core.TourCore;
 import com.example.worldapp.Core.UserCore;
-import com.example.worldapp.Helpers.Converters;
-import com.example.worldapp.Helpers.DatePickerFragment;
-import com.example.worldapp.Models.TourBookingManager;
+import com.example.worldapp.Models.BookingManager;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
@@ -42,7 +40,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -252,7 +249,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         }
     }
 
-    public void updateBookingManager(TourBookingManager mManager, UserDetailsModel mUser)
+    public void updateBookingManager(BookingManager mManager, UserDetailsModel mUser)
     {
         if (mUser.getmBooking()!=null) {
             mExistingBookingManagers = mUser.getmBooking();
@@ -286,6 +283,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         String schedule = mTour.getmSchedule();
 
         UUID newBookingManager = UUID.randomUUID();
+        BookingManager mManager = new BookingManager();
         mManager.setmBookingId(newBookingManager.toString());
         mManager.setmOwnerId(mTour.getmUserId());
         mManager.setmBuyerId(UserCore.Instance().User.getUserId());

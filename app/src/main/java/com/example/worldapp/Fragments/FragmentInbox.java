@@ -10,13 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.worldapp.Activities.ListAllToursActivity;
-import com.example.worldapp.Adapters.MyToursListingsAdapter;
-import com.example.worldapp.Adapters.TourBookingsAdapter;
+import com.example.worldapp.Adapters.InboxBookingsAdapter;
 import com.example.worldapp.Constants.ConstantValues;
 import com.example.worldapp.Core.UserCore;
-import com.example.worldapp.Models.GuidedToursModel;
-import com.example.worldapp.Models.TourBookingManager;
+import com.example.worldapp.Models.BookingManager;
 import com.example.worldapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,13 +22,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class FragmentInbox extends Fragment {
     RecyclerView recyclerView;
-    ArrayList<TourBookingManager> mBookingList;
+    ArrayList<BookingManager> mBookingList;
     DatabaseReference mToursDatabaseReference;
-    TourBookingsAdapter mTourAdapter;
+    InboxBookingsAdapter mTourAdapter;
     private String mUserId;
 
     @Override
@@ -52,14 +48,14 @@ public class FragmentInbox extends Fragment {
                 mBookingList.clear();
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
                 {
-                    TourBookingManager mBookedManager = dataSnapshot1.getValue(TourBookingManager.class);
+                    BookingManager mBookedManager = dataSnapshot1.getValue(BookingManager.class);
                     if (mBookedManager.getmOwnerId().equals(mUserId) && mBookedManager.getmStatus()== ConstantValues.BOOKING_PENDING)
                     {
                         mBookingList.add(mBookedManager);
                     }
                 }
                 if (mBookingList != null) {
-                    mTourAdapter = new TourBookingsAdapter(getActivity(), mBookingList);
+                    mTourAdapter = new InboxBookingsAdapter(getActivity(), mBookingList);
                     recyclerView.setAdapter(mTourAdapter);
                 }}
 

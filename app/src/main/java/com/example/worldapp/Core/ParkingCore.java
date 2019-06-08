@@ -1,23 +1,27 @@
 package com.example.worldapp.Core;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class ParkingCore {
     private static ParkingCore mParkingCore;
     private String mTitle;
+    private String mCountry;
+    private String mCity;
+    private String mAddress;
     private String mDescription;
     private String mSecurityDetails;
     private String mRestrictions;
-    private int mType;
+    private String mType;
     private int mSpotsNumber;
     private double mPricePerDay;
-    private double mPricePerHour;
-    private String[] mBookedDays;
+    private ArrayList<String> mBookedDays;
     private String mParkingID;
     private String mOwnerID;
     private Double mLongitude;
     private Double mLatitude;
     private String mDate;
+    private String mBookedDate;
 
     public static ParkingCore Instance()
     {
@@ -28,20 +32,15 @@ public class ParkingCore {
         return mParkingCore;
     }
 
-
-    public double getmPricePerDay() {
-        return mPricePerDay;
-    }
-
     public void setmPricePerDay(double mPricePerDay) {
         this.mPricePerDay = mPricePerDay;
     }
 
-    public String[] getmBookedDays() {
+    public ArrayList<String> getmBookedDays() {
         return mBookedDays;
     }
 
-    public void setmBookedDays(String[] mBookedDays) {
+    public void setmBookedDays(ArrayList<String>  mBookedDays) {
         this.mBookedDays = mBookedDays;
     }
 
@@ -51,6 +50,38 @@ public class ParkingCore {
 
     public void setmParkingID(String mParkingID) {
         this.mParkingID = mParkingID;
+    }
+
+    public String getmCountry() {
+        return mCountry;
+    }
+
+    public void setmCountry(String mCountry) {
+        this.mCountry = mCountry;
+    }
+
+    public String getmBookedDate() {
+        return mBookedDate;
+    }
+
+    public void setmBookedDate(String mBookedDate) {
+        this.mBookedDate = mBookedDate;
+    }
+
+    public String getmCity() {
+        return mCity;
+    }
+
+    public void setmCity(String mCity) {
+        this.mCity = mCity;
+    }
+
+    public String getmAddress() {
+        return mAddress;
+    }
+
+    public void setmAddress(String mAddress) {
+        this.mAddress = mAddress;
     }
 
     public String getmOwnerID() {
@@ -101,11 +132,11 @@ public class ParkingCore {
         this.mRestrictions = mRestrictions;
     }
 
-    public int getmType() {
+    public String getmType() {
         return mType;
     }
 
-    public void setmType(int mType) {
+    public void setmType(String mType) {
         this.mType = mType;
     }
 
@@ -117,13 +148,13 @@ public class ParkingCore {
         this.mSpotsNumber = mSpotsNumber;
     }
 
-    public double getmPricePerHour() {
+    /*public double getmPricePerHour() {
         return mPricePerHour;
     }
 
     public void setmPricePerHour(double mPricePerHour) {
         this.mPricePerHour = mPricePerHour;
-    }
+    }*/
 
     public Double getmLongitude() {
         return mLongitude;

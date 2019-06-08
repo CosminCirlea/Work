@@ -63,8 +63,8 @@
                 android:id="@+id/tv_parking_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/BasicText"
-                android:layout_marginTop="30dp"
+                style="@style/BlackText"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_below="@+id/til_parking_restrictions"
                 android:text="@string/parking_location_text"/>
@@ -73,15 +73,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_parking_location"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="10dp">
                 <com.google.android.gms.maps.MapView
                     android:id="@+id/map_add_parking"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     />
             </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_parking_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/SmallBlackText"
+                android:text="das dasdasd "
+                android:layout_below="@+id/frame_parking"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="10dp"/>
         </RelativeLayout>
-    </android.support.v4.widget.NestedScrollView>>
+    </android.support.v4.widget.NestedScrollView>
+
     <Button
         android:id="@+id/btn_add_tour_next_1"
         android:layout_width="wrap_content"

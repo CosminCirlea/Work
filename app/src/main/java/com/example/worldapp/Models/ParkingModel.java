@@ -1,36 +1,27 @@
 package com.example.worldapp.Models;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class ParkingModel {
     private String mTitle;
+    private String mCountry;
+    private String mCity;
+    private String mAddress;
     private String mDescription;
     private String mSecurityDetails;
     private String mRestrictions;
-    private int mType;
+    private String mType;
     private int mSpotsNumber;
     private double mPricePerDay;
-    private double mPricePerHour;
-    private String[] mBookedDays;
+    private ArrayList<String> mBookedDates;
     private String mParkingID;
     private String mOwnerID;
     private Double mLongitude;
     private Double mLatitude;
+    private String mBookedDate;
 
-    public ParkingModel(String mTitle, String mDescription, String mSecurityDetails, String mRestrictions, int mType, int mSpotsNumber, int mPricePerDay, double mPricePerHour, String[] mBookedDays, String mParkingID, String mOwnerID, Double mLongitude, Double mLatitude) {
-        this.mTitle = mTitle;
-        this.mDescription = mDescription;
-        this.mSecurityDetails = mSecurityDetails;
-        this.mRestrictions = mRestrictions;
-        this.mType = mType;
-        this.mSpotsNumber = mSpotsNumber;
-        this.mPricePerDay = mPricePerDay;
-        this.mPricePerHour = mPricePerHour;
-        this.mBookedDays = mBookedDays;
-        this.mParkingID = mParkingID;
-        this.mOwnerID = mOwnerID;
-        this.mLongitude = mLongitude;
-        this.mLatitude = mLatitude;
+    public ParkingModel() {
     }
 
     public String getmTitle() {
@@ -57,6 +48,14 @@ public class ParkingModel {
         this.mSecurityDetails = mSecurityDetails;
     }
 
+    public String getmBookedDate() {
+        return mBookedDate;
+    }
+
+    public void setmBookedDate(String mBookedDate) {
+        this.mBookedDate = mBookedDate;
+    }
+
     public String getmRestrictions() {
         return mRestrictions;
     }
@@ -65,11 +64,11 @@ public class ParkingModel {
         this.mRestrictions = mRestrictions;
     }
 
-    public int getmType() {
+    public String getmType() {
         return mType;
     }
 
-    public void setmType(int mType) {
+    public void setmType(String mType) {
         this.mType = mType;
     }
 
@@ -85,24 +84,53 @@ public class ParkingModel {
         return mPricePerDay;
     }
 
+    public ArrayList<String> getmBookedDates() {
+        return mBookedDates;
+    }
+
+    public void setmBookedDates(ArrayList<String> mBookedDates) {
+        this.mBookedDates = mBookedDates;
+    }
+
     public void setmPricePerDay(int mPricePerDay) {
         this.mPricePerDay = mPricePerDay;
     }
 
-    public double getmPricePerHour() {
+    /*public double getmPricePerHour() {
         return mPricePerHour;
+    }*/
+
+    public String getmCountry() {
+        return mCountry;
     }
 
-    public void setmPricePerHour(double mPricePerHour) {
-        this.mPricePerHour = mPricePerHour;
+    public void setmCountry(String mCountry) {
+        this.mCountry = mCountry;
     }
 
-    public String[] getmBookedDays() {
-        return mBookedDays;
+    public String getmCity() {
+        return mCity;
     }
 
-    public void setmBookedDays(String[] mBookedDays) {
-        this.mBookedDays = mBookedDays;
+    public void setmCity(String mCity) {
+        this.mCity = mCity;
+    }
+
+    public String getmAddress() {
+        return mAddress;
+    }
+
+    public void setmAddress(String mAddress) {
+        this.mAddress = mAddress;
+    }
+
+
+    public ArrayList<String> getmBookedDays() {
+        return mBookedDates;
+    }
+
+    public void setmBookedDays(ArrayList<String> mBookedDays) {
+        this.mBookedDates = mBookedDays;
     }
 
     public String getmParkingID() {

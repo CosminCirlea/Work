@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Constants.NavigationConstants;
 import com.example.worldapp.Core.ParkingCore;
+import com.example.worldapp.Models.ParkingModel;
 import com.example.worldapp.R;
 
 public class AddParkingActivity2 extends BaseAppCompat {
@@ -18,7 +19,7 @@ public class AddParkingActivity2 extends BaseAppCompat {
     private RadioGroup mRadioGroup;
     private double mParkingPrice;
     private EditText mPriceEt, mAnnouncementTitle, mDescription;
-    private int mPriceType;
+    //private int mPriceType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,14 +38,14 @@ public class AddParkingActivity2 extends BaseAppCompat {
         switch(view.getId()) {
             case R.id.radio_private:
                 if (checked) {
-                    ParkingCore.Instance().setmType(NavigationConstants.PRIVATE_PARKING);
+                    ParkingCore.Instance().setmType("Private");
                     mParkingSpotsPicker.setMinValue(1);
                     mParkingSpotsPicker.setMaxValue(NavigationConstants.PRIVATE_PARKING_MAX_SPOTS);
                 }
                 break;
             case R.id.radio_lot:
                 if (checked) {
-                    ParkingCore.Instance().setmType(NavigationConstants.PARKING_LOT);
+                    ParkingCore.Instance().setmType("Parking lot");
                     mParkingSpotsPicker.setMinValue(1);
                     mParkingSpotsPicker.setMaxValue(NavigationConstants.PARKING_LOT_MAX_SPOTS);
                 }
@@ -57,6 +58,7 @@ public class AddParkingActivity2 extends BaseAppCompat {
         mParkingSpotsPicker.setMinValue(1);
         mParkingSpotsPicker.setMaxValue(NavigationConstants.PRIVATE_PARKING_MAX_SPOTS);
         mRadioGroup.check(R.id.radio_private);
+        ParkingCore.Instance().setmType("Private");
     }
 
     private void InitializeViews()
@@ -73,15 +75,17 @@ public class AddParkingActivity2 extends BaseAppCompat {
         String title = mAnnouncementTitle.getText().toString();
         String description = mDescription.getText().toString();
         int spots = mParkingSpotsPicker.getValue();
+        mParkingPrice = Double.parseDouble(mPriceEt.getText().toString());
 
-        if (mPriceType == NavigationConstants.PRIVATE_PARKING_PRICE_HOUR) {
+       /* if (mPriceType == NavigationConstants.PRIVATE_PARKING_PRICE_HOUR) {
             ParkingCore.Instance().setmPricePerHour(mParkingPrice);
             ParkingCore.Instance().setmPricePerDay(0);
         }
         if (mPriceType == NavigationConstants.PRIVATE_PARKING_PRICE_DAY) {
-            ParkingCore.Instance().setmPricePerDay(mParkingPrice);
+
             ParkingCore.Instance().setmPricePerHour(0);
-        }
+        }*/
+        ParkingCore.Instance().setmPricePerDay(mParkingPrice);
         ParkingCore.Instance().setmTitle(title);
         ParkingCore.Instance().setmDescription(description);
         ParkingCore.Instance().setmSpotsNumber(spots);
@@ -92,7 +96,7 @@ public class AddParkingActivity2 extends BaseAppCompat {
         startActivity(new Intent(AddParkingActivity2.this, AddParkingActivity1.class));
     }
 
-    public void onRadioPriceButtonClicked(View view) {
+    /*public void onRadioPriceButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
         switch(view.getId()) {
             case R.id.radio_day_price:
@@ -112,5 +116,5 @@ public class AddParkingActivity2 extends BaseAppCompat {
                 }
                 break;
         }
-    }
+    }*/
 }

@@ -36,7 +36,6 @@ public class MyHomesListingsAdapter extends
         mContext =context;
     }
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -52,12 +51,12 @@ public class MyHomesListingsAdapter extends
         final HomeDetailsModel home = mHomes.get(position);
         Uri mUri = Uri.parse(home.getmImagesUrls().get(0));
         String location =home.getCity()+"," + home.getRegion() +","+home.getCountry();
-        String accommodates = String.valueOf(home.getGuests())+" - " +home.getRoomsToUse() +" rooms";
+        String accommodates = home.getGuests() +" - " +home.getRoomsToUse() +" rooms";
         tvAnnouncementTitle.setText(home.getAnnouncementTitle());
         tvLocation.setText(location);
         tvHouseType.setText(home.getListingType() + " - "+ home.getOwnerType());
         tvBeds.setText("Accommodates " + accommodates);
-        tvPricePerNight.setText(String.valueOf(home.getPricePerNight())+Currency.getInstance(Locale.GERMANY).getCurrencyCode()+" /night ");
+        tvPricePerNight.setText(home.getPricePerNight() +Currency.getInstance(Locale.GERMANY).getCurrencyCode()+" /night ");
         Glide.with(viewHolder.mImage.getContext()).load(mUri).apply(new RequestOptions().centerCrop()).into(viewHolder.mImage);
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {

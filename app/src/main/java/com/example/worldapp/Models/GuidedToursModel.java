@@ -29,7 +29,7 @@ public class GuidedToursModel {
     {
     }
 
-    public GuidedToursModel(String mTourTitle, String tourDescription, String mTourLandmarks, String tourImageUrl, String tourCountry,
+    /*public GuidedToursModel(String mTourTitle, String tourDescription, String mTourLandmarks, String tourImageUrl, String tourCountry,
                             String tourRegion, String tourCity, String tourType, double tourPrice, String tourDuration, int tourMaxParticipants, String userId, String tourId) {
         this.mTourTitle = mTourTitle;
         mTourDescription = tourDescription;
@@ -45,7 +45,7 @@ public class GuidedToursModel {
         mUserId = userId;
         mTourId = tourId;
     }
-
+*/
     public GuidedToursModel(String mTourTitle, String mTourDescription, String mTourLandmarks, String mTourImage, double mTourPrice, String mTourDuration , int mTourMaxParticipants) {
         this.mTourTitle = mTourTitle;
         this.mTourDescription = mTourDescription;
@@ -108,9 +108,6 @@ public class GuidedToursModel {
         return mTourPrice;
     }
 
-    public void setmTourPrice(double mTourPrice) {
-        this.mTourPrice = mTourPrice;
-    }
 
     public int getmTourMaxParticipants() {
         return mTourMaxParticipants;
