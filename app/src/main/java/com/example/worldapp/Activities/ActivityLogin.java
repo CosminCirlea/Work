@@ -80,7 +80,6 @@ public class ActivityLogin extends BaseAppCompat {
     public void LogInClick(View view) {
         String email = UsernameET.getText().toString();
         String password = PasswordET.getText().toString();
-        //SetIsBusy(true);
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -95,7 +94,6 @@ public class ActivityLogin extends BaseAppCompat {
                                 }
                                 else
                                 {
-
                                 }
                             }
                             else {

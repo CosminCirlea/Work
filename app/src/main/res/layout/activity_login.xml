@@ -9,6 +9,14 @@
 
     <include layout="@layout/toolbar_with_back_button"/>
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/username_edit_text"
+        android:layout_marginBottom="100dp"/>
+
     <EditText
         android:id="@+id/username_edit_text"
         android:layout_width="match_parent"

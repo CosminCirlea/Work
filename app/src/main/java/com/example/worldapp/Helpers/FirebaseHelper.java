@@ -92,8 +92,11 @@ public class FirebaseHelper {
 
     public  void updateTourBookedDates(String tourID, String bookDate)
     {
-        //getTourById(tourID);
-        mCurrentTour = new GuidedToursModel();
+        getTourById(tourID);
+        if (mCurrentTour == null)
+        {
+            mCurrentTour = new GuidedToursModel();
+        }
         if (mCurrentTour.getmBookedDates()!=null)
         {
             mExistingBookedDatesTours = mCurrentTour.getmBookedDates();

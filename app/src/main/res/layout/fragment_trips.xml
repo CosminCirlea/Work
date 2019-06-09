@@ -16,7 +16,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="10dp"
             style="@style/BlackText"
-            android:text="Your trips"/>
+            android:text="Your bookings"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_notifications"
@@ -33,7 +33,7 @@
         android:layout_below="@+id/rv_notifications"
         android:layout_marginTop="10dp"
         style="@style/BlackText"
-        android:text="Your visitors"/>
+        android:text="Your guests"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_notifications_incoming"

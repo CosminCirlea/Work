@@ -66,7 +66,6 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
         mDatabaseReference = mFirebaseDatabase.getReference();
     }
 
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Fragment fragment = null;

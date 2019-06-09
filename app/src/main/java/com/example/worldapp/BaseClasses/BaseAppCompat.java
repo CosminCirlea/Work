@@ -15,10 +15,6 @@ import com.example.worldapp.R;
 
 public class BaseAppCompat extends AppCompatActivity {
 
-    private ProgressDialog mProgressView;
-    private boolean IsBusy;
-    protected OnBusyChangedListener mOnBusyChangedListener;
-
     public ImageView BackButton;
     public RelativeLayout Toolbar;
 
@@ -28,8 +24,6 @@ public class BaseAppCompat extends AppCompatActivity {
         initialiseProgressDialog();
     }
 
-
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -38,24 +32,6 @@ public class BaseAppCompat extends AppCompatActivity {
         Toolbar = findViewById(R.id.toolbar_with_back_button);
         if (Toolbar != null) {
             Toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarColor));
-        }
-    }
-
-    public boolean IsBusy() {
-        return IsBusy;
-    }
-
-    public void SetIsBusy(boolean busy) {
-        SetIsBusy(busy, true);
-    }
-
-    public void SetIsBusy(boolean busy, boolean showProgressDialog) {
-        IsBusy = busy;
-        if (showProgressDialog) {
-            mProgressView.showProgress(busy);
-        }
-        if (mOnBusyChangedListener != null) {
-            mOnBusyChangedListener.onChanged(busy);
         }
     }
 
@@ -81,6 +57,5 @@ public class BaseAppCompat extends AppCompatActivity {
         if (container == null) {
             return;
         }
-        mProgressView = new ProgressDialog(this, container);
     }
 }
