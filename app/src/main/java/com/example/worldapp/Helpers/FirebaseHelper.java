@@ -24,7 +24,7 @@ import java.util.UUID;
 public class FirebaseHelper {
 
     private static FirebaseHelper mFirebaseHelper;
-    public static DatabaseReference mToursDatabaseReference = FirebaseDatabase.getInstance().getReference();
+    public static DatabaseReference mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours");
     public static DatabaseReference mBookingManagerDatabase = FirebaseDatabase.getInstance().getReference().child("BookingManager");
     public static DatabaseReference mAccommodationDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Accommodation");
     public static DatabaseReference mParkingsDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Parkings");
@@ -75,22 +75,28 @@ public class FirebaseHelper {
         return isDateAvailable[0];
     }
 
-    public  void getTourById(String mTourID)
+    public static void getTourById(final String mTourID)
     {
-        mToursDatabaseReference.child("Tours").child(mTourID).addListenerForSingleValueEvent(new ValueEventListener() {
+        mToursDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mCurrentTour = dataSnapshot.getValue(GuidedToursModel.class);
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
+                {
+                    GuidedToursModel mGuidedTour = dataSnapshot1.getValue(GuidedToursModel.class);
+                    if (mGuidedTour.getmTourId().contains(mTourID))
+                    {
+                        mCurrentTour = mGuidedTour;
+                    }
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                databaseError.toString();
             }
         });
     }
 
-    public  void updateTourBookedDates(String tourID, String bookDate)
+    public static void updateTourBookedDates(String tourID, String bookDate)
     {
         getTourById(tourID);
         if (mCurrentTour == null)

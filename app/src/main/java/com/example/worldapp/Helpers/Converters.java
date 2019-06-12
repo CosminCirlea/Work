@@ -22,7 +22,7 @@ public class Converters {
         return mConverter;
     }
 
-    public String DateToString(Date startDate) {
+    public static String DateToString(Date startDate) {
         startDate = Calendar.getInstance().getTime();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String DateToStr = format.format(startDate);

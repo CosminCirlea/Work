@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class InboxBookingsAdapter extends
-    RecyclerView.Adapter<InboxBookingsAdapter.ViewHolder> {
+    RecyclerView.Adapter<InboxBookingsAdapter.ViewHolder>  {
     private Context mContext;
     private ArrayList<BookingManager> mBookingManager;
     private DatabaseReference mBookingDatabase, mTourDatabase, mAccommodationDatabase, mParkingsDatabase;
@@ -104,7 +104,7 @@ public class InboxBookingsAdapter extends
             viewHolder.tvIncome.setText(income.toString() + " EUR");
             viewHolder.tvBuyerPhone.setText(phoneNumber);
             viewHolder.tvSchedule.setText(schedule);
-
+            final ArrayList<GuidedToursModel> tours = new ArrayList<>();
             mAcceptBook.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -114,8 +114,8 @@ public class InboxBookingsAdapter extends
                     if (bookingDate !=null && itemId != null) {
                         HashMap<String, Object> auxMap = new HashMap<>();
                         auxMap.put("mBookedDates", bookingDate );
-                        //updateTourBookingDate(itemId, bookDay);
-                        FirebaseHelper.Instance().updateTourBookedDates(itemId, bookingDate);
+                        FirebaseHelper.updateTourBookedDates(itemId,bookingDate);
+                        //FirebaseHelper.Instance().updateTourBookedDates(itemId, bookingDate);
                         //mTourDatabase.child(itemId).child("mBookedDates").updateChildren(auxMap);
                     }
                 }
@@ -221,21 +221,13 @@ public class InboxBookingsAdapter extends
         }
     }
 
-
     private void updateTourBookingDate(final String mTourId, String mDate)
     {
-        mTourDatabase = FirebaseDatabase.getInstance().getReference().child("Tours");
-        mTourDatabase.addValueEventListener(new ValueEventListener() {
+        mTourDatabase = FirebaseDatabase.getInstance().getReference().child("Tours").child(mTourId);
+        mTourDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot data : dataSnapshot.getChildren())
-                {
-                    GuidedToursModel mAuxTour = data.getValue(GuidedToursModel.class);
-                    if (mAuxTour.getmTourId().contains(mTourId))
-                    {
-                        mTour = mAuxTour;
-                    }
-                }
+                    mTour = dataSnapshot.getValue(GuidedToursModel.class);
             }
 
             @Override
@@ -243,6 +235,7 @@ public class InboxBookingsAdapter extends
 
             }
         });
+        mTour = new GuidedToursModel();
         if (mTour.getmBookedDates()!=null) {
             mExistingBookedTours = mTour.getmBookedDates();
         }

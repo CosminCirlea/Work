@@ -85,10 +85,10 @@
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/et_filter_price"
                     style="@style/BasicText"
-                    android:layout_width="150dp"
+                    android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:hint="@string/maximum_price_text"/>
+                    android:hint="Maximum price per night"/>
 
             </android.support.design.widget.TextInputLayout>
 

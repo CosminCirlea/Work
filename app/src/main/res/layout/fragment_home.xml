@@ -134,6 +134,46 @@
                 </RelativeLayout>
             </RelativeLayout>
         </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            android:onClick="ShowParkings"
+            android:layout_margin="8dp">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_cardview_statistics"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:alpha="0.7"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/statistics_v2" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.5"
+                        android:background="#e6e9ef"/>
+
+                    <TextView
+                        android:id="@+id/tv_cardview_statistics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/BasicText"
+                        android:layout_centerInParent="true"
+                        android:text="Statistics"/>
+
+                </RelativeLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
     </LinearLayout>
 </ScrollView>

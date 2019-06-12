@@ -3,7 +3,6 @@
     android:id="@+id/toolbar_with_back_button"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
     <ImageView
         android:id="@+id/iv_toolbar_back"
         android:layout_width="30dp"
@@ -26,5 +25,4 @@
         android:layout_centerVertical="true"
         android:textStyle="bold"
         android:textSize="16sp"/>
-
 </RelativeLayout>

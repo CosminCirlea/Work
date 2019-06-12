@@ -114,15 +114,17 @@ public class FragmentProfileLoggedIn extends Fragment {
         });
 
         mStorageReference = FirebaseStorage.getInstance().getReference("ProfilePictures");
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(mUser.getUid());
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+        mDatabaseReference = FirebaseDatabase.getInstance()
+                .getReference("users").child(mUser.getUid());
+        mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UserDetailsModel user = dataSnapshot.getValue(UserDetailsModel.class);
                 if (user.getImageUri().equals("")) {
                         ivProfilePicture.setImageResource(R.mipmap.ic_logo);
                     } else {
-                        Glide.with(ivProfilePicture.getContext()).load(UserCore.Instance().User.getImageUri()).into(ivProfilePicture);
+                        Glide.with(ivProfilePicture.getContext()).load(user.getImageUri())
+                                .into(ivProfilePicture);
                     }
             }
 

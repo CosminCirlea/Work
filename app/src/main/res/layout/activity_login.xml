@@ -6,9 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     tools:context=".Activities.ActivityLogin">
-
     <include layout="@layout/toolbar_with_back_button"/>
-
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -16,7 +14,6 @@
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/username_edit_text"
         android:layout_marginBottom="100dp"/>
-
     <EditText
         android:id="@+id/username_edit_text"
         android:layout_width="match_parent"
@@ -27,7 +24,6 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:textSize="20sp" />
-
     <EditText
         android:id="@+id/password_edit_text"
         android:layout_below="@id/username_edit_text"
@@ -38,7 +34,6 @@
         android:hint="Password"
         android:textSize="20sp"
         />
-
     <Button
         android:id="@+id/login_button"
         android:layout_below="@id/password_edit_text"
@@ -51,7 +46,6 @@
         android:textAllCaps="false"
         android:onClick="LogInClick"
         />
-    
     <TextView
         android:id="@+id/register_label"
         android:layout_alignParentBottom="true"
@@ -64,5 +58,4 @@
         android:layout_height="wrap_content"
         android:onClick="RegisterUser"
         />
-
 </RelativeLayout>
