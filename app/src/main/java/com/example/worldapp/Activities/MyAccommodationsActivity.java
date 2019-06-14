@@ -78,17 +78,14 @@ public class MyAccommodationsActivity extends BaseAppCompat {
             }
         });
 
-       /* if (UserCore.Instance().getmListedHomes() != null)
+        if (mHomeList.size()==0)
         {
-            mHomeList = UserCore.Instance().getmListedHomes();
-            mHomesAdapter = new MyHomesListingsAdapter(MyAccommodationsActivity.this, mHomeList);
-            recyclerView.setAdapter(mHomesAdapter);
-            mNoToursTv.setVisibility(View.VISIBLE);
+            mNoToursTv.setText("You currently have no listed accommodation!");
         }
         else
         {
-            mNoToursTv.setVisibility(View.INVISIBLE);
-        }*/
+            mNoToursTv.setText("");
+        }
     }
 
     private void InitializeViews(){

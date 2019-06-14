@@ -79,16 +79,16 @@ public class MyToursActivity extends BaseAppCompat {
                 Toast.makeText(MyToursActivity.this, "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
             }
         });
-        if (UserCore.Instance().getmListedTours() != null)
+        if (mTourList.size()==0)
         {
-            mTourList = UserCore.Instance().getmListedTours();
-            mTourAdapter = new MyToursListingsAdapter(MyToursActivity.this, mTourList);
-            recyclerView.setAdapter(mTourAdapter);
-            mNoToursTv.setVisibility(View.VISIBLE);
+            //mTourList = UserCore.Instance().getmListedTours();
+            //mTourAdapter = new MyToursListingsAdapter(MyToursActivity.this, mTourList);
+            //recyclerView.setAdapter(mTourAdapter);
+            mNoToursTv.setText("You currently have no listed tours!");
         }
         else
         {
-            mNoToursTv.setVisibility(View.INVISIBLE);
+            mNoToursTv.setText("");
         }
     }
 

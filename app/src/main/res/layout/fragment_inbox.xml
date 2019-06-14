@@ -12,4 +12,16 @@
 
     </android.support.v7.widget.RecyclerView>
 
+    <TextView
+        android:id="@+id/tv_no_pending_bookings_text"
+        style="@style/BasicText"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:visibility="gone"
+        android:text="No pending bookings at the moment"/>
+
 </RelativeLayout>

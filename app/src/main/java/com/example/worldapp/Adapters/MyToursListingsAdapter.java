@@ -41,7 +41,6 @@ public class MyToursListingsAdapter extends
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvAnnouncementTitle, tvLocation, tvTourLandmarks, tvMaxGuests, tvDuration, tvPricePerTour;
         private ImageView ivTourPicture;
-        private RatingBar mRatingBar;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -56,7 +55,6 @@ public class MyToursListingsAdapter extends
             tvDuration = itemView.findViewById(R.id.tv_tour_duration);
             tvPricePerTour = itemView.findViewById(R.id.tv_price_per_tour);
             ivTourPicture = itemView.findViewById(R.id.iv_listed_tour);
-            mRatingBar = itemView.findViewById(R.id.rb_tour_rating);
         }
     }
 
@@ -85,7 +83,6 @@ public class MyToursListingsAdapter extends
         viewHolder.tvDuration.setText(tourDuration+" hours");
         viewHolder.tvMaxGuests.setText(aux);
         viewHolder.tvPricePerTour.setText(price.toString()+" EUR");
-        viewHolder.mRatingBar.setRating(3.4f);
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

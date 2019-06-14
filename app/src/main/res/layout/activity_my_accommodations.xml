@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:visibility="invisible"
-        android:text="@string/no_tour_text"/>
+        android:text="You have no listed accommodation!"/>
 
 
     <android.support.design.widget.FloatingActionButton

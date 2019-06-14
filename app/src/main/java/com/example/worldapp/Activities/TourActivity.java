@@ -48,7 +48,6 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     private ImageView mTourImage, mOwnerImage;
     private TextView mTitle, mLocation, mType, mDescription, mParticipants, mDuration, mPrice, mLandmarks, mOwnerName,
             tvMeetingLocation, mScheduleTv;
-    private RatingBar mRating;
     private MapView mMapView;
     private GuidedToursModel mTour;
     private UserDetailsModel mTourOwner, mAuxUser;
@@ -142,7 +141,6 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mPrice.setText(mTour.getmTourPrice() + " EUR");
         mLandmarks.setText(mTour.getmTourLandmarks());
         mParticipants.setText(mTour.getmTourMaxParticipants() + "");
-        mRating.setRating(5f);
         mOwnerId = mTour.getmUserId();
         mMeetingPoint = meetingPoint;
         tvMeetingLocation.setText(mTour.getmMeetingLocation());
@@ -159,7 +157,6 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mDuration = findViewById(R.id.tv_tour_details_duration);
         mPrice = findViewById(R.id.tv_tour_details_price);
         mLandmarks = findViewById(R.id.tv_tour_landmarks_details);
-        mRating = findViewById(R.id.rb_tour_rating_details);
         mMapView = findViewById(R.id.map_tour);
         mOwnerImage = findViewById(R.id.iv_tour_owner_image);
         mOwnerName = findViewById(R.id.tv_tour_owner_name);

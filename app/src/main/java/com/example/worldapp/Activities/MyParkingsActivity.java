@@ -76,18 +76,17 @@ public class MyParkingsActivity extends BaseAppCompat {
             }
         });
 
-   /*     if (UserCore.Instance().getmListedParkings() != null)
+        if (mParkingList.size()==0)
         {
-            mParkingList = UserCore.Instance().getmListedParkings();
-            myParkingsAdapter = new MyParkingsAdapter(MyParkingsActivity.this, mParkingList);
-            recyclerView.setAdapter(myParkingsAdapter);
-            mNoParkingsTv.setVisibility(View.VISIBLE);
-            mNoParkingsTv.setVisibility(View.VISIBLE);
+           // mParkingList = UserCore.Instance().getmListedParkings();
+            //myParkingsAdapter = new MyParkingsAdapter(MyParkingsActivity.this, mParkingList);
+            //recyclerView.setAdapter(myParkingsAdapter);
+            mNoParkingsTv.setText("You currently have no listed parkings!");
         }
         else
         {
-            mNoParkingsTv.setVisibility(View.INVISIBLE);
-        }*/
+            mNoParkingsTv.setText("");
+        }
     }
 
     private void InitializeViews(){

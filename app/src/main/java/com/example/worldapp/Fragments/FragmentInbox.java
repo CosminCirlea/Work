@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.worldapp.Adapters.InboxBookingsAdapter;
@@ -29,12 +30,13 @@ public class FragmentInbox extends Fragment {
     DatabaseReference mToursDatabaseReference;
     InboxBookingsAdapter mTourAdapter;
     private String mUserId;
+    private TextView mNoPendingBookings;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_inbox, container, false);
-
+        mNoPendingBookings =rootView.findViewById(R.id.tv_no_pending_bookings_text);
         recyclerView = rootView.findViewById(R.id.rv_notifications);
         recyclerView.setLayoutManager( new LinearLayoutManager(getActivity()));
 
@@ -65,6 +67,14 @@ public class FragmentInbox extends Fragment {
             }
         });
 
+        if (mBookingList.size()==0)
+        {
+            mNoPendingBookings.setText("No pending bookings at the moment");
+        }
+        else
+        {
+            mNoPendingBookings.setText("");
+        }
         return rootView;
     }
 }

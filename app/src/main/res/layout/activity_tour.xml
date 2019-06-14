@@ -95,28 +95,6 @@
                     />
 
                 <TextView
-                    android:id="@+id/tv_tour_rating_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="Rating - "
-                    android:layout_below="@+id/tv_tour_schedule_text"
-                    style="@style/BlackText" />
-
-                <RatingBar
-                    android:id="@+id/rb_tour_rating_details"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:isIndicator="true"
-                    android:progressTint="@color/starsColor"
-                    android:layout_toEndOf="@+id/tv_tour_rating_text"
-                    android:layout_below="@id/tv_tour_schedule_text"
-                    style="@style/Widget.AppCompat.RatingBar.Indicator"/>
-
-                <TextView
                     android:id="@+id/tv_tour_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -124,7 +102,7 @@
                     android:layout_margin="10dp"
                     android:text="A very very long description to see how this reacts when the text is extremely long"
                     style="@style/BlackText"
-                    android:layout_below="@+id/rb_tour_rating_details"/>
+                    android:layout_below="@+id/tv_tour_schedule_text"/>
 
                 <LinearLayout
                     android:id="@+id/ll_tour_details_container"
