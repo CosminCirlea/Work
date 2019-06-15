@@ -115,6 +115,7 @@ public class InboxBookingsAdapter extends
                         HashMap<String, Object> auxMap = new HashMap<>();
                         auxMap.put("mBookedDates", bookingDate );
                         FirebaseHelper.getTourById(itemId, bookingDate);
+                        FirebaseHelper.incrementValueInTour(itemId, "mToursBookedNumber",1);
                     }
                 }
             });

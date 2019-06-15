@@ -13,6 +13,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -49,32 +51,6 @@ public class FirebaseHelper {
         return mFirebaseHelper;
     }
 
-    public static boolean checkTourDates(String tourID, final String date)
-    {
-        final boolean[] isDateAvailable = {true};
-        mFirebaseHelper.mToursDatabaseReference.child(tourID).child("mBookedDates").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                boolean isDateAvailableAux = true;
-                for (DataSnapshot data : dataSnapshot.getChildren())
-                {
-                    String existingDate = data.toString();
-                    if (date.equalsIgnoreCase(existingDate))
-                    {
-                        isDateAvailableAux =false;
-                    }
-                }
-                isDateAvailable[0] = isDateAvailableAux;
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        return isDateAvailable[0];
-    }
-
     public static void getTourById(final String mTourID, final String bookDate)
     {
         mToursDatabaseReference.child(mTourID).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -86,7 +62,6 @@ public class FirebaseHelper {
                     updateTourBookedDates(mTourID, bookDate);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
@@ -104,5 +79,30 @@ public class FirebaseHelper {
         map.put("mBookedDates", mExistingBookedDatesTours);
         mToursDatabaseReference = FirebaseDatabase.getInstance().getReference("Tours").child(tourID);
         mToursDatabaseReference.updateChildren(map);
+    }
+
+    public static void incrementValueInTour(String toUpdateId, String valueToUpdate, final int incrementingValue)
+    {
+        mToursDatabaseReference.child(toUpdateId).child(valueToUpdate).runTransaction(new Transaction.Handler() {
+            @Override
+            public Transaction.Result doTransaction(MutableData mutableData) {
+                if (mutableData == null){
+                    mutableData.setValue(0);
+                }
+                Integer currentValue = mutableData.getValue(Integer.class);
+                if (currentValue == null) {
+                    mutableData.setValue(1);
+                } else {
+                    mutableData.setValue(currentValue + incrementingValue);
+                }
+
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(DatabaseError databaseError, boolean committed, DataSnapshot dataSnapshot) {
+                System.out.println("Transaction completed");
+            }
+        });
     }
 }
