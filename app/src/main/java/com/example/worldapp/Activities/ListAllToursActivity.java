@@ -10,6 +10,7 @@ import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.worldapp.Adapters.MyToursListingsAdapter;
@@ -25,6 +26,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,6 +40,7 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
     private Button mFilterButton;
     private String[] mFilterValues;
     private ArrayList<String> mFiltersList;
+    private TextView mNoToursFound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +80,15 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
                 Toast.makeText(ListAllToursActivity.this, "Opsss.... Something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
+
+        if (mTourList.size()==0)
+        {
+            mNoToursFound.setText("No tours found!");
+        }
+        else
+        {
+            mNoToursFound.setText("");
+        }
 
         mFilterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,6 +177,7 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
 
     private void InitializeViews()
     {
+        mNoToursFound = findViewById(R.id.tv_no_tours_found);
         mFilterButton = findViewById(R.id.btn_toolbar_filter);
     }
 }
