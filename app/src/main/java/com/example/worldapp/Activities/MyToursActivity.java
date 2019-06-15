@@ -72,6 +72,7 @@ public class MyToursActivity extends BaseAppCompat {
 
                 mTourAdapter = new MyToursListingsAdapter(MyToursActivity.this, mTourList);
                 recyclerView.setAdapter(mTourAdapter);
+                checkForItems();
             }
 
             @Override
@@ -79,6 +80,11 @@ public class MyToursActivity extends BaseAppCompat {
                 Toast.makeText(MyToursActivity.this, "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+
+    private void checkForItems()
+    {
         if (mTourList.size()==0)
         {
             //mTourList = UserCore.Instance().getmListedTours();

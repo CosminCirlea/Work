@@ -114,9 +114,7 @@ public class InboxBookingsAdapter extends
                     if (bookingDate !=null && itemId != null) {
                         HashMap<String, Object> auxMap = new HashMap<>();
                         auxMap.put("mBookedDates", bookingDate );
-                        FirebaseHelper.updateTourBookedDates(itemId,bookingDate);
-                        //FirebaseHelper.Instance().updateTourBookedDates(itemId, bookingDate);
-                        //mTourDatabase.child(itemId).child("mBookedDates").updateChildren(auxMap);
+                        FirebaseHelper.getTourById(itemId, bookingDate);
                     }
                 }
             });

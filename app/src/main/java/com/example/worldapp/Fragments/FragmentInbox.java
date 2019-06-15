@@ -59,6 +59,7 @@ public class FragmentInbox extends Fragment {
                 if (mBookingList != null) {
                     mTourAdapter = new InboxBookingsAdapter(getActivity(), mBookingList);
                     recyclerView.setAdapter(mTourAdapter);
+                    checkForItems();
                 }}
 
             @Override
@@ -67,6 +68,12 @@ public class FragmentInbox extends Fragment {
             }
         });
 
+
+        return rootView;
+    }
+
+    private void checkForItems()
+    {
         if (mBookingList.size()==0)
         {
             mNoPendingBookings.setText("No pending bookings at the moment");
@@ -75,7 +82,6 @@ public class FragmentInbox extends Fragment {
         {
             mNoPendingBookings.setText("");
         }
-        return rootView;
     }
 }
 

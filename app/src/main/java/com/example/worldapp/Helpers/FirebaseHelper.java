@@ -75,18 +75,15 @@ public class FirebaseHelper {
         return isDateAvailable[0];
     }
 
-    public static void getTourById(final String mTourID)
+    public static void getTourById(final String mTourID, final String bookDate)
     {
-        mToursDatabaseReference.addValueEventListener(new ValueEventListener() {
+        mToursDatabaseReference.child(mTourID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
+                GuidedToursModel mGuidedTour = dataSnapshot.getValue(GuidedToursModel.class);
                 {
-                    GuidedToursModel mGuidedTour = dataSnapshot1.getValue(GuidedToursModel.class);
-                    if (mGuidedTour.getmTourId().contains(mTourID))
-                    {
-                        mCurrentTour = mGuidedTour;
-                    }
+                    mCurrentTour = mGuidedTour;
+                    updateTourBookedDates(mTourID, bookDate);
                 }
             }
 
@@ -98,11 +95,6 @@ public class FirebaseHelper {
 
     public static void updateTourBookedDates(String tourID, String bookDate)
     {
-        getTourById(tourID);
-        if (mCurrentTour == null)
-        {
-            mCurrentTour = new GuidedToursModel();
-        }
         if (mCurrentTour.getmBookedDates()!=null)
         {
             mExistingBookedDatesTours = mCurrentTour.getmBookedDates();
@@ -113,48 +105,4 @@ public class FirebaseHelper {
         mToursDatabaseReference = FirebaseDatabase.getInstance().getReference("Tours").child(tourID);
         mToursDatabaseReference.updateChildren(map);
     }
-
-    //todo not working properly
-    public ArrayList<GuidedToursModel> GetAllTours(final ArrayList<GuidedToursModel> tours)
-    {
-        mToursDatabaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
-                {
-                    GuidedToursModel mGuidedTour = dataSnapshot1.getValue(GuidedToursModel.class);
-                    tours.add(mGuidedTour);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-        return tours;
-    }
-
-    public void GetMyTours(final String userId)
-    {
-        mToursDatabaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ArrayList<GuidedToursModel> tours = new ArrayList<>();
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
-                {
-                    GuidedToursModel mGuidedTour = dataSnapshot1.getValue(GuidedToursModel.class);
-                    if (mGuidedTour.getmUserId().contains(userId))
-                    {
-                        tours.add(mGuidedTour);
-                    }
-                }
-                UserCore.Instance().setmListedTours(tours);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-    }
-
 }

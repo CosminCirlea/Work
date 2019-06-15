@@ -70,6 +70,7 @@ public class MyAccommodationsActivity extends BaseAppCompat {
 
                 mHomesAdapter = new MyHomesListingsAdapter(MyAccommodationsActivity.this, mHomeList);
                 recyclerView.setAdapter(mHomesAdapter);
+                checkForItems();
             }
 
             @Override
@@ -77,7 +78,10 @@ public class MyAccommodationsActivity extends BaseAppCompat {
                 Toast.makeText(MyAccommodationsActivity.this, "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
+    private void checkForItems()
+    {
         if (mHomeList.size()==0)
         {
             mNoToursTv.setText("You currently have no listed accommodation!");

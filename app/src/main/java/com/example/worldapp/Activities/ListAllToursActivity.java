@@ -61,7 +61,7 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
 
         mTourList = new ArrayList<>();
         mToursDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Tours");
-        mToursDatabaseReference.addValueEventListener(new ValueEventListener() {
+        mToursDatabaseReference.orderByChild("mTourPrice").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())

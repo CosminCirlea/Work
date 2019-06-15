@@ -68,6 +68,7 @@ public class MyParkingsActivity extends BaseAppCompat {
 
                 myParkingsAdapter = new MyParkingsAdapter(MyParkingsActivity.this, mParkingList);
                 recyclerView.setAdapter(myParkingsAdapter);
+                checkForItems();
             }
 
             @Override
@@ -76,9 +77,14 @@ public class MyParkingsActivity extends BaseAppCompat {
             }
         });
 
+
+    }
+
+    private void checkForItems()
+    {
         if (mParkingList.size()==0)
         {
-           // mParkingList = UserCore.Instance().getmListedParkings();
+            // mParkingList = UserCore.Instance().getmListedParkings();
             //myParkingsAdapter = new MyParkingsAdapter(MyParkingsActivity.this, mParkingList);
             //recyclerView.setAdapter(myParkingsAdapter);
             mNoParkingsTv.setText("You currently have no listed parkings!");
