@@ -74,6 +74,7 @@ public class FragmentTrips extends Fragment {
                 mIncomingAdapter = new TripsBookingAdapter(getActivity(),mIncomingList,1);
                 incomingRecyclerView.setAdapter(mIncomingAdapter);
                 pd.dismiss();
+                checkIfHasItems();
             }
 
             @Override
@@ -81,7 +82,6 @@ public class FragmentTrips extends Fragment {
                 Toast.makeText(getActivity(), "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
             }
         });
-        checkIfHasItems();
         return rootView;
 
     }

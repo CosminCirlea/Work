@@ -205,25 +205,16 @@
                 </RelativeLayout>
             </LinearLayout>
 
-            <RatingBar
-                android:id="@+id/rb_accommodation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/ll_accommodation_details_container"
-                android:layout_centerHorizontal="true"
-                android:scaleX="0.6"
-                android:scaleY="0.6"
-                android:isIndicator="true"/>
-
             <TextView
                 android:id="@+id/tv_accommodation_amenities_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Amenities"
                 style="@style/BlackText"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_below="@+id/rb_accommodation"/>
+                android:layout_below="@+id/ll_accommodation_details_container"/>
 
             <TextView
                 android:id="@+id/tv_accommodation_amenities"
