@@ -32,7 +32,9 @@
             android:layout_height="wrap_content"
             style="@style/BasicText"
             android:layout_below="@+id/tv_trips_going"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="-10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
             android:inputType="textMultiLine"
             android:text="No bookings done!"/>
 
@@ -58,7 +60,7 @@
             android:id="@+id/tv_no_incoming_bookings"
             style="@style/BasicText"
             android:layout_below="@+id/tv_trips_incoming"
-            android:layout_margin="20dp"
+            android:layout_marginStart="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"

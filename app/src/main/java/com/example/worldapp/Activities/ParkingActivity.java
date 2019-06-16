@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
     private DatabaseReference mDatabaseReference, mUsersDatabase;
     private LatLng mMeetingPoint;
     private DatabaseReference mBookingDatabase;
+    private Button mBookButton;
     ArrayList<String> mExistingBookingManagers = new ArrayList<>();
     ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
     private UserDetailsModel mParkingOwner, mAuxUser;
@@ -93,6 +95,7 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
         });
 
         SetValues();
+        checkUser();
     }
 
     public void OnBook(View view) {
@@ -116,6 +119,14 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
         }
     }
 
+    private void checkUser()
+    {
+        if (mOwnerId.equalsIgnoreCase(UserCore.Instance().User.getUserId()))
+        {
+            mBookButton.setVisibility(View.GONE);
+        }
+    }
+
     private void InitializeViews() {
         mMapView = findViewById(R.id.map_show_parking);
         mTitleTv = findViewById(R.id.tv_parking_announcement_title);
@@ -126,6 +137,7 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
         mAvailabilityTv = findViewById(R.id.tv_parking_availability);
         mSecurityDetailsTv = findViewById(R.id.tv_parking_security_details);
         mRestrictionsTv = findViewById(R.id.tv_parking_restrictions_details);
+        mBookButton = findViewById(R.id.btn_parking_book);
     }
 
     public void doTheBooking()

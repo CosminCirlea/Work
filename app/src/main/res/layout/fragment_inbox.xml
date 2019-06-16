@@ -21,7 +21,6 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:inputType="textMultiLine"
-        android:visibility="gone"
         android:text="No pending bookings at the moment"/>
 
 </RelativeLayout>

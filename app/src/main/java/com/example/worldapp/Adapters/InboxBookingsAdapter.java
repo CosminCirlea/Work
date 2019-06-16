@@ -1,6 +1,8 @@
 package com.example.worldapp.Adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +16,10 @@ import com.example.worldapp.Helpers.FirebaseHelper;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.Models.BookingManager;
 import com.example.worldapp.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -72,19 +78,6 @@ public class InboxBookingsAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
-       /* String tourTitle= mBookingManager.get(position).getmAnnouncementTitle();
-        final String buyerName = mBookingManager.get(position).getmBuyerName();
-        final String bookDay = mBookingManager.get(position).getmBookingDates();
-        final Double income = mBookingManager.get(position).getmPrice();
-        final String bookID = mBookingManager.get(position).getmBookingId();
-        final String itemId = mBookingManager.get(position).getmAnnouncementId();
-        String buyerPhone = mBookingManager.get(position).getmBuyerPhone();
-
-        viewHolder.tvTitle.setText(tourTitle);
-        viewHolder.tvBuyerName.setText(buyerName);
-        viewHolder.tvIncome.setText(income.toString()+" EUR");
-        viewHolder.tvBookDay.setText(bookDay);
-        viewHolder.tvBuyerPhone.setText(buyerPhone);*/
         final String bookID = mBookingManager.get(position).getmBookingId();
         final String itemId = mBookingManager.get(position).getmAnnouncementId();
 
@@ -123,9 +116,7 @@ public class InboxBookingsAdapter extends
             mDenyBook.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    HashMap<String, Object> map = new HashMap<>();
-                    map.put("mStatus", ConstantValues.BOOKING_DENIED);
-                    mBookingDatabase.child(bookID).updateChildren(map);
+                    showDialog(bookID);
                 }
             });
         }
@@ -157,9 +148,6 @@ public class InboxBookingsAdapter extends
                     if (startDate !=null && itemId != null) {
                         HashMap<String, Object> auxMap = new HashMap<>();
                         auxMap.put("mBookedDates", startDate );
-                        /*updateTourBookingDate(itemId, startDate);
-                        FirebaseHelper.Instance().updateTourBookedDates(itemId, startDate);
-                        mTourDatabase.child(itemId).child("mBookedDates").updateChildren(auxMap);*/
                     }
                 }
             });
@@ -167,9 +155,7 @@ public class InboxBookingsAdapter extends
             mDenyBook.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    HashMap<String, Object> map = new HashMap<>();
-                    map.put("mStatus", ConstantValues.BOOKING_DENIED);
-                    mBookingDatabase.child(bookID).updateChildren(map);
+                    showDialog(bookID);
                 }
             });
         }
@@ -212,9 +198,7 @@ public class InboxBookingsAdapter extends
             mDenyBook.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    HashMap<String, Object> map = new HashMap<>();
-                    map.put("mStatus", ConstantValues.BOOKING_DENIED);
-                    mBookingDatabase.child(bookID).updateChildren(map);
+                    showDialog(bookID);
                 }
             });
         }
@@ -242,6 +226,21 @@ public class InboxBookingsAdapter extends
         HashMap<String, Object> map = new HashMap<>();
         map.put("mBookedDates", mExistingBookedTours);
         FirebaseHelper.Instance().mToursDatabaseReference.child(mTourId).updateChildren(map);
+    }
+
+    private void showDialog(final String bookID)
+    {
+        new AlertDialog.Builder(mContext)
+                .setTitle("WARNING!")
+                .setMessage("Are you sure you want to reject the booking?")
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        HashMap<String, Object> map = new HashMap<>();
+                        map.put("mStatus", ConstantValues.BOOKING_DENIED);
+                        mBookingDatabase.child(bookID).updateChildren(map);
+                    }
+                }).setNegativeButton(R.string.no, null).show();
     }
 
     @Override

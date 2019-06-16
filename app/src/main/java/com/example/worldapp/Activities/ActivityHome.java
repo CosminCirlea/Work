@@ -63,7 +63,6 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
         if (mUser != null)
             userID = mUser.getUid();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mFirebaseDatabase.getReference();
     }
 
     @Override

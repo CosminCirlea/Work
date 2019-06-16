@@ -79,6 +79,11 @@ public class ListAllAccommodationActivity extends BaseAppCompat {
         SetFilters();
     }
 
+    @Override
+    public void onBackPressed(){
+        startActivity(new Intent(ListAllAccommodationActivity.this, ActivityHome.class));
+    }
+
     private boolean IsMatchingFilter(HomeDetailsModel house, String[] filter)
     {
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {

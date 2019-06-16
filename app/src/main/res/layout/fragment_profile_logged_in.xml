@@ -79,15 +79,6 @@
             android:layout_height="2dp"
             android:background="@color/yellowColor"/>
 
-        <Button
-            android:id="@+id/btn_add_tour"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
-            android:text="@string/favorites"
-            android:textAllCaps="false"
-            style="@style/BasicText"
-            />
 
         <View
             android:layout_width="match_parent"

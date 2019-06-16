@@ -106,6 +106,11 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
         SetFilters();
     }
 
+    @Override
+    public void onBackPressed(){
+        startActivity(new Intent(ListAllToursActivity.this, ActivityHome.class));
+    }
+
     private boolean IsMatchingFilter(GuidedToursModel tour, String[] filter)
     {
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {

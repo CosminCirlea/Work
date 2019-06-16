@@ -77,10 +77,12 @@ public class FragmentInbox extends Fragment {
         if (mBookingList.size()==0)
         {
             mNoPendingBookings.setText("No pending bookings at the moment");
+            mNoPendingBookings.setVisibility(View.VISIBLE);
         }
         else
         {
             mNoPendingBookings.setText("");
+            mNoPendingBookings.setVisibility(View.INVISIBLE);
         }
     }
 }

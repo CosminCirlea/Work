@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -55,6 +56,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
     private static String mChosenDate;
     DatabaseReference mDatabaseReference, mUsersDatabase, mBookingDatabase, mToursDatabase;
     private LatLng mMeetingPoint;
+    private Button mBookButton;
     ArrayList<String> mExistingBookingManagers = new ArrayList<>();
     ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
     BookingManager mManager = new BookingManager();
@@ -108,6 +110,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         });
 
         SetValues();
+        checkUser();
     }
 
     @Override
@@ -162,6 +165,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mOwnerName = findViewById(R.id.tv_tour_owner_name);
         tvMeetingLocation = findViewById(R.id.tv_tour_meeting_location);
         mScheduleTv = findViewById(R.id.tv_tour_schedule);
+        mBookButton = findViewById(R.id.btn_tour_book);
     }
 
     @Override
@@ -256,6 +260,14 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         map.put("mBookingManager", mExistingBookingManagers);
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("users").child(mUser.getUserId());
         mDatabaseReference.updateChildren(map);
+    }
+
+    private void checkUser()
+    {
+        if (mOwnerId.equalsIgnoreCase(UserCore.Instance().User.getUserId()))
+        {
+            mBookButton.setVisibility(View.GONE);
+        }
     }
 
     public void updateTourBookedDates(GuidedToursModel tour, String bookedDate)

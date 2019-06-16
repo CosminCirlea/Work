@@ -79,6 +79,12 @@ public class ListParkingsActivity extends BaseAppCompat {
         super.onResume();
         SetFilters();
     }
+
+    @Override
+    public void onBackPressed(){
+        startActivity(new Intent(ListParkingsActivity.this, ActivityHome.class));
+    }
+
     private boolean IsMatchingFilter(ParkingModel parking, String[] filter)
     {
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {

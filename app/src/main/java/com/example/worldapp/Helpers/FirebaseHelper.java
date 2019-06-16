@@ -37,6 +37,7 @@ public class FirebaseHelper {
     public static StorageReference mAccommodationStorageReference = FirebaseStorage.getInstance().getReference("AccommodationPictures");
     static ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
     public static GuidedToursModel mCurrentTour ;
+    public static DatabaseReference mGeneralReference;
 
     public FirebaseHelper()
     {
@@ -59,7 +60,7 @@ public class FirebaseHelper {
                 GuidedToursModel mGuidedTour = dataSnapshot.getValue(GuidedToursModel.class);
                 {
                     mCurrentTour = mGuidedTour;
-                    updateTourBookedDates(mTourID, bookDate);
+                    updateTourBookedDates("Tours",mTourID, bookDate);
                 }
             }
             @Override
@@ -68,7 +69,24 @@ public class FirebaseHelper {
         });
     }
 
-    public static void updateTourBookedDates(String tourID, String bookDate)
+    public static void getAccommodationById(final String mItemId, final String bookDate)
+    {
+        mToursDatabaseReference.child(mItemId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                GuidedToursModel mGuidedTour = dataSnapshot.getValue(GuidedToursModel.class);
+                {
+                    mCurrentTour = mGuidedTour;
+                    updateTourBookedDates("Accommodation",mItemId, bookDate);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    public static void updateTourBookedDates(String database, String itemID, String bookDate)
     {
         if (mCurrentTour.getmBookedDates()!=null)
         {
@@ -77,8 +95,8 @@ public class FirebaseHelper {
         mExistingBookedDatesTours.add(bookDate);
         HashMap<String, Object> map = new HashMap<>();
         map.put("mBookedDates", mExistingBookedDatesTours);
-        mToursDatabaseReference = FirebaseDatabase.getInstance().getReference("Tours").child(tourID);
-        mToursDatabaseReference.updateChildren(map);
+        mGeneralReference = FirebaseDatabase.getInstance().getReference(database).child(itemID);
+        mGeneralReference.updateChildren(map);
     }
 
     public static void incrementValueInTour(String toUpdateId, String valueToUpdate, final int incrementingValue)

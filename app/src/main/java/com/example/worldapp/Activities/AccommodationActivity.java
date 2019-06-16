@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +55,7 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
     private LatLng mMeetingPoint;
     private ImageView mOwnerImage;
     private DatabaseReference mBookingDatabase, mUsersDatabase;
+    private Button mBookButton;
     ArrayList<String> mExistingBookingManagers = new ArrayList<>();
     ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
     private UserDetailsModel mHomeOwner, mAuxUser;
@@ -103,6 +105,7 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
 
         SetValues();
         setGallery();
+        checkForUser();
     }
 
     private void setGallery()
@@ -125,6 +128,14 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
     }
 
 
+    private void checkForUser()
+    {
+        if (mOwnerId.equalsIgnoreCase(UserCore.Instance().User.getUserId()))
+        {
+            mBookButton.setVisibility(View.GONE);
+        }
+    }
+
     private void InitializeViews() {
         mMapView = findViewById(R.id.map_accommodation);
         mTitleTv = findViewById(R.id.tv_announcement_title);
@@ -139,6 +150,7 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
         mExactLocationTv = findViewById(R.id.tv_accommodation_address);
         mOwnerImage = findViewById(R.id.iv_accommodation_owner_image);
         mOwnerNameTv = findViewById(R.id.tv_accommodation_owner_name);
+        mBookButton = findViewById(R.id.btn_accommodation_book);
     }
 
     public void OnBook(View view) {
