@@ -19,7 +19,7 @@ public class HomeDetailsModel {
     private String Amenities;
     private String HomeId;
     private String UserId;
-    private String[] mBookedDays;
+    private ArrayList<String> mBookedDates;
     private ArrayList<String> mImagesUrls;
     private Double mLocationLongitude;
     private Double mLocationLatitude;
@@ -167,12 +167,12 @@ public class HomeDetailsModel {
         this.BedsToUse = bedsToUse;
     }
 
-    public String[] getmBookedDays() {
-        return mBookedDays;
+    public ArrayList<String> getmBookedDates() {
+        return mBookedDates;
     }
 
-    public void setmBookedDays(String[] mBookedDays) {
-        this.mBookedDays = mBookedDays;
+    public void setmBookedDates(ArrayList<String> mBookedDates) {
+        this.mBookedDates = mBookedDates;
     }
 
     public String getZipCode() {

@@ -8,6 +8,7 @@ import com.example.worldapp.Activities.ListAllToursActivity;
 import com.example.worldapp.Adapters.MyToursListingsAdapter;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Models.GuidedToursModel;
+import com.example.worldapp.Models.HomeDetailsModel;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,7 +37,9 @@ public class FirebaseHelper {
     private UserDetailsModel mUser, mAuxUser;
     public static StorageReference mAccommodationStorageReference = FirebaseStorage.getInstance().getReference("AccommodationPictures");
     static ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
+    static ArrayList<String> mExistingBookedDatesAccommodation = new ArrayList<>();
     public static GuidedToursModel mCurrentTour ;
+    public static HomeDetailsModel mCurrentAccommodation ;
     public static DatabaseReference mGeneralReference;
 
     public FirebaseHelper()
@@ -69,15 +72,15 @@ public class FirebaseHelper {
         });
     }
 
-    public static void getAccommodationById(final String mItemId, final String bookDate)
+    public static void getAccommodationById(final String mItemId, final ArrayList<String> bookDates)
     {
-        mToursDatabaseReference.child(mItemId).addListenerForSingleValueEvent(new ValueEventListener() {
+        mAccommodationDatabaseReference.child(mItemId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                GuidedToursModel mGuidedTour = dataSnapshot.getValue(GuidedToursModel.class);
+                HomeDetailsModel mAccommodation = dataSnapshot.getValue(HomeDetailsModel.class);
                 {
-                    mCurrentTour = mGuidedTour;
-                    updateTourBookedDates("Accommodation",mItemId, bookDate);
+                    mCurrentAccommodation = mAccommodation;
+                    updateAccommodationBookedDates("Accommodation",mItemId, bookDates);
                 }
             }
             @Override
@@ -95,6 +98,20 @@ public class FirebaseHelper {
         mExistingBookedDatesTours.add(bookDate);
         HashMap<String, Object> map = new HashMap<>();
         map.put("mBookedDates", mExistingBookedDatesTours);
+        mGeneralReference = FirebaseDatabase.getInstance().getReference(database).child(itemID);
+        mGeneralReference.updateChildren(map);
+
+    }
+
+    public static void updateAccommodationBookedDates(String database, String itemID, ArrayList<String> bookDates)
+    {
+        if (mCurrentAccommodation.getmBookedDates()!=null)
+        {
+            mExistingBookedDatesAccommodation = mCurrentAccommodation.getmBookedDates();
+        }
+        mExistingBookedDatesAccommodation.addAll(bookDates);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("mBookedDates", mExistingBookedDatesAccommodation);
         mGeneralReference = FirebaseDatabase.getInstance().getReference(database).child(itemID);
         mGeneralReference.updateChildren(map);
     }

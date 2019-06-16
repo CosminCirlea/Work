@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Constants.ConstantValues;
 import com.example.worldapp.Core.AccommodationCore;
-import com.example.worldapp.Core.TourCore;
 import com.example.worldapp.R;
 
 import java.text.SimpleDateFormat;
@@ -48,7 +46,7 @@ public class AccommodationFilterActivity extends BaseAppCompat {
             @Override
             public void onClick(View v) {
                 GetValues();
-                AccommodationCore.Instance().getBookedDates(mStartDay, mEndDay);
+                AccommodationCore.Instance().getBookedDatesBetweenStartAndEnd(mStartDay, mEndDay);
                 Intent myIntent = new Intent(AccommodationFilterActivity.this, ListAllAccommodationActivity.class);
                 myIntent.putStringArrayListExtra("filters", mFieldValues);
                 startActivity(myIntent);

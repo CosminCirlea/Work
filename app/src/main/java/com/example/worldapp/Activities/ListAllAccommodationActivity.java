@@ -113,8 +113,8 @@ public class ListAllAccommodationActivity extends BaseAppCompat {
                 return false;
             }
 
-           /* if (house.getmBookedDays()!=null) {
-                ArrayList<String>bookedDates = house.getmBookedDays();
+           /* if (house.getmBookedDates()!=null) {
+                ArrayList<String>bookedDates = house.getmBookedDates();
                 return !bookedDates.contains(filter[5]);
             }*/
         }

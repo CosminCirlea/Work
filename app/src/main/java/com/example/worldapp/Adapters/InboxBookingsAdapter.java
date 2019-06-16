@@ -16,10 +16,6 @@ import com.example.worldapp.Helpers.FirebaseHelper;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.Models.BookingManager;
 import com.example.worldapp.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -126,6 +122,7 @@ public class InboxBookingsAdapter extends
             String title = mHome.getmAnnouncementTitle();
             final String startDate = mHome.getmStartDate();
             String endDate = mHome.getmEndDate();
+            final ArrayList<String> bookedDates = mHome.getmSelectedDates();
             String price = Double.toString(mHome.getmPrice());
             String phone = mHome.getmOwnerPhone();
             String buyerName = mBookingManager.get(position).getmBuyerName();
@@ -145,9 +142,11 @@ public class InboxBookingsAdapter extends
                     HashMap<String, Object> map = new HashMap<>();
                     map.put("mStatus", ConstantValues.BOOKING_ACCEPTED);
                     mBookingDatabase.child(bookID).updateChildren(map);
-                    if (startDate !=null && itemId != null) {
+                    if (bookedDates !=null && itemId != null) {
                         HashMap<String, Object> auxMap = new HashMap<>();
-                        auxMap.put("mBookedDates", startDate );
+                        auxMap.put("mBookedDays", bookedDates );
+                        FirebaseHelper.getAccommodationById(itemId, bookedDates);
+                        FirebaseHelper.incrementValueInTour(itemId, "mBookedNumber",1);
                     }
                 }
             });

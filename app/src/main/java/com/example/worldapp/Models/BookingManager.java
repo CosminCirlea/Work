@@ -1,9 +1,6 @@
 package com.example.worldapp.Models;
 
-import com.google.firebase.auth.FirebaseUser;
-
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.ArrayList;
 
 public class BookingManager {
     private String mBookingId;
@@ -21,7 +18,7 @@ public class BookingManager {
     private String mAnnouncementTitle;
     private String mAnnouncementId;
     private String mSchedule;
-    private HashMap<String, String> mSelectedDates;
+    private ArrayList<String> mSelectedDates;
     private String mStartDate;
     private String mEndDate;
     private int mManagerType;
@@ -106,11 +103,11 @@ public class BookingManager {
         this.mFee = mFee;
     }
 
-    public HashMap<String, String> getmSelectedDates() {
+    public ArrayList<String> getmSelectedDates() {
         return mSelectedDates;
     }
 
-    public void setmSelectedDates(HashMap<String, String> mSelectedDates) {
+    public void setmSelectedDates(ArrayList<String> mSelectedDates) {
         this.mSelectedDates = mSelectedDates;
     }
 

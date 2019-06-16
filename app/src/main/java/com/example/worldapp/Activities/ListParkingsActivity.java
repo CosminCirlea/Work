@@ -110,8 +110,8 @@ public class ListParkingsActivity extends BaseAppCompat {
                 return false;
             }
 
-           /* if (parking.getmBookedDays()!=null) {
-                ArrayList<String>bookedDates = parking.getmBookedDays();
+           /* if (parking.getmBookedDates()!=null) {
+                ArrayList<String>bookedDates = parking.getmBookedDates();
                 return !bookedDates.contains(filter[5]);
             }*/
         }

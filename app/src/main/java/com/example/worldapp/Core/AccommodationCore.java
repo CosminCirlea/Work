@@ -1,5 +1,8 @@
 package com.example.worldapp.Core;
 
+import com.example.worldapp.Constants.ConstantValues;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -26,6 +29,7 @@ public class AccommodationCore {
     private String UserId;
     private String[] mBookedDays;
     private ArrayList<String> mImagesUrls;
+    private ArrayList<String> mBookedDates;
     private Double mLocationLongitude;
     private Double mLocationLatitude;
     private int mBookedNumber =0;
@@ -77,9 +81,10 @@ public class AccommodationCore {
         this.mEndDate = mEndDate;
     }
 
-    public List<Date> getBookedDates(Date startDate, Date endDate)
+    public void getBookedDatesBetweenStartAndEnd(Date startDate, Date endDate)
     {
-        List<Date> allDates = new ArrayList<>();
+        mBookedDates = new ArrayList<>();
+        String auxDate;
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(startDate);
 
@@ -88,15 +93,24 @@ public class AccommodationCore {
 
         while (calendar.before(endCalendar)) {
             Date result = calendar.getTime();
-            allDates.add(result);
+            SimpleDateFormat formatTime = new SimpleDateFormat(ConstantValues.DATE_FORMAT);
+            auxDate = formatTime.format(result);
+            mBookedDates.add(auxDate);
             calendar.add(Calendar.DATE, 1);
         }
         mNumberOfNights = daysBetween(startDate,endDate);
-        return allDates;
     }
 
     public int daysBetween(Date d1, Date d2){
         return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+    }
+
+    public ArrayList<String> getmBookedDates() {
+        return mBookedDates;
+    }
+
+    public void setmBookedDates(ArrayList<String> mBookedDates) {
+        this.mBookedDates = mBookedDates;
     }
 
     public String getGuests() {
