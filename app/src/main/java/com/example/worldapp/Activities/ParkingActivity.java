@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallback {
-    private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
+    private static final String MAPVIEW_BUNDLE_KEY12 = "MapViewBundleKey";
     private String mOwnerId;
     private MapView mMapView;
     private ParkingModel mParking;
@@ -64,7 +64,7 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
-            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
+            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY12);
         }
         mMapView.onCreate(mapViewBundle);
         mMapView.getMapAsync(this);
@@ -204,10 +204,10 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        Bundle mapViewBundle = outState.getBundle(MAPVIEW_BUNDLE_KEY);
+        Bundle mapViewBundle = outState.getBundle(MAPVIEW_BUNDLE_KEY12);
         if (mapViewBundle == null) {
             mapViewBundle = new Bundle();
-            outState.putBundle(MAPVIEW_BUNDLE_KEY, mapViewBundle);
+            outState.putBundle(MAPVIEW_BUNDLE_KEY12, mapViewBundle);
         }
         mMapView.onSaveInstanceState(mapViewBundle);
     }

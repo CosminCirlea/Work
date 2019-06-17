@@ -8,7 +8,7 @@
         android:id="@+id/tv_parking_announcement_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/SmallBlackText"
+        style="@style/BasicText"
         android:text="Regular parking spot"/>
 
     <TextView
@@ -47,5 +47,12 @@
         android:layout_below="@+id/tv_parking_type"
         style="@style/SmallBlackText"
         android:text="423 $"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@id/tv_parking_price"/>
 
 </RelativeLayout>

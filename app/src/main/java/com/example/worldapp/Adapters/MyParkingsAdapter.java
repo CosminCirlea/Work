@@ -52,8 +52,8 @@ public class MyParkingsAdapter extends
         viewHolder.tvAnnouncementTitle.setText(title);
         viewHolder.tvLocation.setText(location);
         viewHolder.tvPrice.setText(price);
-        viewHolder.tvType.setText(mParkings.get(position).getmType());
-        viewHolder.tvAvailability.setText(Integer.toString(mParkings.get(position).getmSpotsNumber()));
+        viewHolder.tvType.setText(mParkings.get(position).getmType()+" - ");
+        viewHolder.tvAvailability.setText(Integer.toString(mParkings.get(position).getmSpotsNumber())+" parking spots");
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

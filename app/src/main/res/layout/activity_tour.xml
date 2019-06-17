@@ -289,18 +289,6 @@
 
             </RelativeLayout>
 
-            <ToggleButton
-                android:id="@+id/button_favorite"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/button_favorite"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_below="@+id/rl_tour_details_container"
-                android:textOff=""
-                android:textOn=""/>
-
             <Button
                 android:id="@+id/btn_tour_book"
                 android:layout_width="match_parent"
@@ -312,7 +300,7 @@
                 style="@style/BasicText"
                 android:background="@drawable/round_button"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/button_favorite"
+                android:layout_below="@id/rl_tour_details_container"
                 android:text="Book"
                 android:onClick="OnBook"
                 />

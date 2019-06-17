@@ -86,7 +86,7 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
-                android:id="@+id/tv_parking_security_details"
+                android:id="@+id/tv_parking_security_details_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_parking_price"
@@ -95,7 +95,15 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
-                android:id="@+id/tv_parking_restrictions_details"
+                android:id="@+id/tv_parking_security_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_parking_security_details_text"
+                style="@style/BlackText"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_parking_restrictions_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_parking_security_details"
@@ -104,10 +112,18 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
+                android:id="@+id/tv_parking_restrictions_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_parking_restrictions_text"
+                style="@style/BlackText"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
                 android:id="@+id/tv_parking_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/BlackText"
+                style="@style/BasicText"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/tv_parking_restrictions_details"
                 android:text="@string/parking_location_text"/>
