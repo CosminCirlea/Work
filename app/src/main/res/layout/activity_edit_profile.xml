@@ -9,12 +9,63 @@
 
     <include layout="@layout/toolbar_with_back_button"/>
 
-    <com.squareup.timessquare.CalendarPickerView
-        android:id="@+id/calendar_view"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_margin="10dp"
-        android:layout_below="@+id/toolbar_with_back_button"
-        />
+   <ImageView
+       android:id="@+id/iv_profile"
+       android:layout_width="100dp"
+       android:layout_height="100dp"
+       android:layout_marginTop="10dp"
+       android:layout_below="@+id/toolbar_with_back_button"
+       android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/tv_profile_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_below="@+id/iv_profile"
+        style="@style/SmallBlackText"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/et_profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="100dp"
+        android:layout_marginTop="10dp"
+        style="@style/BlackText"
+        android:layout_below="@+id/tv_profile_email"/>
+
+    <EditText
+        android:id="@+id/et_profile_first_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="100dp"
+        android:layout_marginTop="10dp"
+        style="@style/BlackText"
+        android:layout_below="@+id/et_profile_name"/>
+
+    <EditText
+        android:id="@+id/et_profile_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="100dp"
+        android:layout_marginTop="10dp"
+        android:inputType="phone"
+        style="@style/BlackText"
+        android:layout_below="@+id/et_profile_first_name"/>
+
+    <Button
+        android:id="@+id/btn_profile_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button_primary"
+        android:textAllCaps="false"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:textColor="#fff"
+        android:padding="4dp"
+        android:text="Save profile"
+        android:layout_margin="20dp"/>
 
 </RelativeLayout>

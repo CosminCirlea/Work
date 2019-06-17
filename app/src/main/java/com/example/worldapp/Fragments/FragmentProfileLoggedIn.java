@@ -136,7 +136,7 @@ public class FragmentProfileLoggedIn extends Fragment {
         BtnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), PaymentActivity.class));
+                startActivity(new Intent(getActivity(), EditProfileActivity.class));
             }
         });
 

@@ -47,6 +47,10 @@ public class PaymentActivity extends BaseAppCompat {
         mPrice.setText("Price: "+mExtraValues[0]+" EUR");
         mFee.setText("Service fee: "+mExtraValues[1]+" EUR");
         mTotalPrice.setText("Total: "+mExtraValues[2]+" EUR");
+
+        mCardNumber.setText("4624459234295823");
+        mCardCvv.setText("752");
+        mExpirationDate.setText("11/24");
     }
 
     private boolean checkFields()
