@@ -37,6 +37,7 @@ public class AddTour1Activity extends BaseAppCompat {
         }
         setContentView(R.layout.activity_add_tour1);
         InitializeViews();
+        super.SetToolbarTitle("General information");
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mFirebaseDatabase.getReference();

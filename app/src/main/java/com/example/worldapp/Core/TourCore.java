@@ -46,10 +46,6 @@ public class TourCore {
         this.mToursBookedNumber = mToursBookedNumber;
     }
 
-    public void setmBookedDates(ArrayList<String> mBookedDates) {
-        this.mBookedDates = mBookedDates;
-    }
-
     public double getmRating() {
         return mRating;
     }

@@ -1,6 +1,8 @@
 package com.example.worldapp.Activities;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.worldapp.BaseClasses.BaseAppCompat;
+import com.example.worldapp.Core.AccommodationCore;
 import com.example.worldapp.Core.TourCore;
 import com.example.worldapp.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -19,6 +22,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
+import java.util.Locale;
 
 public class AddTour4Activity extends BaseAppCompat implements OnMapReadyCallback {
     private static final String MAPVIEW_BUNDLE_KEY1 = "MapViewBundleKey";
@@ -38,6 +44,7 @@ public class AddTour4Activity extends BaseAppCompat implements OnMapReadyCallbac
         }
         setContentView(R.layout.activity_add_tour4);
         InitializeViews();
+        super.SetToolbarTitle("Meeting point");
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
@@ -49,6 +56,26 @@ public class AddTour4Activity extends BaseAppCompat implements OnMapReadyCallbac
 
         mTourID = TourCore.Instance().getmTourId();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("Tours");
+    }
+
+    private void LocationInitializer()
+    {
+        Geocoder geocoder;
+        List<Address> addresses;
+        geocoder = new Geocoder(this, Locale.ENGLISH);
+        try{
+            addresses = geocoder.getFromLocation(mMeetingPoint.latitude, mMeetingPoint.longitude, 1);
+            String address = addresses.get(0).getAddressLine(0);
+
+            TourCore.Instance().setmMeetingLocation(address);
+            TourCore.Instance().setmMeetingPointLongitude(mMeetingPoint.longitude);
+            TourCore.Instance().setmMeetingPointLatitude(mMeetingPoint.latitude);
+            mMeetingLocation.setText(address);
+        }
+        catch (Exception e)
+        {
+            e.toString();
+        }
     }
 
     public void RegisterTour(View view) {
@@ -82,6 +109,7 @@ public class AddTour4Activity extends BaseAppCompat implements OnMapReadyCallbac
                         new LatLng(point.latitude, point.longitude)).title("Meeting point");
                 mMeetingPoint= point;
                 map.addMarker(marker);
+                LocationInitializer();
             }
         });
     }

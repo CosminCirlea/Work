@@ -22,7 +22,7 @@ public class GuidedToursModel {
     private int mToursBookedNumber;
     private int mToursGrades;
     private double mToursRating;
-    private ArrayList<String> mBookedDates;
+    private ArrayList<String> mBookedDatesList;
     private String mSchedule;
 
     public GuidedToursModel()
@@ -133,12 +133,12 @@ public class GuidedToursModel {
         this.mToursRating = mToursRating;
     }
 
-    public ArrayList<String> getmBookedDates() {
-        return mBookedDates;
+    public ArrayList<String> getmBookedDatesList() {
+        return mBookedDatesList;
     }
 
-    public void setmBookedDates(ArrayList<String> mBookedDates) {
-        this.mBookedDates = mBookedDates;
+    public void setmBookedDatesList(ArrayList<String> mBookedDates) {
+        this.mBookedDatesList = mBookedDates;
     }
 
     public String getmTourDuration() {

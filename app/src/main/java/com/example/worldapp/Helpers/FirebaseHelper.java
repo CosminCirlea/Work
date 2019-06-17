@@ -91,9 +91,9 @@ public class FirebaseHelper {
 
     public static void updateTourBookedDates(String database, String itemID, String bookDate)
     {
-        if (mCurrentTour.getmBookedDates()!=null)
+        if (mCurrentTour.getmBookedDatesList()!=null)
         {
-            mExistingBookedDatesTours = mCurrentTour.getmBookedDates();
+            mExistingBookedDatesTours = mCurrentTour.getmBookedDatesList();
         }
         mExistingBookedDatesTours.add(bookDate);
         HashMap<String, Object> map = new HashMap<>();
@@ -142,6 +142,31 @@ public class FirebaseHelper {
     }
 
     public static void incrementValueInAccommodation(String toUpdateId, String valueToUpdate, final int incrementingValue)
+    {
+        mAccommodationDatabaseReference.child(toUpdateId).child(valueToUpdate).runTransaction(new Transaction.Handler() {
+            @Override
+            public Transaction.Result doTransaction(MutableData mutableData) {
+                if (mutableData == null){
+                    mutableData.setValue(0);
+                }
+                Integer currentValue = mutableData.getValue(Integer.class);
+                if (currentValue == null) {
+                    mutableData.setValue(1);
+                } else {
+                    mutableData.setValue(currentValue + incrementingValue);
+                }
+
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(DatabaseError databaseError, boolean committed, DataSnapshot dataSnapshot) {
+                System.out.println("Transaction completed");
+            }
+        });
+    }
+
+    public static void incrementValueInParkings(String toUpdateId, String valueToUpdate, final int incrementingValue)
     {
         mAccommodationDatabaseReference.child(toUpdateId).child(valueToUpdate).runTransaction(new Transaction.Handler() {
             @Override

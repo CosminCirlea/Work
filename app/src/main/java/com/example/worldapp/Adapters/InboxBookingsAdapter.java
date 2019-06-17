@@ -146,7 +146,7 @@ public class InboxBookingsAdapter extends
                         HashMap<String, Object> auxMap = new HashMap<>();
                         auxMap.put("mBookedDates", bookedDates );
                         FirebaseHelper.getAccommodationById(itemId, bookedDates);
-                        FirebaseHelper.incrementValueInTour(itemId, "mBookedNumber",1);
+                        FirebaseHelper.incrementValueInAccommodation(itemId, "mBookedNumber",1);
                     }
                 }
             });
@@ -215,8 +215,8 @@ public class InboxBookingsAdapter extends
             }
         });
         mTour = new GuidedToursModel();
-        if (mTour.getmBookedDates()!=null) {
-            mExistingBookedTours = mTour.getmBookedDates();
+        if (mTour.getmBookedDatesList()!=null) {
+            mExistingBookedTours = mTour.getmBookedDatesList();
         }
         mExistingBookedTours.add(mDate);
         HashMap<String, Object> map = new HashMap<>();

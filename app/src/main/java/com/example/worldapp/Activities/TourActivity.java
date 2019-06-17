@@ -269,19 +269,6 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         }
     }
 
-    public void updateTourBookedDates(GuidedToursModel tour, String bookedDate)
-    {
-        if (tour.getmBookedDates()!=null)
-        {
-            mExistingBookedDatesTours = tour.getmBookedDates();
-        }
-        mExistingBookedDatesTours.add(bookedDate);
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("mBookedDates", mExistingBookedDatesTours);
-        mToursDatabase = FirebaseDatabase.getInstance().getReference("Tours").child(tour.getmTourId());
-        mToursDatabase.updateChildren(map);
-    }
-
     public void doTheBooking()
     {
         double mPrice = mTour.getmTourPrice();

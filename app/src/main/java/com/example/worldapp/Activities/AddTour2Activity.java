@@ -63,6 +63,7 @@ public class AddTour2Activity extends BaseAppCompat {
         mTourId = myIntent.getStringExtra("tourId");
         setContentView(R.layout.activity_add_tour2);
         InitializeViews();
+        super.SetToolbarTitle("Image and description");
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();

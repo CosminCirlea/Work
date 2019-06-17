@@ -33,6 +33,7 @@ public class AddTour3Activity extends BaseAppCompat {
         Intent myIntent = getIntent();
         mTourId = myIntent.getStringExtra("tourId");
         InitializeViews();
+        super.SetToolbarTitle("Specific details");
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
