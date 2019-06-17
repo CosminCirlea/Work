@@ -108,6 +108,7 @@ public class ListAllToursActivity extends BaseAppCompat implements SearchView.On
 
     @Override
     public void onBackPressed(){
+        finish();
         startActivity(new Intent(ListAllToursActivity.this, ActivityHome.class));
     }
 

@@ -82,6 +82,7 @@ public class ListParkingsActivity extends BaseAppCompat {
 
     @Override
     public void onBackPressed(){
+        finish();
         startActivity(new Intent(ListParkingsActivity.this, ActivityHome.class));
     }
 

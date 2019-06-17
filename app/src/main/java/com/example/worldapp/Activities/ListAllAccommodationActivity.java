@@ -81,6 +81,7 @@ public class ListAllAccommodationActivity extends BaseAppCompat {
 
     @Override
     public void onBackPressed(){
+        finish();
         startActivity(new Intent(ListAllAccommodationActivity.this, ActivityHome.class));
     }
 
