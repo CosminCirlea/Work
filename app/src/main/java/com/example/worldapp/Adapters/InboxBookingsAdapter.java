@@ -144,7 +144,7 @@ public class InboxBookingsAdapter extends
                     mBookingDatabase.child(bookID).updateChildren(map);
                     if (bookedDates !=null && itemId != null) {
                         HashMap<String, Object> auxMap = new HashMap<>();
-                        auxMap.put("mBookedDays", bookedDates );
+                        auxMap.put("mBookedDates", bookedDates );
                         FirebaseHelper.getAccommodationById(itemId, bookedDates);
                         FirebaseHelper.incrementValueInTour(itemId, "mBookedNumber",1);
                     }
@@ -187,9 +187,6 @@ public class InboxBookingsAdapter extends
                     if (startDate !=null && itemId != null) {
                         HashMap<String, Object> auxMap = new HashMap<>();
                         auxMap.put("mBookedDates", startDate );
-                        //updateTourBookingDate(itemId, bookDay);
-                        //FirebaseHelper.Instance().updateTourBookedDates(itemId, startDate);
-                        //mTourDatabase.child(itemId).child("mBookedDates").updateChildren(auxMap);
                     }
                 }
             });

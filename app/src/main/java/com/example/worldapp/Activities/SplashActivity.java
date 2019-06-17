@@ -62,6 +62,8 @@ public class SplashActivity extends AppCompatActivity {
                 UserDetailsModel myUser = dataSnapshot.getValue(UserDetailsModel.class);
                 UserCore.Instance().setmUser(myUser);
                 UserCore.Instance().setmFirebaseUser(user);
+                UserCore.Instance().setUserId(user.getUid());
+                UserCore.Instance().setName(user.getDisplayName());
                 UserCore.Instance().setLoggedIn(true);
                 Intent intent = new Intent(SplashActivity.this, ActivityHome.class);
                 startActivity(intent);

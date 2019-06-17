@@ -163,7 +163,6 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
                             Double.toString(mManager.getmPrice()),
                             Double.toString(mManager.getmFee()),
                             Double.toString(mManager.getmTotalPrice())
-
                     };
             myIntent.putExtra("paymentDetails", mPurchaseValues);
             startActivity(myIntent);

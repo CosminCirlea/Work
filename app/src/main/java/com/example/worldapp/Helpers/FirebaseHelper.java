@@ -74,7 +74,7 @@ public class FirebaseHelper {
 
     public static void getAccommodationById(final String mItemId, final ArrayList<String> bookDates)
     {
-        mAccommodationDatabaseReference.child(mItemId).addListenerForSingleValueEvent(new ValueEventListener() {
+        mAccommodationDatabaseReference.child(mItemId).orderByChild("mStartDate").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 HomeDetailsModel mAccommodation = dataSnapshot.getValue(HomeDetailsModel.class);
@@ -119,6 +119,31 @@ public class FirebaseHelper {
     public static void incrementValueInTour(String toUpdateId, String valueToUpdate, final int incrementingValue)
     {
         mToursDatabaseReference.child(toUpdateId).child(valueToUpdate).runTransaction(new Transaction.Handler() {
+            @Override
+            public Transaction.Result doTransaction(MutableData mutableData) {
+                if (mutableData == null){
+                    mutableData.setValue(0);
+                }
+                Integer currentValue = mutableData.getValue(Integer.class);
+                if (currentValue == null) {
+                    mutableData.setValue(1);
+                } else {
+                    mutableData.setValue(currentValue + incrementingValue);
+                }
+
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(DatabaseError databaseError, boolean committed, DataSnapshot dataSnapshot) {
+                System.out.println("Transaction completed");
+            }
+        });
+    }
+
+    public static void incrementValueInAccommodation(String toUpdateId, String valueToUpdate, final int incrementingValue)
+    {
+        mAccommodationDatabaseReference.child(toUpdateId).child(valueToUpdate).runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
                 if (mutableData == null){
