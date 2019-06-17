@@ -85,7 +85,7 @@ public class StatisticsActivity extends BaseAppCompat {
         pieData.setValueTextColor(Color.YELLOW);
 
         mAccommodationChart.setData(pieData);
-        mAccommodationChart.setCenterText("Top tours");
+        mAccommodationChart.setCenterText("Top accommodation");
     }
 
     private void setupParkingsChart()
@@ -114,7 +114,7 @@ public class StatisticsActivity extends BaseAppCompat {
         pieData.setValueTextColor(Color.YELLOW);
 
         mParkingsChart.setData(pieData);
-        mParkingsChart.setCenterText("Top tours");
+        mParkingsChart.setCenterText("Top parkings");
     }
 
     private void initializeViews()

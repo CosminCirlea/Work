@@ -166,6 +166,7 @@ public class ParkingActivity extends BaseAppCompat  implements OnMapReadyCallbac
         mManager.setmOwnerName(mParkingOwner.getName());
         mManager.setmOwnerPhone(mParkingOwner.getPhoneNumber());
         mManager.setmBuyerPhone(UserCore.Instance().User.getPhoneNumber());
+        mManager.setmCountry(mParking.getmCountry());
         mManager.setmManagerType(ConstantValues.BOOKING_TYPE_PARKING);
         mBookingDatabase.child(newBookingManager.toString()).setValue(mManager);
         updateBookingManager(mManager, mParkingOwner);

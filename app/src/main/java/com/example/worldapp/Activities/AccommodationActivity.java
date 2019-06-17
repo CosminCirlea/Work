@@ -205,6 +205,7 @@ public class AccommodationActivity extends BaseAppCompat implements OnMapReadyCa
         mManager.setmBuyerPhone(UserCore.Instance().User.getPhoneNumber());
         mManager.setmManagerType(ConstantValues.BOOKING_TYPE_ACCOMMODATION);
         mManager.setmSelectedDates(AccommodationCore.Instance().getmBookedDates());
+        mManager.setmCountry(mHome.getCountry());
         mBookingDatabase.child(newBookingManager.toString()).setValue(mManager);
         updateBookingManager(mManager, mHomeOwner);
         updateBookingManager(mManager, UserCore.Instance().getmUser());

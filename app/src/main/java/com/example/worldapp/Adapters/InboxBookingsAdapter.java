@@ -105,6 +105,7 @@ public class InboxBookingsAdapter extends
                         auxMap.put("mBookedDates", bookingDate );
                         FirebaseHelper.getTourById(itemId, bookingDate);
                         FirebaseHelper.incrementValueInTour(itemId, "mToursBookedNumber",1);
+                        FirebaseHelper.incrementStatistics("Tours",mBookingManager.get(position).getmCountry(),1);
                     }
                 }
             });
@@ -118,7 +119,7 @@ public class InboxBookingsAdapter extends
         }
         else if (mBookingManager.get(position).getmManagerType() == ConstantValues.BOOKING_TYPE_ACCOMMODATION)
         {
-            BookingManager mHome = mBookingManager.get(position);
+            final BookingManager mHome = mBookingManager.get(position);
             String title = mHome.getmAnnouncementTitle();
             final String startDate = mHome.getmStartDate();
             String endDate = mHome.getmEndDate();
@@ -147,6 +148,7 @@ public class InboxBookingsAdapter extends
                         auxMap.put("mBookedDates", bookedDates );
                         FirebaseHelper.getAccommodationById(itemId, bookedDates);
                         FirebaseHelper.incrementValueInAccommodation(itemId, "mBookedNumber",1);
+                        FirebaseHelper.incrementStatistics("Accommodation",mHome.getmCountry(),1);
                     }
                 }
             });
@@ -161,13 +163,14 @@ public class InboxBookingsAdapter extends
 
         else if (mBookingManager.get(position).getmManagerType() == ConstantValues.BOOKING_TYPE_PARKING)
         {
-            BookingManager mHome = mBookingManager.get(position);
+            final BookingManager mHome = mBookingManager.get(position);
             String title = mHome.getmAnnouncementTitle();
             final String startDate = mHome.getmStartDate();
             String endDate = mHome.getmEndDate();
             String price = Double.toString(mHome.getmPrice());
             String phone = mHome.getmOwnerPhone();
             String buyerName = mBookingManager.get(position).getmBuyerName();
+            final ArrayList<String> bookedDates = mHome.getmSelectedDates();
 
             viewHolder.tvBuyerName.setText(buyerName);
             viewHolder.tvScheduleText.setText("End date: ");
@@ -184,9 +187,12 @@ public class InboxBookingsAdapter extends
                     HashMap<String, Object> map = new HashMap<>();
                     map.put("mStatus", ConstantValues.BOOKING_ACCEPTED);
                     mBookingDatabase.child(bookID).updateChildren(map);
-                    if (startDate !=null && itemId != null) {
+                    if (bookedDates !=null && itemId != null) {
                         HashMap<String, Object> auxMap = new HashMap<>();
-                        auxMap.put("mBookedDates", startDate );
+                        auxMap.put("mBookedDates", bookedDates );
+                        FirebaseHelper.getParkingByID(itemId, bookedDates);
+                        FirebaseHelper.incrementValueInParkings(itemId, "mBookedNumber",1);
+                        FirebaseHelper.incrementStatistics("Parkings",mHome.getmCountry(),1);
                     }
                 }
             });
@@ -198,30 +204,6 @@ public class InboxBookingsAdapter extends
                 }
             });
         }
-    }
-
-    private void updateTourBookingDate(final String mTourId, String mDate)
-    {
-        mTourDatabase = FirebaseDatabase.getInstance().getReference().child("Tours").child(mTourId);
-        mTourDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    mTour = dataSnapshot.getValue(GuidedToursModel.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        mTour = new GuidedToursModel();
-        if (mTour.getmBookedDatesList()!=null) {
-            mExistingBookedTours = mTour.getmBookedDatesList();
-        }
-        mExistingBookedTours.add(mDate);
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("mBookedDates", mExistingBookedTours);
-        FirebaseHelper.Instance().mToursDatabaseReference.child(mTourId).updateChildren(map);
     }
 
     private void showDialog(final String bookID)

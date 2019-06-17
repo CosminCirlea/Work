@@ -293,6 +293,7 @@ public class TourActivity extends BaseAppCompat implements OnMapReadyCallback {
         mManager.setmOwnerPhone(mTourOwner.getPhoneNumber());
         mManager.setmBuyerPhone(UserCore.Instance().User.getPhoneNumber());
         mManager.setmSchedule(schedule);
+        mManager.setmCountry(mTour.getmTourCountry());
         mManager.setmManagerType(ConstantValues.BOOKING_TYPE_TOUR);
         mBookingDatabase.child(newBookingManager.toString()).setValue(mManager);
         updateBookingManager(mManager, mTourOwner);

@@ -22,6 +22,7 @@ public class BookingManager {
     private String mStartDate;
     private String mEndDate;
     private int mManagerType;
+    private String mCountry;
 
     public String getmBookingId() {
         return mBookingId;
@@ -49,6 +50,14 @@ public class BookingManager {
 
     public String getmBookingDates() {
         return mBookingDates;
+    }
+
+    public String getmCountry() {
+        return mCountry;
+    }
+
+    public void setmCountry(String mCountry) {
+        this.mCountry = mCountry;
     }
 
     public void setmBookingDates(String mBookingDates) {

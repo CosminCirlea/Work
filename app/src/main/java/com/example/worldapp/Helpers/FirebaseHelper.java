@@ -9,6 +9,7 @@ import com.example.worldapp.Adapters.MyToursListingsAdapter;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Models.GuidedToursModel;
 import com.example.worldapp.Models.HomeDetailsModel;
+import com.example.worldapp.Models.ParkingModel;
 import com.example.worldapp.Models.UserDetailsModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,9 +39,13 @@ public class FirebaseHelper {
     public static StorageReference mAccommodationStorageReference = FirebaseStorage.getInstance().getReference("AccommodationPictures");
     static ArrayList<String> mExistingBookedDatesTours = new ArrayList<>();
     static ArrayList<String> mExistingBookedDatesAccommodation = new ArrayList<>();
+    static ArrayList<String> mExistingBookedDatesParkings = new ArrayList<>();
     public static GuidedToursModel mCurrentTour ;
     public static HomeDetailsModel mCurrentAccommodation ;
+    public static ParkingModel mCurrentParking;
     public static DatabaseReference mGeneralReference;
+    public static DatabaseReference mStatisticsReference = FirebaseDatabase.getInstance().getReference().child("Statistics");
+
 
     public FirebaseHelper()
     {
@@ -74,13 +79,30 @@ public class FirebaseHelper {
 
     public static void getAccommodationById(final String mItemId, final ArrayList<String> bookDates)
     {
-        mAccommodationDatabaseReference.child(mItemId).orderByChild("mStartDate").addListenerForSingleValueEvent(new ValueEventListener() {
+        mAccommodationDatabaseReference.child(mItemId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 HomeDetailsModel mAccommodation = dataSnapshot.getValue(HomeDetailsModel.class);
                 {
                     mCurrentAccommodation = mAccommodation;
                     updateAccommodationBookedDates("Accommodation",mItemId, bookDates);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    public static void getParkingByID(final String mItemId, final ArrayList<String> bookDates)
+    {
+        mParkingsDatabaseReference.child(mItemId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ParkingModel mAccommodation = dataSnapshot.getValue(ParkingModel.class);
+                {
+                    mCurrentParking = mAccommodation;
+                    updateParkingBookedDates("Parkings",mItemId, bookDates);
                 }
             }
             @Override
@@ -112,6 +134,19 @@ public class FirebaseHelper {
         mExistingBookedDatesAccommodation.addAll(bookDates);
         HashMap<String, Object> map = new HashMap<>();
         map.put("mBookedDates", mExistingBookedDatesAccommodation);
+        mGeneralReference = FirebaseDatabase.getInstance().getReference(database).child(itemID);
+        mGeneralReference.updateChildren(map);
+    }
+
+    public static void updateParkingBookedDates(String database, String itemID, ArrayList<String> bookDates)
+    {
+        if (mCurrentParking.getmBookedDates()!=null)
+        {
+            mExistingBookedDatesAccommodation = mCurrentParking.getmBookedDates();
+        }
+        mExistingBookedDatesParkings.addAll(bookDates);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("mBookedDates", mExistingBookedDatesParkings);
         mGeneralReference = FirebaseDatabase.getInstance().getReference(database).child(itemID);
         mGeneralReference.updateChildren(map);
     }
@@ -181,6 +216,27 @@ public class FirebaseHelper {
                     mutableData.setValue(currentValue + incrementingValue);
                 }
 
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(DatabaseError databaseError, boolean committed, DataSnapshot dataSnapshot) {
+                System.out.println("Transaction completed");
+            }
+        });
+    }
+
+    public static void incrementStatistics(String category, String country, final int incrementingValue)
+    {
+        mStatisticsReference.child(category).child(country).runTransaction(new Transaction.Handler() {
+            @Override
+            public Transaction.Result doTransaction(MutableData mutableData) {
+                Integer currentValue = mutableData.getValue(Integer.class);
+                if (currentValue == null) {
+                    mutableData.setValue(1);
+                } else {
+                    mutableData.setValue(currentValue + incrementingValue);
+                }
                 return Transaction.success(mutableData);
             }
 
