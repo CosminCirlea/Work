@@ -14,10 +14,22 @@
         <include layout="@layout/toolbar_with_back_button"/>
 
         <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/chart1"
+            android:id="@+id/chart_accommodation"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_below="@+id/toolbar_with_back_button"/>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/chart_tours"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@+id/chart_accommodation"/>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/chart_parkings"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@+id/chart_tours"/>
 
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>
