@@ -156,5 +156,9 @@ public class ActivityHome extends AppCompatActivity implements BottomNavigationV
     }
 
 
+    public void ShowStatistics(View view) {
+        Intent mIntent = new Intent(ActivityHome.this, StatisticsActivity.class);
+        startActivity(mIntent);
+    }
 }
 
