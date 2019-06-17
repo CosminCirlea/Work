@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
     tools:context=".Activities.AddTour3Activity">
 
     <include layout="@layout/toolbar_with_back_button"/>
@@ -99,7 +100,6 @@
             android:hint="Schedule"/>
 
     </android.support.design.widget.TextInputLayout>
-
 
     <Button
         android:id="@+id/btn_add_tour_next_1"
