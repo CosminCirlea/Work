@@ -54,6 +54,7 @@ public class StatisticsActivity extends BaseAppCompat {
         mTourChart.getDescription().setEnabled(false);
         mTourChart.setExtraOffsets(5,10,5,5);
         mTourChart.setDragDecelerationFrictionCoef(0.99f);
+        mTourChart.setDragDecelerationEnabled(false);
         mTourChart.setDrawHoleEnabled(true);
         mTourChart.setHoleColor(Color.WHITE);
         mTourChart.setTransparentCircleRadius(61f);
@@ -98,6 +99,7 @@ public class StatisticsActivity extends BaseAppCompat {
         mAccommodationChart.getDescription().setEnabled(false);
         mAccommodationChart.setExtraOffsets(5,10,5,5);
         mAccommodationChart.setDragDecelerationFrictionCoef(0.99f);
+        mAccommodationChart.setDragDecelerationEnabled(false);
         mAccommodationChart.setDrawHoleEnabled(true);
         mAccommodationChart.setHoleColor(Color.WHITE);
         mAccommodationChart.setTransparentCircleRadius(61f);
@@ -143,6 +145,7 @@ public class StatisticsActivity extends BaseAppCompat {
         mParkingsChart.setDrawHoleEnabled(true);
         mParkingsChart.setHoleColor(Color.WHITE);
         mParkingsChart.setTransparentCircleRadius(61f);
+        mParkingsChart.setDragDecelerationEnabled(false);
 
         FirebaseHelper.mStatisticsReference.child("Parkings").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

@@ -64,41 +64,38 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_statistics2.xml">
+          <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="30" column="40" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
+            <state relative-caret-position="271">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
             </state>
           </provider>
-          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour4Activity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="452">
+              <caret line="85" column="55" selection-start-line="85" selection-start-column="55" selection-end-line="85" selection-end-column="55" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/StatisticsActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour1Activity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
+            <state relative-caret-position="398">
+              <caret line="87" column="9" lean-forward="true" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/SplashActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_home4.xml">
+          <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="52" column="9" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Core/UserCore.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="148" selection-start-line="148" selection-end-line="148" />
-              <folding>
-                <element signature="e#3761#3762#0" expanded="true" />
-                <element signature="e#3802#3803#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="430">
+              <caret line="76" column="24" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -115,12 +112,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>id</find>
-      <find>mTourPrice</find>
-      <find>long</find>
-      <find>mLocation</find>
-      <find>mParkingLocation</find>
-      <find>MapViewBundleKey1</find>
       <find>MAPVIEW_BUNDLE_KEY1</find>
       <find>MAPVIEW_BUNDLE_KEY</find>
       <find>Accommod</find>
@@ -145,6 +136,12 @@
       <find>onhac</find>
       <find>mTour</find>
       <find>mToursValues</find>
+      <find>mPrice</find>
+      <find>price</find>
+      <find>mTourPrice</find>
+      <find>getmTourPrice</find>
+      <find>setmTourPrice</find>
+      <find>tvPricePerTour</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -175,16 +172,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Fragments/FragmentProfileLoggedIn.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/EditProfileActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_edit_profile.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour1Activity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour2Activity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour3Activity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour4Activity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Models/GuidedToursModel.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Core/TourCore.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_tour1.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_tour2.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_tour3.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_tour4.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/ListAllToursActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/ListAllAccommodationActivity.java" />
@@ -197,7 +190,6 @@
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/ActivityHome.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_statistics2.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Models/BookingManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AccommodationActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/TourActivity.java" />
@@ -205,6 +197,11 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Helpers/FirebaseHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Adapters/InboxBookingsAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/StatisticsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_statistics2.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour2Activity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_tour4.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Core/TourCore.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour1Activity.java" />
       </list>
     </option>
   </component>
@@ -219,6 +216,23 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Work" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Work" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="Work" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Work" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name=".gradle" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -260,23 +274,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Work" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Work" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="Work" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Work" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name=".gradle" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -288,7 +285,7 @@
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="device.picker.selection" value="14879c8a" />
+    <property name="device.picker.selection" value="5200daddf4267433" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="last_opened_file_path" value="F:/Apps/Git/Git/git-cmd.exe" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
@@ -446,7 +443,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.15100671" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.15100671" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -456,7 +453,7 @@
       <window_info id="Resources Explorer" order="8" />
       <window_info anchor="bottom" id="Run" order="0" sideWeight="0.91610736" weight="0.34844193" />
       <window_info anchor="bottom" id="TODO" order="1" sideWeight="0.49932885" weight="0.2266289" />
-      <window_info active="true" anchor="bottom" id="Debug" order="2" sideWeight="0.5174497" visible="true" weight="0.0878187" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.5174497" visible="true" weight="0.0878187" />
       <window_info anchor="bottom" id="Android Profiler" order="3" weight="0.3286119" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.32765958" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50201344" side_tool="true" weight="0.407932" />
@@ -606,17 +603,22 @@
           <properties />
           <option name="timeStamp" value="186" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour1Activity.java</url>
+          <line>53</line>
+          <properties />
+          <option name="timeStamp" value="187" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour1Activity.java</url>
+          <line>84</line>
+          <properties />
+          <option name="timeStamp" value="188" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Core/ParkingCore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/ToursFilterActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="388">
@@ -671,27 +673,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour1Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="30" column="13" lean-forward="true" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour2Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="65" column="52" selection-start-line="65" selection-start-column="52" selection-end-line="65" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome1Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome2Activity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -703,57 +684,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour3Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="35" column="47" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome4Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-940">
-          <caret line="69" column="5" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Core/TourCore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
-          <folding>
-            <element signature="e#1456#1457#0" expanded="true" />
-            <element signature="e#1486#1487#0" expanded="true" />
-            <element signature="e#1532#1533#0" expanded="true" />
-            <element signature="e#1570#1571#0" expanded="true" />
-            <element signature="e#1606#1607#0" expanded="true" />
-            <element signature="e#1639#1640#0" expanded="true" />
-            <element signature="e#1691#1692#0" expanded="true" />
-            <element signature="e#1735#1736#0" expanded="true" />
-            <element signature="e#1778#1779#0" expanded="true" />
-            <element signature="e#1817#1818#0" expanded="true" />
-            <element signature="e#1973#1974#0" expanded="true" />
-            <element signature="e#2008#2009#0" expanded="true" />
-            <element signature="e#2061#2062#0" expanded="true" />
-            <element signature="e#2109#2110#0" expanded="true" />
-            <element signature="e#2148#2149#0" expanded="true" />
-            <element signature="e#2183#2184#0" expanded="true" />
-            <element signature="e#2219#2220#0" expanded="true" />
-            <element signature="e#2251#2252#0" expanded="true" />
-            <element signature="e#2301#2302#0" expanded="true" />
-            <element signature="e#2343#2344#0" expanded="true" />
-            <element signature="e#2399#2400#0" expanded="true" />
-            <element signature="e#2447#2448#0" expanded="true" />
-            <element signature="e#2488#2489#0" expanded="true" />
-            <element signature="e#2525#2526#0" expanded="true" />
-            <element signature="e#2585#2586#0" expanded="true" />
-            <element signature="e#2637#2638#0" expanded="true" />
-            <element signature="e#2676#2677#0" expanded="true" />
-            <element signature="e#2710#2711#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -776,13 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour4Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1220">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_tour2.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
@@ -791,32 +714,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_tour1.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_tour3.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
           <caret line="102" selection-start-line="102" selection-end-line="102" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_tour4.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="927">
-          <caret line="76" column="45" selection-start-line="76" selection-start-column="45" selection-end-line="76" selection-end-column="45" />
-          <folding>
-            <element signature="e#900#926#0" expanded="true" />
-            <element signature="e#1742#1769#0" expanded="true" />
-            <element signature="e#2546#2567#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -835,12 +737,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/ListAllAccommodationActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -860,13 +762,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="110" selection-start-line="110" selection-end-line="111" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Adapters/MyToursListingsAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="64" column="91" selection-start-line="64" selection-start-column="91" selection-end-line="64" selection-end-column="91" />
         </state>
       </provider>
     </entry>
@@ -938,14 +833,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_statistics2.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="30" column="40" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Models/BookingManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -1012,14 +899,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/SplashActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
+        <state relative-caret-position="720">
           <caret line="52" column="9" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Core/UserCore.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
+        <state relative-caret-position="1900">
           <caret line="148" selection-start-line="148" selection-end-line="148" />
           <folding>
             <element signature="e#3761#3762#0" expanded="true" />
@@ -1030,7 +917,7 @@
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v3.1.0/c36541a24c138357e038090ca9f92a7870656913/MPAndroidChart-v3.1.0-sources.jar!/com/github/mikephil/charting/charts/Chart.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
+        <state relative-caret-position="1144">
           <caret line="806" column="16" selection-start-line="806" selection-start-column="16" selection-end-line="806" selection-end-column="16" />
           <folding>
             <element signature="e#35960#35961#0" expanded="true" />
@@ -1039,10 +926,107 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour2Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="92" column="36" selection-start-line="92" selection-start-column="36" selection-end-line="92" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour3Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_tour1.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="105" column="50" selection-start-line="105" selection-start-column="37" selection-end-line="105" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/StatisticsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
+        <state relative-caret-position="149">
+          <caret line="143" column="49" selection-start-line="143" selection-start-column="49" selection-end-line="143" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome1Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_home4.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="76" column="24" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_tour4.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="41" column="47" lean-forward="true" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
+          <folding>
+            <element signature="e#1072#1098#0" expanded="true" />
+            <element signature="e#1994#2021#0" expanded="true" />
+            <element signature="e#2870#2891#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddHome4Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="37" column="42" selection-start-line="37" selection-start-column="42" selection-end-line="37" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_statistics2.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Adapters/MyToursListingsAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="84" column="67" lean-forward="true" selection-start-line="84" selection-start-column="67" selection-end-line="84" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Core/TourCore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="152" column="29" selection-start-line="152" selection-start-column="16" selection-end-line="152" selection-end-column="29" />
+          <folding>
+            <element signature="e#3686#3687#0" expanded="true" />
+            <element signature="e#3719#3720#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour4Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="85" column="55" selection-start-line="85" selection-start-column="55" selection-end-line="85" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/worldapp/Activities/AddTour1Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="87" column="9" lean-forward="true" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
         </state>
       </provider>
     </entry>

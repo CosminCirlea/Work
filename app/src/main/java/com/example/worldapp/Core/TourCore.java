@@ -154,6 +154,10 @@ public class TourCore {
         this.mTourPrice = mTourPrice;
     }
 
+    public double getmTourPrice() {
+        return mTourPrice;
+    }
+
     public String getmTourDuration() {
         return mTourDuration;
     }
