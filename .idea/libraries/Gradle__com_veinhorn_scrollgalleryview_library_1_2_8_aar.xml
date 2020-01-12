@@ -1,10 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.veinhorn.scrollgalleryview:library:1.2.8@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/546d2d5df6d02d3736a5fa0a0341426f/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/546d2d5df6d02d3736a5fa0a0341426f/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/07a5af7d0b003903908c17ec4e3db8d8/library-1.2.8/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/07a5af7d0b003903908c17ec4e3db8d8/library-1.2.8/res" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.veinhorn.scrollgalleryview/library/1.2.8/e00a877c943bcdeff8f7705093f8dcfe725e2b77/library-1.2.8-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.veinhorn.scrollgalleryview/library/1.2.8/2ccf4f415670737d5fe7d04db3406939dc6effc2/library-1.2.8-sources.jar!/" />
     </SOURCES>

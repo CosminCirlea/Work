@@ -9,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.worldapp.CustomViews.ProgressDialog;
-import com.example.worldapp.Interfaces.OnBusyChangedListener;
 import com.example.worldapp.R;
 
 public class BaseAppCompat extends AppCompatActivity {

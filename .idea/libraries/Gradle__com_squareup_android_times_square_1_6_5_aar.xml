@@ -1,10 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.squareup:android-times-square:1.6.5@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/09f2ffec4f8d530a2b1dd4d187149f68/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/09f2ffec4f8d530a2b1dd4d187149f68/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e077abfbda74a0e27637961cc0398a91/android-times-square-1.6.5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e077abfbda74a0e27637961cc0398a91/android-times-square-1.6.5/res" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup/android-times-square/1.6.5/baaaa304bd0858d2e457744881776c68dc5bffdc/android-times-square-1.6.5-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup/android-times-square/1.6.5/6ab15abb2321dcbf6abcf01d1245d898e9c215a5/android-times-square-1.6.5-sources.jar!/" />
     </SOURCES>
