@@ -54,7 +54,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.EditProfileActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".Activities.MyToursActivity"
             android:screenOrientation="portrait" />

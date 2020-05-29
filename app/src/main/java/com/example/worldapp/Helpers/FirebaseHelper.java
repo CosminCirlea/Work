@@ -33,6 +33,7 @@ public class FirebaseHelper {
     public static DatabaseReference mAccommodationDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Accommodation");
     public static DatabaseReference mParkingsDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Parkings");
     public static DatabaseReference mUserDatabase = FirebaseDatabase.getInstance().getReference().child("users");
+    public static DatabaseReference mOfflineTestingDatabase = FirebaseDatabase.getInstance().getReference().child("OfflineTesting");
     private FirebaseDatabase mDatabase;
     private DatabaseReference mDatabaseReference;
     private UserDetailsModel mUser, mAuxUser;
@@ -57,6 +58,7 @@ public class FirebaseHelper {
         {
             mFirebaseHelper = new FirebaseHelper();
         }
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         return mFirebaseHelper;
     }
 

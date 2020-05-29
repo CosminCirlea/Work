@@ -21,6 +21,8 @@ import com.example.worldapp.Models.UserDetailsModel;
 import com.example.worldapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.timessquare.CalendarCellDecorator;
 import com.squareup.timessquare.CalendarPickerView;
@@ -42,6 +44,7 @@ public class EditProfileActivity extends BaseAppCompat {
     private ImageView mProfileIV;
     private Button mSaveButton;
     private UserDetailsModel mUser;
+    private DatabaseReference mDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,7 @@ public class EditProfileActivity extends BaseAppCompat {
         InitializeViews();
         super.SetToolbarTitle(UserCore.Instance().User.getFirstname());
         setValues();
+        FirebaseHelper.mUserDatabase.keepSynced(true);
 
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +85,21 @@ public class EditProfileActivity extends BaseAppCompat {
                 });
             }
         });
+
+        mDatabaseReference = FirebaseDatabase.getInstance()
+                .getReference("users").child(mUser.getUserId());
+        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UserDetailsModel user = dataSnapshot.getValue(UserDetailsModel.class);
+                UserCore.Instance().User.setFirstname(user.getFirstname());
+                mFirstnameET.setText(user.getFirstname());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 
     private void InitializeViews()
@@ -98,7 +117,6 @@ public class EditProfileActivity extends BaseAppCompat {
         mUser = UserCore.Instance().User;
         mEmailTV.setText(mUser.getEmail());
         mNameET.setText(mUser.getName());
-        mFirstnameET.setText(mUser.getFirstname());
         mPhoneNumberET.setText(mUser.getPhoneNumber());
         Glide.with(mProfileIV.getContext()).load(mUser.getImageUri())
                 .into(mProfileIV);

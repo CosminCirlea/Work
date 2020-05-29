@@ -116,10 +116,12 @@ public class FragmentProfileLoggedIn extends Fragment {
         mStorageReference = FirebaseStorage.getInstance().getReference("ProfilePictures");
         mDatabaseReference = FirebaseDatabase.getInstance()
                 .getReference("users").child(mUser.getUid());
-        mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UserDetailsModel user = dataSnapshot.getValue(UserDetailsModel.class);
+                UserCore.Instance().User.setFirstname(user.getFirstname());
+                TvFirstName.setText(user.getFirstname());
                 if (user.getImageUri().equals("")) {
                         ivProfilePicture.setImageResource(R.mipmap.ic_logo);
                     } else {

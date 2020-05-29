@@ -14,6 +14,7 @@ import com.example.worldapp.Adapters.MyHomesListingsAdapter;
 import com.example.worldapp.BaseClasses.BaseAppCompat;
 import com.example.worldapp.Core.UserCore;
 import com.example.worldapp.Helpers.FirebaseHelper;
+import com.example.worldapp.Interfaces.ClickListener;
 import com.example.worldapp.Models.HomeDetailsModel;
 import com.example.worldapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,23 +44,11 @@ public class ListAllAccommodationActivity extends BaseAppCompat {
 
         mAccommodationList = new ArrayList<>();
         mAccommodationDatabase = FirebaseHelper.mAccommodationDatabaseReference;
-        mAccommodationDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
-                {
-                    HomeDetailsModel mHome = dataSnapshot1.getValue(HomeDetailsModel.class);
-                    if (IsMatchingFilter(mHome, mFilterValues)) {
-                        mAccommodationList.add(mHome);
-                    }
-                }
-                mHomeAdapter = new MyHomesListingsAdapter(ListAllAccommodationActivity.this, mAccommodationList);
-                recyclerView.setAdapter(mHomeAdapter);
-            }
 
+        interfaceTest(new ClickListener() {
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(ListAllAccommodationActivity.this, "Opsss.... Something went wrong", Toast.LENGTH_SHORT).show();
+            public void onClickedAction(boolean test) {
+
             }
         });
 
@@ -69,6 +58,30 @@ public class ListAllAccommodationActivity extends BaseAppCompat {
                 Intent myIntent = new Intent(ListAllAccommodationActivity.this, AccommodationFilterActivity.class);
                 myIntent.putStringArrayListExtra("alreadyFiltered", mFiltersList);
                 startActivity(myIntent);
+            }
+        });
+    }
+
+    private void interfaceTest(final ClickListener clickListener)
+    {
+        mAccommodationDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
+                {
+                    HomeDetailsModel mHome = dataSnapshot1.getValue(HomeDetailsModel.class);
+                    if (IsMatchingFilter(mHome, mFilterValues)) {
+                        mAccommodationList.add(mHome);
+                        clickListener.onClickedAction(true);
+                    }
+                }
+                mHomeAdapter = new MyHomesListingsAdapter(ListAllAccommodationActivity.this, mAccommodationList);
+                recyclerView.setAdapter(mHomeAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(ListAllAccommodationActivity.this, "Opsss.... Something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
     }
